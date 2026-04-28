@@ -1,5 +1,5 @@
 // =============================================
-// ALEX MORGAN – Digital Marketing Portfolio
+// Subash Ravi  – Digital Marketing Portfolio
 // script.js – Interactions, Animations, Logic
 // =============================================
 
