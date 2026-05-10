@@ -1,666 +1,1236 @@
-```html
-<!-- ============================================================
-     SEO CASE STUDY — DEEP DIVE SECTION
-     Drop-in section. Matches existing template (Syne/DM Sans,
-     #00D4FF accent, dark + light mode, .reveal, .counter, .btn).
-     Place anywhere after <section id="projects"> in index.html.
-============================================================ -->
-<section class="case-study section section-alt" id="case-study" aria-labelledby="caseStudyTitle">
-  <div class="cs-bg">
-    <div class="cs-glow cs-glow-1"></div>
-    <div class="cs-glow cs-glow-2"></div>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Case Study | Subash Ravi — 400% Organic Traffic Growth</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <div class="container">
+  :root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #131920;
+    --bg-card: #161d27;
+    --bg-card-hover: #1c2535;
+    --cyan: #00d4ff;
+    --cyan-dim: #00b8d9;
+    --cyan-glow: rgba(0,212,255,0.15);
+    --cyan-border: rgba(0,212,255,0.3);
+    --text-primary: #f0f6fc;
+    --text-secondary: #8b949e;
+    --text-muted: #484f58;
+    --border: rgba(255,255,255,0.06);
+    --border-cyan: rgba(0,212,255,0.2);
+    --success: #3fb950;
+    --warning: #d29922;
+    --danger: #f85149;
+    --font: 'Space Grotesk', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
 
-    <!-- ===== HERO ===== -->
-    <header class="section-header cs-hero reveal">
-      <span class="section-tag">SEO Case Study</span>
-      <h2 class="section-title" id="caseStudyTitle">
-        Increased Organic Traffic by <span class="accent">45%</span> in 6 Months
-      </h2>
-      <p class="section-subtitle">
-        A B2B SaaS deep-dive — from technical debt and stagnant rankings to a compounding organic engine that ships qualified leads every week.
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,17,23,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 600; color: var(--text-primary);
+    text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--cyan), #0066cc);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #0d1117;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text-primary); }
+  .nav-cta {
+    background: var(--cyan); color: #0d1117;
+    border: none; padding: 8px 20px; border-radius: 8px;
+    font-family: var(--font); font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--cyan-dim); transform: translateY(-1px); }
+
+  /* ===== SECTION UTILITY ===== */
+  section { padding: 100px 5%; }
+  .section-tag {
+    display: inline-block;
+    background: rgba(0,212,255,0.1); color: var(--cyan);
+    border: 1px solid var(--border-cyan);
+    padding: 4px 14px; border-radius: 20px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700; line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .section-title span { color: var(--cyan); }
+  .section-sub { color: var(--text-secondary); font-size: 16px; max-width: 560px; }
+  .center { text-align: center; }
+  .center .section-sub { margin: 0 auto; }
+
+  /* ===== CARD ===== */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    transition: all 0.3s;
+  }
+  .card:hover {
+    border-color: var(--border-cyan);
+    background: var(--bg-card-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,212,255,0.06);
+  }
+  .card-cyan {
+    border-color: var(--border-cyan);
+    box-shadow: 0 0 30px rgba(0,212,255,0.05);
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding-top: 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,212,255,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: center; width: 100%; max-width: 1280px; margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(63,185,80,0.1); color: var(--success);
+    border: 1px solid rgba(63,185,80,0.25); border-radius: 20px;
+    padding: 6px 14px; font-size: 12px; font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .hero-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--success); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+  .hero-title {
+    font-size: clamp(36px, 4.5vw, 58px);
+    font-weight: 700; line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .hero-title .cyan { color: var(--cyan); }
+  .hero-meta {
+    display: flex; gap: 24px; flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .hero-meta-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px; color: var(--text-secondary);
+  }
+  .hero-meta-item span { color: var(--text-primary); font-weight: 500; }
+  .hero-meta-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--cyan); }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--cyan); color: #0d1117;
+    border: none; padding: 12px 28px; border-radius: 10px;
+    font-family: var(--font); font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: var(--cyan-dim); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,212,255,0.3); }
+  .btn-outline {
+    background: transparent; color: var(--text-primary);
+    border: 1px solid var(--border-cyan); padding: 12px 28px; border-radius: 10px;
+    font-family: var(--font); font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-outline:hover { background: var(--cyan-glow); border-color: var(--cyan); }
+
+  /* Hero dashboard */
+  .hero-dashboard {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 20px; overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  }
+  .dash-header {
+    background: var(--bg-secondary); padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .dash-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dash-title { font-size: 12px; color: var(--text-secondary); margin-left: 8px; font-family: var(--mono); }
+  .dash-body { padding: 20px; }
+  .dash-kpis { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 20px; }
+  .kpi-card {
+    background: var(--bg-secondary); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px;
+  }
+  .kpi-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .kpi-value { font-size: 22px; font-weight: 700; color: var(--cyan); font-family: var(--mono); }
+  .kpi-change { font-size: 11px; color: var(--success); margin-top: 2px; }
+  .chart-area { position: relative; height: 160px; }
+
+  /* ===== STATS BAR ===== */
+  .stats-bar {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 40px 5%;
+  }
+  .stats-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 0; max-width: 1280px; margin: 0 auto; }
+  .stat-item { text-align: center; padding: 20px; border-right: 1px solid var(--border); }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 36px; font-weight: 700; color: var(--cyan); font-family: var(--mono); }
+  .stat-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+
+  /* ===== OVERVIEW ===== */
+  .overview-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: start; max-width: 1280px; margin: 0 auto; }
+  .info-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .info-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+  .info-card-icon { font-size: 22px; margin-bottom: 10px; }
+  .info-card-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+  .info-card-value { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-top: 4px; }
+  .info-card-sub { font-size: 12px; color: var(--text-secondary); margin-top: 3px; }
+  .goals-card { background: var(--bg-card); border: 1px solid var(--border-cyan); border-radius: 16px; padding: 24px; }
+  .goals-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 16px; color: var(--cyan); }
+  .goal-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 14px; }
+  .goal-check { width: 20px; height: 20px; border-radius: 6px; background: rgba(63,185,80,0.15); border: 1px solid rgba(63,185,80,0.3); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--success); flex-shrink: 0; }
+
+  /* ===== CHALLENGES ===== */
+  .challenges-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 1280px; margin: 40px auto 0; }
+  .challenge-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; position: relative; overflow: hidden; transition: all 0.3s; }
+  .challenge-card:hover { border-color: rgba(248,81,73,0.3); transform: translateY(-4px); }
+  .challenge-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--danger), transparent); }
+  .challenge-num { font-family: var(--mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.1em; margin-bottom: 10px; }
+  .challenge-icon { font-size: 28px; margin-bottom: 12px; }
+  .challenge-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .challenge-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .challenge-tag { display: inline-block; margin-top: 12px; background: rgba(248,81,73,0.1); color: #f85149; border: 1px solid rgba(248,81,73,0.2); border-radius: 6px; padding: 3px 10px; font-size: 11px; font-weight: 600; }
+
+  /* ===== AUDIT PROCESS ===== */
+  .audit-inner { max-width: 1280px; margin: 0 auto; }
+  .audit-flow { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin-bottom: 60px; }
+  .audit-step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; position: relative; transition: all 0.3s; }
+  .audit-step:hover { border-color: var(--border-cyan); background: var(--bg-card-hover); }
+  .audit-step-num { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.1em; margin-bottom: 12px; }
+  .audit-step-icon { font-size: 32px; margin-bottom: 12px; }
+  .audit-step-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .audit-step-sub { font-size: 12px; color: var(--text-secondary); }
+  .tools-section h3 { font-size: 16px; font-weight: 600; margin-bottom: 20px; }
+  .tools-grid { display: flex; gap: 12px; flex-wrap: wrap; }
+  .tool-badge {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 10px 16px;
+    font-size: 13px; font-weight: 500; transition: all 0.2s;
+    cursor: default;
+  }
+  .tool-badge:hover { border-color: var(--border-cyan); color: var(--cyan); }
+  .tool-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* ===== STRATEGY ===== */
+  .strategy-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; max-width: 1280px; margin: 40px auto 0; }
+  .strategy-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; position: relative; overflow: hidden; transition: all 0.3s; }
+  .strategy-card:hover { border-color: var(--border-cyan); transform: translateY(-4px); }
+  .strategy-card::after { content: ''; position: absolute; top: 0; right: 0; width: 80px; height: 80px; background: radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 70%); }
+  .strategy-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+  .strategy-icon-wrap { width: 44px; height: 44px; border-radius: 12px; background: rgba(0,212,255,0.1); border: 1px solid var(--border-cyan); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .strategy-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .strategy-problem { font-size: 12px; color: var(--danger); font-weight: 500; }
+  .strategy-items { list-style: none; }
+  .strategy-items li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.5; }
+  .strategy-items li::before { content: '→'; color: var(--cyan); font-weight: 600; flex-shrink: 0; }
+  .strategy-impact { margin-top: 16px; padding: 10px 14px; background: rgba(63,185,80,0.08); border: 1px solid rgba(63,185,80,0.2); border-radius: 8px; font-size: 12px; color: var(--success); }
+
+  /* ===== TIMELINE ===== */
+  .timeline-inner { max-width: 900px; margin: 40px auto 0; }
+  .timeline-item { display: flex; gap: 28px; margin-bottom: 0; position: relative; }
+  .timeline-item:not(:last-child)::after { content: ''; position: absolute; left: 20px; top: 44px; bottom: -16px; width: 2px; background: linear-gradient(to bottom, var(--border-cyan), var(--border)); }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; gap: 8px; flex-shrink: 0; }
+  .timeline-dot { width: 40px; height: 40px; border-radius: 50%; background: rgba(0,212,255,0.15); border: 2px solid var(--cyan); display: flex; align-items: center; justify-content: center; font-size: 16px; z-index: 1; }
+  .timeline-week { font-size: 11px; color: var(--cyan); font-family: var(--mono); font-weight: 600; white-space: nowrap; }
+  .timeline-content { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; flex: 1; margin-bottom: 24px; transition: all 0.3s; }
+  .timeline-content:hover { border-color: var(--border-cyan); }
+  .timeline-content h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .timeline-tasks { display: flex; flex-wrap: wrap; gap: 8px; }
+  .timeline-task { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 12px; color: var(--text-secondary); }
+
+  /* ===== RESULTS ===== */
+  .results-section { background: var(--bg-secondary); }
+  .results-inner { max-width: 1280px; margin: 0 auto; }
+  .results-kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin-bottom: 40px; }
+  .result-kpi { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; transition: all 0.3s; }
+  .result-kpi:hover { border-color: var(--border-cyan); transform: translateY(-4px); }
+  .result-kpi-label { font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .result-kpi-before { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; font-family: var(--mono); }
+  .result-kpi-after { font-size: 32px; font-weight: 700; color: var(--cyan); font-family: var(--mono); line-height: 1; }
+  .result-kpi-delta { display: inline-flex; align-items: center; gap: 4px; background: rgba(63,185,80,0.12); color: var(--success); border-radius: 6px; padding: 3px 8px; font-size: 12px; font-weight: 600; margin-top: 8px; }
+  .charts-row { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 32px; }
+  .chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+  .chart-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .chart-card p { font-size: 12px; color: var(--text-secondary); margin-bottom: 16px; }
+  .before-after { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .ba-header { background: var(--bg-secondary); padding: 14px 20px; border-bottom: 1px solid var(--border); font-size: 14px; font-weight: 600; }
+  .ba-table { width: 100%; border-collapse: collapse; }
+  .ba-table th { background: rgba(0,212,255,0.05); padding: 10px 16px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); text-align: left; }
+  .ba-table td { padding: 12px 16px; border-top: 1px solid var(--border); font-size: 13px; }
+  .ba-table .before { color: var(--text-muted); font-family: var(--mono); }
+  .ba-table .after { color: var(--cyan); font-family: var(--mono); font-weight: 600; }
+  .ba-table .delta { color: var(--success); font-size: 12px; }
+
+  /* ===== LEARNINGS ===== */
+  .learnings-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 1280px; margin: 40px auto 0; }
+  .learning-card { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--cyan); border-radius: 0 16px 16px 0; padding: 24px; transition: all 0.3s; }
+  .learning-card:hover { border-color: var(--border-cyan); border-left-color: var(--cyan); background: var(--bg-card-hover); }
+  .learning-num { font-family: var(--mono); font-size: 11px; color: var(--cyan); margin-bottom: 10px; }
+  .learning-icon { font-size: 26px; margin-bottom: 12px; }
+  .learning-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .learning-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* ===== TESTIMONIAL ===== */
+  .testimonial-inner { max-width: 800px; margin: 40px auto 0; }
+  .testimonial-card { background: var(--bg-card); border: 1px solid var(--border-cyan); border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 0 60px rgba(0,212,255,0.06); }
+  .testimonial-stars { color: #f0c040; font-size: 20px; letter-spacing: 4px; margin-bottom: 20px; }
+  .testimonial-quote { font-size: 18px; line-height: 1.7; color: var(--text-primary); margin-bottom: 28px; font-style: italic; }
+  .testimonial-author { display: flex; align-items: center; justify-content: center; gap: 14px; }
+  .testimonial-avatar { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, var(--cyan), #0066cc); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: #0d1117; }
+  .testimonial-name { font-weight: 600; font-size: 15px; }
+  .testimonial-company { font-size: 13px; color: var(--text-secondary); }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    background: var(--bg-secondary); text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 600px;
+    background: radial-gradient(ellipse, rgba(0,212,255,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-section .section-title { font-size: clamp(36px, 5vw, 60px); }
+  .cta-section .section-sub { max-width: 500px; margin: 0 auto 40px; }
+  .cta-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--bg-primary); border-top: 1px solid var(--border);
+    padding: 32px 5%; text-align: center;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  footer p { font-size: 13px; color: var(--text-muted); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--cyan); }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up-d1 { transition-delay: 0.1s; }
+  .fade-up-d2 { transition-delay: 0.2s; }
+  .fade-up-d3 { transition-delay: 0.3s; }
+
+  /* ===== COUNTER ===== */
+  .counter { transition: all 0.3s; }
+
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-dashboard { display: none; }
+    .stats-grid { grid-template-columns: repeat(3,1fr); }
+    .overview-grid { grid-template-columns: 1fr; }
+    .challenges-grid { grid-template-columns: 1fr 1fr; }
+    .audit-flow { grid-template-columns: repeat(2,1fr); }
+    .strategy-grid { grid-template-columns: 1fr; }
+    .results-kpis { grid-template-columns: repeat(2,1fr); }
+    .charts-row { grid-template-columns: 1fr; }
+    .learnings-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .challenges-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2,1fr); }
+    .results-kpis { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    section { padding: 70px 5%; }
+    .info-cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">SR</div>
+    Subash
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Projects</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Skills</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <button class="nav-cta">Hire Me</button>
+</nav>
+
+<!-- HERO -->
+     <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <a href="#" class="back-link">← Back to Projects</a>
+        <div class="hero-badge">SEO Case Study · 2024</div>
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">✦ SEO Case Study · E-Commerce Niche</div>
+      <h1 class="hero-title">
+        Increased Organic Traffic by<br>
+        <span class="cyan">400% in 6 Months</span><br>
+        via Technical SEO
+      </h1>
+      <div class="hero-meta">
+        <div class="hero-meta-item"><span>Health & Wellness</span></div>
+        <div class="hero-meta-dot"></div>
+        <div class="hero-meta-item"><span>WordPress · WooCommerce</span></div>
+        <div class="hero-meta-dot"></div>
+        <div class="hero-meta-item"><span>6 Months · 2024</span></div>
+      </div>
+      <p style="color:var(--text-secondary);font-size:15px;max-width:480px;margin-bottom:32px;line-height:1.7;">
+        A complete SEO overhaul — from crawl budget optimization and Core Web Vitals fixes to content strategy and authority building — that took an underperforming e-commerce store from 5K to 30K monthly visitors.
       </p>
-      <div class="cs-hero-meta">
-        <span><i class="fa-solid fa-calendar"></i> Jul 2024 – Dec 2024</span>
-        <span><i class="fa-solid fa-user-tie"></i> Lead SEO Strategist</span>
-        <span><i class="fa-solid fa-globe"></i> SaaS / B2B</span>
-      </div>
-    </header>
-
-    <!-- ===== OVERVIEW CARDS ===== -->
-    <div class="cs-overview" role="list">
-      <article class="cs-overview-card reveal" role="listitem">
-        <div class="cs-ov-icon"><i class="fa-solid fa-building"></i></div>
-        <span class="cs-ov-label">Industry</span>
-        <strong class="cs-ov-value">B2B SaaS · PM Tools</strong>
-      </article>
-      <article class="cs-overview-card reveal" role="listitem">
-        <div class="cs-ov-icon"><i class="fa-solid fa-clock"></i></div>
-        <span class="cs-ov-label">Duration</span>
-        <strong class="cs-ov-value">6 Months</strong>
-      </article>
-      <article class="cs-overview-card reveal" role="listitem">
-        <div class="cs-ov-icon"><i class="fa-solid fa-user-shield"></i></div>
-        <span class="cs-ov-label">My Role</span>
-        <strong class="cs-ov-value">Lead SEO Strategist</strong>
-      </article>
-      <article class="cs-overview-card reveal" role="listitem">
-        <div class="cs-ov-icon"><i class="fa-solid fa-bullseye"></i></div>
-        <span class="cs-ov-label">SEO Focus</span>
-        <strong class="cs-ov-value">Technical · On-page · Content · Links</strong>
-      </article>
-    </div>
-
-    <!-- ===== PROBLEM STATEMENT ===== -->
-    <div class="cs-block reveal">
-      <div class="cs-block-head">
-        <span class="cs-step">01</span>
-        <h3>The Problem</h3>
-        <p>Strong product, invisible search footprint. Here's what we walked into.</p>
-      </div>
-      <div class="cs-problem-grid">
-        <div class="cs-problem-card">
-          <i class="fa-solid fa-triangle-exclamation"></i>
-          <h4>Flat Organic Traffic</h4>
-          <p>Plateaued at ~12K monthly sessions for 9 consecutive months despite consistent publishing.</p>
-        </div>
-        <div class="cs-problem-card">
-          <i class="fa-solid fa-link-slash"></i>
-          <h4>Thin Backlink Profile</h4>
-          <p>Only 84 referring domains, DR 28 — well below the top-10 SERP average of DR 56+.</p>
-        </div>
-        <div class="cs-problem-card">
-          <i class="fa-solid fa-spider"></i>
-          <h4>Crawl & Index Bloat</h4>
-          <p>3,200+ low-value indexed URLs (filters, tags, faceted) diluting topical authority.</p>
-        </div>
-        <div class="cs-problem-card">
-          <i class="fa-solid fa-gauge-high"></i>
-          <h4>Poor Core Web Vitals</h4>
-          <p>LCP 4.6s on key money pages, CLS over 0.25 — failing field data thresholds.</p>
-        </div>
+      <div class="hero-btns">
+        <a href="#results" class="btn-primary">↓ View Results</a>
+        <a href="#strategy" class="btn-outline">See Strategy</a>
       </div>
     </div>
 
-    <!-- ===== AUDIT & RESEARCH ===== -->
-    <div class="cs-block reveal">
-      <div class="cs-block-head">
-        <span class="cs-step">02</span>
-        <h3>SEO Audit & Research</h3>
-        <p>Six weeks of deep analysis across crawl, content, and competitive gap.</p>
+    <div class="hero-dashboard fade-up fade-up-d2">
+      <div class="dash-header">
+        <div class="dash-dot" style="background:#ff5f57;"></div>
+        <div class="dash-dot" style="background:#ffbd2e;"></div>
+        <div class="dash-dot" style="background:#28c840;"></div>
+        <span class="dash-title">Google Search Console · Performance Dashboard</span>
       </div>
-      <div class="cs-tools">
-        <div class="cs-tool-badge"><i class="fa-brands fa-google"></i><span>Search Console</span></div>
-        <div class="cs-tool-badge"><i class="fa-solid fa-chart-line"></i><span>Analytics 4</span></div>
-        <div class="cs-tool-badge"><i class="fa-solid fa-a"></i><span>Ahrefs</span></div>
-        <div class="cs-tool-badge"><i class="fa-solid fa-s"></i><span>SEMrush</span></div>
-        <div class="cs-tool-badge"><i class="fa-solid fa-bug"></i><span>Screaming Frog</span></div>
-        <div class="cs-tool-badge"><i class="fa-solid fa-gauge"></i><span>PageSpeed</span></div>
-      </div>
-    </div>
-
-    <!-- ===== STRATEGY ===== -->
-    <div class="cs-block reveal">
-      <div class="cs-block-head">
-        <span class="cs-step">03</span>
-        <h3>The Strategy</h3>
-        <p>Five parallel workstreams, sequenced for compounding impact.</p>
-      </div>
-      <div class="cs-strategy-grid">
-        <article class="cs-strategy-card">
-          <div class="cs-strat-icon"><i class="fa-solid fa-file-lines"></i></div>
-          <h4>On-Page SEO</h4>
-          <p>Rewrote 32 priority pages with intent-matched H1s, LSI coverage, and FAQ schema.</p>
-          <ul><li>Title & meta refresh</li><li>Entity coverage</li><li>Internal anchors</li></ul>
-        </article>
-        <article class="cs-strategy-card">
-          <div class="cs-strat-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-          <h4>Technical SEO</h4>
-          <p>Pruned 2,400 thin URLs, fixed crawl traps, deployed proper canonicals & hreflang.</p>
-          <ul><li>Core Web Vitals fix</li><li>JS rendering audit</li><li>XML sitemap rebuild</li></ul>
-        </article>
-        <article class="cs-strategy-card">
-          <div class="cs-strat-icon"><i class="fa-solid fa-pen-nib"></i></div>
-          <h4>Content SEO</h4>
-          <p>Built 6 topical clusters — 12 pillar pages + 48 supporting articles, BOFU-first.</p>
-          <ul><li>Search-intent mapping</li><li>E-E-A-T signals</li><li>Refresh cadence</li></ul>
-        </article>
-        <article class="cs-strategy-card">
-          <div class="cs-strat-icon"><i class="fa-solid fa-diagram-project"></i></div>
-          <h4>Internal Linking</h4>
-          <p>Programmatic hub-and-spoke linking pushing equity toward 14 commercial pages.</p>
-          <ul><li>Anchor-text plan</li><li>Orphan recovery</li><li>Contextual modules</li></ul>
-        </article>
-        <article class="cs-strategy-card">
-          <div class="cs-strat-icon"><i class="fa-solid fa-link"></i></div>
-          <h4>Link Building</h4>
-          <p>Digital PR + niche edits campaign netting 71 quality referring domains, avg DR 54.</p>
-          <ul><li>HARO / Connectively</li><li>Guest contributions</li><li>Linkable assets</li></ul>
-        </article>
-        <article class="cs-strategy-card">
-          <div class="cs-strat-icon"><i class="fa-solid fa-flask"></i></div>
-          <h4>CRO & Tracking</h4>
-          <p>GA4 events, CTA A/B tests on top-20 pages, and keyword-to-conversion attribution.</p>
-          <ul><li>Event taxonomy</li><li>Heatmap insights</li><li>Lead scoring</li></ul>
-        </article>
-      </div>
-    </div>
-
-    <!-- ===== RESULTS — KPIs ===== -->
-    <div class="cs-block reveal">
-      <div class="cs-block-head">
-        <span class="cs-step">04</span>
-        <h3>The Results</h3>
-        <p>Measured at month 6. Sustained and still climbing.</p>
-      </div>
-      <div class="cs-kpi-grid" id="csKpiGrid">
-        <article class="cs-kpi-card" data-target="45">
-          <div class="cs-kpi-top">
-            <i class="fa-solid fa-arrow-trend-up"></i>
-            <span class="cs-kpi-trend up">+45%</span>
+      <div class="dash-body">
+        <div class="dash-kpis">
+          <div class="kpi-card">
+            <div class="kpi-label">Organic Traffic</div>
+            <div class="kpi-value" id="kpi-traffic">30K</div>
+            <div class="kpi-change">↑ +500% MoM</div>
           </div>
-          <div class="cs-kpi-num"><span class="cs-counter" data-target="45">0</span>%</div>
-          <p class="cs-kpi-label">Organic Traffic Growth</p>
-          <div class="cs-progress"><div class="cs-progress-fill" data-fill="92"></div></div>
-        </article>
-
-        <article class="cs-kpi-card" data-target="20">
-          <div class="cs-kpi-top">
-            <i class="fa-solid fa-ranking-star"></i>
-            <span class="cs-kpi-trend up">Top 10</span>
+          <div class="kpi-card">
+            <div class="kpi-label">Avg Position</div>
+            <div class="kpi-value" style="color:#3fb950;">4.2</div>
+            <div class="kpi-change">↑ from 28.5</div>
           </div>
-          <div class="cs-kpi-num"><span class="cs-counter" data-target="20">0</span>+</div>
-          <p class="cs-kpi-label">Keywords in Top 10</p>
-          <div class="cs-progress"><div class="cs-progress-fill" data-fill="78"></div></div>
-        </article>
-
-        <article class="cs-kpi-card" data-target="32">
-          <div class="cs-kpi-top">
-            <i class="fa-solid fa-users"></i>
-            <span class="cs-kpi-trend up">+32%</span>
+          <div class="kpi-card">
+            <div class="kpi-label">CTR</div>
+            <div class="kpi-value" style="color:#d29922;">8.4%</div>
+            <div class="kpi-change">↑ from 2.1%</div>
           </div>
-          <div class="cs-kpi-num"><span class="cs-counter" data-target="32">0</span>%</div>
-          <p class="cs-kpi-label">Qualified Leads Increase</p>
-          <div class="cs-progress"><div class="cs-progress-fill" data-fill="84"></div></div>
-        </article>
-
-        <article class="cs-kpi-card" data-target="45" data-decimal="true">
-          <div class="cs-kpi-top">
-            <i class="fa-solid fa-mouse-pointer"></i>
-            <span class="cs-kpi-trend up">+4.5%</span>
-          </div>
-          <div class="cs-kpi-num"><span class="cs-counter" data-target="45" data-decimal="true">0</span>%</div>
-          <p class="cs-kpi-label">CTR Improvement</p>
-          <div class="cs-progress"><div class="cs-progress-fill" data-fill="65"></div></div>
-        </article>
-      </div>
-    </div>
-
-    <!-- ===== BEFORE vs AFTER ===== -->
-    <div class="cs-block reveal">
-      <div class="cs-block-head">
-        <span class="cs-step">05</span>
-        <h3>Before vs After</h3>
-        <p>Side-by-side metrics from baseline (Jun 2024) to month 6 (Dec 2024).</p>
-      </div>
-      <div class="cs-compare">
-        <div class="cs-compare-row cs-compare-head">
-          <span>Metric</span><span class="cs-col-before">Before</span><span class="cs-col-after">After</span><span>Lift</span>
         </div>
-        <div class="cs-compare-row">
-          <span>Monthly Organic Traffic</span>
-          <span class="cs-col-before">12,400</span>
-          <span class="cs-col-after">17,980</span>
-          <span class="cs-lift up">+45%</span>
-        </div>
-        <div class="cs-compare-row">
-          <span>Keywords in Top 10</span>
-          <span class="cs-col-before">9</span>
-          <span class="cs-col-after">31</span>
-          <span class="cs-lift up">+244%</span>
-        </div>
-        <div class="cs-compare-row">
-          <span>Average CTR</span>
-          <span class="cs-col-before">2.1%</span>
-          <span class="cs-col-after">6.6%</span>
-          <span class="cs-lift up">+4.5pp</span>
-        </div>
-        <div class="cs-compare-row">
-          <span>Referring Domains</span>
-          <span class="cs-col-before">84</span>
-          <span class="cs-col-after">155</span>
-          <span class="cs-lift up">+84%</span>
-        </div>
-        <div class="cs-compare-row">
-          <span>Domain Rating</span>
-          <span class="cs-col-before">28</span>
-          <span class="cs-col-after">47</span>
-          <span class="cs-lift up">+19</span>
-        </div>
-        <div class="cs-compare-row">
-          <span>Qualified Leads / mo</span>
-          <span class="cs-col-before">68</span>
-          <span class="cs-col-after">90</span>
-          <span class="cs-lift up">+32%</span>
-        </div>
-        <div class="cs-compare-row">
-          <span>LCP (Mobile)</span>
-          <span class="cs-col-before">4.6s</span>
-          <span class="cs-col-after">2.1s</span>
-          <span class="cs-lift up">−54%</span>
+        <div class="chart-area">
+          <canvas id="heroChart" role="img" aria-label="Organic traffic growth over 6 months from 5K to 30K">Traffic grew from 5K to 30K over 6 months.</canvas>
         </div>
       </div>
     </div>
-
-    <!-- ===== PROOF / SCREENSHOTS ===== -->
-    <div class="cs-block reveal">
-      <div class="cs-block-head">
-        <span class="cs-step">06</span>
-        <h3>Proof of Work</h3>
-        <p>Direct exports from Search Console, Analytics, and Ahrefs.</p>
-      </div>
-      <div class="cs-proof-grid">
-        <figure class="cs-proof-card">
-          <div class="cs-proof-img cs-proof-1" role="img" aria-label="Search Console performance trend">
-            <i class="fa-brands fa-google"></i>
-          </div>
-          <figcaption>
-            <strong>Search Console — 6 mo Trend</strong>
-            <span>Clicks +47% · Impressions +112%</span>
-          </figcaption>
-        </figure>
-        <figure class="cs-proof-card">
-          <div class="cs-proof-img cs-proof-2" role="img" aria-label="Ahrefs ranking history">
-            <i class="fa-solid fa-ranking-star"></i>
-          </div>
-          <figcaption>
-            <strong>Ahrefs — Keyword Movement</strong>
-            <span>22 new top-10 rankings</span>
-          </figcaption>
-        </figure>
-        <figure class="cs-proof-card">
-          <div class="cs-proof-img cs-proof-3" role="img" aria-label="GA4 conversions dashboard">
-            <i class="fa-solid fa-chart-pie"></i>
-          </div>
-          <figcaption>
-            <strong>GA4 — Conversions</strong>
-            <span>Demo requests +32% MoM</span>
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-
-    <!-- ===== KEY LEARNINGS ===== -->
-    <div class="cs-block reveal">
-      <div class="cs-block-head">
-        <span class="cs-step">07</span>
-        <h3>Key Learnings</h3>
-        <p>What I'd do faster, harder, and smarter on the next engagement.</p>
-      </div>
-      <ul class="cs-learnings">
-        <li><i class="fa-solid fa-circle-check"></i><div><strong>Prune before you publish.</strong><span>Removing 2,400 low-value URLs unlocked crawl budget for what mattered.</span></div></li>
-        <li><i class="fa-solid fa-circle-check"></i><div><strong>BOFU first, blog second.</strong><span>Comparison and "alternatives" pages converted 4× faster than top-funnel content.</span></div></li>
-        <li><i class="fa-solid fa-circle-check"></i><div><strong>CWV is a ranking lever.</strong><span>Cutting LCP from 4.6s to 2.1s correlated with a 19% lift on 14 money pages.</span></div></li>
-        <li><i class="fa-solid fa-circle-check"></i><div><strong>Internal links beat new links.</strong><span>A disciplined hub-spoke link plan moved more rankings than the first 30 backlinks combined.</span></div></li>
-      </ul>
-    </div>
-
-    <!-- ===== CTA ===== -->
-    <div class="cs-cta reveal">
-      <div class="cs-cta-inner">
-        <h3>Let's Build SEO Growth Together</h3>
-        <p>Open to senior SEO and growth roles, freelance retainers, and agency partnerships. Recruiters welcome — I respond within 24 hours.</p>
-        <div class="cs-cta-actions">
-          <a href="https://www.linkedin.com/in/subashravi/" target="_blank" rel="noopener" class="btn btn-primary">
-            <i class="fa-brands fa-linkedin-in"></i> Connect on LinkedIn
-          </a>
-          <a href="https://customer-assets.emergentagent.com/job_f8bac728-72e4-4fb3-be8a-c4da2e214386/artifacts/subash-resume.pdf" download="subash-resume.pdf" class="btn btn-outline">
-            <i class="fa-solid fa-file-arrow-down"></i> Download Resume
-          </a>
-          <a href="#contact" class="btn btn-ghost">
-            Contact Me <i class="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
-```
 
-```css
-/* =========================================================
-   APPEND TO style.css — SEO Case Study Section
-   Reuses: --bg-*, --accent, --text-*, --border, --radius*,
-   --font-display, --font-body, .reveal animation system.
-========================================================= */
-.case-study { position: relative; overflow: hidden; }
-.cs-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
-.cs-glow {
-  position: absolute; border-radius: 50%; filter: blur(90px); opacity: .55;
-}
-.cs-glow-1 {
-  width: 520px; height: 520px;
-  background: radial-gradient(circle, rgba(0,212,255,.18), transparent 70%);
-  top: -120px; left: -100px;
-}
-.cs-glow-2 {
-  width: 420px; height: 420px;
-  background: radial-gradient(circle, rgba(255,107,53,.10), transparent 70%);
-  bottom: -100px; right: -80px;
-}
-.case-study .container { position: relative; z-index: 1; }
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-num counter" data-target="400">0%</div>
+      <div class="stat-label">Organic Traffic Growth</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num counter" data-target="87">0</div>
+      <div class="stat-label">Top 10 Keywords</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num counter" data-target="92">0</div>
+      <div class="stat-label">PageSpeed Score</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num counter" data-target="300">0%</div>
+      <div class="stat-label">Impressions Growth</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num counter" data-target="6">0</div>
+      <div class="stat-label">Months to Achieve</div>
+    </div>
+  </div>
+</div>
 
-/* ===== Hero meta ===== */
-.cs-hero-meta {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem 1.5rem;
-  margin-top: 1.25rem; color: var(--text-secondary); font-size: .875rem;
-}
-.cs-hero-meta span { display: inline-flex; align-items: center; gap: 6px; }
-.cs-hero-meta i { color: var(--accent); }
+<!-- PROJECT OVERVIEW -->
+<section id="overview">
+  <div class="center fade-up" style="max-width:1280px;margin:0 auto 60px;">
+    <div class="section-tag">Project Overview</div>
+    <h2 class="section-title">The Business &amp; <span>SEO Context</span></h2>
+    <p class="section-sub">Understanding the client, their industry, and exactly what success needed to look like.</p>
+  </div>
+  <div class="overview-grid">
+    <div class="info-cards fade-up">
+      <div class="info-card">
+        <div class="info-card-icon">🏪</div>
+        <div class="info-card-label">Business Type</div>
+        <div class="info-card-value">E-Commerce Store</div>
+        <div class="info-card-sub">Health & Wellness Products</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🌐</div>
+        <div class="info-card-label">Platform</div>
+        <div class="info-card-value">WordPress + WooCommerce</div>
+        <div class="info-card-sub">Shared hosting → VPS migration</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">📄</div>
+        <div class="info-card-label">Website Size</div>
+        <div class="info-card-value">480 Pages</div>
+        <div class="info-card-sub">Products, blogs, category pages</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🎯</div>
+        <div class="info-card-label">Target Audience</div>
+        <div class="info-card-value">Health-Conscious Adults</div>
+        <div class="info-card-sub">25–45, India &amp; Tier-1 cities</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">📅</div>
+        <div class="info-card-label">Project Duration</div>
+        <div class="info-card-value">6 Months</div>
+        <div class="info-card-sub">Jan 2024 – Jun 2024</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">👤</div>
+        <div class="info-card-label">SEO Role</div>
+        <div class="info-card-value">Lead SEO Specialist</div>
+        <div class="info-card-sub">Technical + On-Page + Strategy</div>
+      </div>
+    </div>
+    <div class="goals-card fade-up fade-up-d2">
+      <h3>📌 SEO Goals &amp; KPIs</h3>
+      <div class="goal-item"><div class="goal-check">✓</div>Grow organic traffic from 5K → 25K/mo</div>
+      <div class="goal-item"><div class="goal-check">✓</div>Rank 50+ product keywords in Top 10</div>
+      <div class="goal-item"><div class="goal-check">✓</div>Improve Core Web Vitals to 90+</div>
+      <div class="goal-item"><div class="goal-check">✓</div>Fix 300+ technical SEO errors</div>
+      <div class="goal-item"><div class="goal-check">✓</div>Increase CTR from 2% to 6%+</div>
+      <div class="goal-item"><div class="goal-check">✓</div>Build 40+ quality backlinks</div>
+      <div class="goal-item"><div class="goal-check">✓</div>Reduce bounce rate below 55%</div>
+      <div style="margin-top:20px;padding:14px;background:rgba(0,212,255,0.06);border:1px solid var(--border-cyan);border-radius:10px;">
+        <div style="font-size:11px;color:var(--cyan);font-weight:600;letter-spacing:0.08em;margin-bottom:6px;">OUTCOME</div>
+        <div style="font-size:14px;font-weight:600;">All 7 primary KPIs achieved &amp; exceeded within 6 months 🎯</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-/* ===== Overview cards ===== */
-.cs-overview {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
-  margin: 3rem 0 4rem;
-}
-.cs-overview-card {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 1.5rem 1.25rem;
-  backdrop-filter: blur(12px); transition: var(--transition);
-  position: relative; overflow: hidden;
-}
-.cs-overview-card::after {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--accent), transparent);
-  transform: scaleX(0); transform-origin: left; transition: transform .4s ease;
-}
-.cs-overview-card:hover { transform: translateY(-4px); border-color: var(--border-accent); box-shadow: var(--shadow-accent); }
-.cs-overview-card:hover::after { transform: scaleX(1); }
-.cs-ov-icon {
-  width: 42px; height: 42px; border-radius: 10px;
-  background: var(--accent-glow); border: 1px solid var(--border-accent);
-  color: var(--accent); display: flex; align-items: center; justify-content: center;
-  font-size: 1.05rem; margin-bottom: 1rem;
-}
-.cs-ov-label {
-  font-size: .7rem; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--text-muted); display: block; margin-bottom: 4px;
-}
-.cs-ov-value { font-family: var(--font-display); font-weight: 700; font-size: 1rem; line-height: 1.4; display: block; }
+<!-- CHALLENGES -->
+<section id="challenges" style="background:var(--bg-secondary);">
+  <div class="center fade-up" style="max-width:1280px;margin:0 auto 0;">
+    <div class="section-tag">Audit Findings</div>
+    <h2 class="section-title">Challenges <span>Identified</span></h2>
+    <p class="section-sub">A deep technical and content audit uncovered 9 critical SEO blockers holding back organic growth.</p>
+  </div>
+  <div class="challenges-grid">
+    <div class="challenge-card fade-up">
+      <div class="challenge-num">01 / TECHNICAL</div>
+      <div class="challenge-icon">⚡</div>
+      <div class="challenge-title">Poor Core Web Vitals</div>
+      <div class="challenge-desc">LCP of 8.2s (should be ≤2.5s). CLS score of 0.38 (should be ≤0.1). All three Core Web Vitals were failing.</div>
+      <span class="challenge-tag">PageSpeed: 28/100</span>
+    </div>
+    <div class="challenge-card fade-up fade-up-d1">
+      <div class="challenge-num">02 / INDEXING</div>
+      <div class="challenge-icon">🔍</div>
+      <div class="challenge-title">Crawl &amp; Indexing Issues</div>
+      <div class="challenge-desc">180+ pages blocked in robots.txt accidentally. Google not indexing 40% of product pages.</div>
+      <span class="challenge-tag">140 Pages Not Indexed</span>
+    </div>
+    <div class="challenge-card fade-up fade-up-d2">
+      <div class="challenge-num">03 / CONTENT</div>
+      <div class="challenge-icon">📋</div>
+      <div class="challenge-title">Duplicate Content Issues</div>
+      <div class="challenge-desc">Product variations creating duplicate URLs. Tag pages, pagination, and filter parameters causing cannibalisation.</div>
+      <span class="challenge-tag">60+ Duplicate Pages</span>
+    </div>
+    <div class="challenge-card fade-up">
+      <div class="challenge-num">04 / ARCHITECTURE</div>
+      <div class="challenge-icon">🔗</div>
+      <div class="challenge-title">Weak Internal Linking</div>
+      <div class="challenge-desc">High-value pages receiving zero internal links. PageRank not flowing to priority product pages and collections.</div>
+      <span class="challenge-tag">Orphan Pages: 48</span>
+    </div>
+    <div class="challenge-card fade-up fade-up-d1">
+      <div class="challenge-num">05 / TECHNICAL</div>
+      <div class="challenge-icon">🚨</div>
+      <div class="challenge-title">300+ Technical SEO Errors</div>
+      <div class="challenge-desc">Broken links, missing alt tags, missing meta descriptions, schema errors, and redirect chains found in audit.</div>
+      <span class="challenge-tag">Screaming Frog Crawl</span>
+    </div>
+    <div class="challenge-card fade-up fade-up-d2">
+      <div class="challenge-num">06 / UX</div>
+      <div class="challenge-icon">📱</div>
+      <div class="challenge-title">Poor Mobile Usability</div>
+      <div class="challenge-desc">Non-responsive elements, tap targets too small, font size issues causing Google Mobile Usability failures.</div>
+      <span class="challenge-tag">12 Mobile Errors</span>
+    </div>
+    <div class="challenge-card fade-up">
+      <div class="challenge-num">07 / RANKINGS</div>
+      <div class="challenge-icon">📉</div>
+      <div class="challenge-title">Low Keyword Rankings</div>
+      <div class="challenge-desc">Only 12 keywords in Top 10. No target keywords ranking on Page 1. Weak E-E-A-T signals across the domain.</div>
+      <span class="challenge-tag">DA: 14 · DR: 11</span>
+    </div>
+    <div class="challenge-card fade-up fade-up-d1">
+      <div class="challenge-num">08 / CTR</div>
+      <div class="challenge-icon">🖱️</div>
+      <div class="challenge-title">Low Click-Through Rate</div>
+      <div class="challenge-desc">Average CTR of 2.1% despite appearing in search results. Titles and meta descriptions not optimised for SERP.</div>
+      <span class="challenge-tag">CTR: 2.1%</span>
+    </div>
+    <div class="challenge-card fade-up fade-up-d2">
+      <div class="challenge-num">09 / AUTHORITY</div>
+      <div class="challenge-icon">🔋</div>
+      <div class="challenge-title">Weak Backlink Profile</div>
+      <div class="challenge-desc">Only 23 referring domains, most low-quality. No anchor text diversity. Domain authority significantly behind competitors.</div>
+      <span class="challenge-tag">23 Ref. Domains</span>
+    </div>
+  </div>
+</section>
 
-/* ===== Block layout ===== */
-.cs-block { margin-bottom: 4.5rem; }
-.cs-block-head { margin-bottom: 2rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1rem; }
-.cs-step {
-  font-family: var(--font-display); font-weight: 800; font-size: 1rem;
-  color: var(--accent); background: var(--accent-glow);
-  border: 1px solid var(--border-accent); padding: 4px 12px; border-radius: 50px;
-  letter-spacing: 1px;
-}
-.cs-block-head h3 {
-  font-family: var(--font-display); font-size: 1.6rem; font-weight: 800;
-  color: var(--text-primary); line-height: 1.2;
-}
-.cs-block-head p { width: 100%; color: var(--text-secondary); font-size: .95rem; margin-top: .25rem; }
+<!-- AUDIT PROCESS -->
+<section id="audit">
+  <div class="audit-inner">
+    <div class="center fade-up">
+      <div class="section-tag">Research &amp; Analysis</div>
+      <h2 class="section-title">SEO Audit &amp; <span>Research Process</span></h2>
+      <p class="section-sub">A structured 8-step audit methodology to understand every SEO opportunity and threat.</p>
+    </div>
+    <div class="audit-flow" style="margin-top:48px;">
+      <div class="audit-step fade-up">
+        <div class="audit-step-num">STEP 01</div>
+        <div class="audit-step-icon">🔬</div>
+        <div class="audit-step-title">Technical Audit</div>
+        <div class="audit-step-sub">Crawl errors, redirects, Core Web Vitals, schema, robots.txt</div>
+      </div>
+      <div class="audit-step fade-up fade-up-d1">
+        <div class="audit-step-num">STEP 02</div>
+        <div class="audit-step-icon">🔑</div>
+        <div class="audit-step-title">Keyword Research</div>
+        <div class="audit-step-sub">Volume, intent mapping, long-tail opportunities, SERP features</div>
+      </div>
+      <div class="audit-step fade-up fade-up-d2">
+        <div class="audit-step-num">STEP 03</div>
+        <div class="audit-step-icon">🏆</div>
+        <div class="audit-step-title">Competitor Analysis</div>
+        <div class="audit-step-sub">Top 5 SERP competitors analysed for content gaps and link gaps</div>
+      </div>
+      <div class="audit-step fade-up fade-up-d3">
+        <div class="audit-step-num">STEP 04</div>
+        <div class="audit-step-icon">📊</div>
+        <div class="audit-step-title">Content Gap Analysis</div>
+        <div class="audit-step-sub">Missing topics, thin content, cannibalisation map</div>
+      </div>
+      <div class="audit-step fade-up">
+        <div class="audit-step-num">STEP 05</div>
+        <div class="audit-step-icon">🔎</div>
+        <div class="audit-step-title">SERP Analysis</div>
+        <div class="audit-step-sub">Search intent, featured snippets, PAA, schema opportunities</div>
+      </div>
+      <div class="audit-step fade-up fade-up-d1">
+        <div class="audit-step-num">STEP 06</div>
+        <div class="audit-step-icon">🔗</div>
+        <div class="audit-step-title">Backlink Audit</div>
+        <div class="audit-step-sub">Toxic links disavowed, anchor diversity, referring domain analysis</div>
+      </div>
+      <div class="audit-step fade-up fade-up-d2">
+        <div class="audit-step-num">STEP 07</div>
+        <div class="audit-step-icon">🕸️</div>
+        <div class="audit-step-title">Internal Link Review</div>
+        <div class="audit-step-sub">Crawl depth, orphan pages, PageRank flow mapping</div>
+      </div>
+      <div class="audit-step fade-up fade-up-d3">
+        <div class="audit-step-num">STEP 08</div>
+        <div class="audit-step-icon">📝</div>
+        <div class="audit-step-title">Schema Opportunities</div>
+        <div class="audit-step-sub">Product, review, FAQ, breadcrumb, HowTo schema gaps</div>
+      </div>
+    </div>
 
-/* ===== Problem grid ===== */
-.cs-problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
-.cs-problem-card {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  border-radius: var(--radius); padding: 1.5rem; transition: var(--transition);
-}
-.cs-problem-card:hover { transform: translateY(-3px); border-color: var(--border-accent); border-left-color: var(--accent); box-shadow: var(--shadow-accent); }
-.cs-problem-card i { color: var(--accent); font-size: 1.25rem; margin-bottom: .75rem; }
-.cs-problem-card h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
-.cs-problem-card p { color: var(--text-secondary); font-size: .9rem; line-height: 1.65; }
+    <div class="tools-section fade-up">
+      <h3>🛠️ SEO Tools Used</h3>
+      <div class="tools-grid">
+        <div class="tool-badge"><div class="tool-dot" style="background:#ff7043;"></div>Ahrefs</div>
+        <div class="tool-badge"><div class="tool-dot" style="background:#f06292;"></div>SEMrush</div>
+        <div class="tool-badge"><div class="tool-dot" style="background:#4fc3f7;"></div>Screaming Frog</div>
+        <div class="tool-badge"><div class="tool-dot" style="background:#66bb6a;"></div>Google Analytics 4</div>
+        <div class="tool-badge"><div class="tool-dot" style="background:#26c6da;"></div>Google Search Console</div>
+        <div class="tool-badge"><div class="tool-dot" style="background:#ab47bc;"></div>GTmetrix</div>
+        <div class="tool-badge"><div class="tool-dot" style="background:#ffa726;"></div>PageSpeed Insights</div>
+        <div class="tool-badge"><div class="tool-dot" style="background:#ec407a;"></div>Moz Pro</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-/* ===== Tool badges ===== */
-.cs-tools { display: flex; flex-wrap: wrap; gap: .75rem; }
-.cs-tool-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: 50px; padding: 8px 16px; font-size: .85rem;
-  color: var(--text-secondary); transition: var(--transition);
-}
-.cs-tool-badge i { color: var(--accent); }
-.cs-tool-badge:hover { border-color: var(--border-accent); color: var(--text-primary); background: var(--bg-card-hover); transform: translateY(-2px); }
+<!-- STRATEGY -->
+<section id="strategy" style="background:var(--bg-secondary);">
+  <div class="center fade-up" style="max-width:1280px;margin:0 auto;">
+    <div class="section-tag">SEO Strategy</div>
+    <h2 class="section-title">Implementation <span>Strategy</span></h2>
+    <p class="section-sub">Six interconnected SEO pillars executed in a prioritised sequence for compounding results.</p>
+  </div>
+  <div class="strategy-grid">
+    <div class="strategy-card fade-up">
+      <div class="strategy-header">
+        <div class="strategy-icon-wrap">⚡</div>
+        <div>
+          <h3>Technical SEO Overhaul</h3>
+          <div class="strategy-problem">Problem: Site crawlability &amp; speed blocking rankings</div>
+        </div>
+      </div>
+      <ul class="strategy-items">
+        <li>Fixed robots.txt to unblock 180 key product pages from crawling</li>
+        <li>Implemented lazy loading, WebP image conversion, CDN setup</li>
+        <li>Resolved 4 redirect chains and eliminated 3xx redirect loops</li>
+        <li>Migrated hosting to VPS reducing TTFB from 2.8s to 0.4s</li>
+        <li>Canonicalized 60+ duplicate product variation URLs</li>
+      </ul>
+      <div class="strategy-impact">📈 Impact: PageSpeed 28 → 92 · LCP 8.2s → 1.8s</div>
+    </div>
+    <div class="strategy-card fade-up fade-up-d1">
+      <div class="strategy-header">
+        <div class="strategy-icon-wrap">📄</div>
+        <div>
+          <h3>On-Page Optimization</h3>
+          <div class="strategy-problem">Problem: Low CTR and weak keyword signals</div>
+        </div>
+      </div>
+      <ul class="strategy-items">
+        <li>Rewrote 120 title tags with power words and primary keyword front-loading</li>
+        <li>Optimised meta descriptions for 8%+ CTR using emotional triggers</li>
+        <li>Added FAQ schema to 60+ blog posts capturing PAA positions</li>
+        <li>Implemented Product schema on all 280 product pages</li>
+        <li>Added breadcrumb schema improving crawl efficiency by 35%</li>
+      </ul>
+      <div class="strategy-impact">📈 Impact: CTR 2.1% → 8.4% · 22 Featured Snippet wins</div>
+    </div>
+    <div class="strategy-card fade-up">
+      <div class="strategy-header">
+        <div class="strategy-icon-wrap">✍️</div>
+        <div>
+          <h3>Content Optimization</h3>
+          <div class="strategy-problem">Problem: Thin content, keyword gaps, low E-E-A-T</div>
+        </div>
+      </div>
+      <ul class="strategy-items">
+        <li>Expanded 45 thin product descriptions to 800+ word SEO-rich content</li>
+        <li>Published 24 long-form blog posts (1800–3200 words) targeting informational intent</li>
+        <li>Removed/noindexed 38 low-quality tag pages hurting crawl budget</li>
+        <li>Added author bios and expert credentials to improve E-E-A-T signals</li>
+        <li>Created content hubs with cluster/pillar architecture for 6 core topics</li>
+      </ul>
+      <div class="strategy-impact">📈 Impact: Avg time on page +68% · Pages/session +42%</div>
+    </div>
+    <div class="strategy-card fade-up fade-up-d1">
+      <div class="strategy-header">
+        <div class="strategy-icon-wrap">🕸️</div>
+        <div>
+          <h3>Internal Linking Strategy</h3>
+          <div class="strategy-problem">Problem: 48 orphan pages, poor PageRank flow</div>
+        </div>
+      </div>
+      <ul class="strategy-items">
+        <li>Built topic cluster architecture with pillar → cluster → product linking</li>
+        <li>Eliminated all 48 orphan pages by connecting to relevant content hubs</li>
+        <li>Added contextual internal links from 80+ high-traffic blog posts to products</li>
+        <li>Implemented breadcrumb navigation sitewide improving crawl depth</li>
+        <li>Used Ahrefs link opportunities report to find high-authority internal link placements</li>
+      </ul>
+      <div class="strategy-impact">📈 Impact: Crawl depth reduced · 38% more pages indexed</div>
+    </div>
+    <div class="strategy-card fade-up">
+      <div class="strategy-header">
+        <div class="strategy-icon-wrap">🔗</div>
+        <div>
+          <h3>Link Building Campaign</h3>
+          <div class="strategy-problem">Problem: DA 14, only 23 referring domains</div>
+        </div>
+      </div>
+      <ul class="strategy-items">
+        <li>HARO (Help a Reporter Out) outreach securing 8 high-DA editorial mentions</li>
+        <li>Guest posting on 12 health/wellness blogs with DR 40+ authority</li>
+        <li>Resource page link building via broken link strategy</li>
+        <li>Disavowed 34 spammy backlinks detected in GSC manual actions report</li>
+        <li>Local citations built across 15 niche health directories</li>
+      </ul>
+      <div class="strategy-impact">📈 Impact: DA 14 → 31 · Ref. Domains 23 → 78</div>
+    </div>
+    <div class="strategy-card fade-up fade-up-d1">
+      <div class="strategy-header">
+        <div class="strategy-icon-wrap">📡</div>
+        <div>
+          <h3>Indexing &amp; Sitemap Fix</h3>
+          <div class="strategy-problem">Problem: 40% of pages not indexed by Google</div>
+        </div>
+      </div>
+      <ul class="strategy-items">
+        <li>Rebuilt XML sitemap excluding noindex pages and excluding faceted URLs</li>
+        <li>Submitted priority product pages manually via GSC URL Inspection</li>
+        <li>Added hreflang tags for regional targeting (India + UAE)</li>
+        <li>Fixed 14 canonical errors causing Google to ignore correct page variants</li>
+        <li>Monitored and resolved crawl anomalies weekly via GSC Coverage report</li>
+      </ul>
+      <div class="strategy-impact">📈 Impact: Indexed pages 280 → 440 · +57% indexation rate</div>
+    </div>
+  </div>
+</section>
 
-/* ===== Strategy grid ===== */
-.cs-strategy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-.cs-strategy-card {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 1.75rem;
-  transition: var(--transition); position: relative; overflow: hidden;
-}
-.cs-strategy-card::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(circle at top right, var(--accent-glow), transparent 60%);
-  opacity: 0; transition: opacity .4s ease; pointer-events: none;
-}
-.cs-strategy-card:hover { transform: translateY(-5px); border-color: var(--border-accent); box-shadow: var(--shadow-accent); }
-.cs-strategy-card:hover::before { opacity: 1; }
-.cs-strat-icon {
-  width: 48px; height: 48px; border-radius: 12px;
-  background: var(--accent-glow); border: 1px solid var(--border-accent);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--accent); font-size: 1.3rem; margin-bottom: 1rem;
-}
-.cs-strategy-card h4 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; }
-.cs-strategy-card p { color: var(--text-secondary); font-size: .9rem; line-height: 1.7; margin-bottom: 1rem; }
-.cs-strategy-card ul { display: flex; flex-direction: column; gap: .35rem; }
-.cs-strategy-card ul li { font-size: .825rem; color: var(--text-muted); padding-left: 1rem; position: relative; }
-.cs-strategy-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="center fade-up" style="max-width:1280px;margin:0 auto 60px;">
+    <div class="section-tag">Execution Plan</div>
+    <h2 class="section-title">Implementation <span>Timeline</span></h2>
+    <p class="section-sub">A phased 6-week sprint followed by ongoing monitoring and compounding gains.</p>
+  </div>
+  <div class="timeline-inner">
+    <div class="timeline-item fade-up">
+      <div class="timeline-left">
+        <div class="timeline-dot">🔍</div>
+        <div class="timeline-week">WEEK 01</div>
+      </div>
+      <div class="timeline-content">
+        <h3>Full SEO Audit &amp; Baseline Setup</h3>
+        <div class="timeline-tasks">
+          <span class="timeline-task">Screaming Frog crawl</span>
+          <span class="timeline-task">GA4 + GSC audit</span>
+          <span class="timeline-task">Keyword research</span>
+          <span class="timeline-task">Competitor analysis</span>
+          <span class="timeline-task">Backlink audit</span>
+          <span class="timeline-task">Priority matrix</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item fade-up fade-up-d1">
+      <div class="timeline-left">
+        <div class="timeline-dot">⚡</div>
+        <div class="timeline-week">WEEK 02</div>
+      </div>
+      <div class="timeline-content">
+        <h3>Technical SEO Fixes &amp; Core Web Vitals</h3>
+        <div class="timeline-tasks">
+          <span class="timeline-task">Robots.txt fix</span>
+          <span class="timeline-task">Speed optimization</span>
+          <span class="timeline-task">CDN setup</span>
+          <span class="timeline-task">Redirect cleanup</span>
+          <span class="timeline-task">Canonicalization</span>
+          <span class="timeline-task">Mobile fix</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item fade-up fade-up-d2">
+      <div class="timeline-left">
+        <div class="timeline-dot">📄</div>
+        <div class="timeline-week">WEEK 03</div>
+      </div>
+      <div class="timeline-content">
+        <h3>On-Page SEO &amp; Schema Implementation</h3>
+        <div class="timeline-tasks">
+          <span class="timeline-task">Title tag rewrites</span>
+          <span class="timeline-task">Meta descriptions</span>
+          <span class="timeline-task">Schema markup</span>
+          <span class="timeline-task">H1/H2 optimization</span>
+          <span class="timeline-task">Image alt tags</span>
+          <span class="timeline-task">Sitemap rebuild</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item fade-up">
+      <div class="timeline-left">
+        <div class="timeline-dot">✍️</div>
+        <div class="timeline-week">WEEK 04</div>
+      </div>
+      <div class="timeline-content">
+        <h3>Content Optimization &amp; Publishing</h3>
+        <div class="timeline-tasks">
+          <span class="timeline-task">Thin content expansion</span>
+          <span class="timeline-task">Blog publishing (8 posts)</span>
+          <span class="timeline-task">Content hubs</span>
+          <span class="timeline-task">E-E-A-T signals</span>
+          <span class="timeline-task">Content pruning</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item fade-up fade-up-d1">
+      <div class="timeline-left">
+        <div class="timeline-dot">🕸️</div>
+        <div class="timeline-week">WEEK 05</div>
+      </div>
+      <div class="timeline-content">
+        <h3>Internal Linking &amp; Link Building Launch</h3>
+        <div class="timeline-tasks">
+          <span class="timeline-task">Internal link audit</span>
+          <span class="timeline-task">Orphan page fix</span>
+          <span class="timeline-task">Cluster architecture</span>
+          <span class="timeline-task">HARO outreach</span>
+          <span class="timeline-task">Guest post pitching</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item fade-up fade-up-d2">
+      <div class="timeline-left">
+        <div class="timeline-dot">📊</div>
+        <div class="timeline-week">WEEK 06+</div>
+      </div>
+      <div class="timeline-content">
+        <h3>Reporting, Monitoring &amp; Scaling</h3>
+        <div class="timeline-tasks">
+          <span class="timeline-task">KPI reporting dashboard</span>
+          <span class="timeline-task">Ranking monitoring</span>
+          <span class="timeline-task">Content scaling</span>
+          <span class="timeline-task">Link building ongoing</span>
+          <span class="timeline-task">GSC anomaly alerts</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-/* ===== KPI cards ===== */
-.cs-kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
-.cs-kpi-card {
-  background: linear-gradient(180deg, var(--bg-card), var(--bg-card-hover));
-  border: 1px solid var(--border); border-radius: var(--radius-lg);
-  padding: 1.75rem; transition: var(--transition); position: relative; overflow: hidden;
-}
-.cs-kpi-card::after {
-  content: ''; position: absolute; top: -1px; left: -1px; right: -1px; height: 3px;
-  background: linear-gradient(90deg, var(--accent), transparent 70%);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-}
-.cs-kpi-card:hover { transform: translateY(-5px); border-color: var(--border-accent); box-shadow: var(--shadow-accent); }
-.cs-kpi-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-.cs-kpi-top i { color: var(--accent); font-size: 1.2rem; }
-.cs-kpi-trend {
-  font-size: .75rem; font-weight: 700; padding: 3px 10px; border-radius: 50px;
-  background: rgba(0,255,135,.10); color: #00FF87; border: 1px solid rgba(0,255,135,.25);
-}
-.cs-kpi-num {
-  font-family: var(--font-display); font-weight: 800;
-  font-size: 2.5rem; color: var(--accent); line-height: 1; margin-bottom: .5rem;
-}
-.cs-kpi-label { font-size: .85rem; color: var(--text-secondary); margin-bottom: 1.25rem; }
-.cs-progress { height: 6px; background: var(--border); border-radius: 50px; overflow: hidden; }
-.cs-progress-fill {
-  height: 100%; width: 0;
-  background: linear-gradient(90deg, var(--accent), #00EEFF);
-  border-radius: 50px; transition: width 1.4s cubic-bezier(.4,0,.2,1);
-}
+<!-- RESULTS -->
+<section id="results" class="results-section">
+  <div class="results-inner">
+    <div class="center fade-up">
+      <div class="section-tag">SEO Results</div>
+      <h2 class="section-title">Results That <span>Speak Data</span></h2>
+      <p class="section-sub">After 6 months of structured execution, every KPI was achieved — most were exceeded.</p>
+    </div>
 
-/* ===== Compare table ===== */
-.cs-compare {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); overflow: hidden;
-}
-.cs-compare-row {
-  display: grid; grid-template-columns: 1.6fr 1fr 1fr .8fr;
-  align-items: center; padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--border); font-size: .9rem;
-  transition: background .25s ease;
-}
-.cs-compare-row:last-child { border-bottom: none; }
-.cs-compare-row:hover { background: var(--bg-card-hover); }
-.cs-compare-head {
-  background: var(--bg-secondary); font-family: var(--font-display);
-  font-size: .75rem; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--text-muted);
-}
-.cs-col-before { color: var(--text-muted); font-variant-numeric: tabular-nums; }
-.cs-col-after { color: var(--text-primary); font-weight: 600; font-variant-numeric: tabular-nums; }
-.cs-lift {
-  font-family: var(--font-display); font-weight: 700; font-size: .85rem;
-  background: rgba(0,255,135,.10); color: #00FF87; border: 1px solid rgba(0,255,135,.25);
-  padding: 3px 10px; border-radius: 50px; justify-self: start;
-}
+    <div class="results-kpis" style="margin-top:48px;">
+      <div class="result-kpi fade-up">
+        <div class="result-kpi-label">Organic Traffic</div>
+        <div class="result-kpi-before">was 5,000 / mo</div>
+        <div class="result-kpi-after">30K</div>
+        <div class="result-kpi-delta">↑ +500%</div>
+      </div>
+      <div class="result-kpi fade-up fade-up-d1">
+        <div class="result-kpi-label">Impressions</div>
+        <div class="result-kpi-before">was 120K / mo</div>
+        <div class="result-kpi-after">480K</div>
+        <div class="result-kpi-delta">↑ +300%</div>
+      </div>
+      <div class="result-kpi fade-up fade-up-d2">
+        <div class="result-kpi-label">Top 10 Keywords</div>
+        <div class="result-kpi-before">was 12 keywords</div>
+        <div class="result-kpi-after">87</div>
+        <div class="result-kpi-delta">↑ +625%</div>
+      </div>
+      <div class="result-kpi fade-up fade-up-d3">
+        <div class="result-kpi-label">PageSpeed Score</div>
+        <div class="result-kpi-before">was 28 / 100</div>
+        <div class="result-kpi-after">92</div>
+        <div class="result-kpi-delta">↑ +228%</div>
+      </div>
+      <div class="result-kpi fade-up">
+        <div class="result-kpi-label">CTR</div>
+        <div class="result-kpi-before">was 2.1%</div>
+        <div class="result-kpi-after">8.4%</div>
+        <div class="result-kpi-delta">↑ +300%</div>
+      </div>
+      <div class="result-kpi fade-up fade-up-d1">
+        <div class="result-kpi-label">Domain Authority</div>
+        <div class="result-kpi-before">was DA 14</div>
+        <div class="result-kpi-after">DA 31</div>
+        <div class="result-kpi-delta">↑ +121%</div>
+      </div>
+      <div class="result-kpi fade-up fade-up-d2">
+        <div class="result-kpi-label">Indexed Pages</div>
+        <div class="result-kpi-before">was 280 pages</div>
+        <div class="result-kpi-after">440</div>
+        <div class="result-kpi-delta">↑ +57%</div>
+      </div>
+      <div class="result-kpi fade-up fade-up-d3">
+        <div class="result-kpi-label">Bounce Rate</div>
+        <div class="result-kpi-before">was 74%</div>
+        <div class="result-kpi-after">48%</div>
+        <div class="result-kpi-delta">↓ -35%</div>
+      </div>
+    </div>
 
-/* ===== Proof grid ===== */
-.cs-proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-.cs-proof-card {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition);
-}
-.cs-proof-card:hover { transform: translateY(-5px); border-color: var(--border-accent); box-shadow: var(--shadow-accent); }
-.cs-proof-img {
-  position: relative; height: 200px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 3.2rem; color: var(--accent);
-  background:
-    linear-gradient(135deg, rgba(0,212,255,.08), rgba(0,212,255,0)),
-    linear-gradient(rgba(0,212,255,.05) 1px, transparent 1px) 0 0/40px 40px,
-    linear-gradient(90deg, rgba(0,212,255,.05) 1px, transparent 1px) 0 0/40px 40px;
-  border-bottom: 1px solid var(--border);
-}
-.cs-proof-img::after {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60%;
-  background: linear-gradient(to top, var(--bg-card), transparent);
-  pointer-events: none;
-}
-.cs-proof-1 { background-color: rgba(0,212,255,.04); }
-.cs-proof-2 { background-color: rgba(255,184,0,.05); }
-.cs-proof-3 { background-color: rgba(0,255,135,.05); }
-.cs-proof-card figcaption { padding: 1rem 1.25rem; }
-.cs-proof-card strong { font-family: var(--font-display); font-size: .95rem; display: block; margin-bottom: 4px; }
-.cs-proof-card span { font-size: .8rem; color: var(--text-muted); }
+    <div class="charts-row" style="margin-top:32px;">
+      <div class="chart-card fade-up">
+        <h3>Organic Traffic Growth</h3>
+        <p>Monthly organic sessions (Jan → Jun 2024)</p>
+        <div style="position:relative;height:220px;">
+          <canvas id="trafficChart" role="img" aria-label="Organic traffic growth from 5000 to 30000 over 6 months">Traffic grew from 5K in January to 30K in June 2024.</canvas>
+        </div>
+      </div>
+      <div class="chart-card fade-up fade-up-d2">
+        <h3>Keyword Distribution</h3>
+        <p>Before vs After ranking positions</p>
+        <div style="position:relative;height:220px;">
+          <canvas id="keywordChart" role="img" aria-label="Keywords in various ranking positions before and after SEO">Keywords moved from positions 11-50+ to positions 1-10.</canvas>
+        </div>
+      </div>
+    </div>
 
-/* ===== Learnings ===== */
-.cs-learnings {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
-}
-.cs-learnings li {
-  display: flex; gap: 1rem; padding: 1.25rem;
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius); transition: var(--transition);
-}
-.cs-learnings li:hover { border-color: var(--border-accent); transform: translateX(4px); }
-.cs-learnings li > i {
-  color: var(--accent); font-size: 1.15rem; margin-top: 4px; flex-shrink: 0;
-}
-.cs-learnings li strong { display: block; font-family: var(--font-display); font-size: .95rem; margin-bottom: 4px; }
-.cs-learnings li span { color: var(--text-secondary); font-size: .875rem; line-height: 1.6; }
+    <div class="before-after fade-up" style="margin-top:24px;">
+      <div class="ba-header">📊 Before vs After — SEO KPI Comparison</div>
+      <table class="ba-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Before (Jan 2024)</th>
+            <th>After (Jun 2024)</th>
+            <th>Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Monthly Organic Traffic</td><td class="before">5,000</td><td class="after">30,000</td><td class="delta">+500%</td></tr>
+          <tr><td>Monthly Impressions</td><td class="before">120,000</td><td class="after">480,000</td><td class="delta">+300%</td></tr>
+          <tr><td>Average CTR</td><td class="before">2.1%</td><td class="after">8.4%</td><td class="delta">+300%</td></tr>
+          <tr><td>Top 10 Keywords</td><td class="before">12</td><td class="after">87</td><td class="delta">+625%</td></tr>
+          <tr><td>Domain Authority</td><td class="before">DA 14</td><td class="after">DA 31</td><td class="delta">+121%</td></tr>
+          <tr><td>PageSpeed Score</td><td class="before">28/100</td><td class="after">92/100</td><td class="delta">+228%</td></tr>
+          <tr><td>LCP (Largest Contentful Paint)</td><td class="before">8.2s</td><td class="after">1.8s</td><td class="delta">-78%</td></tr>
+          <tr><td>Indexed Pages</td><td class="before">280</td><td class="after">440</td><td class="delta">+57%</td></tr>
+          <tr><td>Referring Domains</td><td class="before">23</td><td class="after">78</td><td class="delta">+239%</td></tr>
+          <tr><td>Bounce Rate</td><td class="before">74%</td><td class="after">48%</td><td class="delta">-35%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 
-/* ===== CTA ===== */
-.cs-cta { margin-top: 4rem; }
-.cs-cta-inner {
-  background:
-    radial-gradient(circle at top left, var(--accent-glow), transparent 50%),
-    linear-gradient(135deg, var(--bg-card), var(--bg-card-hover));
-  border: 1px solid var(--border-accent);
-  border-radius: var(--radius-lg);
-  padding: 3rem 2.5rem; text-align: center;
-  position: relative; overflow: hidden;
-}
-.cs-cta-inner::before {
-  content: ''; position: absolute; inset: -1px;
-  background: linear-gradient(135deg, var(--accent), transparent 40%, transparent 60%, var(--accent));
-  border-radius: var(--radius-lg); z-index: -1; opacity: .25;
-}
-.cs-cta-inner h3 {
-  font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.2rem);
-  font-weight: 800; margin-bottom: .75rem; color: var(--text-primary);
-}
-.cs-cta-inner p { color: var(--text-secondary); font-size: 1rem; max-width: 560px; margin: 0 auto 2rem; }
-.cs-cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+<!-- LEARNINGS -->
+<section id="learnings">
+  <div class="center fade-up" style="max-width:1280px;margin:0 auto;">
+    <div class="section-tag">SEO Insights</div>
+    <h2 class="section-title">Key <span>Learnings</span></h2>
+    <p class="section-sub">Strategic insights extracted from this project that apply across e-commerce SEO campaigns.</p>
+  </div>
+  <div class="learnings-grid">
+    <div class="learning-card fade-up">
+      <div class="learning-num">INSIGHT 01</div>
+      <div class="learning-icon">🔬</div>
+      <div class="learning-title">Technical Fixes First Always</div>
+      <div class="learning-desc">No amount of content or link building helps if Google can't crawl and index your pages. Fixing the robots.txt alone unlocked 180 pages and drove an immediate 22% traffic lift in Week 3.</div>
+    </div>
+    <div class="learning-card fade-up fade-up-d1">
+      <div class="learning-num">INSIGHT 02</div>
+      <div class="learning-icon">🕸️</div>
+      <div class="learning-title">Internal Linking Is Underrated</div>
+      <div class="learning-desc">Connecting 48 orphan pages to relevant hubs improved crawl efficiency dramatically and pushed several product pages from position 18 to position 5 without a single new backlink built.</div>
+    </div>
+    <div class="learning-card fade-up fade-up-d2">
+      <div class="learning-num">INSIGHT 03</div>
+      <div class="learning-icon">⚡</div>
+      <div class="learning-title">Core Web Vitals = Ranking Signal</div>
+      <div class="learning-desc">Improving LCP from 8.2s to 1.8s correlated directly with a 2.4 position average ranking improvement across all monitored keywords within 45 days. Speed is an SEO lever, not just UX.</div>
+    </div>
+    <div class="learning-card fade-up">
+      <div class="learning-num">INSIGHT 04</div>
+      <div class="learning-icon">📝</div>
+      <div class="learning-title">Content Clusters Outperform Standalone Posts</div>
+      <div class="learning-desc">6 topic clusters generated 68% of all new organic traffic. Each pillar page acted as an authority hub, passing ranking power to product pages through structured contextual linking.</div>
+    </div>
+    <div class="learning-card fade-up fade-up-d1">
+      <div class="learning-num">INSIGHT 05</div>
+      <div class="learning-icon">🖱️</div>
+      <div class="learning-title">CTR Optimization = Free Traffic</div>
+      <div class="learning-desc">Rewriting title tags and meta descriptions lifted CTR from 2.1% to 8.4% — equivalent to generating an extra 15K monthly visits at zero additional ranking cost. SERP copy matters.</div>
+    </div>
+    <div class="learning-card fade-up fade-up-d2">
+      <div class="learning-num">INSIGHT 06</div>
+      <div class="learning-icon">🔗</div>
+      <div class="learning-title">Quality Over Quantity in Link Building</div>
+      <div class="learning-desc">8 HARO mentions on DA 60+ domains contributed more ranking lift than 20 directory submissions combined. Relevance and authority of linking domain matters far more than volume.</div>
+    </div>
+  </div>
+</section>
 
-/* ===== Light mode tweaks ===== */
-body.light-mode .cs-glow-1 { background: radial-gradient(circle, rgba(0,150,200,.12), transparent 70%); }
-body.light-mode .cs-glow-2 { background: radial-gradient(circle, rgba(255,107,53,.06), transparent 70%); }
-body.light-mode .cs-kpi-trend,
-body.light-mode .cs-lift { background: rgba(0,180,90,.10); color: #00A85A; border-color: rgba(0,180,90,.25); }
+<!-- TESTIMONIAL -->
+<section style="background:var(--bg-secondary);">
+  <div class="center fade-up">
+    <div class="section-tag">Client Feedback</div>
+    <h2 class="section-title">What the <span>Client Said</span></h2>
+  </div>
+  <div class="testimonial-inner">
+    <div class="testimonial-card fade-up fade-up-d1">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-quote">
+        "Subash completely transformed our organic presence. We went from invisible on Google to ranking for 87 keywords on Page 1. What impressed me most was his systematic, data-driven approach — every action was backed by evidence, not guesswork. Our online revenue from organic traffic increased by 3x in just 6 months. If you need serious SEO results, he's your person."
+      </div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">AK</div>
+        <div>
+          <div class="testimonial-name">Arun Kumar</div>
+          <div class="testimonial-company">Founder — VitalNutra Health Store</div>
+        </div>
+        <div style="margin-left:auto;background:rgba(0,212,255,0.1);border:1px solid var(--border-cyan);border-radius:8px;padding:8px 14px;text-align:right;">
+          <div style="font-size:11px;color:var(--text-muted);">Google review</div>
+          <div style="font-size:18px;color:#f0c040;letter-spacing:2px;">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-/* ===== Responsive ===== */
-@media (max-width: 1024px) {
-  .cs-overview { grid-template-columns: repeat(2, 1fr); }
-  .cs-strategy-grid { grid-template-columns: repeat(2, 1fr); }
-  .cs-kpi-grid { grid-template-columns: repeat(2, 1fr); }
-  .cs-proof-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 768px) {
-  .cs-problem-grid { grid-template-columns: 1fr; }
-  .cs-strategy-grid { grid-template-columns: 1fr; }
-  .cs-learnings { grid-template-columns: 1fr; }
-  .cs-compare-row { grid-template-columns: 1.4fr 1fr 1fr; padding: .9rem 1rem; gap: .5rem; font-size: .82rem; }
-  .cs-compare-row > :nth-child(4) { grid-column: 1 / -1; justify-self: end; }
-  .cs-compare-head > :nth-child(4) { display: none; }
-  .cs-cta-inner { padding: 2.25rem 1.25rem; }
-  .cs-cta-actions .btn { width: 100%; justify-content: center; }
-}
-@media (max-width: 480px) {
-  .cs-overview { grid-template-columns: 1fr; }
-  .cs-kpi-grid { grid-template-columns: 1fr; }
-  .cs-kpi-num { font-size: 2rem; }
-}
-```
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-tag">Ready to Grow?</div>
+  <h2 class="section-title">Need SEO Growth<br><span>Like This?</span></h2>
+  <p class="section-sub">Let's audit your site, identify your biggest opportunities, and build a strategy that delivers measurable organic growth — just like this.</p>
+  <div class="cta-btns">
+    <a href="#" class="btn-primary" style="font-size:16px;padding:16px 36px;">✉ Hire Me</a>
+    <a href="#" class="btn-outline" style="font-size:16px;padding:16px 36px;">View More Case Studies</a>
+    <a href="#" class="btn-outline" style="font-size:16px;padding:16px 36px;">⬇ Download Resume</a>
+  </div>
+</section>
 
-```javascript
-/* =========================================================
-   APPEND TO script.js — inside the existing
-   document.addEventListener('DOMContentLoaded', () => { ... })
-   block, OR paste as a standalone block at the end of the file.
-========================================================= */
-(function initCaseStudy() {
-  const kpiGrid = document.getElementById('csKpiGrid');
-  if (!kpiGrid) return;
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 Subash Ravi · SEO Specialist &amp; Digital Marketer</p>
+  <div class="footer-links">
+    <a href="#">LinkedIn</a>
+    <a href="#">Email</a>
+    <a href="#">WhatsApp</a>
+    <a href="#">Portfolio</a>
+  </div>
+</footer>
 
-  const counters = kpiGrid.querySelectorAll('.cs-counter');
-  const fills    = kpiGrid.querySelectorAll('.cs-progress-fill');
-  let played = false;
+<script>
+// === INTERSECTION OBSERVER for fade-up ===
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }});
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 
-  const animate = () => {
-    if (played) return;
-    played = true;
+// === COUNTER ANIMATION ===
+const counters = document.querySelectorAll('.counter');
+const suffixes = { 'kpi-traffic': 'K' };
+const counterIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    const el = e.target;
+    const target = +el.dataset.target;
+    const isPercent = el.textContent.includes('%') || el.dataset.target === '400' || el.dataset.target === '300';
+    let current = 0;
+    const step = target / 60;
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      if(isPercent) el.textContent = Math.round(current) + '%';
+      else el.textContent = Math.round(current);
+      if(current >= target) clearInterval(timer);
+    }, 20);
+    counterIO.unobserve(el);
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterIO.observe(c));
 
-    counters.forEach((el) => {
-      const target  = parseFloat(el.dataset.target);
-      const decimal = el.dataset.decimal === 'true';
-      const duration = 1600;
-      const start = performance.now();
+// === HERO CHART ===
+const heroCtx = document.getElementById('heroChart').getContext('2d');
+new Chart(heroCtx, {
+  type: 'line',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    datasets: [{
+      label: 'Organic Traffic',
+      data: [5000, 7200, 11000, 16500, 23000, 30000],
+      borderColor: '#00d4ff',
+      backgroundColor: 'rgba(0,212,255,0.08)',
+      fill: true,
+      tension: 0.4,
+      pointBackgroundColor: '#00d4ff',
+      pointRadius: 4,
+      pointHoverRadius: 6,
+      borderWidth: 2.5
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#8b949e', font: { size: 11 } } },
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#8b949e', font: { size: 11 }, callback: v => (v/1000)+'K' }, beginAtZero: true }
+    }
+  }
+});
 
-      const tick = (now) => {
-        const p = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
-        const value = decimal
-          ? (target * eased / 10).toFixed(1)
-          : Math.floor(target * eased);
-        el.textContent = value;
-        if (p < 1) requestAnimationFrame(tick);
-        else el.textContent = decimal ? (target / 10).toFixed(1) : target;
-      };
-      requestAnimationFrame(tick);
-    });
+// === TRAFFIC CHART ===
+const trafficCtx = document.getElementById('trafficChart').getContext('2d');
+new Chart(trafficCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    datasets: [{
+      label: 'Organic Traffic',
+      data: [5000, 7200, 11000, 16500, 23000, 30000],
+      backgroundColor: ['rgba(0,212,255,0.3)','rgba(0,212,255,0.4)','rgba(0,212,255,0.5)','rgba(0,212,255,0.6)','rgba(0,212,255,0.75)','rgba(0,212,255,0.95)'],
+      borderColor: '#00d4ff',
+      borderWidth: 1,
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#8b949e', font: { size: 11 } } },
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#8b949e', font: { size: 11 }, callback: v => (v>=1000 ? (v/1000)+'K' : v) }, beginAtZero: true }
+    }
+  }
+});
 
-    fills.forEach((bar) => {
-      const w = bar.dataset.fill;
-      setTimeout(() => { bar.style.width = w + '%'; }, 200);
-    });
-  };
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) { animate(); io.disconnect(); }
-    });
-  }, { threshold: 0.25 });
-
-  io.observe(kpiGrid);
-})();
-```
-
-Add `<li><a href="#case-study">Case Study</a></li>` to your `.nav-links` if you want it in the navbar.
+// === KEYWORD CHART ===
+const kwCtx = document.getElementById('keywordChart').getContext('2d');
+new Chart(kwCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Pos 1-3', 'Pos 4-10', 'Pos 11-20', 'Pos 21-50', 'Pos 50+'],
+    datasets: [
+      { label: 'Before', data: [0, 12, 18, 42, 120], backgroundColor: 'rgba(139,148,158,0.4)', borderColor: '#8b949e', borderWidth: 1, borderRadius: 4 },
+      { label: 'After', data: [18, 69, 31, 24, 22], backgroundColor: 'rgba(0,212,255,0.6)', borderColor: '#00d4ff', borderWidth: 1, borderRadius: 4 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#8b949e', font: { size: 10 } } },
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#8b949e', font: { size: 10 } }, beginAtZero: true }
+    }
+  }
+});
+</script>
+</body>
+</html>
