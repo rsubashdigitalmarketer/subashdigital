@@ -866,6 +866,311 @@
   box-shadow: 0 0 0 1px rgba(0,212,255,0.4), 0 16px 40px rgba(0,212,255,0.1) !important;
 }
 
+/* =====================================================================
+   SCREENSHOT GALLERY SECTION  —  New independent feature
+   All class/id names are prefixed with "sg-" to avoid collisions.
+===================================================================== */
+
+/* ── Section layout ── */
+#screenshot-gallery {
+  background: var(--bg-primary);
+}
+.sg-header {
+  max-width: 1280px;
+  margin: 0 auto 48px;
+}
+
+/* ── Grid ── */
+.sg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+@media (max-width: 900px) { .sg-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .sg-grid { grid-template-columns: 1fr; } }
+
+/* ── Individual gallery card ── */
+.sg-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  position: relative;
+  outline: none;
+}
+.sg-card:hover,
+.sg-card:focus-visible {
+  border-color: var(--border-cyan);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 56px rgba(0, 212, 255, 0.1);
+}
+
+/* Thumbnail area */
+.sg-thumb {
+  position: relative;
+  width: 100%;
+  padding-top: 58%;   /* 16:9-ish aspect ratio */
+  background: var(--bg-secondary);
+  overflow: hidden;
+}
+.sg-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.sg-card:hover .sg-thumb img { transform: scale(1.04); }
+
+/* Placeholder shown when image is missing */
+.sg-thumb-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--bg-secondary);
+  border-bottom: 1px dashed var(--border-cyan);
+}
+.sg-thumb-placeholder .sg-ph-icon  { font-size: 32px; opacity: 0.35; }
+.sg-thumb-placeholder .sg-ph-file  {
+  font-size: 12px; font-family: var(--mono);
+  color: var(--cyan); opacity: 0.65;
+  background: rgba(0,212,255,0.07);
+  border: 1px solid var(--border-cyan);
+  border-radius: 5px;
+  padding: 3px 10px;
+  max-width: 90%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.sg-thumb-placeholder .sg-ph-hint  { font-size: 11px; color: var(--text-muted); text-align: center; padding: 0 12px; }
+
+/* Hover overlay with "zoom" cue */
+.sg-overlay-hint {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 212, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s;
+  pointer-events: none;
+}
+.sg-card:hover .sg-overlay-hint,
+.sg-card:focus-visible .sg-overlay-hint { opacity: 1; }
+.sg-overlay-hint-inner {
+  background: rgba(13, 17, 23, 0.85);
+  border: 1px solid rgba(0,212,255,0.4);
+  border-radius: 10px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cyan);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  backdrop-filter: blur(6px);
+}
+
+/* Card caption */
+.sg-caption {
+  padding: 14px 18px 16px;
+}
+.sg-caption-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  font-family: var(--mono);
+  margin-bottom: 5px;
+}
+.sg-caption-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+.sg-caption-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 3px;
+}
+
+/* ── Gallery Modal / Popup ── */
+#sg-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10001;              /* above existing modals */
+  background: rgba(7, 10, 15, 0.92);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+#sg-modal-overlay.sg-open {
+  display: flex;
+  animation: sg-fade-in 0.22s ease forwards;
+}
+@keyframes sg-fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+#sg-modal-box {
+  background: var(--bg-card);
+  border: 1px solid rgba(0,212,255,0.28);
+  border-radius: 20px;
+  max-width: 1100px;
+  width: 100%;
+  max-height: 92vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 48px 120px rgba(0,0,0,0.85), 0 0 0 1px rgba(0,212,255,0.08);
+  animation: sg-slide-up 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes sg-slide-up {
+  from { transform: translateY(28px) scale(0.96); opacity: 0; }
+  to   { transform: translateY(0)    scale(1);    opacity: 1; }
+}
+
+/* Modal header */
+#sg-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  gap: 12px;
+}
+#sg-modal-head-left { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+#sg-modal-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--cyan); font-family: var(--mono);
+}
+#sg-modal-title {
+  font-size: 15px; font-weight: 600; color: var(--text-primary);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+/* Close button */
+#sg-modal-close {
+  width: 36px; height: 36px; flex-shrink: 0;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; color: var(--text-secondary); line-height: 1;
+  cursor: pointer; transition: all 0.2s;
+  font-family: var(--font);
+}
+#sg-modal-close:hover {
+  background: rgba(248,81,73,0.15);
+  border-color: var(--danger);
+  color: var(--danger);
+  transform: rotate(90deg);
+}
+
+/* Modal image area */
+#sg-modal-img-area {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px;
+  background: var(--bg-primary);
+  min-height: 0;
+}
+#sg-modal-img-area img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.55);
+  animation: sg-img-in 0.35s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes sg-img-in {
+  from { transform: scale(0.97); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+/* Placeholder inside modal */
+#sg-modal-img-area .sg-modal-ph {
+  width: 100%;
+  min-height: 240px;
+  background: var(--bg-secondary);
+  border: 2px dashed var(--border-cyan);
+  border-radius: 12px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 12px; padding: 32px; text-align: center;
+}
+#sg-modal-img-area .sg-modal-ph .sg-mph-icon { font-size: 42px; opacity: 0.35; }
+#sg-modal-img-area .sg-modal-ph .sg-mph-file {
+  font-size: 13px; font-family: var(--mono); color: var(--cyan); opacity: 0.75;
+  background: rgba(0,212,255,0.08); border: 1px solid var(--border-cyan);
+  border-radius: 6px; padding: 4px 14px;
+}
+#sg-modal-img-area .sg-modal-ph .sg-mph-hint { font-size: 12px; color: var(--text-muted); max-width: 340px; }
+/* Spinner */
+.sg-spinner {
+  width: 38px; height: 38px; margin: 60px auto;
+  border: 3px solid rgba(0,212,255,0.12);
+  border-top-color: var(--cyan);
+  border-radius: 50%;
+  animation: sg-spin 0.65s linear infinite;
+}
+@keyframes sg-spin { to { transform: rotate(360deg); } }
+
+/* Modal footer */
+#sg-modal-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px;
+  padding: 12px 22px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+}
+#sg-modal-counter { font-size: 11px; color: var(--text-muted); font-family: var(--mono); }
+#sg-modal-nav { display: flex; gap: 8px; }
+.sg-nav-btn {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 8px; padding: 6px 14px;
+  font-size: 12px; font-family: var(--font); font-weight: 500;
+  color: var(--text-secondary); cursor: pointer; transition: all 0.2s;
+}
+.sg-nav-btn:hover:not(:disabled) { border-color: var(--border-cyan); color: var(--cyan); }
+.sg-nav-btn:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+
+/* Keyboard hint */
+#sg-modal-esc-hint {
+  font-size: 11px; color: var(--text-muted);
+}
+#sg-modal-esc-hint kbd {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 4px; padding: 1px 5px; font-size: 11px; color: var(--text-secondary);
+}
+
+/* Mobile tweaks */
+@media (max-width: 640px) {
+  #sg-modal-box  { border-radius: 14px; max-height: 96vh; }
+  #sg-modal-head { padding: 13px 14px; }
+  #sg-modal-img-area { padding: 12px 14px; }
+  #sg-modal-foot { padding: 10px 14px 13px; }
+  #sg-modal-title { font-size: 13px; }
+  #sg-modal-esc-hint { display: none; }
+}
+
 </style>
 </head>
 <body>
@@ -1057,17 +1362,6 @@
       <div class="challenge-icon">🔍</div>
       <div class="challenge-title">Crawl &amp; Indexing Issues</div>
       <div class="challenge-desc">180+ pages blocked in robots.txt accidentally. Google not indexing 40% of product pages.</div>
-      <div style="margin-top:14px;margin-bottom:4px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);background:var(--bg-secondary);">
-        <img
-          src="./express-page-speed-report.png"
-          alt="Google Search Console crawl and indexing issues screenshot"
-          width="800"
-          height="450"
-          loading="lazy"
-          decoding="async"
-          style="width:100%;height:auto;display:block;border-radius:10px;object-fit:cover;"
-        >
-      </div>
       <span class="challenge-tag">140 Pages Not Indexed</span>
     </div>
     <div class="challenge-card fade-up fade-up-d2" data-sp-img="challenges" data-sp-title="Challenges Identified — 9 SEO Blockers" data-sp-label="📸 Audit Findings · Challenges">
@@ -1075,17 +1369,6 @@
       <div class="challenge-icon">📋</div>
       <div class="challenge-title">Duplicate Content Issues</div>
       <div class="challenge-desc">Product variations creating duplicate URLs. Tag pages, pagination, and filter parameters causing cannibalisation.</div>
-      <div style="margin-top:14px;margin-bottom:4px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);background:var(--bg-secondary);">
-        <img
-          src="./GSC-1.png"
-          alt="Duplicate content issues screenshot"
-          width="800"
-          height="450"
-          loading="lazy"
-          decoding="async"
-          style="width:100%;height:auto;display:block;border-radius:10px;object-fit:cover;"
-        >
-      </div>
       <span class="challenge-tag">60+ Duplicate Pages</span>
     </div>
     <div class="challenge-card fade-up" data-sp-img="challenges" data-sp-title="Challenges Identified — 9 SEO Blockers" data-sp-label="📸 Audit Findings · Challenges">
@@ -1521,11 +1804,6 @@
           <img
             src="./chart-screenshot-1.jpg"
             alt="Google Search Console organic traffic growth chart Jan–Jun 2024"
-            width="100%"
-            height="auto"
-            loading="lazy"
-            decoding="async"
-            style="width:100%;height:auto;display:block;border-radius:10px;object-fit:cover;"
             onerror="this.parentElement.innerHTML = '<div class=\'chart-img-placeholder\'><div class=\'placeholder-icon\'>📊</div><div class=\'lb-ph-file\'>chart-screenshot-1.jpg</div><div class=\'lb-ph-hint\'>Replace src=&quot;./chart-screenshot-1.jpg&quot; with your GSC traffic screenshot</div></div>'"
           >
         </div>
@@ -1641,6 +1919,70 @@
     </div>
   </div>
 </section>
+
+<!-- =====================================================================
+     SCREENSHOT GALLERY SECTION
+     ✏️ HOW TO ADD YOUR IMAGES:
+       1. Put your image files in the same folder as this HTML file.
+       2. In the <script> block at the bottom of the file, find the
+          SG_IMAGES array and update each `img` property with your
+          actual filename, e.g.  img: 'gsc-traffic.jpg'
+       3. Optionally update `tag`, `title`, and `sub` fields to match.
+       That's it — the gallery and popup handle everything else.
+===================================================================== -->
+<section id="screenshot-gallery">
+  <div class="sg-header center fade-up">
+    <div class="section-tag">Visual Evidence</div>
+    <h2 class="section-title">Screenshot <span>Gallery</span></h2>
+    <p class="section-sub">Real data, real tools, real results — click any card to view the full screenshot.</p>
+  </div>
+
+  <div class="sg-grid" id="sg-grid" role="list" aria-label="Screenshot gallery">
+    <!-- Cards are rendered by JavaScript from SG_IMAGES below.
+         If JS is disabled they won't appear — a <noscript> fallback is provided. -->
+  </div>
+
+  <noscript>
+    <p style="text-align:center;color:var(--text-secondary);margin-top:24px;">
+      Enable JavaScript to view the screenshot gallery.
+    </p>
+  </noscript>
+</section>
+
+<!-- GALLERY MODAL — completely independent from existing lightbox / section-popup -->
+<div id="sg-modal-overlay"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="sg-modal-title">
+
+  <div id="sg-modal-box">
+
+    <!-- Header -->
+    <div id="sg-modal-head">
+      <div id="sg-modal-head-left">
+        <div id="sg-modal-tag">📸 Screenshot Preview</div>
+        <div id="sg-modal-title">—</div>
+      </div>
+      <button id="sg-modal-close" aria-label="Close screenshot preview" title="Close (Esc)">✕</button>
+    </div>
+
+    <!-- Image -->
+    <div id="sg-modal-img-area">
+      <!-- Injected by JS -->
+    </div>
+
+    <!-- Footer with navigation -->
+    <div id="sg-modal-foot">
+      <span id="sg-modal-counter">—</span>
+      <span id="sg-modal-esc-hint"><kbd>Esc</kbd> to close &nbsp;·&nbsp; <kbd>←</kbd><kbd>→</kbd> to navigate</span>
+      <div id="sg-modal-nav">
+        <button class="sg-nav-btn" id="sg-prev-btn" aria-label="Previous screenshot">← Prev</button>
+        <button class="sg-nav-btn" id="sg-next-btn" aria-label="Next screenshot">Next →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <!-- TESTIMONIAL -->
 <section style="background:var(--bg-secondary);">
@@ -2030,6 +2372,198 @@ counters.forEach(c => counterIO.observe(c));
         }
       });
     });
+  });
+
+})();
+
+
+// =====================================================================
+//  SCREENSHOT GALLERY — SG_IMAGES data + engine
+//  ✏️  Edit SG_IMAGES to add / change your images.
+//  Just update the `img` field with the filename of your screenshot
+//  (place the file in the same folder as this HTML).
+//  To add more cards, copy an existing object and paste it in the array.
+// =====================================================================
+(function () {
+  'use strict';
+
+  /* ── 1.  YOUR IMAGE DATA ──────────────────────────────────────────────
+     Each object = one gallery card.
+     Fields:
+       img   – filename of the image (e.g. 'gsc.jpg')
+       tag   – small label shown on the card & in the modal header
+       title – bold caption under the thumbnail
+       sub   – optional small subtitle
+  ──────────────────────────────────────────────────────────────────── */
+  var SG_IMAGES = [
+    {
+      img:   'gsc-overview.jpg',          // ✏️ replace with your filename
+      tag:   'Google Search Console',
+      title: 'Organic Traffic Growth · Jan → Jun 2024',
+      sub:   '18K → 27K monthly sessions · +50%'
+    },
+    {
+      img:   'pagespeed-after.jpg',       // ✏️ replace with your filename
+      tag:   'PageSpeed Insights',
+      title: 'Core Web Vitals · Before vs After',
+      sub:   'PageSpeed 28 → 92 · LCP 8.2s → 1.8s'
+    },
+    {
+      img:   'ahrefs-keywords.jpg',       // ✏️ replace with your filename
+      tag:   'Ahrefs · Organic Keywords',
+      title: 'Top-10 Keyword Rankings',
+      sub:   '12 → 87 keywords on Page 1'
+    },
+    {
+      img:   'gsc-ctr.jpg',               // ✏️ replace with your filename
+      tag:   'Google Search Console',
+      title: 'Click-Through Rate Improvement',
+      sub:   'CTR 2.1% → 8.4% · +300%'
+    },
+    {
+      img:   'moz-domain-authority.jpg',  // ✏️ replace with your filename
+      tag:   'Moz Pro · Domain Overview',
+      title: 'Domain Authority Growth',
+      sub:   'DA 14 → DA 31 · +121%'
+    },
+    {
+      img:   'gsc-coverage.jpg',          // ✏️ replace with your filename
+      tag:   'GSC · Index Coverage',
+      title: 'Indexed Pages · Coverage Report',
+      sub:   '280 → 440 pages indexed · +57%'
+    }
+    // ✏️  Add more objects here to add more gallery cards, e.g.:
+    // { img: 'ahrefs-backlinks.jpg', tag: 'Ahrefs · Backlinks', title: 'Referring Domains Growth', sub: '23 → 78 ref. domains' },
+  ];
+
+  /* ── 2.  BUILD GALLERY CARDS ────────────────────────────────────────── */
+  var grid = document.getElementById('sg-grid');
+  if (!grid) return;
+
+  SG_IMAGES.forEach(function (item, idx) {
+    var card = document.createElement('article');
+    card.className        = 'sg-card fade-up';
+    card.setAttribute('role',       'listitem');
+    card.setAttribute('tabindex',   '0');
+    card.setAttribute('aria-label', 'View screenshot: ' + item.title);
+    card.dataset.sgIdx    = idx;
+
+    // Thumbnail markup — onerror swaps to placeholder
+    var thumbHTML = '<div class="sg-thumb">';
+    thumbHTML += '<img src="' + item.img + '"'
+               + ' alt="' + item.tag + ': ' + item.title + '"'
+               + ' loading="lazy"'
+               + ' onerror="this.style.display=\'none\';'
+                 + 'this.parentElement.querySelector(\'.sg-thumb-placeholder\').style.display=\'flex\';"'
+               + '>';
+    thumbHTML += '<div class="sg-thumb-placeholder" style="display:none;">'
+               +   '<div class="sg-ph-icon">🖼️</div>'
+               +   '<div class="sg-ph-file">' + item.img + '</div>'
+               +   '<div class="sg-ph-hint">Add this file to your project folder to display the screenshot.</div>'
+               + '</div>';
+    thumbHTML += '<div class="sg-overlay-hint">'
+               +   '<div class="sg-overlay-hint-inner">🔍 View Full Screenshot</div>'
+               + '</div>';
+    thumbHTML += '</div>';
+
+    var captionHTML = '<div class="sg-caption">'
+                    +   '<div class="sg-caption-tag">' + item.tag + '</div>'
+                    +   '<div class="sg-caption-title">' + item.title + '</div>'
+                    +   (item.sub ? '<div class="sg-caption-sub">' + item.sub + '</div>' : '')
+                    + '</div>';
+
+    card.innerHTML = thumbHTML + captionHTML;
+    grid.appendChild(card);
+  });
+
+  /* ── 3.  MODAL ENGINE ───────────────────────────────────────────────── */
+  var modalOverlay = document.getElementById('sg-modal-overlay');
+  var modalTitle   = document.getElementById('sg-modal-title');
+  var modalTag     = document.getElementById('sg-modal-tag');
+  var modalImgArea = document.getElementById('sg-modal-img-area');
+  var modalCounter = document.getElementById('sg-modal-counter');
+  var modalClose   = document.getElementById('sg-modal-close');
+  var prevBtn      = document.getElementById('sg-prev-btn');
+  var nextBtn      = document.getElementById('sg-next-btn');
+  var currentSgIdx = 0;
+
+  function sgRender(idx) {
+    var item = SG_IMAGES[idx];
+    if (!item) return;
+    currentSgIdx = idx;
+
+    modalTag.textContent     = '📸 ' + item.tag;
+    modalTitle.textContent   = item.title;
+    modalCounter.textContent = (idx + 1) + ' / ' + SG_IMAGES.length;
+
+    prevBtn.disabled = (idx === 0);
+    nextBtn.disabled = (idx === SG_IMAGES.length - 1);
+
+    // Spinner while loading
+    modalImgArea.innerHTML = '<div class="sg-spinner"></div>';
+
+    var img   = new window.Image();
+    img.alt   = item.tag + ': ' + item.title;
+    img.onload = function () {
+      modalImgArea.innerHTML = '';
+      modalImgArea.appendChild(img);
+    };
+    img.onerror = function () {
+      modalImgArea.innerHTML =
+        '<div class="sg-modal-ph">'
+        + '<div class="sg-mph-icon">🖼️</div>'
+        + '<div class="sg-mph-file">' + item.img + '</div>'
+        + '<div class="sg-mph-hint">Place <strong>' + item.img + '</strong> in the same folder as this HTML file to display the screenshot.</div>'
+        + '</div>';
+    };
+    img.src = item.img;
+  }
+
+  function sgOpen(idx) {
+    sgRender(idx);
+    modalOverlay.classList.add('sg-open');
+    document.body.style.overflow = 'hidden';
+    modalClose.focus();
+  }
+
+  function sgClose() {
+    modalOverlay.classList.remove('sg-open');
+    document.body.style.overflow = '';
+  }
+
+  // Close button
+  modalClose.addEventListener('click', sgClose);
+
+  // Click outside modal box
+  modalOverlay.addEventListener('click', function (e) {
+    if (e.target === modalOverlay) sgClose();
+  });
+
+  // Navigation
+  prevBtn.addEventListener('click', function () {
+    if (currentSgIdx > 0) sgRender(currentSgIdx - 1);
+  });
+  nextBtn.addEventListener('click', function () {
+    if (currentSgIdx < SG_IMAGES.length - 1) sgRender(currentSgIdx + 1);
+  });
+
+  // Keyboard
+  document.addEventListener('keydown', function (e) {
+    if (!modalOverlay.classList.contains('sg-open')) return;
+    if (e.key === 'Escape')     { sgClose(); }
+    if (e.key === 'ArrowLeft'  && currentSgIdx > 0)                     { sgRender(currentSgIdx - 1); }
+    if (e.key === 'ArrowRight' && currentSgIdx < SG_IMAGES.length - 1)  { sgRender(currentSgIdx + 1); }
+  });
+
+  // Wire up card clicks (delegated — works even if cards added later)
+  grid.addEventListener('click', function (e) {
+    var card = e.target.closest('.sg-card');
+    if (card) sgOpen(parseInt(card.dataset.sgIdx, 10));
+  });
+  grid.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var card = e.target.closest('.sg-card');
+    if (card) { e.preventDefault(); sgOpen(parseInt(card.dataset.sgIdx, 10)); }
   });
 
 })();
