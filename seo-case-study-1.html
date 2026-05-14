@@ -49,92 +49,18 @@
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 
 /* ── NUMERIC FONT WIRING ── */
-.stat-num,
-.kpi-val,
-.badge-num,
-.kpi-badge,
-.kpi-mname,
-.td-before,
-.td-after,
-.td-change,
-.ch-badge,
-.impact-bar,
-.outcome-text,
-.ba-chart-box + div {
-  font-family: var(--font-num);
-  letter-spacing: 0.01em;
-}
+.stat-num,.kpi-val,.badge-num,.kpi-badge,.kpi-mname,.td-before,.td-after,.td-change,.ch-badge,.impact-bar,.outcome-text,.ba-chart-box + div{font-family:var(--font-num);letter-spacing:0.01em}
 
 /* ── HEADING REFINEMENTS ── */
-.hero-title,
-.sec-title,
-.cta-title,
-.modal-title,
-.strat-card h3,
-.ch-title,
-.audit-name,
-.tl-content h3,
-.kpi-box h3,
-.ctx-val,
-.ba-title,
-.mockup-title,
-.nav-logo {
-  font-family: var(--font-head);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
+.hero-title,.sec-title,.cta-title,.modal-title,.strat-card h3,.ch-title,.audit-name,.tl-content h3,.kpi-box h3,.ctx-val,.ba-title,.mockup-title,.nav-logo{font-family:var(--font-head);font-weight:800;letter-spacing:-0.02em}
 
 /* ── BODY / UI COPY ── */
-.ch-desc,
-.strat-item,
-.kpi-list-item,
-.hero-desc,
-.sec-sub,
-.cta-desc,
-.ctx-sub,
-.audit-desc,
-.kpi-was,
-.task-tag,
-.nav-links a,
-.footer-links a,
-.footer-copy,
-.modal-subtitle,
-.td-name {
-  font-family: var(--font-body);
-  font-weight: 400;
-  letter-spacing: 0.005em;
-}
+.ch-desc,.strat-item,.kpi-list-item,.hero-desc,.sec-sub,.cta-desc,.ctx-sub,.audit-desc,.kpi-was,.task-tag,.nav-links a,.footer-links a,.footer-copy,.modal-subtitle,.td-name{font-family:var(--font-body);font-weight:400;letter-spacing:0.005em}
 
 /* ── MONO / LABEL OVERRIDES ── */
-.section-label,
-.pill,
-.font-mono,
-.hero-badge,
-.kpi-mname,
-.audit-step,
-.tl-week,
-.ctx-lbl,
-.ch-num,
-.ba-label-sm,
-.b-url,
-.modal-counter,
-.modal-tag,
-.hero-meta .chip,
-.stat-lbl,
-.hero-meta,
-.view-ss,
-.click-hint,
-.ch-hover-hint,
-.kpi-click-hint {
-  font-family: var(--font-mono);
-}
-body{
-  font-family:var(--font-body);
-  background:var(--bg);
-  color:var(--t1);
-  line-height:1.65;
-  overflow-x:hidden;
-}
+.section-label,.pill,.font-mono,.hero-badge,.kpi-mname,.audit-step,.tl-week,.ctx-lbl,.ch-num,.ba-label-sm,.b-url,.modal-counter,.modal-tag,.hero-meta .chip,.stat-lbl,.hero-meta,.view-ss,.click-hint,.ch-hover-hint,.kpi-click-hint{font-family:var(--font-mono)}
+
+body{font-family:var(--font-body);background:var(--bg);color:var(--t1);line-height:1.65;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 ul{list-style:none}
@@ -155,110 +81,46 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .green{color:var(--green)}
 .mono{font-family:var(--font-mono)}
 
-.pill{
-  display:inline-flex;align-items:center;gap:6px;
-  font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
-  padding:5px 14px;border-radius:100px;
-  border:1px solid var(--border2);
-  background:rgba(255,255,255,0.04);
-  color:var(--t2);
-}
+.pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:5px 14px;border-radius:100px;border:1px solid var(--border2);background:rgba(255,255,255,0.04);color:var(--t2)}
 .pill.cyan-pill{border-color:var(--cyan-border);background:var(--cyan-glow);color:var(--cyan)}
 
-.section-label{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--cyan);margin-bottom:16px;
-}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px}
 .section-label::before{content:'//'}
 
-.sec-title{
-  font-family:var(--font-head);
-  font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.05;letter-spacing:-0.025em;
-  margin-bottom:16px;
-}
-.sec-sub{
-  color:var(--t2);font-size:1rem;line-height:1.75;max-width:600px;margin:0 auto;text-align:center;
-}
+.sec-title{font-family:var(--font-head);font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.05;letter-spacing:-0.025em;margin-bottom:16px}
+.sec-sub{color:var(--t2);font-size:1rem;line-height:1.75;max-width:600px;margin:0 auto;text-align:center}
 .section-head{text-align:center;margin-bottom:64px}
 .section-head .section-label{display:flex;justify-content:center}
 
 /* ============================================================
    ANIMATED BACKGROUND MESH
    ============================================================ */
-.mesh{
-  position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;
-}
-.mesh-orb{
-  position:absolute;border-radius:50%;filter:blur(120px);opacity:0.06;
-  animation:orbFloat 18s ease-in-out infinite;
-}
+.mesh{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.mesh-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.06;animation:orbFloat 18s ease-in-out infinite}
 .mesh-orb:nth-child(1){width:700px;height:700px;background:var(--cyan);top:-200px;right:-200px;animation-delay:0s}
 .mesh-orb:nth-child(2){width:500px;height:500px;background:#7c3aed;bottom:-100px;left:-100px;animation-delay:-6s}
 .mesh-orb:nth-child(3){width:400px;height:400px;background:var(--green);top:40%;right:10%;animation-delay:-12s}
-@keyframes orbFloat{
-  0%,100%{transform:translate(0,0) scale(1)}
-  33%{transform:translate(-40px,30px) scale(1.05)}
-  66%{transform:translate(20px,-20px) scale(0.97)}
-}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-40px,30px) scale(1.05)}66%{transform:translate(20px,-20px) scale(0.97)}}
 
 /* ============================================================
    NOISE TEXTURE OVERLAY
    ============================================================ */
-body::before{
-  content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  opacity:0.4;
-}
+body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");opacity:0.4}
 
 /* ============================================================
    NAV
    ============================================================ */
-.nav{
-  position:sticky;top:0;z-index:90;
-  padding:0 28px;
-  background:rgba(8,9,13,0.7);
-  backdrop-filter:blur(24px) saturate(180%);
-  border-bottom:1px solid var(--border);
-  transition:background 0.3s var(--ease);
-}
+.nav{position:sticky;top:0;z-index:90;padding:0 28px;background:rgba(8,9,13,0.7);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--border);transition:background 0.3s var(--ease)}
 .nav.scrolled{background:rgba(8,9,13,0.92)}
-.nav-inner{
-  max-width:1220px;margin:0 auto;
-  display:flex;align-items:center;justify-content:space-between;
-  height:68px;
-}
-.nav-logo{
-  display:flex;align-items:center;gap:12px;
-  font-family:var(--font-head);font-weight:700;font-size:0.95rem;letter-spacing:-0.01em;
-}
-.logo-mark{
-  width:38px;height:38px;border-radius:11px;
-  background:linear-gradient(135deg,var(--cyan),var(--cyan2));
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-head);font-size:13px;font-weight:800;color:#08090d;
-  box-shadow:0 0 20px rgba(0,229,255,0.3);
-}
+.nav-inner{max-width:1220px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-logo{display:flex;align-items:center;gap:12px;font-family:var(--font-head);font-weight:700;font-size:0.95rem;letter-spacing:-0.01em}
+.logo-mark{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:13px;font-weight:800;color:#08090d;box-shadow:0 0 20px rgba(0,229,255,0.3)}
 .nav-links{display:flex;align-items:center;gap:36px}
-.nav-links a{
-  font-size:0.85rem;font-weight:500;color:var(--t2);
-  transition:color 0.2s var(--ease);
-  position:relative;
-}
-.nav-links a::after{
-  content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;
-  background:var(--cyan);transform:scaleX(0);transform-origin:left;
-  transition:transform 0.25s var(--ease);
-}
+.nav-links a{font-size:0.85rem;font-weight:500;color:var(--t2);transition:color 0.2s var(--ease);position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform 0.25s var(--ease)}
 .nav-links a:hover{color:var(--white)}
 .nav-links a:hover::after{transform:scaleX(1)}
-.btn-hire{
-  background:var(--cyan);color:#08090d;
-  font-family:var(--font-head);font-weight:700;font-size:0.85rem;
-  padding:10px 22px;border-radius:9px;
-  transition:all 0.2s var(--ease);
-  box-shadow:0 0 0 0 rgba(0,229,255,0.4);
-}
+.btn-hire{background:var(--cyan);color:#08090d;font-family:var(--font-head);font-weight:700;font-size:0.85rem;padding:10px 22px;border-radius:9px;transition:all 0.2s var(--ease);box-shadow:0 0 0 0 rgba(0,229,255,0.4)}
 .btn-hire:hover{transform:translateY(-1px);box-shadow:0 0 24px rgba(0,229,255,0.4)}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;padding:6px;background:none;border:none}
 .nav-hamburger span{display:block;width:22px;height:2px;background:var(--t1);border-radius:2px;transition:all 0.3s var(--ease)}
@@ -269,152 +131,58 @@ body::before{
 /* ============================================================
    HERO
    ============================================================ */
-.hero{
-  min-height:92vh;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
-  max-width:1220px;margin:0 auto;padding:80px 28px;
-  position:relative;z-index:2;
-}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--cyan-glow);border:1px solid var(--cyan-border);
-  border-radius:100px;padding:6px 18px;
-  font-family:var(--font-mono);font-size:11px;font-weight:500;color:var(--cyan);
-  margin-bottom:28px;
-  animation:badgePulse 3s ease infinite;
-}
+.hero{min-height:92vh;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1220px;margin:0 auto;padding:80px 28px;position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--cyan-glow);border:1px solid var(--cyan-border);border-radius:100px;padding:6px 18px;font-family:var(--font-mono);font-size:11px;font-weight:500;color:var(--cyan);margin-bottom:28px;animation:badgePulse 3s ease infinite}
 .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 2s infinite}
 @keyframes badgePulse{0%,100%{box-shadow:0 0 0 0 rgba(0,229,255,0.15)}50%{box-shadow:0 0 0 8px rgba(0,229,255,0)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
-
-.hero-title{
-  font-family:var(--font-head);
-  font-size:clamp(2.6rem,5vw,4.2rem);font-weight:800;line-height:1.05;letter-spacing:-0.03em;
-  margin-bottom:24px;
-}
-.hero-title .highlight{
-  background:linear-gradient(135deg,var(--cyan),#00b8d9 50%,#80deea);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.hero-meta{
-  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-  margin-bottom:24px;
-}
-.hero-meta .chip{
-  font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;
-  color:var(--t2);background:rgba(255,255,255,0.05);border:1px solid var(--border);
-  padding:4px 12px;border-radius:6px;
-}
+.hero-title{font-family:var(--font-head);font-size:clamp(2.6rem,5vw,4.2rem);font-weight:800;line-height:1.05;letter-spacing:-0.03em;margin-bottom:24px}
+.hero-title .highlight{background:linear-gradient(135deg,var(--cyan),#00b8d9 50%,#80deea);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.hero-meta .chip{font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--t2);background:rgba(255,255,255,0.05);border:1px solid var(--border);padding:4px 12px;border-radius:6px}
 .hero-desc{font-size:1rem;color:var(--t2);line-height:1.8;max-width:500px;margin-bottom:40px}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn-primary{
-  background:var(--cyan);color:#08090d;
-  font-family:var(--font-head);font-weight:700;font-size:0.9rem;
-  padding:14px 28px;border-radius:11px;
-  display:inline-flex;align-items:center;gap:8px;
-  transition:all 0.25s var(--ease-spring);
-}
+.btn-primary{background:var(--cyan);color:#08090d;font-family:var(--font-head);font-weight:700;font-size:0.9rem;padding:14px 28px;border-radius:11px;display:inline-flex;align-items:center;gap:8px;transition:all 0.25s var(--ease-spring)}
 .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,229,255,0.35)}
-.btn-outline{
-  background:transparent;color:var(--t1);
-  font-family:var(--font-head);font-weight:600;font-size:0.9rem;
-  padding:14px 28px;border-radius:11px;
-  border:1px solid var(--border2);
-  display:inline-flex;align-items:center;gap:8px;
-  transition:all 0.25s var(--ease);
-}
+.btn-outline{background:transparent;color:var(--t1);font-family:var(--font-head);font-weight:600;font-size:0.9rem;padding:14px 28px;border-radius:11px;border:1px solid var(--border2);display:inline-flex;align-items:center;gap:8px;transition:all 0.25s var(--ease)}
 .btn-outline:hover{border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.04)}
 
 /* Hero Visual */
-.hero-visual{
-  position:relative;cursor:pointer;
-  animation:heroFloat 6s ease-in-out infinite;
-}
+.hero-visual{position:relative;cursor:pointer;animation:heroFloat 6s ease-in-out infinite}
 @keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.browser-frame{
-  background:var(--card);border:1px solid var(--border2);border-radius:18px;
-  overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.7),0 0 0 1px rgba(0,229,255,0.05),inset 0 1px 0 rgba(255,255,255,0.06);
-  transition:all 0.3s var(--ease);
-}
-.hero-visual:hover .browser-frame{
-  box-shadow:0 40px 100px rgba(0,0,0,0.7),0 0 0 1px var(--cyan-border),0 0 60px rgba(0,229,255,0.08);
-}
-.browser-bar{
-  background:#0e1118;padding:14px 18px;
-  display:flex;align-items:center;gap:10px;
-  border-bottom:1px solid var(--border);
-}
+.browser-frame{background:var(--card);border:1px solid var(--border2);border-radius:18px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.7),0 0 0 1px rgba(0,229,255,0.05),inset 0 1px 0 rgba(255,255,255,0.06);transition:all 0.3s var(--ease)}
+.hero-visual:hover .browser-frame{box-shadow:0 40px 100px rgba(0,0,0,0.7),0 0 0 1px var(--cyan-border),0 0 60px rgba(0,229,255,0.08)}
+.browser-bar{background:#0e1118;padding:14px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
 .b-dot{width:10px;height:10px;border-radius:50%}
 .b-dot.r{background:#ff5f57}.b-dot.y{background:#febc2e}.b-dot.g{background:#28c840}
-.b-url{
-  flex:1;text-align:center;
-  font-family:var(--font-mono);font-size:11px;color:var(--t3);
-}
+.b-url{flex:1;text-align:center;font-family:var(--font-mono);font-size:11px;color:var(--t3)}
 .browser-body{padding:24px}
 .ba-title{font-family:var(--font-head);font-size:1rem;font-weight:700;text-align:center;margin-bottom:20px}
 .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .ba-side{text-align:center}
 .ba-label-sm{font-family:var(--font-mono);font-size:9px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3);margin-bottom:8px}
-.ba-chart-box{
-  background:var(--bg2);border-radius:10px;
-  height:110px;display:flex;align-items:flex-end;padding:12px 12px 0;gap:4px;
-  border:1px solid var(--border);
-  position:relative;overflow:hidden;
-}
+.ba-chart-box{background:var(--bg2);border-radius:10px;height:110px;display:flex;align-items:flex-end;padding:12px 12px 0;gap:4px;border:1px solid var(--border);position:relative;overflow:hidden}
 .ba-chart-box.glowing{border-color:var(--cyan-border)}
-.ba-chart-box.glowing::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(0,229,255,0.06),transparent);
-  pointer-events:none;
-}
+.ba-chart-box.glowing::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,229,255,0.06),transparent);pointer-events:none}
 .bar{flex:1;border-radius:3px 3px 0 0;background:rgba(255,255,255,0.15);transition:height 0.8s var(--ease)}
 .ba-chart-box.glowing .bar{background:linear-gradient(to top,var(--cyan),rgba(0,229,255,0.5))}
-.hero-badge-float{
-  position:absolute;bottom:-20px;right:-20px;
-  background:var(--card2);border:1px solid var(--cyan-border);border-radius:14px;
-  padding:14px 18px;
-  box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 30px rgba(0,229,255,0.1);
-  display:flex;align-items:center;gap:12px;
-  animation:badgeFloat 4s ease-in-out infinite 1s;
-}
+.hero-badge-float{position:absolute;bottom:-20px;right:-20px;background:var(--card2);border:1px solid var(--cyan-border);border-radius:14px;padding:14px 18px;box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 30px rgba(0,229,255,0.1);display:flex;align-items:center;gap:12px;animation:badgeFloat 4s ease-in-out infinite 1s}
 @keyframes badgeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .badge-num{font-family:var(--font-head);font-size:1.6rem;font-weight:800;color:var(--cyan)}
 .badge-text{font-size:0.72rem;color:var(--t2);line-height:1.4}
-.click-hint{
-  position:absolute;top:14px;right:14px;
-  background:rgba(0,229,255,0.1);border:1px solid var(--cyan-border);border-radius:8px;
-  padding:4px 10px;font-family:var(--font-mono);font-size:9px;color:var(--cyan);
-  opacity:0;transition:opacity 0.3s;
-}
+.click-hint{position:absolute;top:14px;right:14px;background:rgba(0,229,255,0.1);border:1px solid var(--cyan-border);border-radius:8px;padding:4px 10px;font-family:var(--font-mono);font-size:9px;color:var(--cyan);opacity:0;transition:opacity 0.3s}
 .hero-visual:hover .click-hint{opacity:1}
 
 /* ============================================================
    STATS BAR
    ============================================================ */
-.stats-strip{
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  background:var(--bg2);position:relative;z-index:2;
-}
-.stats-inner{
-  max-width:1220px;margin:0 auto;padding:0 28px;
-  display:grid;grid-template-columns:repeat(4,1fr);
-}
-.stat-block{
-  padding:32px 20px;text-align:center;
-  border-right:1px solid var(--border);
-  position:relative;overflow:hidden;
-}
-.stat-block::before{
-  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:60%;height:2px;
-  background:linear-gradient(90deg,transparent,var(--cyan),transparent);
-  opacity:0;transition:opacity 0.3s;
-}
+.stats-strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);position:relative;z-index:2}
+.stats-inner{max-width:1220px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-block{padding:32px 20px;text-align:center;border-right:1px solid var(--border);position:relative;overflow:hidden}
+.stat-block::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:opacity 0.3s}
 .stat-block:hover::before{opacity:1}
 .stat-block:last-child{border-right:none}
-.stat-num{
-  font-family:var(--font-head);font-size:2.6rem;font-weight:800;
-  color:var(--cyan);line-height:1;margin-bottom:6px;
-}
+.stat-num{font-family:var(--font-head);font-size:2.6rem;font-weight:800;color:var(--cyan);line-height:1;margin-bottom:6px}
 .stat-lbl{font-size:0.78rem;color:var(--t2);font-weight:500;letter-spacing:0.02em}
 
 /* ============================================================
@@ -428,30 +196,18 @@ body::before{
    ============================================================ */
 .context-grid{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:16px;align-items:start}
 .ctx-col{display:flex;flex-direction:column;gap:16px}
-.ctx-card{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
-  padding:22px;transition:all 0.25s var(--ease);
-}
+.ctx-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:22px;transition:all 0.25s var(--ease)}
 .ctx-card:hover{border-color:var(--border2);transform:translateY(-2px)}
 .ctx-icon{font-size:1.4rem;margin-bottom:8px}
 .ctx-lbl{font-family:var(--font-mono);font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);margin-bottom:4px}
 .ctx-val{font-family:var(--font-head);font-size:1rem;font-weight:700;margin-bottom:3px}
 .ctx-sub{font-size:0.78rem;color:var(--t2)}
-.kpi-box{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
-  padding:26px;
-}
+.kpi-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:26px}
 .kpi-box h3{font-size:0.82rem;font-weight:700;color:var(--cyan);margin-bottom:16px;display:flex;align-items:center;gap:6px}
-.kpi-list-item{
-  display:flex;align-items:flex-start;gap:10px;
-  font-size:0.84rem;color:var(--t2);padding:6px 0;border-bottom:1px solid var(--border);
-}
+.kpi-list-item{display:flex;align-items:flex-start;gap:10px;font-size:0.84rem;color:var(--t2);padding:6px 0;border-bottom:1px solid var(--border)}
 .kpi-list-item:last-child{border-bottom:none}
 .check{color:var(--cyan);flex-shrink:0;margin-top:2px;font-size:0.9rem}
-.outcome-chip{
-  margin-top:16px;background:var(--cyan-glow);border:1px solid var(--cyan-border);
-  border-radius:10px;padding:14px;
-}
+.outcome-chip{margin-top:16px;background:var(--cyan-glow);border:1px solid var(--cyan-border);border-radius:10px;padding:14px}
 .outcome-lbl{font-family:var(--font-mono);font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:4px}
 .outcome-text{font-family:var(--font-head);font-size:0.9rem;font-weight:700}
 
@@ -459,62 +215,27 @@ body::before{
    CHALLENGES
    ============================================================ */
 .challenges-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.challenge-card{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
-  padding:26px;cursor:pointer;
-  transition:all 0.3s var(--ease);
-  position:relative;overflow:hidden;
-}
-.challenge-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--red),transparent);
-}
-.challenge-card::after{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 0%,rgba(255,82,82,0.06),transparent 60%);
-  opacity:0;transition:opacity 0.3s;
-}
+.challenge-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:26px;cursor:pointer;transition:all 0.3s var(--ease);position:relative;overflow:hidden}
+.challenge-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),transparent)}
+.challenge-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(255,82,82,0.06),transparent 60%);opacity:0;transition:opacity 0.3s}
 .challenge-card:hover{border-color:rgba(255,82,82,0.3);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
 .challenge-card:hover::after{opacity:1}
-.ch-num{
-  font-family:var(--font-mono);font-size:9px;font-weight:500;letter-spacing:0.14em;
-  color:var(--t3);text-transform:uppercase;margin-bottom:14px;
-}
-.ch-icon{
-  width:42px;height:42px;border-radius:12px;
-  background:rgba(255,82,82,0.1);border:1px solid rgba(255,82,82,0.2);
-  display:flex;align-items:center;justify-content:center;font-size:1.2rem;
-  margin-bottom:14px;transition:transform 0.3s var(--ease-spring);
-}
+.ch-num{font-family:var(--font-mono);font-size:9px;font-weight:500;letter-spacing:0.14em;color:var(--t3);text-transform:uppercase;margin-bottom:14px}
+.ch-icon{width:42px;height:42px;border-radius:12px;background:rgba(255,82,82,0.1);border:1px solid rgba(255,82,82,0.2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:14px;transition:transform 0.3s var(--ease-spring)}
 .challenge-card:hover .ch-icon{transform:scale(1.1) rotate(-5deg)}
 .ch-title{font-family:var(--font-head);font-size:1rem;font-weight:700;margin-bottom:8px}
 .ch-desc{font-size:0.83rem;color:var(--t2);line-height:1.65;margin-bottom:16px}
-.ch-badge{
-  display:inline-block;background:rgba(255,82,82,0.1);border:1px solid rgba(255,82,82,0.25);
-  border-radius:6px;padding:4px 12px;
-  font-family:var(--font-mono);font-size:10px;color:var(--red);font-weight:500;
-}
-.ch-hover-hint{
-  position:absolute;bottom:16px;right:16px;
-  font-family:var(--font-mono);font-size:9px;color:var(--cyan);
-  opacity:0;transform:translateX(4px);transition:all 0.25s var(--ease);
-}
+.ch-badge{display:inline-block;background:rgba(255,82,82,0.1);border:1px solid rgba(255,82,82,0.25);border-radius:6px;padding:4px 12px;font-family:var(--font-mono);font-size:10px;color:var(--red);font-weight:500}
+.ch-hover-hint{position:absolute;bottom:16px;right:16px;font-family:var(--font-mono);font-size:9px;color:var(--cyan);opacity:0;transform:translateX(4px);transition:all 0.25s var(--ease)}
 .challenge-card:hover .ch-hover-hint{opacity:1;transform:translateX(0)}
 
 /* ============================================================
    AUDIT STEPS
    ============================================================ */
 .audit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.audit-card{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--r);
-  padding:22px;cursor:pointer;
-  transition:all 0.3s var(--ease);text-align:center;
-}
+.audit-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;cursor:pointer;transition:all 0.3s var(--ease);text-align:center}
 .audit-card:hover{border-color:var(--cyan-border);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,229,255,0.08)}
-.audit-step{
-  font-family:var(--font-mono);font-size:9px;font-weight:500;letter-spacing:0.14em;
-  color:var(--cyan);text-transform:uppercase;margin-bottom:12px;
-}
+.audit-step{font-family:var(--font-mono);font-size:9px;font-weight:500;letter-spacing:0.14em;color:var(--cyan);text-transform:uppercase;margin-bottom:12px}
 .audit-emoji{font-size:2rem;margin-bottom:12px;display:block}
 .audit-name{font-family:var(--font-head);font-size:0.9rem;font-weight:700;margin-bottom:8px}
 .audit-desc{font-size:0.78rem;color:var(--t2);line-height:1.55}
@@ -523,85 +244,43 @@ body::before{
    STRATEGY CARDS
    ============================================================ */
 .strategy-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.strat-card{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
-  padding:30px;cursor:pointer;
-  transition:all 0.3s var(--ease);
-  position:relative;overflow:hidden;
-}
-.strat-card::after{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 0%,rgba(0,229,255,0.05),transparent 60%);
-  opacity:0;transition:opacity 0.3s;
-}
+.strat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:30px;cursor:pointer;transition:all 0.3s var(--ease);position:relative;overflow:hidden}
+.strat-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(0,229,255,0.05),transparent 60%);opacity:0;transition:opacity 0.3s}
 .strat-card:hover{border-color:var(--cyan-border);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,229,255,0.06)}
 .strat-card:hover::after{opacity:1}
 .strat-head{display:flex;align-items:center;gap:14px;margin-bottom:8px}
-.strat-icon{
-  width:48px;height:48px;border-radius:14px;
-  background:rgba(0,229,255,0.08);border:1px solid var(--cyan-border);
-  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
-  flex-shrink:0;transition:transform 0.3s var(--ease-spring);
-}
+.strat-icon{width:48px;height:48px;border-radius:14px;background:rgba(0,229,255,0.08);border:1px solid var(--cyan-border);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;transition:transform 0.3s var(--ease-spring)}
 .strat-card:hover .strat-icon{transform:scale(1.1)}
 .strat-card h3{font-family:var(--font-head);font-size:1.05rem;font-weight:700}
 .strat-problem{font-size:0.8rem;font-weight:600;color:var(--red);margin-bottom:16px;display:flex;align-items:center;gap:6px}
 .strat-problem::before{content:'⚠';font-size:0.75rem}
 .strat-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
-.strat-item{
-  display:flex;align-items:flex-start;gap:10px;
-  font-size:0.83rem;color:var(--t2);
-}
+.strat-item{display:flex;align-items:flex-start;gap:10px;font-size:0.83rem;color:var(--t2)}
 .arrow-cyan{color:var(--cyan);flex-shrink:0;font-size:0.8rem;margin-top:2px}
-.impact-bar{
-  background:var(--green-dim);border:1px solid rgba(0,230,118,0.2);
-  border-radius:8px;padding:10px 14px;
-  font-size:0.8rem;color:var(--green);font-weight:600;display:flex;align-items:center;gap:6px;
-}
-.view-ss{
-  position:absolute;top:16px;right:16px;
-  background:var(--cyan-glow);border:1px solid var(--cyan-border);border-radius:7px;
-  padding:4px 10px;font-family:var(--font-mono);font-size:9px;color:var(--cyan);
-  opacity:0;transform:translateY(-2px);transition:all 0.25s var(--ease);
-}
+.impact-bar{background:var(--green-dim);border:1px solid rgba(0,230,118,0.2);border-radius:8px;padding:10px 14px;font-size:0.8rem;color:var(--green);font-weight:600;display:flex;align-items:center;gap:6px}
+.view-ss{position:absolute;top:16px;right:16px;background:var(--cyan-glow);border:1px solid var(--cyan-border);border-radius:7px;padding:4px 10px;font-family:var(--font-mono);font-size:9px;color:var(--cyan);opacity:0;transform:translateY(-2px);transition:all 0.25s var(--ease)}
 .strat-card:hover .view-ss{opacity:1;transform:translateY(0)}
 
 /* ============================================================
    RESULTS — KPI CARDS
    ============================================================ */
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.kpi-result-card{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
-  padding:24px 18px;text-align:center;cursor:pointer;
-  transition:all 0.35s var(--ease-spring);
-  position:relative;overflow:hidden;
-}
-.kpi-result-card::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 100%,rgba(0,229,255,0.08),transparent 60%);
-  opacity:0;transition:opacity 0.3s;
-}
-.kpi-result-card:hover{
-  border-color:var(--cyan-border);transform:translateY(-6px) scale(1.01);
-  box-shadow:0 24px 60px rgba(0,229,255,0.1);
-}
+.kpi-result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:24px 18px;text-align:center;cursor:pointer;transition:all 0.35s var(--ease-spring);position:relative;overflow:hidden}
+.kpi-result-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 100%,rgba(0,229,255,0.08),transparent 60%);opacity:0;transition:opacity 0.3s}
+.kpi-result-card:hover{border-color:var(--cyan-border);transform:translateY(-6px) scale(1.01);box-shadow:0 24px 60px rgba(0,229,255,0.1)}
 .kpi-result-card:hover::before{opacity:1}
 .kpi-mname{font-family:var(--font-mono);font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);margin-bottom:8px}
 .kpi-was{font-size:0.75rem;color:var(--t3);margin-bottom:14px;font-family:var(--font-mono)}
 .kpi-val{font-family:var(--font-head);font-size:2rem;font-weight:800;color:var(--cyan);line-height:1;margin-bottom:12px}
-.kpi-badge{
-  display:inline-flex;align-items:center;gap:4px;
-  font-family:var(--font-mono);font-size:11px;font-weight:500;
-  padding:5px 12px;border-radius:6px;
-}
+.kpi-badge{display:inline-flex;align-items:center;gap:4px;font-family:var(--font-mono);font-size:11px;font-weight:500;padding:5px 12px;border-radius:6px}
 .kpi-badge.up{background:var(--green-dim);color:var(--green);border:1px solid rgba(0,230,118,0.2)}
 .kpi-badge.down{background:var(--green-dim);color:var(--green);border:1px solid rgba(0,230,118,0.2)}
-.kpi-click-hint{
-  position:absolute;bottom:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--cyan),transparent);
-  transform:scaleX(0);transition:transform 0.4s var(--ease);
-}
+.kpi-click-hint{position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);transform:scaleX(0);transition:transform 0.4s var(--ease)}
 .kpi-result-card:hover .kpi-click-hint{transform:scaleX(1)}
+
+/* Image wrapper */
+.cmt_single_image-wrapper_2{margin-top:14px;border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+.cmt_single_image-wrapper_2 img{width:100%;height:auto;display:block}
 
 /* ============================================================
    KPI TABLE
@@ -609,10 +288,7 @@ body::before{
 .kpi-table-wrap{overflow-x:auto;border-radius:var(--r2);border:1px solid var(--border)}
 .kpi-table{width:100%;border-collapse:collapse;min-width:600px}
 .kpi-table thead tr{background:var(--bg3)}
-.kpi-table th{
-  padding:14px 24px;text-align:left;
-  font-family:var(--font-mono);font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);
-}
+.kpi-table th{padding:14px 24px;text-align:left;font-family:var(--font-mono);font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3)}
 .kpi-table td{padding:18px 24px;border-bottom:1px solid var(--border);font-size:0.88rem}
 .kpi-table tr:last-child td{border-bottom:none}
 .kpi-table tbody tr{cursor:pointer;transition:background 0.2s}
@@ -627,59 +303,31 @@ body::before{
    TIMELINE
    ============================================================ */
 .timeline{display:flex;flex-direction:column;gap:16px;position:relative}
-.timeline::before{
-  content:'';position:absolute;left:58px;top:28px;bottom:28px;width:1px;
-  background:linear-gradient(to bottom,var(--cyan-border),rgba(0,229,255,0.05),transparent);
-}
+.timeline::before{content:'';position:absolute;left:58px;top:28px;bottom:28px;width:1px;background:linear-gradient(to bottom,var(--cyan-border),rgba(0,229,255,0.05),transparent)}
 .tl-item{display:flex;gap:28px;align-items:flex-start}
 .tl-node{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0;width:84px}
-.tl-circle{
-  width:48px;height:48px;border-radius:50%;border:1px solid var(--cyan-border);
-  background:var(--card);display:flex;align-items:center;justify-content:center;
-  font-size:1.2rem;z-index:1;
-  box-shadow:0 0 20px rgba(0,229,255,0.1);
-}
+.tl-circle{width:48px;height:48px;border-radius:50%;border:1px solid var(--cyan-border);background:var(--card);display:flex;align-items:center;justify-content:center;font-size:1.2rem;z-index:1;box-shadow:0 0 20px rgba(0,229,255,0.1)}
 .tl-week{font-family:var(--font-mono);font-size:9px;font-weight:500;color:var(--cyan);letter-spacing:0.1em;text-transform:uppercase}
-.tl-content{
-  flex:1;background:var(--card);border:1px solid var(--border);border-radius:var(--r);
-  padding:22px 26px;transition:all 0.25s var(--ease);
-}
+.tl-content{flex:1;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 26px;transition:all 0.25s var(--ease)}
 .tl-content:hover{border-color:var(--border2)}
 .tl-content h3{font-family:var(--font-head);font-size:0.95rem;font-weight:700;margin-bottom:12px}
 .task-tags{display:flex;flex-wrap:wrap;gap:7px}
-.task-tag{
-  background:var(--bg2);border:1px solid var(--border);border-radius:6px;
-  padding:4px 11px;font-size:0.75rem;color:var(--t2);font-family:var(--font-mono);
-}
+.task-tag{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:4px 11px;font-size:0.75rem;color:var(--t2);font-family:var(--font-mono)}
 
 /* ============================================================
    TOOLS SECTION
    ============================================================ */
 .tools-flex{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-.tool-chip{
-  display:flex;align-items:center;gap:8px;
-  background:var(--card);border:1px solid var(--border);border-radius:100px;
-  padding:9px 18px;font-size:0.84rem;font-weight:500;
-  transition:all 0.2s var(--ease);cursor:default;
-}
+.tool-chip{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:100px;padding:9px 18px;font-size:0.84rem;font-weight:500;transition:all 0.2s var(--ease);cursor:default}
 .tool-chip:hover{border-color:var(--border2);transform:translateY(-2px)}
 .tool-dot{width:7px;height:7px;border-radius:50%}
 
 /* ============================================================
    CTA
    ============================================================ */
-.cta-section{
-  padding:120px 28px;text-align:center;position:relative;overflow:hidden;z-index:2;
-}
-.cta-section::before{
-  content:'';position:absolute;width:800px;height:800px;border-radius:50%;
-  background:radial-gradient(circle,rgba(0,229,255,0.05),transparent 70%);
-  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;
-}
-.cta-title{
-  font-family:var(--font-head);font-size:clamp(2.4rem,5vw,3.8rem);
-  font-weight:800;line-height:1.05;letter-spacing:-0.025em;margin-bottom:20px;
-}
+.cta-section{padding:120px 28px;text-align:center;position:relative;overflow:hidden;z-index:2}
+.cta-section::before{content:'';position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,0.05),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-title{font-family:var(--font-head);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800;line-height:1.05;letter-spacing:-0.025em;margin-bottom:20px}
 .cta-desc{font-size:1rem;color:var(--t2);max-width:460px;margin:0 auto 44px;line-height:1.8}
 .cta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
 
@@ -696,96 +344,34 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 /* ============================================================
    MODAL / POPUP SYSTEM
    ============================================================ */
-.modal-overlay{
-  position:fixed;inset:0;z-index:1000;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,0);
-  backdrop-filter:blur(0px);
-  pointer-events:none;
-  transition:background 0.4s var(--ease),backdrop-filter 0.4s var(--ease);
-}
-.modal-overlay.open{
-  background:rgba(0,0,0,0.88);
-  backdrop-filter:blur(20px) saturate(120%);
-  pointer-events:all;
-}
-.modal-box{
-  position:relative;max-width:1100px;width:calc(100% - 48px);
-  background:var(--card2);border:1px solid var(--border2);border-radius:22px;
-  overflow:hidden;
-  transform:scale(0.88) translateY(30px);opacity:0;
-  transition:transform 0.5s var(--ease-spring),opacity 0.4s var(--ease);
-  box-shadow:0 60px 120px rgba(0,0,0,0.8),0 0 0 1px rgba(255,255,255,0.04),inset 0 1px 0 rgba(255,255,255,0.08);
-  max-height:92vh;display:flex;flex-direction:column;
-}
-.modal-overlay.open .modal-box{
-  transform:scale(1) translateY(0);opacity:1;
-}
-.modal-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:20px 28px;border-bottom:1px solid var(--border);
-  flex-shrink:0;
-}
+.modal-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0);backdrop-filter:blur(0px);pointer-events:none;transition:background 0.4s var(--ease),backdrop-filter 0.4s var(--ease)}
+.modal-overlay.open{background:rgba(0,0,0,0.88);backdrop-filter:blur(20px) saturate(120%);pointer-events:all}
+.modal-box{position:relative;max-width:1100px;width:calc(100% - 48px);background:var(--card2);border:1px solid var(--border2);border-radius:22px;overflow:hidden;transform:scale(0.88) translateY(30px);opacity:0;transition:transform 0.5s var(--ease-spring),opacity 0.4s var(--ease);box-shadow:0 60px 120px rgba(0,0,0,0.8),0 0 0 1px rgba(255,255,255,0.04),inset 0 1px 0 rgba(255,255,255,0.08);max-height:92vh;display:flex;flex-direction:column}
+.modal-overlay.open .modal-box{transform:scale(1) translateY(0);opacity:1}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-bottom:1px solid var(--border);flex-shrink:0}
 .modal-title-wrap{display:flex;align-items:center;gap:14px}
 .modal-icon{font-size:1.5rem}
 .modal-title{font-family:var(--font-head);font-size:1.1rem;font-weight:700}
 .modal-subtitle{font-size:0.78rem;color:var(--t2);font-family:var(--font-mono);margin-top:2px}
-.modal-close{
-  width:38px;height:38px;border-radius:10px;border:1px solid var(--border2);
-  background:rgba(255,255,255,0.05);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.2rem;color:var(--t2);
-  transition:all 0.2s var(--ease);cursor:pointer;flex-shrink:0;
-}
+.modal-close{width:38px;height:38px;border-radius:10px;border:1px solid var(--border2);background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--t2);transition:all 0.2s var(--ease);cursor:pointer;flex-shrink:0}
 .modal-close:hover{background:rgba(255,82,82,0.15);border-color:rgba(255,82,82,0.3);color:var(--red)}
 .modal-body{flex:1;overflow:auto;position:relative}
-.modal-img-wrap{
-  display:flex;align-items:center;justify-content:center;
-  padding:32px;min-height:300px;background:var(--bg);
-  position:relative;
-}
-.modal-img{
-  max-width:100%;max-height:70vh;border-radius:12px;
-  box-shadow:0 20px 60px rgba(0,0,0,0.6);
-  animation:imgReveal 0.5s var(--ease-spring) forwards;
-}
-@keyframes imgReveal{
-  from{opacity:0;transform:scale(0.96) translateY(10px)}
-  to{opacity:1;transform:scale(1) translateY(0)}
-}
-.modal-placeholder{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:60px 40px;gap:16px;text-align:center;
-  min-height:360px;background:var(--bg);
-}
+.modal-img-wrap{display:flex;align-items:center;justify-content:center;padding:32px;min-height:300px;background:var(--bg);position:relative}
+.modal-img{max-width:100%;max-height:70vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.6);animation:imgReveal 0.5s var(--ease-spring) forwards}
+@keyframes imgReveal{from{opacity:0;transform:scale(0.96) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 40px;gap:16px;text-align:center;min-height:360px;background:var(--bg)}
 .modal-placeholder .ph-icon{font-size:3rem;opacity:0.4}
 .modal-placeholder h3{font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:var(--t2)}
 .modal-placeholder p{font-family:var(--font-mono);font-size:0.8rem;color:var(--t3);max-width:400px;line-height:1.7}
-.modal-placeholder code{
-  background:rgba(0,229,255,0.08);border:1px solid var(--cyan-border);border-radius:7px;
-  padding:10px 18px;font-family:var(--font-mono);font-size:0.78rem;color:var(--cyan);
-  display:block;margin-top:8px;
-}
-.modal-footer{
-  padding:16px 28px;border-top:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;
-  background:var(--bg2);flex-shrink:0;
-}
+.modal-placeholder code{background:rgba(0,229,255,0.08);border:1px solid var(--cyan-border);border-radius:7px;padding:10px 18px;font-family:var(--font-mono);font-size:0.78rem;color:var(--cyan);display:block;margin-top:8px}
+.modal-footer{padding:16px 28px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg2);flex-shrink:0}
 .modal-nav-btns{display:flex;gap:8px}
-.modal-nav-btn{
-  padding:8px 18px;border-radius:8px;border:1px solid var(--border2);
-  background:rgba(255,255,255,0.04);font-size:0.82rem;font-weight:600;color:var(--t2);
-  transition:all 0.2s var(--ease);cursor:pointer;
-  display:flex;align-items:center;gap:6px;
-}
+.modal-nav-btn{padding:8px 18px;border-radius:8px;border:1px solid var(--border2);background:rgba(255,255,255,0.04);font-size:0.82rem;font-weight:600;color:var(--t2);transition:all 0.2s var(--ease);cursor:pointer;display:flex;align-items:center;gap:6px}
 .modal-nav-btn:hover{border-color:var(--cyan-border);color:var(--cyan)}
 .modal-nav-btn:disabled{opacity:0.35;cursor:not-allowed}
 .modal-counter{font-family:var(--font-mono);font-size:11px;color:var(--t3)}
 .modal-tags{display:flex;gap:8px;flex-wrap:wrap}
-.modal-tag{
-  background:var(--cyan-glow);border:1px solid var(--cyan-border);border-radius:6px;
-  padding:3px 10px;font-family:var(--font-mono);font-size:9px;color:var(--cyan);font-weight:500;
-}
+.modal-tag{background:var(--cyan-glow);border:1px solid var(--cyan-border);border-radius:6px;padding:3px 10px;font-family:var(--font-mono);font-size:9px;color:var(--cyan);font-weight:500}
 
 /* ============================================================
    SCROLL ANIMATIONS
@@ -800,201 +386,6 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 [data-delay="4"]{transition-delay:0.4s}
 [data-delay="5"]{transition-delay:0.5s}
 [data-delay="6"]{transition-delay:0.6s}
-
-/* ============================================================
-   *** NEW *** PHOTO GALLERY SECTION
-   ============================================================ */
-
-/* Gallery section tabs / folder switcher */
-.gallery-tabs {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 40px;
-}
-.gallery-tab {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 9px 20px;
-  border-radius: 100px;
-  border: 1px solid var(--border2);
-  background: rgba(255,255,255,0.04);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--t2);
-  cursor: pointer;
-  transition: all 0.22s var(--ease);
-  position: relative;
-}
-.gallery-tab:hover {
-  border-color: var(--cyan-border);
-  color: var(--cyan);
-  background: var(--cyan-glow);
-}
-.gallery-tab.active {
-  border-color: var(--cyan-border);
-  background: var(--cyan-glow);
-  color: var(--cyan);
-  box-shadow: 0 0 18px rgba(0,229,255,0.1);
-}
-.gallery-tab .tab-count {
-  background: rgba(0,229,255,0.15);
-  border-radius: 20px;
-  padding: 1px 7px;
-  font-size: 9px;
-  color: var(--cyan);
-  min-width: 18px;
-  text-align: center;
-}
-.gallery-tab.active .tab-count {
-  background: var(--cyan);
-  color: #08090d;
-}
-
-/* Gallery grid */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 14px;
-}
-
-/* Individual gallery card */
-.gallery-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--r2);
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s var(--ease);
-  position: relative;
-  aspect-ratio: 16/10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.gallery-card:hover {
-  border-color: var(--cyan-border);
-  transform: translateY(-4px) scale(1.01);
-  box-shadow: 0 20px 60px rgba(0,229,255,0.1);
-}
-.gallery-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s var(--ease);
-}
-.gallery-card:hover img {
-  transform: scale(1.04);
-}
-
-/* Hover overlay on each gallery card */
-.gallery-card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(8,9,13,0.85) 0%, transparent 55%);
-  opacity: 0;
-  transition: opacity 0.3s var(--ease);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 16px;
-}
-.gallery-card:hover .gallery-card-overlay {
-  opacity: 1;
-}
-.gallery-card-name {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--t1);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 4px;
-}
-.gallery-card-folder {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--cyan);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-.gallery-card-zoom {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: rgba(0,229,255,0.15);
-  border: 1px solid var(--cyan-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.25s var(--ease-spring);
-}
-.gallery-card:hover .gallery-card-zoom {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Empty state per folder */
-.gallery-empty {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 32px;
-  text-align: center;
-  gap: 14px;
-  border: 1px dashed var(--border2);
-  border-radius: var(--r2);
-  background: var(--card);
-}
-.gallery-empty-icon { font-size: 2.4rem; opacity: 0.35; }
-.gallery-empty h4 {
-  font-family: var(--font-head);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--t2);
-}
-.gallery-empty p {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--t3);
-  line-height: 1.7;
-  max-width: 400px;
-}
-.gallery-empty code {
-  display: inline-block;
-  background: rgba(0,229,255,0.07);
-  border: 1px solid var(--cyan-border);
-  border-radius: 6px;
-  padding: 6px 14px;
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
-  color: var(--cyan);
-  margin-top: 4px;
-}
-
-/* Gallery lightbox — extends existing modal system, separate IDs */
-#galleryModal .modal-img-wrap {
-  padding: 28px;
-  background: #000;
-}
-#galleryModal .modal-img {
-  max-height: 78vh;
-}
 
 /* ============================================================
    RESPONSIVE
@@ -1013,7 +404,6 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   .hero{grid-template-columns:1fr;min-height:auto;gap:48px;padding:60px 24px}
   .hero-visual{max-width:580px;margin:0 auto}
   .strategy-grid{grid-template-columns:1fr}
-  .gallery-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
 }
 @media(max-width:700px){
   .nav-links{display:none;flex-direction:column;position:fixed;top:68px;left:0;right:0;bottom:0;background:var(--bg);padding:32px 24px;gap:28px;z-index:89;border-top:1px solid var(--border)}
@@ -1028,7 +418,6 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   .hero-badge-float{display:none}
   .modal-box{width:calc(100% - 24px)}
   .modal-img-wrap{padding:20px}
-  .gallery-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 }
 @media(max-width:480px){
   .audit-grid{grid-template-columns:1fr}
@@ -1037,7 +426,6 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   .stat-block{border-right:none;border-bottom:1px solid var(--border)}
   .timeline::before{left:40px}
   .tl-node{width:64px}
-  .gallery-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -1051,7 +439,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 </div>
 
 <!-- ============================================================
-     MODAL POPUP SYSTEM (original — screenshots array)
+     MODAL POPUP SYSTEM
      ============================================================ -->
 <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Screenshot preview">
   <div class="modal-box" id="modalBox">
@@ -1065,9 +453,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
       </div>
       <button class="modal-close" id="modalClose" aria-label="Close modal">✕</button>
     </div>
-    <div class="modal-body" id="modalBody">
-      <!-- Content injected by JS -->
-    </div>
+    <div class="modal-body" id="modalBody"></div>
     <div class="modal-footer">
       <div class="modal-tags" id="modalTags"></div>
       <div style="display:flex;align-items:center;gap:16px">
@@ -1075,35 +461,6 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="modal-nav-btns">
           <button class="modal-nav-btn" id="modalPrev" aria-label="Previous screenshot">← Prev</button>
           <button class="modal-nav-btn" id="modalNext" aria-label="Next screenshot">Next →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================================
-     *** NEW *** GALLERY LIGHTBOX (separate from screenshot modal)
-     ============================================================ -->
-<div class="modal-overlay" id="galleryModal" role="dialog" aria-modal="true" aria-label="Gallery image preview">
-  <div class="modal-box" id="galleryModalBox">
-    <div class="modal-header">
-      <div class="modal-title-wrap">
-        <span class="modal-icon" id="galIcon">🖼</span>
-        <div>
-          <div class="modal-title" id="galTitle">Image Preview</div>
-          <div class="modal-subtitle" id="galSubtitle">Use ← → keys to navigate · ESC to close</div>
-        </div>
-      </div>
-      <button class="modal-close" id="galClose" aria-label="Close gallery">✕</button>
-    </div>
-    <div class="modal-body" id="galBody"></div>
-    <div class="modal-footer">
-      <div class="modal-tags" id="galTags"></div>
-      <div style="display:flex;align-items:center;gap:16px">
-        <span class="modal-counter" id="galCounter"></span>
-        <div class="modal-nav-btns">
-          <button class="modal-nav-btn" id="galPrev" aria-label="Previous image">← Prev</button>
-          <button class="modal-nav-btn" id="galNext" aria-label="Next image">Next →</button>
         </div>
       </div>
     </div>
@@ -1124,7 +481,6 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
       <a href="#strategy">Strategy</a>
       <a href="#results">Results</a>
       <a href="#timeline">Timeline</a>
-      <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
     </div>
     <a href="#contact" class="btn-hire">Hire Me ↗</a>
@@ -1288,7 +644,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <h3>🎯 Success KPIs Defined</h3>
         <div class="kpi-list-item"><span class="check">✓</span><span>Increase monthly organic visitors from 5K to 15K+</span></div>
         <div class="kpi-list-item"><span class="check">✓</span><span>Rank 30+ transactional shipping keywords in Top 10</span></div>
-        <div class="kpi-list-item"><span class="check">✓</span><span>Fix  Web Vitals — all three green on mobile + desktop</span></div>
+        <div class="kpi-list-item"><span class="check">✓</span><span>Fix Core Web Vitals — all three green on mobile + desktop</span></div>
         <div class="kpi-list-item"><span class="check">✓</span><span>Resolve 40% of pages not indexed by Google</span></div>
         <div class="kpi-list-item"><span class="check">✓</span><span>Grow Domain Authority from DA 14 to DA 25+</span></div>
         <div class="kpi-list-item"><span class="check">✓</span><span>Reduce bounce rate below 55% through content UX</span></div>
@@ -1314,12 +670,15 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
     </div>
     <div class="challenges-grid">
 
-      <div class="challenge-card fade-up" data-delay="1" onclick="openModal(4)" role="button" tabindex="0" aria-label="View  Web Vitals screenshot">
+      <div class="challenge-card fade-up" data-delay="1" onclick="openModal(4)" role="button" tabindex="0" aria-label="View Core Web Vitals screenshot">
         <div class="ch-num">01 / Technical</div>
         <div class="ch-icon">⚡</div>
         <div class="ch-title">Poor Core Web Vitals</div>
         <div class="ch-desc">LCP of 8.2s (target ≤2.5s). CLS of 0.38 (target ≤0.1). All three Core Web Vitals failing on mobile and desktop.</div>
         <span class="ch-badge">PageSpeed: 28/100</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="express GSC-1.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
@@ -1329,6 +688,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Crawl & Indexing Issues</div>
         <div class="ch-desc">180+ pages blocked in robots.txt accidentally. Google not indexing 40% of product pages due to canonical errors and crawl budget waste.</div>
         <span class="ch-badge">140 Pages Not Indexed</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
@@ -1338,6 +700,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Duplicate Content Issues</div>
         <div class="ch-desc">Product variations creating duplicate URLs. Tag pages, pagination, and filter parameters causing cannibalisation across 60+ pages.</div>
         <span class="ch-badge">60+ Duplicate Pages</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
@@ -1347,6 +712,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Weak Internal Linking</div>
         <div class="ch-desc">High-value pages receiving zero internal links. PageRank not flowing to priority product pages and collections.</div>
         <span class="ch-badge">Orphan Pages: 48</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
@@ -1356,6 +724,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">300+ Technical SEO Errors</div>
         <div class="ch-desc">Broken links, missing alt tags, missing meta descriptions, schema errors, and redirect chains found in full Screaming Frog audit.</div>
         <span class="ch-badge">Screaming Frog Crawl</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
@@ -1365,6 +736,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Poor Mobile Usability</div>
         <div class="ch-desc">Non-responsive elements, tap targets too small, font size issues causing Google Mobile Usability failures in GSC.</div>
         <span class="ch-badge">12 Mobile Errors</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
@@ -1374,6 +748,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Low Keyword Rankings</div>
         <div class="ch-desc">Only 12 keywords in Top 10. No target keywords ranking on Page 1. Weak E-E-A-T signals across the domain.</div>
         <span class="ch-badge">DA: 14 · DR: 11</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
@@ -1383,6 +760,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Low Click-Through Rate</div>
         <div class="ch-desc">Average CTR of 2.1% despite appearing in search results. Titles and meta descriptions not optimised for SERP appeal.</div>
         <span class="ch-badge">CTR: 2.1%</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
@@ -1392,6 +772,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Weak Backlink Profile</div>
         <div class="ch-desc">Only 23 referring domains, most low-quality with no anchor text diversity. Domain authority significantly behind competitors.</div>
         <span class="ch-badge">23 Ref. Domains</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
@@ -1410,54 +793,87 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
       <p class="sec-sub">Before executing, I ran a structured 8-step audit to map every opportunity and prioritise actions by impact.</p>
     </div>
     <div class="audit-grid">
+
       <div class="audit-card fade-up" data-delay="1" onclick="openModal(3)" role="button" tabindex="0">
         <div class="audit-step">Step 01</div>
         <span class="audit-emoji">🔬</span>
         <div class="audit-name">Technical Audit</div>
         <div class="audit-desc">Crawl errors, redirects, Core Web Vitals, schema, robots.txt</div>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
       </div>
+
       <div class="audit-card fade-up" data-delay="2" onclick="openModal(3)" role="button" tabindex="0">
         <div class="audit-step">Step 02</div>
         <span class="audit-emoji">🗝️</span>
         <div class="audit-name">Keyword Research</div>
         <div class="audit-desc">Volume, intent mapping, long-tail opportunities, SERP features</div>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
       </div>
+
       <div class="audit-card fade-up" data-delay="3" onclick="openModal(3)" role="button" tabindex="0">
         <div class="audit-step">Step 03</div>
         <span class="audit-emoji">🏆</span>
         <div class="audit-name">Competitor Analysis</div>
         <div class="audit-desc">Top 5 SERP competitors analysed for content gaps and link gaps</div>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
       </div>
+
       <div class="audit-card fade-up" data-delay="4" onclick="openModal(3)" role="button" tabindex="0">
         <div class="audit-step">Step 04</div>
         <span class="audit-emoji">📊</span>
         <div class="audit-name">Content Gap Analysis</div>
         <div class="audit-desc">Missing topics, thin content, cannibalisation map</div>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
       </div>
+
       <div class="audit-card fade-up" data-delay="1" onclick="openModal(3)" role="button" tabindex="0">
         <div class="audit-step">Step 05</div>
         <span class="audit-emoji">🔎</span>
         <div class="audit-name">SERP Analysis</div>
         <div class="audit-desc">Search intent, featured snippets, PAA, schema opportunities</div>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
       </div>
+
       <div class="audit-card fade-up" data-delay="2" onclick="openModal(3)" role="button" tabindex="0">
         <div class="audit-step">Step 06</div>
         <span class="audit-emoji">🔗</span>
         <div class="audit-name">Backlink Audit</div>
         <div class="audit-desc">Toxic links disavowed, anchor diversity, referring domain analysis</div>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
       </div>
+
       <div class="audit-card fade-up" data-delay="3" onclick="openModal(3)" role="button" tabindex="0">
         <div class="audit-step">Step 07</div>
         <span class="audit-emoji">🕸</span>
         <div class="audit-name">Internal Link Review</div>
         <div class="audit-desc">Crawl depth, orphan pages, PageRank flow mapping</div>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
       </div>
+
       <div class="audit-card fade-up" data-delay="4" onclick="openModal(3)" role="button" tabindex="0">
         <div class="audit-step">Step 08</div>
         <span class="audit-emoji">📋</span>
         <div class="audit-name">Schema Opportunities</div>
         <div class="audit-desc">Product, review, FAQ, breadcrumb, HowTo schema gaps</div>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -1489,6 +905,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Canonicalised 60+ duplicate product variation URLs</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: PageSpeed 28 → 92 · LCP 8.2s → 1.8s</div>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
       </div>
 
       <div class="strat-card fade-up" data-delay="2" onclick="openModal(2)" role="button" tabindex="0">
@@ -1506,6 +925,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Added breadcrumb schema improving crawl efficiency by 35%</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: CTR 2.1% → 8.4% · 22 Featured Snippet wins</div>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
       </div>
 
       <div class="strat-card fade-up" data-delay="3" onclick="openModal(2)" role="button" tabindex="0">
@@ -1523,6 +945,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Created content hubs with cluster/pillar architecture for 6 core topics</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: Avg time on page +68% · Pages/session +42%</div>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
       </div>
 
       <div class="strat-card fade-up" data-delay="4" onclick="openModal(2)" role="button" tabindex="0">
@@ -1540,6 +965,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Used Ahrefs link opportunities report for high-authority internal link placements</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: Crawl depth reduced · 38% more pages indexed</div>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
       </div>
 
       <div class="strat-card fade-up" data-delay="1" onclick="openModal(2)" role="button" tabindex="0">
@@ -1557,6 +985,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Local citations built across 15 niche health directories</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: DA 14 → 31 · Ref. Domains 23 → 78</div>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
       </div>
 
       <div class="strat-card fade-up" data-delay="2" onclick="openModal(2)" role="button" tabindex="0">
@@ -1574,6 +1005,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Monitored and resolved crawl anomalies weekly via GSC Coverage report</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: Indexed pages 280 → 440 · +57% indexation rate</div>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
       </div>
 
     </div>
@@ -1708,6 +1142,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="kpi-was">was 5,000 / mo</div>
         <div class="kpi-val">30K</div>
         <span class="kpi-badge up">↑ +500%</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="kpi-click-hint"></div>
       </div>
 
@@ -1716,6 +1153,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="kpi-was">was 120K / mo</div>
         <div class="kpi-val">480K</div>
         <span class="kpi-badge up">↑ +300%</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="kpi-click-hint"></div>
       </div>
 
@@ -1724,6 +1164,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="kpi-was">was 12 keywords</div>
         <div class="kpi-val">87</div>
         <span class="kpi-badge up">↑ +625%</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="kpi-click-hint"></div>
       </div>
 
@@ -1732,6 +1175,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="kpi-was">was 28 / 100</div>
         <div class="kpi-val">92</div>
         <span class="kpi-badge up">↑ +228%</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="kpi-click-hint"></div>
       </div>
 
@@ -1740,6 +1186,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="kpi-was">was 2.1%</div>
         <div class="kpi-val">8.4%</div>
         <span class="kpi-badge up">↑ +300%</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="kpi-click-hint"></div>
       </div>
 
@@ -1748,6 +1197,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="kpi-was">was DA 14</div>
         <div class="kpi-val">DA 31</div>
         <span class="kpi-badge up">↑ +121%</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="kpi-click-hint"></div>
       </div>
 
@@ -1756,6 +1208,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="kpi-was">was 280 pages</div>
         <div class="kpi-val">440</div>
         <span class="kpi-badge up">↑ +57%</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="kpi-click-hint"></div>
       </div>
 
@@ -1764,6 +1219,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="kpi-was">was 74%</div>
         <div class="kpi-val">48%</div>
         <span class="kpi-badge down">↓ -35%</span>
+        <div class="cmt_single_image-wrapper_2">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+        </div>
         <div class="kpi-click-hint"></div>
       </div>
 
@@ -1830,42 +1288,6 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 </section>
 
 <!-- ============================================================
-     *** NEW *** SCREENSHOT GALLERY SECTION
-     ============================================================ -->
-<section class="section alt" id="gallery">
-  <div class="container">
-    <div class="section-head fade-up">
-      <div class="section-label">Evidence Gallery</div>
-      <h2 class="sec-title">Screenshot <span class="cyan">Evidence Library</span></h2>
-      <p class="sec-sub">All screenshots organised by folder. Add images to each folder path and they appear here automatically. Click any image to view full-size.</p>
-    </div>
-
-    <!-- Folder tabs -->
-    <div class="gallery-tabs fade-up" id="galleryTabs">
-      <!-- Rendered by JS -->
-    </div>
-
-    <!-- Image grid -->
-    <div class="gallery-grid fade-up" id="galleryGrid">
-      <!-- Rendered by JS -->
-    </div>
-
-    <!-- How-to hint strip -->
-    <div class="fade-up" style="margin-top:32px;padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:flex-start;gap:14px;">
-      <span style="font-size:1.3rem;flex-shrink:0;margin-top:2px">📁</span>
-      <div>
-        <div style="font-family:var(--font-head);font-size:0.88rem;font-weight:700;margin-bottom:6px">How to add images to each gallery folder</div>
-        <div style="font-family:var(--font-mono);font-size:0.76rem;color:var(--t2);line-height:1.8">
-          Place your screenshots inside these folders (create them next to this HTML file):<br>
-          <span style="color:var(--cyan)">images/seo/</span> &nbsp;·&nbsp; <span style="color:var(--cyan)">images/design/</span> &nbsp;·&nbsp; <span style="color:var(--cyan)">images/results/</span> &nbsp;·&nbsp; <span style="color:var(--cyan)">images/case-study/</span><br>
-          Then update the <code style="color:var(--cyan);background:rgba(0,229,255,0.07);padding:1px 6px;border-radius:4px">galleryFolders</code> array in the JS below with the exact filenames. No server needed — pure HTML/JS.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
      CTA
      ============================================================ -->
 <section class="cta-section" id="contact">
@@ -1903,7 +1325,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
      ============================================================ -->
 <script>
 /* ============================================================
-   SCREENSHOT DATA (original modal system — unchanged)
+   SCREENSHOT DATA
    Replace src paths with your actual screenshot files.
    ============================================================ */
 const screenshots = [
@@ -2002,231 +1424,15 @@ document.getElementById('modalOverlay').addEventListener('click', (e) => {
 });
 
 /* ============================================================
-   *** NEW *** GALLERY SYSTEM
-   ============================================================
-   HOW TO ADD IMAGES:
-   1. Create these folders next to your HTML file:
-        images/seo/
-        images/design/
-        images/results/
-        images/case-study/
-   2. Add your image filenames to the `images` array
-      inside each folder object below.
-   3. Save and open the HTML — done. No server required.
+   KEYBOARD NAV
    ============================================================ */
-
-  const galleryFolders = [
-    {
-      id: 'all',
-      label: 'All',
-      icon: '🗂',
-      /* Special "all" folder — aggregated automatically */
-      images: []
-    },
-    {
-      id: 'seo',
-      label: 'SEO',
-      icon: '📈',
-      path: 'images/seo/',
-      /* ↓↓ ADD YOUR FILENAMES HERE ↓↓
-         Example: 'gsc-traffic-jan.png', 'ahrefs-keywords.png'  */
-      images: [
-        // 'gsc-traffic-jan.png',
-        // 'ahrefs-keywords-after.png',
-        // 'pagespeed-before.png',
-        // 'pagespeed-after.png',
-      ]
-    },
-    {
-      id: 'design',
-      label: 'Design',
-      icon: '🎨',
-      path: 'images/design/',
-      /* ↓↓ ADD YOUR FILENAMES HERE ↓↓ */
-      images: [
-        // 'homepage-redesign.png',
-        // 'mobile-view.png',
-      ]
-    },
-    {
-      id: 'results',
-      label: 'Results',
-      icon: '🏆',
-      path: 'images/results/',
-      /* ↓↓ ADD YOUR FILENAMES HERE ↓↓ */
-      images: [
-        // 'traffic-chart-june.png',
-        // 'keyword-rankings.png',
-        // 'domain-authority.png',
-      ]
-    },
-    {
-      id: 'case-study',
-      label: 'Case Study',
-      icon: '📋',
-      path: 'images/case-study/',
-      /* ↓↓ ADD YOUR FILENAMES HERE ↓↓ */
-      images: [
-        // 'audit-report-cover.png',
-        // 'strategy-deck.png',
-        // 'competitor-analysis.png',
-      ]
-    },
-  ];
-
-  /* Build "All" images list automatically */
-  galleryFolders[0].images = galleryFolders.slice(1).flatMap(f =>
-    f.images.map(img => ({ src: f.path + img, name: img, folder: f.label }))
-  );
-  /* Attach path/folder metadata to individual folder images */
-  galleryFolders.slice(1).forEach(f => {
-    f._resolved = f.images.map(img => ({ src: f.path + img, name: img, folder: f.label }));
-  });
-  galleryFolders[0].images = galleryFolders.slice(1).flatMap(f => f._resolved || []);
-
-  let activeFolder = 'all';
-  let galCurrentIndex = 0;
-  let galCurrentList = [];
-
-  /* ---- RENDER TABS ---- */
-  function renderGalleryTabs() {
-    const tabs = document.getElementById('galleryTabs');
-    tabs.innerHTML = galleryFolders.map(f => {
-      const count = f.id === 'all'
-        ? galleryFolders.slice(1).reduce((s, x) => s + (x.images || []).length, 0)
-        : (f.images || []).length;
-      return `
-        <button class="gallery-tab${f.id === activeFolder ? ' active' : ''}"
-                onclick="switchGalleryFolder('${f.id}')"
-                aria-label="Show ${f.label} images">
-          ${f.icon} ${f.label}
-          <span class="tab-count">${count}</span>
-        </button>`;
-    }).join('');
-  }
-
-  /* ---- RENDER GRID ---- */
-  function renderGalleryGrid() {
-    const grid = document.getElementById('galleryGrid');
-    const folder = galleryFolders.find(f => f.id === activeFolder);
-    const items = activeFolder === 'all'
-      ? galleryFolders[0].images
-      : (folder._resolved || []);
-
-    galCurrentList = items;
-
-    if (!items.length) {
-      const folderPath = activeFolder === 'all' ? 'images/*/' : `images/${activeFolder}/`;
-      grid.innerHTML = `
-        <div class="gallery-empty">
-          <div class="gallery-empty-icon">🗃</div>
-          <h4>No images yet in this folder</h4>
-          <p>Drop your screenshots into <code>${folderPath}</code> and add the filenames to the <code>galleryFolders</code> array in the JS section of this HTML file.</p>
-        </div>`;
-      return;
-    }
-
-    grid.innerHTML = items.map((item, i) => `
-      <div class="gallery-card fade-up" onclick="openGalleryLightbox(${i})"
-           role="button" tabindex="0" aria-label="View ${item.name}">
-        <img src="${item.src}" alt="${item.name}" loading="lazy"
-             onerror="this.parentElement.style.background='var(--bg3)';this.style.display='none';this.nextElementSibling.style.opacity='1';" />
-        <div class="gallery-card-overlay">
-          <div class="gallery-card-name">${item.name}</div>
-          <div class="gallery-card-folder">${item.folder}</div>
-        </div>
-        <div class="gallery-card-zoom">🔍</div>
-      </div>`).join('');
-
-    /* re-observe new fade-up elements */
-    grid.querySelectorAll('.fade-up').forEach(el => {
-      el.classList.remove('in');
-      fadeObserver.observe(el);
-    });
-  }
-
-  function switchGalleryFolder(id) {
-    activeFolder = id;
-    renderGalleryTabs();
-    renderGalleryGrid();
-  }
-
-  /* ---- GALLERY LIGHTBOX ---- */
-  function openGalleryLightbox(index) {
-    galCurrentIndex = index;
-    renderGalleryLightbox();
-    document.getElementById('galleryModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeGalleryModal() {
-    document.getElementById('galleryModal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function renderGalleryLightbox() {
-    const item = galCurrentList[galCurrentIndex];
-    if (!item) return;
-
-    document.getElementById('galIcon').textContent = '🖼';
-    document.getElementById('galTitle').textContent = item.name;
-    document.getElementById('galSubtitle').textContent = `Folder: ${item.folder} · Use ← → keys to navigate`;
-    document.getElementById('galTags').innerHTML = `<span class="modal-tag">${item.folder}</span>`;
-    document.getElementById('galCounter').textContent = `${galCurrentIndex + 1} / ${galCurrentList.length}`;
-    document.getElementById('galPrev').disabled = galCurrentIndex === 0;
-    document.getElementById('galNext').disabled = galCurrentIndex === galCurrentList.length - 1;
-
-    const body = document.getElementById('galBody');
-    body.innerHTML = `<div class="modal-img-wrap" style="background:#000;padding:28px">
-      <div class="ph-icon" style="font-size:2.5rem;opacity:0.3;text-align:center;padding:60px">🖼</div>
-    </div>`;
-
-    const img = new Image();
-    img.onload = () => {
-      body.innerHTML = `<div class="modal-img-wrap" style="background:#000;padding:28px">
-        <img class="modal-img" src="${item.src}" alt="${item.name}" style="max-height:78vh;" />
-      </div>`;
-    };
-    img.onerror = () => {
-      body.innerHTML = `
-        <div class="modal-placeholder">
-          <div class="ph-icon">🖼</div>
-          <h3>${item.name}</h3>
-          <p>Image not found. Make sure it exists at the path below.</p>
-          <code>${item.src}</code>
-        </div>`;
-    };
-    img.src = item.src;
-  }
-
-  document.getElementById('galPrev').addEventListener('click', () => {
-    if (galCurrentIndex > 0) { galCurrentIndex--; renderGalleryLightbox(); }
-  });
-  document.getElementById('galNext').addEventListener('click', () => {
-    if (galCurrentIndex < galCurrentList.length - 1) { galCurrentIndex++; renderGalleryLightbox(); }
-  });
-  document.getElementById('galClose').addEventListener('click', closeGalleryModal);
-  document.getElementById('galleryModal').addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) closeGalleryModal();
-  });
-
-  /* Keyboard nav — handles both modals */
-  document.addEventListener('keydown', (e) => {
-    const galleryOpen = document.getElementById('galleryModal').classList.contains('open');
-    const screenshotOpen = document.getElementById('modalOverlay').classList.contains('open');
-
-    if (e.key === 'Escape') {
-      if (galleryOpen) closeGalleryModal();
-      else if (screenshotOpen) closeModal();
-    }
-    if (galleryOpen) {
-      if (e.key === 'ArrowLeft' && galCurrentIndex > 0) { galCurrentIndex--; renderGalleryLightbox(); }
-      if (e.key === 'ArrowRight' && galCurrentIndex < galCurrentList.length - 1) { galCurrentIndex++; renderGalleryLightbox(); }
-    } else if (screenshotOpen) {
-      if (e.key === 'ArrowLeft' && currentIndex > 0) { currentIndex--; renderModal(); }
-      if (e.key === 'ArrowRight' && currentIndex < screenshots.length - 1) { currentIndex++; renderModal(); }
-    }
-  });
+document.addEventListener('keydown', (e) => {
+  const open = document.getElementById('modalOverlay').classList.contains('open');
+  if (!open) return;
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'ArrowLeft' && currentIndex > 0) { currentIndex--; renderModal(); }
+  if (e.key === 'ArrowRight' && currentIndex < screenshots.length - 1) { currentIndex++; renderModal(); }
+});
 
 /* ============================================================
    NAVIGATION
@@ -2263,7 +1469,7 @@ const fadeObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-up, .fade-left').forEach(el => fadeObserver.observe(el));
 
-/* ---- Keyboard access for all role="button" elements ---- */
+/* Keyboard access for all role="button" elements */
 document.querySelectorAll('[role="button"]').forEach(el => {
   el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') el.click(); });
 });
@@ -2308,12 +1514,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
-
-/* ============================================================
-   INIT GALLERY
-   ============================================================ */
-renderGalleryTabs();
-renderGalleryGrid();
 </script>
 </body>
 </html>
