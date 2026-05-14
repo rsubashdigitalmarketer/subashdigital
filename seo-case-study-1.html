@@ -10,9 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-/* ============================================================
-   ROOT VARIABLES
-   ============================================================ */
 :root {
   --bg: #08090d;
   --bg2: #0e1118;
@@ -121,7 +118,6 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .btn-outline{background:transparent;color:var(--t1);font-family:var(--font-head);font-weight:600;font-size:0.9rem;padding:14px 28px;border-radius:11px;border:1px solid var(--border2);display:inline-flex;align-items:center;gap:8px;transition:all 0.25s var(--ease)}
 .btn-outline:hover{border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.04)}
 
-/* Hero Visual */
 .hero-visual{position:relative;animation:heroFloat 6s ease-in-out infinite}
 @keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .browser-frame{background:var(--card);border:1px solid var(--border2);border-radius:18px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.7),0 0 0 1px rgba(0,229,255,0.05),inset 0 1px 0 rgba(255,255,255,0.06)}
@@ -189,30 +185,34 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .ch-badge{display:inline-block;background:rgba(255,82,82,0.1);border:1px solid rgba(255,82,82,0.25);border-radius:6px;padding:4px 12px;font-family:var(--font-mono);font-size:10px;color:var(--red);font-weight:500}
 
 /* ============================================================
-   CLICKABLE IMAGE WRAPPER
-   Every image inside .popup-img-wrap becomes clickable —
-   hover shows a zoom cursor + cyan glow border.
+   CLICKABLE IMAGE WRAPPER — works for BOTH class names:
+   .cmt_single_image-wrapper_2  AND  .popup-img-wrap
+   The JS targets both, so it doesn't matter which you use.
    ============================================================ */
+.cmt_single_image-wrapper_2,
 .popup-img-wrap {
   margin-top: 14px;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid var(--border);
-  cursor: zoom-in;                          /* signals "click to zoom" */
-  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  /* zoom cursor tells users the image is clickable */
+  cursor: zoom-in;
   position: relative;
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
+.cmt_single_image-wrapper_2:hover,
 .popup-img-wrap:hover {
   border-color: var(--cyan-border);
-  box-shadow: 0 0 18px rgba(0,229,255,0.15);
+  box-shadow: 0 0 20px rgba(0,229,255,0.18);
 }
-/* subtle "🔍 View" hint that fades in on hover */
+/* "🔍 Click to view" hint fades in on hover */
+.cmt_single_image-wrapper_2::after,
 .popup-img-wrap::after {
-  content: '🔍 Click to view';
+  content: '🔍  Click to view full size';
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  padding: 8px 12px;
-  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+  padding: 10px 14px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.08em;
@@ -221,14 +221,17 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
   transition: opacity 0.25s var(--ease);
   pointer-events: none;
 }
+.cmt_single_image-wrapper_2:hover::after,
 .popup-img-wrap:hover::after { opacity: 1; }
 
+.cmt_single_image-wrapper_2 img,
 .popup-img-wrap img {
   width: 100%;
   height: auto;
   display: block;
   transition: transform 0.35s var(--ease);
 }
+.cmt_single_image-wrapper_2:hover img,
 .popup-img-wrap:hover img { transform: scale(1.04); }
 
 /* AUDIT */
@@ -324,155 +327,134 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 .fade-up.in{opacity:1;transform:translateY(0)}
 .fade-left{opacity:0;transform:translateX(-28px);transition:opacity 0.65s var(--ease),transform 0.65s var(--ease)}
 .fade-left.in{opacity:1;transform:translateX(0)}
-[data-delay="1"]{transition-delay:0.1s}
-[data-delay="2"]{transition-delay:0.2s}
-[data-delay="3"]{transition-delay:0.3s}
-[data-delay="4"]{transition-delay:0.4s}
-[data-delay="5"]{transition-delay:0.5s}
-[data-delay="6"]{transition-delay:0.6s}
+[data-delay="1"]{transition-delay:0.1s}[data-delay="2"]{transition-delay:0.2s}[data-delay="3"]{transition-delay:0.3s}[data-delay="4"]{transition-delay:0.4s}[data-delay="5"]{transition-delay:0.5s}[data-delay="6"]{transition-delay:0.6s}
 
 /* ============================================================
-   IMAGE POPUP / LIGHTBOX MODAL
+   POPUP / LIGHTBOX — THE MODAL THAT SHOWS THE BIG IMAGE
    ============================================================
-   STRUCTURE:
-     #imgPopup              ← full-screen dark overlay (fixed)
-       .popup-box           ← centered content wrapper
-         #popupClose        ← × close button (top-right)
-         #popupImg          ← the enlarged image
-         #popupCaption      ← alt-text caption below image
-         .popup-hint        ← "press ESC to close" label
-
-   BEHAVIOUR:
-     • Click any .popup-img-wrap img  → opens popup
-     • Click × button                 → closes popup
-     • Click overlay outside image   → closes popup
-     • Press Esc key                  → closes popup
-     • Body scroll locked while open
+   #imgPopup    = the dark full-screen overlay
+   .popup-inner = the white box that holds the image
+   #popupClose  = the × button
+   #popupImg    = the big version of the image
+   #popupCap    = caption text (from alt attribute)
    ============================================================ */
 
-/* ---------- Overlay ---------- */
+/* --- Overlay --- */
 #imgPopup {
-  /* Hidden by default; JS adds .is-open to show */
+  /* HIDDEN until JS adds .active */
   display: none;
   position: fixed;
-  inset: 0;
-  z-index: 9999;
-
-  /* Dark transparent backdrop */
-  background: rgba(0, 0, 0, 0.90);
-  backdrop-filter: blur(10px) saturate(130%);
-  -webkit-backdrop-filter: blur(10px) saturate(130%);
-
-  /* Centre the popup-box */
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 99999;                          /* on top of everything */
+  background: rgba(0, 0, 0, 0.92);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  /* flex centres the inner box */
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 20px;
 }
-#imgPopup.is-open {
+/* JS adds this class to show the popup */
+#imgPopup.active {
   display: flex;
-  animation: popupOverlayIn 0.3s var(--ease) forwards;
+  animation: overlayIn 0.25s ease forwards;
 }
-@keyframes popupOverlayIn {
+@keyframes overlayIn {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
 
-/* ---------- Content box ---------- */
-.popup-box {
+/* --- Inner box --- */
+.popup-inner {
   position: relative;
-  max-width: min(94vw, 1040px);
-  max-height: 92vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  /* spring scale-in */
-  animation: popupBoxIn 0.38s var(--ease-spring) forwards;
+  gap: 14px;
+  max-width: min(95vw, 1060px);
+  max-height: 95vh;
+  animation: boxIn 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards;
 }
-@keyframes popupBoxIn {
-  from { opacity: 0; transform: scale(0.82) translateY(24px); }
+@keyframes boxIn {
+  from { opacity: 0; transform: scale(0.80) translateY(30px); }
   to   { opacity: 1; transform: scale(1)    translateY(0);    }
 }
 
-/* ---------- Enlarged image ---------- */
+/* --- The big image --- */
 #popupImg {
   display: block;
   max-width: 100%;
-  max-height: calc(90vh - 80px); /* room for close btn + caption */
+  max-height: calc(90vh - 70px);
+  width: auto;
+  height: auto;
   object-fit: contain;
-  border-radius: 14px;
-  border: 1px solid var(--cyan-border);
+  border-radius: 12px;
+  border: 1px solid rgba(0,229,255,0.30);
   box-shadow:
-    0 40px 100px rgba(0, 0, 0, 0.85),
-    0 0 0 1px rgba(0, 229, 255, 0.06),
-    0 0 70px rgba(0, 229, 255, 0.08);
+    0 0 0 1px rgba(0,229,255,0.08),
+    0 40px 100px rgba(0,0,0,0.9),
+    0 0 80px rgba(0,229,255,0.10);
 }
 
-/* ---------- Caption ---------- */
-#popupCaption {
-  font-family: var(--font-mono);
+/* --- Caption --- */
+#popupCap {
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--t2);
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.50);
   text-align: center;
-  max-width: 640px;
+  max-width: 680px;
   line-height: 1.6;
 }
 
-/* ---------- ESC hint ---------- */
-.popup-hint {
-  font-family: var(--font-mono);
+/* --- ESC hint --- */
+.popup-esc {
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--t3);
-  margin-top: -4px;
+  color: rgba(255,255,255,0.20);
 }
 
-/* ---------- × Close button ---------- */
+/* --- × Close button --- */
 #popupClose {
   position: absolute;
-  top: -16px;
-  right: -16px;
-  width: 40px;
-  height: 40px;
+  top: -18px;
+  right: -18px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: var(--card2);
-  border: 1px solid var(--cyan-border);
-  color: var(--t1);
-  font-size: 1.2rem;
-  line-height: 1;
+  background: #192030;
+  border: 1px solid rgba(0,229,255,0.30);
+  color: rgba(255,255,255,0.85);
+  font-size: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 2;
-  transition: all 0.22s var(--ease);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55);
+  transition: background 0.2s, color 0.2s, transform 0.25s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  line-height: 1;
+  padding: 0;
 }
 #popupClose:hover {
-  background: var(--cyan);
+  background: #00e5ff;
   color: #08090d;
-  border-color: var(--cyan);
-  transform: rotate(90deg) scale(1.12);
+  border-color: #00e5ff;
+  transform: rotate(90deg) scale(1.15);
 }
 
-/* ---------- Mobile tweaks ---------- */
+/* --- Mobile tweaks --- */
 @media (max-width: 600px) {
-  #imgPopup { padding: 16px; }
-  #popupClose {
-    top: -12px;
-    right: -12px;
-    width: 34px;
-    height: 34px;
-    font-size: 1rem;
-  }
-  #popupCaption { font-size: 10px; }
-  .popup-hint   { display: none; }
+  #imgPopup { padding: 12px; }
+  #popupClose { top: -14px; right: -14px; width: 36px; height: 36px; font-size: 1.1rem; }
+  #popupCap { font-size: 10px; }
+  .popup-esc { display: none; }
 }
 
 /* ============================================================
-   ORIGINAL RESPONSIVE BREAKPOINTS (unchanged)
+   RESPONSIVE
    ============================================================ */
 @media(max-width:1100px){
   .context-grid{grid-template-columns:1fr 1fr}
@@ -513,7 +495,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 </head>
 <body>
 
-<!-- Ambient mesh background -->
+<!-- Mesh background -->
 <div class="mesh" aria-hidden="true">
   <div class="mesh-orb"></div>
   <div class="mesh-orb"></div>
@@ -522,24 +504,15 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 
 <!-- ============================================================
      IMAGE POPUP MODAL
-     — Populated and shown/hidden entirely by JavaScript below.
-     — DO NOT remove this block; it must exist in the DOM.
+     This is always in the DOM — hidden until a user clicks an image.
+     JS fills in #popupImg src/alt and #popupCap, then adds .active.
      ============================================================ -->
-<div id="imgPopup" role="dialog" aria-modal="true" aria-label="Image preview">
-  <div class="popup-box" id="popupBox">
-
-    <!-- Close button -->
-    <button id="popupClose" aria-label="Close image preview">&#x2715;</button>
-
-    <!-- Large image (src + alt injected by JS on open) -->
+<div id="imgPopup" role="dialog" aria-modal="true" aria-label="Image lightbox">
+  <div class="popup-inner" id="popupInner">
+    <button id="popupClose" aria-label="Close">&#x2715;</button>
     <img id="popupImg" src="" alt="">
-
-    <!-- Caption = the clicked image's alt text -->
-    <div id="popupCaption"></div>
-
-    <!-- Keyboard hint -->
-    <div class="popup-hint">press esc to close</div>
-
+    <div id="popupCap"></div>
+    <div class="popup-esc">Press ESC to close</div>
   </div>
 </div>
 
@@ -604,26 +577,14 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
             <div class="ba-side">
               <div class="ba-label-sm">Before · Jan 2024</div>
               <div class="ba-chart-box">
-                <div class="bar" style="height:18%"></div>
-                <div class="bar" style="height:30%"></div>
-                <div class="bar" style="height:22%"></div>
-                <div class="bar" style="height:35%"></div>
-                <div class="bar" style="height:26%"></div>
-                <div class="bar" style="height:40%"></div>
-                <div class="bar" style="height:28%"></div>
+                <div class="bar" style="height:18%"></div><div class="bar" style="height:30%"></div><div class="bar" style="height:22%"></div><div class="bar" style="height:35%"></div><div class="bar" style="height:26%"></div><div class="bar" style="height:40%"></div><div class="bar" style="height:28%"></div>
               </div>
               <div style="text-align:center;margin-top:8px;font-family:var(--font-mono);font-size:11px;color:var(--t3)">5K / mo</div>
             </div>
             <div class="ba-side">
               <div class="ba-label-sm">After · Jun 2024</div>
               <div class="ba-chart-box glowing">
-                <div class="bar" style="height:45%"></div>
-                <div class="bar" style="height:58%"></div>
-                <div class="bar" style="height:68%"></div>
-                <div class="bar" style="height:76%"></div>
-                <div class="bar" style="height:83%"></div>
-                <div class="bar" style="height:90%"></div>
-                <div class="bar" style="height:98%"></div>
+                <div class="bar" style="height:45%"></div><div class="bar" style="height:58%"></div><div class="bar" style="height:68%"></div><div class="bar" style="height:76%"></div><div class="bar" style="height:83%"></div><div class="bar" style="height:90%"></div><div class="bar" style="height:98%"></div>
               </div>
               <div style="text-align:center;margin-top:8px;font-family:var(--font-mono);font-size:11px;color:var(--cyan)">30K / mo</div>
             </div>
@@ -662,9 +623,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </div>
 
-<!-- ============================================================
-     PROJECT CONTEXT
-     ============================================================ -->
+<!-- PROJECT CONTEXT -->
 <section class="section" id="overview">
   <div class="container">
     <div class="section-head fade-up">
@@ -674,44 +633,14 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
     </div>
     <div class="context-grid fade-up">
       <div class="ctx-col">
-        <div class="ctx-card">
-          <div class="ctx-icon">🏢</div>
-          <div class="ctx-lbl">Business Type</div>
-          <div class="ctx-val">International Courier &amp; Logistics</div>
-          <div class="ctx-sub">Courier, Cargo &amp; Global Shipping Services</div>
-        </div>
-        <div class="ctx-card">
-          <div class="ctx-icon">🌐</div>
-          <div class="ctx-lbl">Platform</div>
-          <div class="ctx-val">HTML/CSS Website</div>
-          <div class="ctx-sub">Multi-regional, EN + AR content</div>
-        </div>
-        <div class="ctx-card">
-          <div class="ctx-icon">📍</div>
-          <div class="ctx-lbl">Target Markets</div>
-          <div class="ctx-val">India · UAE · UK</div>
-          <div class="ctx-sub">Multi-country SEO strategy with hreflang</div>
-        </div>
+        <div class="ctx-card"><div class="ctx-icon">🏢</div><div class="ctx-lbl">Business Type</div><div class="ctx-val">International Courier &amp; Logistics</div><div class="ctx-sub">Courier, Cargo &amp; Global Shipping Services</div></div>
+        <div class="ctx-card"><div class="ctx-icon">🌐</div><div class="ctx-lbl">Platform</div><div class="ctx-val">HTML/CSS Website</div><div class="ctx-sub">Multi-regional, EN + AR content</div></div>
+        <div class="ctx-card"><div class="ctx-icon">📍</div><div class="ctx-lbl">Target Markets</div><div class="ctx-val">India · UAE · UK</div><div class="ctx-sub">Multi-country SEO strategy with hreflang</div></div>
       </div>
       <div class="ctx-col">
-        <div class="ctx-card">
-          <div class="ctx-icon">🎯</div>
-          <div class="ctx-lbl">Primary Goal</div>
-          <div class="ctx-val">Organic Lead Generation</div>
-          <div class="ctx-sub">Ranking high-intent shipping keywords</div>
-        </div>
-        <div class="ctx-card">
-          <div class="ctx-icon">📅</div>
-          <div class="ctx-lbl">Project Duration</div>
-          <div class="ctx-val">6 Months (Jan → Jun 2024)</div>
-          <div class="ctx-sub">Full-cycle SEO engagement</div>
-        </div>
-        <div class="ctx-card">
-          <div class="ctx-icon">🏆</div>
-          <div class="ctx-lbl">Competition Level</div>
-          <div class="ctx-val">High — DA 40–70+ Competitors</div>
-          <div class="ctx-sub">DHL, FedEx, local freight forwarders</div>
-        </div>
+        <div class="ctx-card"><div class="ctx-icon">🎯</div><div class="ctx-lbl">Primary Goal</div><div class="ctx-val">Organic Lead Generation</div><div class="ctx-sub">Ranking high-intent shipping keywords</div></div>
+        <div class="ctx-card"><div class="ctx-icon">📅</div><div class="ctx-lbl">Project Duration</div><div class="ctx-val">6 Months (Jan → Jun 2024)</div><div class="ctx-sub">Full-cycle SEO engagement</div></div>
+        <div class="ctx-card"><div class="ctx-icon">🏆</div><div class="ctx-lbl">Competition Level</div><div class="ctx-val">High — DA 40–70+ Competitors</div><div class="ctx-sub">DHL, FedEx, local freight forwarders</div></div>
       </div>
       <div class="kpi-box">
         <h3>🎯 Success KPIs Defined</h3>
@@ -733,8 +662,8 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 
 <!-- ============================================================
      CHALLENGES
-     NOTE: Replace src="your-image.png" with your real screenshot paths.
-           The popup works automatically for every .popup-img-wrap img.
+     Images use class="cmt_single_image-wrapper_2" — the popup
+     JS targets this class (and .popup-img-wrap) automatically.
      ============================================================ -->
 <section class="section alt" id="challenges">
   <div class="container">
@@ -751,8 +680,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Poor Core Web Vitals</div>
         <div class="ch-desc">LCP of 8.2s (target ≤2.5s). CLS of 0.38 (target ≤0.1). All three Core Web Vitals failing on mobile and desktop.</div>
         <span class="ch-badge">PageSpeed: 28/100</span>
-        <!-- Replace src with your real screenshot -->
-        <div class="popup-img-wrap">
+        <div class="cmt_single_image-wrapper_2">
           <img src="express GSC-1.png" alt="Core Web Vitals — PageSpeed 28/100 screenshot">
         </div>
       </div>
@@ -763,9 +691,8 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Crawl &amp; Indexing Issues</div>
         <div class="ch-desc">180+ pages blocked in robots.txt accidentally. Google not indexing 40% of product pages due to canonical errors and crawl budget waste.</div>
         <span class="ch-badge">140 Pages Not Indexed</span>
-        <!-- Replace src with your real screenshot -->
-        <div class="popup-img-wrap">
-          <img src="your-crawl-screenshot.png" alt="Crawl & Indexing issues — GSC Coverage report screenshot">
+        <div class="cmt_single_image-wrapper_2">
+          <img src="your-crawl-screenshot.png" alt="Crawl &amp; Indexing issues screenshot">
         </div>
       </div>
 
@@ -775,9 +702,8 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Duplicate Content Issues</div>
         <div class="ch-desc">Product variations creating duplicate URLs. Tag pages, pagination, and filter parameters causing cannibalisation across 60+ pages.</div>
         <span class="ch-badge">60+ Duplicate Pages</span>
-        <!-- Replace src with your real screenshot -->
-        <div class="popup-img-wrap">
-          <img src="your-duplicate-screenshot.png" alt="Duplicate content — Screaming Frog duplicate URL report screenshot">
+        <div class="cmt_single_image-wrapper_2">
+          <img src="your-duplicate-screenshot.png" alt="Duplicate content screenshot">
         </div>
       </div>
 
@@ -787,9 +713,8 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Weak Internal Linking</div>
         <div class="ch-desc">High-value pages receiving zero internal links. PageRank not flowing to priority product pages and collections.</div>
         <span class="ch-badge">Orphan Pages: 48</span>
-        <!-- Replace src with your real screenshot -->
-        <div class="popup-img-wrap">
-          <img src="your-internal-link-screenshot.png" alt="Orphan pages — Ahrefs internal link report screenshot">
+        <div class="cmt_single_image-wrapper_2">
+          <img src="your-internal-link-screenshot.png" alt="Internal linking screenshot">
         </div>
       </div>
 
@@ -799,9 +724,8 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">300+ Technical SEO Errors</div>
         <div class="ch-desc">Broken links, missing alt tags, missing meta descriptions, schema errors, and redirect chains found in full Screaming Frog audit.</div>
         <span class="ch-badge">Screaming Frog Crawl</span>
-        <!-- Replace src with your real screenshot -->
-        <div class="popup-img-wrap">
-          <img src="your-technical-errors-screenshot.png" alt="Technical SEO errors — Screaming Frog crawl results screenshot">
+        <div class="cmt_single_image-wrapper_2">
+          <img src="your-technical-errors-screenshot.png" alt="Technical errors screenshot">
         </div>
       </div>
 
@@ -811,9 +735,8 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Poor Mobile Usability</div>
         <div class="ch-desc">Non-responsive elements, tap targets too small, font size issues causing Google Mobile Usability failures in GSC.</div>
         <span class="ch-badge">12 Mobile Errors</span>
-        <!-- Replace src with your real screenshot -->
-        <div class="popup-img-wrap">
-          <img src="your-mobile-screenshot.png" alt="Mobile usability errors — GSC Mobile Usability report screenshot">
+        <div class="cmt_single_image-wrapper_2">
+          <img src="your-mobile-screenshot.png" alt="Mobile usability screenshot">
         </div>
       </div>
 
@@ -823,9 +746,8 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Low Keyword Rankings</div>
         <div class="ch-desc">Only 12 keywords in Top 10. No target keywords ranking on Page 1. Weak E-E-A-T signals across the domain.</div>
         <span class="ch-badge">DA: 14 · DR: 11</span>
-        <!-- Replace src with your real screenshot -->
-        <div class="popup-img-wrap">
-          <img src="your-rankings-screenshot.png" alt="Low keyword rankings — Ahrefs organic keywords report screenshot">
+        <div class="cmt_single_image-wrapper_2">
+          <img src="your-rankings-screenshot.png" alt="Keyword rankings screenshot">
         </div>
       </div>
 
@@ -835,9 +757,8 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Low Click-Through Rate</div>
         <div class="ch-desc">Average CTR of 2.1% despite appearing in search results. Titles and meta descriptions not optimised for SERP appeal.</div>
         <span class="ch-badge">CTR: 2.1%</span>
-        <!-- Replace src with your real screenshot -->
-        <div class="popup-img-wrap">
-          <img src="your-ctr-screenshot.png" alt="Low CTR — Google Search Console Performance report screenshot">
+        <div class="cmt_single_image-wrapper_2">
+          <img src="your-ctr-screenshot.png" alt="CTR screenshot">
         </div>
       </div>
 
@@ -847,9 +768,8 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Weak Backlink Profile</div>
         <div class="ch-desc">Only 23 referring domains, most low-quality with no anchor text diversity. Domain authority significantly behind competitors.</div>
         <span class="ch-badge">23 Ref. Domains</span>
-        <!-- Replace src with your real screenshot -->
-        <div class="popup-img-wrap">
-          <img src="your-backlinks-screenshot.png" alt="Weak backlink profile — Ahrefs referring domains report screenshot">
+        <div class="cmt_single_image-wrapper_2">
+          <img src="your-backlinks-screenshot.png" alt="Backlink profile screenshot">
         </div>
       </div>
 
@@ -857,9 +777,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </section>
 
-<!-- ============================================================
-     AUDIT PROCESS
-     ============================================================ -->
+<!-- AUDIT PROCESS -->
 <section class="section" id="audit">
   <div class="container">
     <div class="section-head fade-up">
@@ -868,94 +786,59 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
       <p class="sec-sub">Before executing, I ran a structured 8-step audit to map every opportunity and prioritise actions by impact.</p>
     </div>
     <div class="audit-grid">
-
       <div class="audit-card fade-up" data-delay="1">
-        <div class="audit-step">Step 01</div>
-        <span class="audit-emoji">🔬</span>
+        <div class="audit-step">Step 01</div><span class="audit-emoji">🔬</span>
         <div class="audit-name">Technical Audit</div>
         <div class="audit-desc">Crawl errors, redirects, Core Web Vitals, schema, robots.txt</div>
-        <div class="popup-img-wrap">
-          <img src="your-audit-technical.png" alt="Technical audit screenshot">
-        </div>
+        <div class="cmt_single_image-wrapper_2"><img src="your-audit-technical.png" alt="Technical audit screenshot"></div>
       </div>
-
       <div class="audit-card fade-up" data-delay="2">
-        <div class="audit-step">Step 02</div>
-        <span class="audit-emoji">🗝️</span>
+        <div class="audit-step">Step 02</div><span class="audit-emoji">🗝️</span>
         <div class="audit-name">Keyword Research</div>
         <div class="audit-desc">Volume, intent mapping, long-tail opportunities, SERP features</div>
-        <div class="popup-img-wrap">
-          <img src="your-audit-keywords.png" alt="Keyword research screenshot">
-        </div>
+        <div class="cmt_single_image-wrapper_2"><img src="your-audit-keywords.png" alt="Keyword research screenshot"></div>
       </div>
-
       <div class="audit-card fade-up" data-delay="3">
-        <div class="audit-step">Step 03</div>
-        <span class="audit-emoji">🏆</span>
+        <div class="audit-step">Step 03</div><span class="audit-emoji">🏆</span>
         <div class="audit-name">Competitor Analysis</div>
         <div class="audit-desc">Top 5 SERP competitors analysed for content gaps and link gaps</div>
-        <div class="popup-img-wrap">
-          <img src="your-audit-competitors.png" alt="Competitor analysis screenshot">
-        </div>
+        <div class="cmt_single_image-wrapper_2"><img src="your-audit-competitors.png" alt="Competitor analysis screenshot"></div>
       </div>
-
       <div class="audit-card fade-up" data-delay="4">
-        <div class="audit-step">Step 04</div>
-        <span class="audit-emoji">📊</span>
+        <div class="audit-step">Step 04</div><span class="audit-emoji">📊</span>
         <div class="audit-name">Content Gap Analysis</div>
         <div class="audit-desc">Missing topics, thin content, cannibalisation map</div>
-        <div class="popup-img-wrap">
-          <img src="your-audit-content-gap.png" alt="Content gap analysis screenshot">
-        </div>
+        <div class="cmt_single_image-wrapper_2"><img src="your-audit-content-gap.png" alt="Content gap analysis screenshot"></div>
       </div>
-
       <div class="audit-card fade-up" data-delay="1">
-        <div class="audit-step">Step 05</div>
-        <span class="audit-emoji">🔎</span>
+        <div class="audit-step">Step 05</div><span class="audit-emoji">🔎</span>
         <div class="audit-name">SERP Analysis</div>
         <div class="audit-desc">Search intent, featured snippets, PAA, schema opportunities</div>
-        <div class="popup-img-wrap">
-          <img src="your-audit-serp.png" alt="SERP analysis screenshot">
-        </div>
+        <div class="cmt_single_image-wrapper_2"><img src="your-audit-serp.png" alt="SERP analysis screenshot"></div>
       </div>
-
       <div class="audit-card fade-up" data-delay="2">
-        <div class="audit-step">Step 06</div>
-        <span class="audit-emoji">🔗</span>
+        <div class="audit-step">Step 06</div><span class="audit-emoji">🔗</span>
         <div class="audit-name">Backlink Audit</div>
         <div class="audit-desc">Toxic links disavowed, anchor diversity, referring domain analysis</div>
-        <div class="popup-img-wrap">
-          <img src="your-audit-backlinks.png" alt="Backlink audit screenshot">
-        </div>
+        <div class="cmt_single_image-wrapper_2"><img src="your-audit-backlinks.png" alt="Backlink audit screenshot"></div>
       </div>
-
       <div class="audit-card fade-up" data-delay="3">
-        <div class="audit-step">Step 07</div>
-        <span class="audit-emoji">🕸</span>
+        <div class="audit-step">Step 07</div><span class="audit-emoji">🕸</span>
         <div class="audit-name">Internal Link Review</div>
         <div class="audit-desc">Crawl depth, orphan pages, PageRank flow mapping</div>
-        <div class="popup-img-wrap">
-          <img src="your-audit-internal-links.png" alt="Internal link review screenshot">
-        </div>
+        <div class="cmt_single_image-wrapper_2"><img src="your-audit-internal-links.png" alt="Internal link review screenshot"></div>
       </div>
-
       <div class="audit-card fade-up" data-delay="4">
-        <div class="audit-step">Step 08</div>
-        <span class="audit-emoji">📋</span>
+        <div class="audit-step">Step 08</div><span class="audit-emoji">📋</span>
         <div class="audit-name">Schema Opportunities</div>
         <div class="audit-desc">Product, review, FAQ, breadcrumb, HowTo schema gaps</div>
-        <div class="popup-img-wrap">
-          <img src="your-audit-schema.png" alt="Schema opportunities screenshot">
-        </div>
+        <div class="cmt_single_image-wrapper_2"><img src="your-audit-schema.png" alt="Schema opportunities screenshot"></div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     STRATEGY
-     ============================================================ -->
+<!-- STRATEGY -->
 <section class="section alt" id="strategy">
   <div class="container">
     <div class="section-head fade-up">
@@ -966,10 +849,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
     <div class="strategy-grid">
 
       <div class="strat-card fade-up" data-delay="1">
-        <div class="strat-head">
-          <div class="strat-icon">⚡</div>
-          <h3>Technical SEO Overhaul</h3>
-        </div>
+        <div class="strat-head"><div class="strat-icon">⚡</div><h3>Technical SEO Overhaul</h3></div>
         <div class="strat-problem">Problem: Site crawlability &amp; speed blocking rankings</div>
         <ul class="strat-list">
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Fixed robots.txt to unblock 180 key product pages from crawling</span></li>
@@ -979,16 +859,11 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Canonicalised 60+ duplicate product variation URLs</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: PageSpeed 28 → 92 · LCP 8.2s → 1.8s</div>
-        <div class="popup-img-wrap">
-          <img src="your-strategy-technical.png" alt="Technical SEO results screenshot">
-        </div>
+        <div class="cmt_single_image-wrapper_2"><img src="your-strategy-technical.png" alt="Technical SEO results screenshot"></div>
       </div>
 
       <div class="strat-card fade-up" data-delay="2">
-        <div class="strat-head">
-          <div class="strat-icon">📝</div>
-          <h3>On-Page Optimisation</h3>
-        </div>
+        <div class="strat-head"><div class="strat-icon">📝</div><h3>On-Page Optimisation</h3></div>
         <div class="strat-problem">Problem: Low CTR and weak keyword signals</div>
         <ul class="strat-list">
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Rewrote 120 title tags with power words and keyword front-loading</span></li>
@@ -998,16 +873,11 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Added breadcrumb schema improving crawl efficiency by 35%</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: CTR 2.1% → 8.4% · 22 Featured Snippet wins</div>
-        <div class="popup-img-wrap">
-          <img src="your-strategy-onpage.png" alt="On-page optimisation results screenshot">
-        </div>
+        <div class="cmt_single_image-wrapper_2"><img src="your-strategy-onpage.png" alt="On-page optimisation results screenshot"></div>
       </div>
 
       <div class="strat-card fade-up" data-delay="3">
-        <div class="strat-head">
-          <div class="strat-icon">✍️</div>
-          <h3>Content Optimisation</h3>
-        </div>
+        <div class="strat-head"><div class="strat-icon">✍️</div><h3>Content Optimisation</h3></div>
         <div class="strat-problem">Problem: Thin content, keyword gaps, low E-E-A-T</div>
         <ul class="strat-list">
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Expanded 45 thin product descriptions to 800+ word SEO-rich content</span></li>
@@ -1017,16 +887,11 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Created content hubs with cluster/pillar architecture for 6 core topics</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: Avg time on page +68% · Pages/session +42%</div>
-        <div class="popup-img-wrap">
-          <img src="your-strategy-content.png" alt="Content strategy results screenshot">
-        </div>
+        <div class="cmt_single_image-wrapper_2"><img src="your-strategy-content.png" alt="Content strategy results screenshot"></div>
       </div>
 
       <div class="strat-card fade-up" data-delay="4">
-        <div class="strat-head">
-          <div class="strat-icon">🕸</div>
-          <h3>Internal Linking Strategy</h3>
-        </div>
+        <div class="strat-head"><div class="strat-icon">🕸</div><h3>Internal Linking Strategy</h3></div>
         <div class="strat-problem">Problem: 48 orphan pages, poor PageRank flow</div>
         <ul class="strat-list">
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Built topic cluster architecture with pillar → cluster → product linking</span></li>
@@ -1036,16 +901,11 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Used Ahrefs link opportunities report for high-authority internal link placements</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: Crawl depth reduced · 38% more pages indexed</div>
-        <div class="popup-img-wrap">
-          <img src="your-strategy-internal.png" alt="Internal linking results screenshot">
-        </div>
+        <div class="cmt_single_image-wrapper_2"><img src="your-strategy-internal.png" alt="Internal linking results screenshot"></div>
       </div>
 
       <div class="strat-card fade-up" data-delay="1">
-        <div class="strat-head">
-          <div class="strat-icon">🔗</div>
-          <h3>Link Building Campaign</h3>
-        </div>
+        <div class="strat-head"><div class="strat-icon">🔗</div><h3>Link Building Campaign</h3></div>
         <div class="strat-problem">Problem: DA 14, only 23 referring domains</div>
         <ul class="strat-list">
           <li class="strat-item"><span class="arrow-cyan">→</span><span>HARO outreach securing 8 high-DA editorial mentions</span></li>
@@ -1055,16 +915,11 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Local citations built across 15 niche health directories</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: DA 14 → 31 · Ref. Domains 23 → 78</div>
-        <div class="popup-img-wrap">
-          <img src="your-strategy-links.png" alt="Link building results screenshot">
-        </div>
+        <div class="cmt_single_image-wrapper_2"><img src="your-strategy-links.png" alt="Link building results screenshot"></div>
       </div>
 
       <div class="strat-card fade-up" data-delay="2">
-        <div class="strat-head">
-          <div class="strat-icon">🗺</div>
-          <h3>Indexing &amp; Sitemap Fix</h3>
-        </div>
+        <div class="strat-head"><div class="strat-icon">🗺</div><h3>Indexing &amp; Sitemap Fix</h3></div>
         <div class="strat-problem">Problem: 40% of pages not indexed by Google</div>
         <ul class="strat-list">
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Rebuilt XML sitemap excluding noindex pages and faceted URLs</span></li>
@@ -1074,18 +929,14 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Monitored and resolved crawl anomalies weekly via GSC Coverage report</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: Indexed pages 280 → 440 · +57% indexation rate</div>
-        <div class="popup-img-wrap">
-          <img src="your-strategy-indexing.png" alt="Indexing fix results screenshot">
-        </div>
+        <div class="cmt_single_image-wrapper_2"><img src="your-strategy-indexing.png" alt="Indexing fix results screenshot"></div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     TIMELINE
-     ============================================================ -->
+<!-- TIMELINE -->
 <section class="section" id="timeline">
   <div class="container">
     <div class="section-head fade-up">
@@ -1094,67 +945,17 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
       <p class="sec-sub">A phased approach ensuring technical foundations before content, content before links.</p>
     </div>
     <div class="timeline fade-up">
-      <div class="tl-item">
-        <div class="tl-node"><div class="tl-circle">🔬</div><div class="tl-week">Jan</div></div>
-        <div class="tl-content">
-          <h3>Phase 1 — Full SEO Audit &amp; Strategy</h3>
-          <div class="task-tags">
-            <span class="task-tag">Screaming Frog crawl</span><span class="task-tag">GSC setup &amp; audit</span><span class="task-tag">Keyword research</span><span class="task-tag">Competitor gap analysis</span><span class="task-tag">Priority roadmap</span>
-          </div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-node"><div class="tl-circle">⚡</div><div class="tl-week">Feb</div></div>
-        <div class="tl-content">
-          <h3>Phase 2 — Technical SEO Fixes</h3>
-          <div class="task-tags">
-            <span class="task-tag">robots.txt fix</span><span class="task-tag">Core Web Vitals</span><span class="task-tag">Redirect cleanup</span><span class="task-tag">Schema markup</span><span class="task-tag">Sitemap rebuild</span>
-          </div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-node"><div class="tl-circle">📝</div><div class="tl-week">Mar</div></div>
-        <div class="tl-content">
-          <h3>Phase 3 — On-Page &amp; Content Optimisation</h3>
-          <div class="task-tags">
-            <span class="task-tag">120 title rewrites</span><span class="task-tag">Meta descriptions</span><span class="task-tag">Product content expansion</span><span class="task-tag">Blog publishing (12 posts)</span><span class="task-tag">E-E-A-T improvements</span>
-          </div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-node"><div class="tl-circle">🕸</div><div class="tl-week">Apr</div></div>
-        <div class="tl-content">
-          <h3>Phase 4 — Internal Linking &amp; Architecture</h3>
-          <div class="task-tags">
-            <span class="task-tag">Topic cluster build</span><span class="task-tag">Orphan page fix</span><span class="task-tag">Internal link audit</span><span class="task-tag">Breadcrumb navigation</span><span class="task-tag">Crawl depth optimisation</span>
-          </div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-node"><div class="tl-circle">🔗</div><div class="tl-week">May</div></div>
-        <div class="tl-content">
-          <h3>Phase 5 — Link Building Campaign</h3>
-          <div class="task-tags">
-            <span class="task-tag">HARO outreach</span><span class="task-tag">Guest posting</span><span class="task-tag">Broken link strategy</span><span class="task-tag">Toxic link disavow</span><span class="task-tag">12 more blog posts</span>
-          </div>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-node"><div class="tl-circle">📊</div><div class="tl-week">Jun</div></div>
-        <div class="tl-content">
-          <h3>Phase 6 — Reporting, Refinement &amp; Handover</h3>
-          <div class="task-tags">
-            <span class="task-tag">GSC performance report</span><span class="task-tag">Rankings tracking</span><span class="task-tag">Ahrefs analysis</span><span class="task-tag">Final audit</span><span class="task-tag">Documentation &amp; handover</span>
-          </div>
-        </div>
-      </div>
+      <div class="tl-item"><div class="tl-node"><div class="tl-circle">🔬</div><div class="tl-week">Jan</div></div><div class="tl-content"><h3>Phase 1 — Full SEO Audit &amp; Strategy</h3><div class="task-tags"><span class="task-tag">Screaming Frog crawl</span><span class="task-tag">GSC setup &amp; audit</span><span class="task-tag">Keyword research</span><span class="task-tag">Competitor gap analysis</span><span class="task-tag">Priority roadmap</span></div></div></div>
+      <div class="tl-item"><div class="tl-node"><div class="tl-circle">⚡</div><div class="tl-week">Feb</div></div><div class="tl-content"><h3>Phase 2 — Technical SEO Fixes</h3><div class="task-tags"><span class="task-tag">robots.txt fix</span><span class="task-tag">Core Web Vitals</span><span class="task-tag">Redirect cleanup</span><span class="task-tag">Schema markup</span><span class="task-tag">Sitemap rebuild</span></div></div></div>
+      <div class="tl-item"><div class="tl-node"><div class="tl-circle">📝</div><div class="tl-week">Mar</div></div><div class="tl-content"><h3>Phase 3 — On-Page &amp; Content Optimisation</h3><div class="task-tags"><span class="task-tag">120 title rewrites</span><span class="task-tag">Meta descriptions</span><span class="task-tag">Product content expansion</span><span class="task-tag">Blog publishing (12 posts)</span><span class="task-tag">E-E-A-T improvements</span></div></div></div>
+      <div class="tl-item"><div class="tl-node"><div class="tl-circle">🕸</div><div class="tl-week">Apr</div></div><div class="tl-content"><h3>Phase 4 — Internal Linking &amp; Architecture</h3><div class="task-tags"><span class="task-tag">Topic cluster build</span><span class="task-tag">Orphan page fix</span><span class="task-tag">Internal link audit</span><span class="task-tag">Breadcrumb navigation</span><span class="task-tag">Crawl depth optimisation</span></div></div></div>
+      <div class="tl-item"><div class="tl-node"><div class="tl-circle">🔗</div><div class="tl-week">May</div></div><div class="tl-content"><h3>Phase 5 — Link Building Campaign</h3><div class="task-tags"><span class="task-tag">HARO outreach</span><span class="task-tag">Guest posting</span><span class="task-tag">Broken link strategy</span><span class="task-tag">Toxic link disavow</span><span class="task-tag">12 more blog posts</span></div></div></div>
+      <div class="tl-item"><div class="tl-node"><div class="tl-circle">📊</div><div class="tl-week">Jun</div></div><div class="tl-content"><h3>Phase 6 — Reporting, Refinement &amp; Handover</h3><div class="task-tags"><span class="task-tag">GSC performance report</span><span class="task-tag">Rankings tracking</span><span class="task-tag">Ahrefs analysis</span><span class="task-tag">Final audit</span><span class="task-tag">Documentation &amp; handover</span></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     RESULTS
-     ============================================================ -->
+<!-- RESULTS -->
 <section class="section alt" id="results">
   <div class="container">
     <div class="section-head fade-up">
@@ -1163,101 +964,21 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
       <p class="sec-sub">All data is real — captured in June 2024.</p>
     </div>
     <div class="kpi-grid" id="kpiGrid">
-
-      <div class="kpi-result-card fade-up" data-delay="1">
-        <div class="kpi-mname">Organic Traffic</div>
-        <div class="kpi-was">was 5,000 / mo</div>
-        <div class="kpi-val">30K</div>
-        <span class="kpi-badge up">↑ +500%</span>
-        <div class="popup-img-wrap">
-          <img src="your-result-traffic.png" alt="Organic traffic result — 5K to 30K screenshot">
-        </div>
-      </div>
-
-      <div class="kpi-result-card fade-up" data-delay="2">
-        <div class="kpi-mname">Impressions</div>
-        <div class="kpi-was">was 120K / mo</div>
-        <div class="kpi-val">480K</div>
-        <span class="kpi-badge up">↑ +300%</span>
-        <div class="popup-img-wrap">
-          <img src="your-result-impressions.png" alt="Impressions result — 120K to 480K screenshot">
-        </div>
-      </div>
-
-      <div class="kpi-result-card fade-up" data-delay="3">
-        <div class="kpi-mname">Top 10 Keywords</div>
-        <div class="kpi-was">was 12 keywords</div>
-        <div class="kpi-val">87</div>
-        <span class="kpi-badge up">↑ +625%</span>
-        <div class="popup-img-wrap">
-          <img src="your-result-keywords.png" alt="Top 10 keywords result — 12 to 87 screenshot">
-        </div>
-      </div>
-
-      <div class="kpi-result-card fade-up" data-delay="4">
-        <div class="kpi-mname">PageSpeed Score</div>
-        <div class="kpi-was">was 28 / 100</div>
-        <div class="kpi-val">92</div>
-        <span class="kpi-badge up">↑ +228%</span>
-        <div class="popup-img-wrap">
-          <img src="your-result-pagespeed.png" alt="PageSpeed result — 28 to 92 screenshot">
-        </div>
-      </div>
-
-      <div class="kpi-result-card fade-up" data-delay="1">
-        <div class="kpi-mname">Average CTR</div>
-        <div class="kpi-was">was 2.1%</div>
-        <div class="kpi-val">8.4%</div>
-        <span class="kpi-badge up">↑ +300%</span>
-        <div class="popup-img-wrap">
-          <img src="your-result-ctr.png" alt="CTR result — 2.1% to 8.4% screenshot">
-        </div>
-      </div>
-
-      <div class="kpi-result-card fade-up" data-delay="2">
-        <div class="kpi-mname">Domain Authority</div>
-        <div class="kpi-was">was DA 14</div>
-        <div class="kpi-val">DA 31</div>
-        <span class="kpi-badge up">↑ +121%</span>
-        <div class="popup-img-wrap">
-          <img src="your-result-da.png" alt="Domain authority result — DA14 to DA31 screenshot">
-        </div>
-      </div>
-
-      <div class="kpi-result-card fade-up" data-delay="3">
-        <div class="kpi-mname">Indexed Pages</div>
-        <div class="kpi-was">was 280 pages</div>
-        <div class="kpi-val">440</div>
-        <span class="kpi-badge up">↑ +57%</span>
-        <div class="popup-img-wrap">
-          <img src="your-result-indexed.png" alt="Indexed pages result — 280 to 440 screenshot">
-        </div>
-      </div>
-
-      <div class="kpi-result-card fade-up" data-delay="4">
-        <div class="kpi-mname">Bounce Rate</div>
-        <div class="kpi-was">was 74%</div>
-        <div class="kpi-val">48%</div>
-        <span class="kpi-badge down">↓ -35%</span>
-        <div class="popup-img-wrap">
-          <img src="your-result-bounce.png" alt="Bounce rate result — 74% to 48% screenshot">
-        </div>
-      </div>
-
+      <div class="kpi-result-card fade-up" data-delay="1"><div class="kpi-mname">Organic Traffic</div><div class="kpi-was">was 5,000 / mo</div><div class="kpi-val">30K</div><span class="kpi-badge up">↑ +500%</span><div class="cmt_single_image-wrapper_2"><img src="your-result-traffic.png" alt="Organic traffic 5K to 30K screenshot"></div></div>
+      <div class="kpi-result-card fade-up" data-delay="2"><div class="kpi-mname">Impressions</div><div class="kpi-was">was 120K / mo</div><div class="kpi-val">480K</div><span class="kpi-badge up">↑ +300%</span><div class="cmt_single_image-wrapper_2"><img src="your-result-impressions.png" alt="Impressions 120K to 480K screenshot"></div></div>
+      <div class="kpi-result-card fade-up" data-delay="3"><div class="kpi-mname">Top 10 Keywords</div><div class="kpi-was">was 12 keywords</div><div class="kpi-val">87</div><span class="kpi-badge up">↑ +625%</span><div class="cmt_single_image-wrapper_2"><img src="your-result-keywords.png" alt="Top 10 keywords 12 to 87 screenshot"></div></div>
+      <div class="kpi-result-card fade-up" data-delay="4"><div class="kpi-mname">PageSpeed Score</div><div class="kpi-was">was 28 / 100</div><div class="kpi-val">92</div><span class="kpi-badge up">↑ +228%</span><div class="cmt_single_image-wrapper_2"><img src="your-result-pagespeed.png" alt="PageSpeed 28 to 92 screenshot"></div></div>
+      <div class="kpi-result-card fade-up" data-delay="1"><div class="kpi-mname">Average CTR</div><div class="kpi-was">was 2.1%</div><div class="kpi-val">8.4%</div><span class="kpi-badge up">↑ +300%</span><div class="cmt_single_image-wrapper_2"><img src="your-result-ctr.png" alt="CTR 2.1% to 8.4% screenshot"></div></div>
+      <div class="kpi-result-card fade-up" data-delay="2"><div class="kpi-mname">Domain Authority</div><div class="kpi-was">was DA 14</div><div class="kpi-val">DA 31</div><span class="kpi-badge up">↑ +121%</span><div class="cmt_single_image-wrapper_2"><img src="your-result-da.png" alt="Domain authority DA14 to DA31 screenshot"></div></div>
+      <div class="kpi-result-card fade-up" data-delay="3"><div class="kpi-mname">Indexed Pages</div><div class="kpi-was">was 280 pages</div><div class="kpi-val">440</div><span class="kpi-badge up">↑ +57%</span><div class="cmt_single_image-wrapper_2"><img src="your-result-indexed.png" alt="Indexed pages 280 to 440 screenshot"></div></div>
+      <div class="kpi-result-card fade-up" data-delay="4"><div class="kpi-mname">Bounce Rate</div><div class="kpi-was">was 74%</div><div class="kpi-val">48%</div><span class="kpi-badge down">↓ -35%</span><div class="cmt_single_image-wrapper_2"><img src="your-result-bounce.png" alt="Bounce rate 74% to 48% screenshot"></div></div>
     </div>
 
-    <!-- KPI Table -->
     <div style="margin-top:48px" class="fade-up">
-      <div style="margin-bottom:16px">
-        <span style="font-family:var(--font-head);font-size:1rem;font-weight:700">📊 Before vs After — Full KPI Comparison</span>
-      </div>
+      <div style="margin-bottom:16px"><span style="font-family:var(--font-head);font-size:1rem;font-weight:700">📊 Before vs After — Full KPI Comparison</span></div>
       <div class="kpi-table-wrap">
         <table class="kpi-table">
-          <thead>
-            <tr>
-              <th>Metric</th><th>Before (Jan 2024)</th><th>After (Jun 2024)</th><th>Change</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Metric</th><th>Before (Jan 2024)</th><th>After (Jun 2024)</th><th>Change</th></tr></thead>
           <tbody>
             <tr><td class="td-name">Monthly Organic Traffic</td><td class="td-before">5,000</td><td class="td-after">30,000</td><td class="td-change pos">+500%</td></tr>
             <tr><td class="td-name">Monthly Impressions</td><td class="td-before">120,000</td><td class="td-after">480,000</td><td class="td-change pos">+300%</td></tr>
@@ -1276,9 +997,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </section>
 
-<!-- ============================================================
-     TOOLS
-     ============================================================ -->
+<!-- TOOLS -->
 <section class="section" id="tools">
   <div class="container">
     <div class="section-head fade-up">
@@ -1302,9 +1021,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </section>
 
-<!-- ============================================================
-     CTA
-     ============================================================ -->
+<!-- CTA -->
 <section class="cta-section" id="contact">
   <div class="container">
     <div class="fade-up">
@@ -1333,140 +1050,156 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 </footer>
 
 <!-- ============================================================
-     JAVASCRIPT
+     ALL JAVASCRIPT
      ============================================================ -->
 <script>
-/* ---- Nav: hamburger toggle + scroll shrink ---- */
-const hamburger = document.getElementById('navHamburger');
-const navLinks  = document.getElementById('navLinks');
-hamburger.addEventListener('click', () => {
+/* ---- Nav hamburger ---- */
+var hamburger = document.getElementById('navHamburger');
+var navLinks  = document.getElementById('navLinks');
+hamburger.addEventListener('click', function() {
   hamburger.classList.toggle('open');
   navLinks.classList.toggle('open');
 });
-navLinks.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
+navLinks.querySelectorAll('a').forEach(function(a) {
+  a.addEventListener('click', function() {
     navLinks.classList.remove('open');
     hamburger.classList.remove('open');
   });
 });
-window.addEventListener('scroll', () => {
+window.addEventListener('scroll', function() {
   document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
 
-/* ---- Scroll animations ---- */
-const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+/* ---- Scroll fade animations ---- */
+var fadeObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
     if (entry.isIntersecting) {
       entry.target.classList.add('in');
-      fadeObserver.unobserve(entry.target);
+      fadeObs.unobserve(entry.target);
     }
   });
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.fade-up, .fade-left').forEach(el => fadeObserver.observe(el));
+document.querySelectorAll('.fade-up, .fade-left').forEach(function(el) { fadeObs.observe(el); });
 
 /* ---- Counter animation ---- */
 function animCount(el, target, suffix) {
-  const dur = 2000; let start = null;
-  const step = (ts) => {
+  var dur = 2000, start = null;
+  function step(ts) {
     if (!start) start = ts;
-    const p    = Math.min((ts - start) / dur, 1);
-    const ease = 1 - Math.pow(1 - p, 4);
+    var p = Math.min((ts - start) / dur, 1);
+    var ease = 1 - Math.pow(1 - p, 4);
     el.textContent = Math.round(ease * target) + suffix;
     if (p < 1) requestAnimationFrame(step);
-  };
+  }
   requestAnimationFrame(step);
 }
-const counterObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+var cntObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
     if (entry.isIntersecting) {
-      const el = entry.target;
+      var el = entry.target;
       animCount(el, parseInt(el.dataset.target), el.dataset.suffix || '');
-      counterObserver.unobserve(el);
+      cntObs.unobserve(el);
     }
   });
 }, { threshold: 0.5 });
-document.querySelectorAll('[data-target]').forEach(el => {
+document.querySelectorAll('[data-target]').forEach(function(el) {
   el.textContent = '0' + (el.dataset.suffix || '');
-  counterObserver.observe(el);
+  cntObs.observe(el);
 });
 
 /* ---- Smooth scroll ---- */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
 
-/* ============================================================
-   IMAGE POPUP / LIGHTBOX
-   ============================================================
-   HOW IT WORKS:
-   1. On page load, every <img> inside a .popup-img-wrap gets
-      a click listener.
-   2. Clicking an image copies its src + alt into the modal
-      <img> (#popupImg), sets the caption, then shows the
-      overlay by adding .is-open to #imgPopup.
-   3. Body scroll is locked while the popup is visible.
+/* ================================================================
+   IMAGE POPUP — THE CORE FEATURE
+   ================================================================
+   WHAT IT DOES:
+   Every image that is inside EITHER of these wrappers:
+     • .cmt_single_image-wrapper_2
+     • .popup-img-wrap
+   becomes clickable and opens in a full-screen popup/lightbox.
 
-   CLOSE TRIGGERS:
-     a) × button  (#popupClose)
-     b) Click anywhere on the dark overlay OUTSIDE the image box
-     c) Esc key
+   WHY IT USES BOTH CLASS NAMES:
+   Different versions of this HTML used different wrapper class
+   names. This code handles both so nothing is missed.
 
-   TO ADD MORE IMAGES LATER:
-     Just wrap them in <div class="popup-img-wrap"><img ...></div>
-     The JS auto-discovers every such image on DOMContentLoaded.
-   ============================================================ */
+   HOW TO CLOSE THE POPUP:
+     1. Click the  ×  button
+     2. Click anywhere on the dark background (outside the image)
+     3. Press the Escape key on keyboard
 
-(function () {
-  /* -- References to popup elements -- */
-  const popup        = document.getElementById('imgPopup');
-  const popupBox     = document.getElementById('popupBox');
-  const popupImg     = document.getElementById('popupImg');
-  const popupCaption = document.getElementById('popupCaption');
-  const popupClose   = document.getElementById('popupClose');
+   HOW TO ADD MORE CLICKABLE IMAGES IN THE FUTURE:
+   Just wrap your <img> tag in either:
+     <div class="cmt_single_image-wrapper_2"><img src="..." alt="..."></div>
+   or:
+     <div class="popup-img-wrap"><img src="..." alt="..."></div>
+   The popup will work automatically — no extra JavaScript needed.
+   ================================================================ */
 
-  /* ---- OPEN ---- */
-  function openPopup(imgEl) {
-    /* Populate the modal image */
-    popupImg.src             = imgEl.src;
-    popupImg.alt             = imgEl.alt;
-    popupCaption.textContent = imgEl.alt || '';
+(function() {
+  /* Get references to every popup element */
+  var overlay    = document.getElementById('imgPopup');
+  var inner      = document.getElementById('popupInner');
+  var bigImg     = document.getElementById('popupImg');
+  var caption    = document.getElementById('popupCap');
+  var closeBtn   = document.getElementById('popupClose');
 
-    /* Show overlay */
-    popup.classList.add('is-open');
+  /* Safety check — if any element is missing, stop */
+  if (!overlay || !inner || !bigImg || !caption || !closeBtn) {
+    console.warn('Popup: one or more elements not found in DOM');
+    return;
+  }
 
-    /* Lock body scroll so the page doesn't shift */
+  /* -- OPEN -- */
+  function openPopup(img) {
+    /* Copy the image src and alt into the big modal image */
+    bigImg.src         = img.src;
+    bigImg.alt         = img.alt || '';
+    caption.textContent = img.alt || '';
+
+    /* Show the overlay */
+    overlay.classList.add('active');
+
+    /* Stop the page scrolling behind the popup */
     document.body.style.overflow = 'hidden';
 
-    /* Accessibility: move focus to close button */
-    popupClose.focus();
+    /* Move keyboard focus to the close button */
+    setTimeout(function() { closeBtn.focus(); }, 50);
   }
 
-  /* ---- CLOSE ---- */
+  /* -- CLOSE -- */
   function closePopup() {
-    popup.classList.remove('is-open');
-
-    /* Wipe src after a brief delay matching the CSS fade duration */
-    setTimeout(function () {
-      popupImg.src = '';
-      document.body.style.overflow = '';
-    }, 300);
+    overlay.classList.remove('active');
+    /* Restore page scrolling */
+    document.body.style.overflow = '';
+    /* Clear the image src after transition */
+    setTimeout(function() { bigImg.src = ''; }, 300);
   }
 
-  /* ---- Attach click listeners to every .popup-img-wrap img ---- */
-  document.querySelectorAll('.popup-img-wrap img').forEach(function (img) {
-    /* Make focusable for keyboard users */
-    img.setAttribute('tabindex', '0');
+  /* -- Find every image inside the two possible wrapper classes -- */
+  var selector = '.cmt_single_image-wrapper_2 img, .popup-img-wrap img';
+  var images   = document.querySelectorAll(selector);
 
-    /* Click to open */
-    img.addEventListener('click', function () {
+  console.log('Popup: found ' + images.length + ' clickable images');
+
+  images.forEach(function(img) {
+    /* Make keyboard-focusable */
+    img.setAttribute('tabindex', '0');
+    img.style.cursor = 'zoom-in';
+
+    /* CLICK — opens popup */
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
       openPopup(img);
     });
 
-    /* Enter / Space to open (keyboard accessibility) */
-    img.addEventListener('keydown', function (e) {
+    /* ENTER or SPACE key — opens popup (accessibility) */
+    img.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         openPopup(img);
@@ -1474,25 +1207,25 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     });
   });
 
-  /* ---- × Close button ---- */
-  popupClose.addEventListener('click', closePopup);
+  /* -- Close button click -- */
+  closeBtn.addEventListener('click', closePopup);
 
-  /* ---- Click on the dark overlay (outside the popup box) closes it ---- */
-  popup.addEventListener('click', function (e) {
-    /* Only close when the click target is the backdrop itself */
-    if (!popupBox.contains(e.target)) {
+  /* -- Click on the dark overlay OUTSIDE the image box -- */
+  overlay.addEventListener('click', function(e) {
+    /* inner.contains(e.target) is true when clicking the image/caption/etc */
+    if (!inner.contains(e.target)) {
       closePopup();
     }
   });
 
-  /* ---- Esc key closes the popup ---- */
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && popup.classList.contains('is-open')) {
+  /* -- Escape key closes popup -- */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('active')) {
       closePopup();
     }
   });
 
-})(); /* end IIFE */
+})(); /* end self-executing function */
 </script>
 </body>
 </html>
