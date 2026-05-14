@@ -10,9 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-/* ============================================================
-   CSS VARIABLES & RESET
-   ============================================================ */
 :root {
   --bg: #08090d;
   --bg2: #0e1118;
@@ -48,17 +45,10 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 
-/* ── NUMERIC FONT WIRING ── */
 .stat-num,.kpi-val,.badge-num,.kpi-badge,.kpi-mname,.td-before,.td-after,.td-change,.ch-badge,.impact-bar,.outcome-text,.ba-chart-box + div{font-family:var(--font-num);letter-spacing:0.01em}
-
-/* ── HEADING REFINEMENTS ── */
-.hero-title,.sec-title,.cta-title,.modal-title,.strat-card h3,.ch-title,.audit-name,.tl-content h3,.kpi-box h3,.ctx-val,.ba-title,.mockup-title,.nav-logo{font-family:var(--font-head);font-weight:800;letter-spacing:-0.02em}
-
-/* ── BODY / UI COPY ── */
-.ch-desc,.strat-item,.kpi-list-item,.hero-desc,.sec-sub,.cta-desc,.ctx-sub,.audit-desc,.kpi-was,.task-tag,.nav-links a,.footer-links a,.footer-copy,.modal-subtitle,.td-name{font-family:var(--font-body);font-weight:400;letter-spacing:0.005em}
-
-/* ── MONO / LABEL OVERRIDES ── */
-.section-label,.pill,.font-mono,.hero-badge,.kpi-mname,.audit-step,.tl-week,.ctx-lbl,.ch-num,.ba-label-sm,.b-url,.modal-counter,.modal-tag,.hero-meta .chip,.stat-lbl,.hero-meta,.view-ss,.click-hint,.ch-hover-hint,.kpi-click-hint{font-family:var(--font-mono)}
+.hero-title,.sec-title,.cta-title,.strat-card h3,.ch-title,.audit-name,.tl-content h3,.kpi-box h3,.ctx-val,.ba-title,.nav-logo{font-family:var(--font-head);font-weight:800;letter-spacing:-0.02em}
+.ch-desc,.strat-item,.kpi-list-item,.hero-desc,.sec-sub,.cta-desc,.ctx-sub,.audit-desc,.kpi-was,.task-tag,.nav-links a,.footer-links a,.footer-copy,.td-name{font-family:var(--font-body);font-weight:400;letter-spacing:0.005em}
+.section-label,.pill,.font-mono,.hero-badge,.kpi-mname,.audit-step,.tl-week,.ctx-lbl,.ch-num,.ba-label-sm,.b-url,.hero-meta .chip,.stat-lbl,.hero-meta{font-family:var(--font-mono)}
 
 body{font-family:var(--font-body);background:var(--bg);color:var(--t1);line-height:1.65;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
@@ -66,23 +56,13 @@ img{max-width:100%;display:block}
 ul{list-style:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
 
-/* ============================================================
-   SCROLLBAR
-   ============================================================ */
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--cyan-border);border-radius:4px}
 
-/* ============================================================
-   UTILITY
-   ============================================================ */
 .container{max-width:1220px;margin:0 auto;padding:0 28px}
 .cyan{color:var(--cyan)}
 .green{color:var(--green)}
-.mono{font-family:var(--font-mono)}
-
-.pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:5px 14px;border-radius:100px;border:1px solid var(--border2);background:rgba(255,255,255,0.04);color:var(--t2)}
-.pill.cyan-pill{border-color:var(--cyan-border);background:var(--cyan-glow);color:var(--cyan)}
 
 .section-label{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px}
 .section-label::before{content:'//'}
@@ -92,9 +72,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .section-head{text-align:center;margin-bottom:64px}
 .section-head .section-label{display:flex;justify-content:center}
 
-/* ============================================================
-   ANIMATED BACKGROUND MESH
-   ============================================================ */
+/* MESH */
 .mesh{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .mesh-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.06;animation:orbFloat 18s ease-in-out infinite}
 .mesh-orb:nth-child(1){width:700px;height:700px;background:var(--cyan);top:-200px;right:-200px;animation-delay:0s}
@@ -102,14 +80,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .mesh-orb:nth-child(3){width:400px;height:400px;background:var(--green);top:40%;right:10%;animation-delay:-12s}
 @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-40px,30px) scale(1.05)}66%{transform:translate(20px,-20px) scale(0.97)}}
 
-/* ============================================================
-   NOISE TEXTURE OVERLAY
-   ============================================================ */
 body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");opacity:0.4}
 
-/* ============================================================
-   NAV
-   ============================================================ */
+/* NAV */
 .nav{position:sticky;top:0;z-index:90;padding:0 28px;background:rgba(8,9,13,0.7);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--border);transition:background 0.3s var(--ease)}
 .nav.scrolled{background:rgba(8,9,13,0.92)}
 .nav-inner{max-width:1220px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:68px}
@@ -120,7 +93,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform 0.25s var(--ease)}
 .nav-links a:hover{color:var(--white)}
 .nav-links a:hover::after{transform:scaleX(1)}
-.btn-hire{background:var(--cyan);color:#08090d;font-family:var(--font-head);font-weight:700;font-size:0.85rem;padding:10px 22px;border-radius:9px;transition:all 0.2s var(--ease);box-shadow:0 0 0 0 rgba(0,229,255,0.4)}
+.btn-hire{background:var(--cyan);color:#08090d;font-family:var(--font-head);font-weight:700;font-size:0.85rem;padding:10px 22px;border-radius:9px;transition:all 0.2s var(--ease)}
 .btn-hire:hover{transform:translateY(-1px);box-shadow:0 0 24px rgba(0,229,255,0.4)}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;padding:6px;background:none;border:none}
 .nav-hamburger span{display:block;width:22px;height:2px;background:var(--t1);border-radius:2px;transition:all 0.3s var(--ease)}
@@ -128,9 +101,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-/* ============================================================
-   HERO
-   ============================================================ */
+/* HERO */
 .hero{min-height:92vh;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1220px;margin:0 auto;padding:80px 28px;position:relative;z-index:2}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--cyan-glow);border:1px solid var(--cyan-border);border-radius:100px;padding:6px 18px;font-family:var(--font-mono);font-size:11px;font-weight:500;color:var(--cyan);margin-bottom:28px;animation:badgePulse 3s ease infinite}
 .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 2s infinite}
@@ -148,15 +119,13 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .btn-outline:hover{border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.04)}
 
 /* Hero Visual */
-.hero-visual{position:relative;cursor:pointer;animation:heroFloat 6s ease-in-out infinite}
+.hero-visual{position:relative;animation:heroFloat 6s ease-in-out infinite}
 @keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.browser-frame{background:var(--card);border:1px solid var(--border2);border-radius:18px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.7),0 0 0 1px rgba(0,229,255,0.05),inset 0 1px 0 rgba(255,255,255,0.06);transition:all 0.3s var(--ease)}
-.hero-visual:hover .browser-frame{box-shadow:0 40px 100px rgba(0,0,0,0.7),0 0 0 1px var(--cyan-border),0 0 60px rgba(0,229,255,0.08)}
+.browser-frame{background:var(--card);border:1px solid var(--border2);border-radius:18px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.7),0 0 0 1px rgba(0,229,255,0.05),inset 0 1px 0 rgba(255,255,255,0.06)}
 .browser-bar{background:#0e1118;padding:14px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
 .b-dot{width:10px;height:10px;border-radius:50%}
 .b-dot.r{background:#ff5f57}.b-dot.y{background:#febc2e}.b-dot.g{background:#28c840}
 .b-url{flex:1;text-align:center;font-family:var(--font-mono);font-size:11px;color:var(--t3)}
-.browser-body{padding:24px}
 .ba-title{font-family:var(--font-head);font-size:1rem;font-weight:700;text-align:center;margin-bottom:20px}
 .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .ba-side{text-align:center}
@@ -164,18 +133,14 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .ba-chart-box{background:var(--bg2);border-radius:10px;height:110px;display:flex;align-items:flex-end;padding:12px 12px 0;gap:4px;border:1px solid var(--border);position:relative;overflow:hidden}
 .ba-chart-box.glowing{border-color:var(--cyan-border)}
 .ba-chart-box.glowing::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,229,255,0.06),transparent);pointer-events:none}
-.bar{flex:1;border-radius:3px 3px 0 0;background:rgba(255,255,255,0.15);transition:height 0.8s var(--ease)}
+.bar{flex:1;border-radius:3px 3px 0 0;background:rgba(255,255,255,0.15)}
 .ba-chart-box.glowing .bar{background:linear-gradient(to top,var(--cyan),rgba(0,229,255,0.5))}
 .hero-badge-float{position:absolute;bottom:-20px;right:-20px;background:var(--card2);border:1px solid var(--cyan-border);border-radius:14px;padding:14px 18px;box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 30px rgba(0,229,255,0.1);display:flex;align-items:center;gap:12px;animation:badgeFloat 4s ease-in-out infinite 1s}
 @keyframes badgeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .badge-num{font-family:var(--font-head);font-size:1.6rem;font-weight:800;color:var(--cyan)}
 .badge-text{font-size:0.72rem;color:var(--t2);line-height:1.4}
-.click-hint{position:absolute;top:14px;right:14px;background:rgba(0,229,255,0.1);border:1px solid var(--cyan-border);border-radius:8px;padding:4px 10px;font-family:var(--font-mono);font-size:9px;color:var(--cyan);opacity:0;transition:opacity 0.3s}
-.hero-visual:hover .click-hint{opacity:1}
 
-/* ============================================================
-   STATS BAR
-   ============================================================ */
+/* STATS */
 .stats-strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);position:relative;z-index:2}
 .stats-inner{max-width:1220px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(4,1fr)}
 .stat-block{padding:32px 20px;text-align:center;border-right:1px solid var(--border);position:relative;overflow:hidden}
@@ -185,15 +150,10 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .stat-num{font-family:var(--font-head);font-size:2.6rem;font-weight:800;color:var(--cyan);line-height:1;margin-bottom:6px}
 .stat-lbl{font-size:0.78rem;color:var(--t2);font-weight:500;letter-spacing:0.02em}
 
-/* ============================================================
-   SECTION BASE
-   ============================================================ */
 .section{padding:100px 28px;position:relative;z-index:2}
 .section.alt{background:var(--bg2)}
 
-/* ============================================================
-   CONTEXT CARDS
-   ============================================================ */
+/* CONTEXT */
 .context-grid{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:16px;align-items:start}
 .ctx-col{display:flex;flex-direction:column;gap:16px}
 .ctx-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:22px;transition:all 0.25s var(--ease)}
@@ -211,11 +171,9 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .outcome-lbl{font-family:var(--font-mono);font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:4px}
 .outcome-text{font-family:var(--font-head);font-size:0.9rem;font-weight:700}
 
-/* ============================================================
-   CHALLENGES
-   ============================================================ */
+/* CHALLENGES */
 .challenges-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.challenge-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:26px;cursor:pointer;transition:all 0.3s var(--ease);position:relative;overflow:hidden}
+.challenge-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:26px;transition:all 0.3s var(--ease);position:relative;overflow:hidden}
 .challenge-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),transparent)}
 .challenge-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(255,82,82,0.06),transparent 60%);opacity:0;transition:opacity 0.3s}
 .challenge-card:hover{border-color:rgba(255,82,82,0.3);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
@@ -226,25 +184,43 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .ch-title{font-family:var(--font-head);font-size:1rem;font-weight:700;margin-bottom:8px}
 .ch-desc{font-size:0.83rem;color:var(--t2);line-height:1.65;margin-bottom:16px}
 .ch-badge{display:inline-block;background:rgba(255,82,82,0.1);border:1px solid rgba(255,82,82,0.25);border-radius:6px;padding:4px 12px;font-family:var(--font-mono);font-size:10px;color:var(--red);font-weight:500}
-.ch-hover-hint{position:absolute;bottom:16px;right:16px;font-family:var(--font-mono);font-size:9px;color:var(--cyan);opacity:0;transform:translateX(4px);transition:all 0.25s var(--ease)}
-.challenge-card:hover .ch-hover-hint{opacity:1;transform:translateX(0)}
 
-/* ============================================================
-   AUDIT STEPS
-   ============================================================ */
+/* Image wrapper — clickable images get cursor + hover glow */
+.cmt_single_image-wrapper_2{
+  margin-top:14px;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  /* Indicate the image is clickable */
+  cursor:zoom-in;
+  transition:border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.cmt_single_image-wrapper_2:hover{
+  border-color:var(--cyan-border);
+  box-shadow:0 0 16px rgba(0,229,255,0.12);
+}
+.cmt_single_image-wrapper_2 img{
+  width:100%;
+  height:auto;
+  display:block;
+  transition:transform 0.3s var(--ease);
+}
+.cmt_single_image-wrapper_2:hover img{
+  transform:scale(1.03);
+}
+
+/* AUDIT */
 .audit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.audit-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;cursor:pointer;transition:all 0.3s var(--ease);text-align:center}
+.audit-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;transition:all 0.3s var(--ease);text-align:center}
 .audit-card:hover{border-color:var(--cyan-border);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,229,255,0.08)}
 .audit-step{font-family:var(--font-mono);font-size:9px;font-weight:500;letter-spacing:0.14em;color:var(--cyan);text-transform:uppercase;margin-bottom:12px}
 .audit-emoji{font-size:2rem;margin-bottom:12px;display:block}
 .audit-name{font-family:var(--font-head);font-size:0.9rem;font-weight:700;margin-bottom:8px}
 .audit-desc{font-size:0.78rem;color:var(--t2);line-height:1.55}
 
-/* ============================================================
-   STRATEGY CARDS
-   ============================================================ */
+/* STRATEGY */
 .strategy-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.strat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:30px;cursor:pointer;transition:all 0.3s var(--ease);position:relative;overflow:hidden}
+.strat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:30px;transition:all 0.3s var(--ease);position:relative;overflow:hidden}
 .strat-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(0,229,255,0.05),transparent 60%);opacity:0;transition:opacity 0.3s}
 .strat-card:hover{border-color:var(--cyan-border);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,229,255,0.06)}
 .strat-card:hover::after{opacity:1}
@@ -258,14 +234,10 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .strat-item{display:flex;align-items:flex-start;gap:10px;font-size:0.83rem;color:var(--t2)}
 .arrow-cyan{color:var(--cyan);flex-shrink:0;font-size:0.8rem;margin-top:2px}
 .impact-bar{background:var(--green-dim);border:1px solid rgba(0,230,118,0.2);border-radius:8px;padding:10px 14px;font-size:0.8rem;color:var(--green);font-weight:600;display:flex;align-items:center;gap:6px}
-.view-ss{position:absolute;top:16px;right:16px;background:var(--cyan-glow);border:1px solid var(--cyan-border);border-radius:7px;padding:4px 10px;font-family:var(--font-mono);font-size:9px;color:var(--cyan);opacity:0;transform:translateY(-2px);transition:all 0.25s var(--ease)}
-.strat-card:hover .view-ss{opacity:1;transform:translateY(0)}
 
-/* ============================================================
-   RESULTS — KPI CARDS
-   ============================================================ */
+/* KPI CARDS */
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.kpi-result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:24px 18px;text-align:center;cursor:pointer;transition:all 0.35s var(--ease-spring);position:relative;overflow:hidden}
+.kpi-result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:24px 18px;text-align:center;transition:all 0.35s var(--ease-spring);position:relative;overflow:hidden}
 .kpi-result-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 100%,rgba(0,229,255,0.08),transparent 60%);opacity:0;transition:opacity 0.3s}
 .kpi-result-card:hover{border-color:var(--cyan-border);transform:translateY(-6px) scale(1.01);box-shadow:0 24px 60px rgba(0,229,255,0.1)}
 .kpi-result-card:hover::before{opacity:1}
@@ -275,23 +247,15 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .kpi-badge{display:inline-flex;align-items:center;gap:4px;font-family:var(--font-mono);font-size:11px;font-weight:500;padding:5px 12px;border-radius:6px}
 .kpi-badge.up{background:var(--green-dim);color:var(--green);border:1px solid rgba(0,230,118,0.2)}
 .kpi-badge.down{background:var(--green-dim);color:var(--green);border:1px solid rgba(0,230,118,0.2)}
-.kpi-click-hint{position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);transform:scaleX(0);transition:transform 0.4s var(--ease)}
-.kpi-result-card:hover .kpi-click-hint{transform:scaleX(1)}
 
-/* Image wrapper */
-.cmt_single_image-wrapper_2{margin-top:14px;border-radius:10px;overflow:hidden;border:1px solid var(--border)}
-.cmt_single_image-wrapper_2 img{width:100%;height:auto;display:block}
-
-/* ============================================================
-   KPI TABLE
-   ============================================================ */
+/* KPI TABLE */
 .kpi-table-wrap{overflow-x:auto;border-radius:var(--r2);border:1px solid var(--border)}
 .kpi-table{width:100%;border-collapse:collapse;min-width:600px}
 .kpi-table thead tr{background:var(--bg3)}
 .kpi-table th{padding:14px 24px;text-align:left;font-family:var(--font-mono);font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3)}
 .kpi-table td{padding:18px 24px;border-bottom:1px solid var(--border);font-size:0.88rem}
 .kpi-table tr:last-child td{border-bottom:none}
-.kpi-table tbody tr{cursor:pointer;transition:background 0.2s}
+.kpi-table tbody tr{transition:background 0.2s}
 .kpi-table tbody tr:hover td{background:rgba(0,229,255,0.03)}
 .kpi-table .td-name{font-weight:500}
 .kpi-table .td-before{color:var(--t3);font-family:var(--font-mono)}
@@ -299,9 +263,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .kpi-table .td-change{font-weight:700;font-family:var(--font-mono)}
 .td-change.pos{color:var(--green)}.td-change.neg{color:var(--green)}
 
-/* ============================================================
-   TIMELINE
-   ============================================================ */
+/* TIMELINE */
 .timeline{display:flex;flex-direction:column;gap:16px;position:relative}
 .timeline::before{content:'';position:absolute;left:58px;top:28px;bottom:28px;width:1px;background:linear-gradient(to bottom,var(--cyan-border),rgba(0,229,255,0.05),transparent)}
 .tl-item{display:flex;gap:28px;align-items:flex-start}
@@ -314,26 +276,20 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .task-tags{display:flex;flex-wrap:wrap;gap:7px}
 .task-tag{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:4px 11px;font-size:0.75rem;color:var(--t2);font-family:var(--font-mono)}
 
-/* ============================================================
-   TOOLS SECTION
-   ============================================================ */
+/* TOOLS */
 .tools-flex{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 .tool-chip{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:100px;padding:9px 18px;font-size:0.84rem;font-weight:500;transition:all 0.2s var(--ease);cursor:default}
 .tool-chip:hover{border-color:var(--border2);transform:translateY(-2px)}
 .tool-dot{width:7px;height:7px;border-radius:50%}
 
-/* ============================================================
-   CTA
-   ============================================================ */
+/* CTA */
 .cta-section{padding:120px 28px;text-align:center;position:relative;overflow:hidden;z-index:2}
 .cta-section::before{content:'';position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,0.05),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
 .cta-title{font-family:var(--font-head);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800;line-height:1.05;letter-spacing:-0.025em;margin-bottom:20px}
 .cta-desc{font-size:1rem;color:var(--t2);max-width:460px;margin:0 auto 44px;line-height:1.8}
 .cta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
+/* FOOTER */
 footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index:2}
 .footer-inner{max-width:1220px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .footer-copy{font-size:0.8rem;color:var(--t3);font-family:var(--font-mono)}
@@ -341,41 +297,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 .footer-links a{font-size:0.82rem;color:var(--t2);transition:color 0.2s}
 .footer-links a:hover{color:var(--cyan)}
 
-/* ============================================================
-   MODAL / POPUP SYSTEM
-   ============================================================ */
-.modal-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0);backdrop-filter:blur(0px);pointer-events:none;transition:background 0.4s var(--ease),backdrop-filter 0.4s var(--ease)}
-.modal-overlay.open{background:rgba(0,0,0,0.88);backdrop-filter:blur(20px) saturate(120%);pointer-events:all}
-.modal-box{position:relative;max-width:1100px;width:calc(100% - 48px);background:var(--card2);border:1px solid var(--border2);border-radius:22px;overflow:hidden;transform:scale(0.88) translateY(30px);opacity:0;transition:transform 0.5s var(--ease-spring),opacity 0.4s var(--ease);box-shadow:0 60px 120px rgba(0,0,0,0.8),0 0 0 1px rgba(255,255,255,0.04),inset 0 1px 0 rgba(255,255,255,0.08);max-height:92vh;display:flex;flex-direction:column}
-.modal-overlay.open .modal-box{transform:scale(1) translateY(0);opacity:1}
-.modal-header{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-bottom:1px solid var(--border);flex-shrink:0}
-.modal-title-wrap{display:flex;align-items:center;gap:14px}
-.modal-icon{font-size:1.5rem}
-.modal-title{font-family:var(--font-head);font-size:1.1rem;font-weight:700}
-.modal-subtitle{font-size:0.78rem;color:var(--t2);font-family:var(--font-mono);margin-top:2px}
-.modal-close{width:38px;height:38px;border-radius:10px;border:1px solid var(--border2);background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--t2);transition:all 0.2s var(--ease);cursor:pointer;flex-shrink:0}
-.modal-close:hover{background:rgba(255,82,82,0.15);border-color:rgba(255,82,82,0.3);color:var(--red)}
-.modal-body{flex:1;overflow:auto;position:relative}
-.modal-img-wrap{display:flex;align-items:center;justify-content:center;padding:32px;min-height:300px;background:var(--bg);position:relative}
-.modal-img{max-width:100%;max-height:70vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.6);animation:imgReveal 0.5s var(--ease-spring) forwards}
-@keyframes imgReveal{from{opacity:0;transform:scale(0.96) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.modal-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 40px;gap:16px;text-align:center;min-height:360px;background:var(--bg)}
-.modal-placeholder .ph-icon{font-size:3rem;opacity:0.4}
-.modal-placeholder h3{font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:var(--t2)}
-.modal-placeholder p{font-family:var(--font-mono);font-size:0.8rem;color:var(--t3);max-width:400px;line-height:1.7}
-.modal-placeholder code{background:rgba(0,229,255,0.08);border:1px solid var(--cyan-border);border-radius:7px;padding:10px 18px;font-family:var(--font-mono);font-size:0.78rem;color:var(--cyan);display:block;margin-top:8px}
-.modal-footer{padding:16px 28px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg2);flex-shrink:0}
-.modal-nav-btns{display:flex;gap:8px}
-.modal-nav-btn{padding:8px 18px;border-radius:8px;border:1px solid var(--border2);background:rgba(255,255,255,0.04);font-size:0.82rem;font-weight:600;color:var(--t2);transition:all 0.2s var(--ease);cursor:pointer;display:flex;align-items:center;gap:6px}
-.modal-nav-btn:hover{border-color:var(--cyan-border);color:var(--cyan)}
-.modal-nav-btn:disabled{opacity:0.35;cursor:not-allowed}
-.modal-counter{font-family:var(--font-mono);font-size:11px;color:var(--t3)}
-.modal-tags{display:flex;gap:8px;flex-wrap:wrap}
-.modal-tag{background:var(--cyan-glow);border:1px solid var(--cyan-border);border-radius:6px;padding:3px 10px;font-family:var(--font-mono);font-size:9px;color:var(--cyan);font-weight:500}
-
-/* ============================================================
-   SCROLL ANIMATIONS
-   ============================================================ */
+/* SCROLL ANIMATIONS */
 .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.65s var(--ease),transform 0.65s var(--ease)}
 .fade-up.in{opacity:1;transform:translateY(0)}
 .fade-left{opacity:0;transform:translateX(-28px);transition:opacity 0.65s var(--ease),transform 0.65s var(--ease)}
@@ -388,8 +310,126 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 [data-delay="6"]{transition-delay:0.6s}
 
 /* ============================================================
-   RESPONSIVE
+   IMAGE LIGHTBOX / MODAL
    ============================================================ */
+
+/* Dark overlay that sits behind the modal */
+#imgModal {
+  display: none;                         /* hidden by default */
+  position: fixed;
+  inset: 0;                              /* covers full viewport */
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.88);      /* dark transparent backdrop */
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  /* fade-in animation */
+  animation: modalFadeIn 0.28s var(--ease) forwards;
+}
+
+/* When JS sets display:flex we also want the inner scale animation */
+#imgModal.is-open {
+  display: flex;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* The modal content box */
+.modal-box {
+  position: relative;
+  max-width: min(92vw, 1000px);           /* responsive max width */
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  animation: modalScaleIn 0.32s var(--ease-spring) forwards;
+}
+
+@keyframes modalScaleIn {
+  from { opacity: 0; transform: scale(0.88) translateY(20px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);    }
+}
+
+/* The enlarged image inside the modal */
+.modal-img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(90vh - 60px);          /* leave room for close btn */
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid var(--cyan-border);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(0,229,255,0.08), 0 0 60px rgba(0,229,255,0.06);
+}
+
+/* Alt-text caption shown beneath the image */
+.modal-caption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--t2);
+  text-align: center;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* × Close button — top-right corner of the modal box */
+.modal-close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--card2);
+  border: 1px solid var(--cyan-border);
+  color: var(--t1);
+  font-size: 1.1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  z-index: 1;
+}
+.modal-close:hover {
+  background: var(--cyan);
+  color: #08090d;
+  border-color: var(--cyan);
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* Keyboard hint label */
+.modal-hint {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--t3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: -4px;
+}
+
+/* ---- Responsive tweaks for the modal ---- */
+@media (max-width: 600px) {
+  .modal-close {
+    top: -10px;
+    right: -10px;
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+  .modal-caption { font-size: 10px; }
+  .modal-hint    { display: none;   }
+}
+
+/* RESPONSIVE (original) */
 @media(max-width:1100px){
   .context-grid{grid-template-columns:1fr 1fr}
   .kpi-box{grid-column:span 2}
@@ -416,8 +456,6 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   .context-grid{grid-template-columns:1fr}
   .kpi-box{grid-column:auto}
   .hero-badge-float{display:none}
-  .modal-box{width:calc(100% - 24px)}
-  .modal-img-wrap{padding:20px}
 }
 @media(max-width:480px){
   .audit-grid{grid-template-columns:1fr}
@@ -431,7 +469,6 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 </head>
 <body>
 
-<!-- MESH BACKGROUND -->
 <div class="mesh" aria-hidden="true">
   <div class="mesh-orb"></div>
   <div class="mesh-orb"></div>
@@ -439,37 +476,24 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 </div>
 
 <!-- ============================================================
-     MODAL POPUP SYSTEM
+     IMAGE LIGHTBOX MODAL
+     Clicking any .cmt_single_image-wrapper_2 img opens this.
+     Close via × button, clicking the overlay, or pressing Esc.
      ============================================================ -->
-<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Screenshot preview">
+<div id="imgModal" role="dialog" aria-modal="true" aria-label="Image preview">
   <div class="modal-box" id="modalBox">
-    <div class="modal-header">
-      <div class="modal-title-wrap">
-        <span class="modal-icon" id="modalIcon">📸</span>
-        <div>
-          <div class="modal-title" id="modalTitle">Screenshot Preview</div>
-          <div class="modal-subtitle" id="modalSubtitle">Click outside or press ESC to close</div>
-        </div>
-      </div>
-      <button class="modal-close" id="modalClose" aria-label="Close modal">✕</button>
-    </div>
-    <div class="modal-body" id="modalBody"></div>
-    <div class="modal-footer">
-      <div class="modal-tags" id="modalTags"></div>
-      <div style="display:flex;align-items:center;gap:16px">
-        <span class="modal-counter" id="modalCounter"></span>
-        <div class="modal-nav-btns">
-          <button class="modal-nav-btn" id="modalPrev" aria-label="Previous screenshot">← Prev</button>
-          <button class="modal-nav-btn" id="modalNext" aria-label="Next screenshot">Next →</button>
-        </div>
-      </div>
-    </div>
+    <!-- Close (×) button -->
+    <button class="modal-close" id="modalClose" aria-label="Close image preview">×</button>
+    <!-- Enlarged image — src and alt are set by JS when opened -->
+    <img class="modal-img" id="modalImg" src="" alt="">
+    <!-- Caption rendered from the image's alt text -->
+    <div class="modal-caption" id="modalCaption"></div>
+    <!-- Subtle keyboard hint -->
+    <div class="modal-hint">press esc to close</div>
   </div>
 </div>
 
-<!-- ============================================================
-     NAVIGATION
-     ============================================================ -->
+<!-- NAV -->
 <nav class="nav" id="mainNav">
   <div class="nav-inner">
     <a class="nav-logo" href="#">
@@ -490,9 +514,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </nav>
 
-<!-- ============================================================
-     HERO
-     ============================================================ -->
+<!-- HERO -->
 <section>
   <div class="hero">
     <div class="fade-left">
@@ -508,7 +530,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <span class="chip">Jan → Jun 2024</span>
       </div>
       <p class="hero-desc">
-        A complete SEO transformation for an international courier & logistics company — from technical site architecture overhaul to high-authority backlink acquisition — taking monthly organic visitors from 5K to 30K.
+        A complete SEO transformation for an international courier &amp; logistics company — from technical site architecture overhaul to high-authority backlink acquisition — taking monthly organic visitors from 5K to 30K.
       </p>
       <div class="hero-btns">
         <a href="#results" class="btn-primary">↓ See Results</a>
@@ -516,7 +538,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
       </div>
     </div>
 
-    <div class="hero-visual fade-up" data-delay="2" onclick="openModal(0)" role="button" tabindex="0" aria-label="View KPI comparison screenshot">
+    <div class="hero-visual fade-up" data-delay="2">
       <div class="browser-frame">
         <div class="browser-bar">
           <span class="b-dot r"></span><span class="b-dot y"></span><span class="b-dot g"></span>
@@ -560,14 +582,11 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <div class="badge-text">Organic Traffic<br>Growth</div>
         </div>
       </div>
-      <div class="click-hint">🖼 View Screenshot</div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     STATS STRIP
-     ============================================================ -->
+<!-- STATS STRIP -->
 <div class="stats-strip">
   <div class="stats-inner">
     <div class="stat-block fade-up">
@@ -589,9 +608,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </div>
 
-<!-- ============================================================
-     PROJECT CONTEXT
-     ============================================================ -->
+<!-- PROJECT CONTEXT -->
 <section class="section" id="overview">
   <div class="container">
     <div class="section-head fade-up">
@@ -604,8 +621,8 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ctx-card">
           <div class="ctx-icon">🏢</div>
           <div class="ctx-lbl">Business Type</div>
-          <div class="ctx-val">International Courier & Logistics</div>
-          <div class="ctx-sub">Courier, Cargo & Global Shipping Services</div>
+          <div class="ctx-val">International Courier &amp; Logistics</div>
+          <div class="ctx-sub">Courier, Cargo &amp; Global Shipping Services</div>
         </div>
         <div class="ctx-card">
           <div class="ctx-icon">🌐</div>
@@ -658,9 +675,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </section>
 
-<!-- ============================================================
-     CHALLENGES
-     ============================================================ -->
+<!-- CHALLENGES -->
 <section class="section alt" id="challenges">
   <div class="container">
     <div class="section-head fade-up">
@@ -670,121 +685,110 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
     </div>
     <div class="challenges-grid">
 
-      <div class="challenge-card fade-up" data-delay="1" onclick="openModal(4)" role="button" tabindex="0" aria-label="View Core Web Vitals screenshot">
+      <div class="challenge-card fade-up" data-delay="1">
         <div class="ch-num">01 / Technical</div>
         <div class="ch-icon">⚡</div>
         <div class="ch-title">Poor Core Web Vitals</div>
         <div class="ch-desc">LCP of 8.2s (target ≤2.5s). CLS of 0.38 (target ≤0.1). All three Core Web Vitals failing on mobile and desktop.</div>
         <span class="ch-badge">PageSpeed: 28/100</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="express GSC-1.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="express GSC-1.png" alt="Core Web Vitals screenshot">
         </div>
-        <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
-      <div class="challenge-card fade-up" data-delay="2" onclick="openModal(4)" role="button" tabindex="0" aria-label="View crawl issues screenshot">
+      <div class="challenge-card fade-up" data-delay="2">
         <div class="ch-num">02 / Indexing</div>
         <div class="ch-icon">🔍</div>
-        <div class="ch-title">Crawl & Indexing Issues</div>
+        <div class="ch-title">Crawl &amp; Indexing Issues</div>
         <div class="ch-desc">180+ pages blocked in robots.txt accidentally. Google not indexing 40% of product pages due to canonical errors and crawl budget waste.</div>
         <span class="ch-badge">140 Pages Not Indexed</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Crawl issues screenshot">
         </div>
-        <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
-      <div class="challenge-card fade-up" data-delay="3" onclick="openModal(4)" role="button" tabindex="0" aria-label="View duplicate content screenshot">
+      <div class="challenge-card fade-up" data-delay="3">
         <div class="ch-num">03 / Content</div>
         <div class="ch-icon">📄</div>
         <div class="ch-title">Duplicate Content Issues</div>
         <div class="ch-desc">Product variations creating duplicate URLs. Tag pages, pagination, and filter parameters causing cannibalisation across 60+ pages.</div>
         <span class="ch-badge">60+ Duplicate Pages</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Duplicate content screenshot">
         </div>
-        <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
-      <div class="challenge-card fade-up" data-delay="1" onclick="openModal(4)" role="button" tabindex="0">
+      <div class="challenge-card fade-up" data-delay="1">
         <div class="ch-num">04 / Architecture</div>
         <div class="ch-icon">🔗</div>
         <div class="ch-title">Weak Internal Linking</div>
         <div class="ch-desc">High-value pages receiving zero internal links. PageRank not flowing to priority product pages and collections.</div>
         <span class="ch-badge">Orphan Pages: 48</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Internal linking screenshot">
         </div>
-        <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
-      <div class="challenge-card fade-up" data-delay="2" onclick="openModal(4)" role="button" tabindex="0">
+      <div class="challenge-card fade-up" data-delay="2">
         <div class="ch-num">05 / Technical</div>
         <div class="ch-icon">🐛</div>
         <div class="ch-title">300+ Technical SEO Errors</div>
         <div class="ch-desc">Broken links, missing alt tags, missing meta descriptions, schema errors, and redirect chains found in full Screaming Frog audit.</div>
         <span class="ch-badge">Screaming Frog Crawl</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Technical errors screenshot">
         </div>
-        <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
-      <div class="challenge-card fade-up" data-delay="3" onclick="openModal(4)" role="button" tabindex="0">
+      <div class="challenge-card fade-up" data-delay="3">
         <div class="ch-num">06 / UX</div>
         <div class="ch-icon">📱</div>
         <div class="ch-title">Poor Mobile Usability</div>
         <div class="ch-desc">Non-responsive elements, tap targets too small, font size issues causing Google Mobile Usability failures in GSC.</div>
         <span class="ch-badge">12 Mobile Errors</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Mobile usability screenshot">
         </div>
-        <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
-      <div class="challenge-card fade-up" data-delay="1" onclick="openModal(1)" role="button" tabindex="0" aria-label="View keyword rankings screenshot">
+      <div class="challenge-card fade-up" data-delay="1">
         <div class="ch-num">07 / Rankings</div>
         <div class="ch-icon">📉</div>
         <div class="ch-title">Low Keyword Rankings</div>
         <div class="ch-desc">Only 12 keywords in Top 10. No target keywords ranking on Page 1. Weak E-E-A-T signals across the domain.</div>
         <span class="ch-badge">DA: 14 · DR: 11</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Keyword rankings screenshot">
         </div>
-        <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
-      <div class="challenge-card fade-up" data-delay="2" onclick="openModal(0)" role="button" tabindex="0" aria-label="View CTR data screenshot">
+      <div class="challenge-card fade-up" data-delay="2">
         <div class="ch-num">08 / CTR</div>
         <div class="ch-icon">🖱</div>
         <div class="ch-title">Low Click-Through Rate</div>
         <div class="ch-desc">Average CTR of 2.1% despite appearing in search results. Titles and meta descriptions not optimised for SERP appeal.</div>
         <span class="ch-badge">CTR: 2.1%</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="CTR screenshot">
         </div>
-        <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
-      <div class="challenge-card fade-up" data-delay="3" onclick="openModal(4)" role="button" tabindex="0">
+      <div class="challenge-card fade-up" data-delay="3">
         <div class="ch-num">09 / Authority</div>
         <div class="ch-icon">🔋</div>
         <div class="ch-title">Weak Backlink Profile</div>
         <div class="ch-desc">Only 23 referring domains, most low-quality with no anchor text diversity. Domain authority significantly behind competitors.</div>
         <span class="ch-badge">23 Ref. Domains</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Backlink profile screenshot">
         </div>
-        <div class="ch-hover-hint">View Screenshot →</div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     AUDIT PROCESS / STEPS
-     ============================================================ -->
+<!-- AUDIT PROCESS -->
 <section class="section" id="audit">
   <div class="container">
     <div class="section-head fade-up">
@@ -794,83 +798,83 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
     </div>
     <div class="audit-grid">
 
-      <div class="audit-card fade-up" data-delay="1" onclick="openModal(3)" role="button" tabindex="0">
+      <div class="audit-card fade-up" data-delay="1">
         <div class="audit-step">Step 01</div>
         <span class="audit-emoji">🔬</span>
         <div class="audit-name">Technical Audit</div>
         <div class="audit-desc">Crawl errors, redirects, Core Web Vitals, schema, robots.txt</div>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Technical audit">
         </div>
       </div>
 
-      <div class="audit-card fade-up" data-delay="2" onclick="openModal(3)" role="button" tabindex="0">
+      <div class="audit-card fade-up" data-delay="2">
         <div class="audit-step">Step 02</div>
         <span class="audit-emoji">🗝️</span>
         <div class="audit-name">Keyword Research</div>
         <div class="audit-desc">Volume, intent mapping, long-tail opportunities, SERP features</div>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Keyword research">
         </div>
       </div>
 
-      <div class="audit-card fade-up" data-delay="3" onclick="openModal(3)" role="button" tabindex="0">
+      <div class="audit-card fade-up" data-delay="3">
         <div class="audit-step">Step 03</div>
         <span class="audit-emoji">🏆</span>
         <div class="audit-name">Competitor Analysis</div>
         <div class="audit-desc">Top 5 SERP competitors analysed for content gaps and link gaps</div>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Competitor analysis">
         </div>
       </div>
 
-      <div class="audit-card fade-up" data-delay="4" onclick="openModal(3)" role="button" tabindex="0">
+      <div class="audit-card fade-up" data-delay="4">
         <div class="audit-step">Step 04</div>
         <span class="audit-emoji">📊</span>
         <div class="audit-name">Content Gap Analysis</div>
         <div class="audit-desc">Missing topics, thin content, cannibalisation map</div>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Content gap analysis">
         </div>
       </div>
 
-      <div class="audit-card fade-up" data-delay="1" onclick="openModal(3)" role="button" tabindex="0">
+      <div class="audit-card fade-up" data-delay="1">
         <div class="audit-step">Step 05</div>
         <span class="audit-emoji">🔎</span>
         <div class="audit-name">SERP Analysis</div>
         <div class="audit-desc">Search intent, featured snippets, PAA, schema opportunities</div>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="SERP analysis">
         </div>
       </div>
 
-      <div class="audit-card fade-up" data-delay="2" onclick="openModal(3)" role="button" tabindex="0">
+      <div class="audit-card fade-up" data-delay="2">
         <div class="audit-step">Step 06</div>
         <span class="audit-emoji">🔗</span>
         <div class="audit-name">Backlink Audit</div>
         <div class="audit-desc">Toxic links disavowed, anchor diversity, referring domain analysis</div>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Backlink audit">
         </div>
       </div>
 
-      <div class="audit-card fade-up" data-delay="3" onclick="openModal(3)" role="button" tabindex="0">
+      <div class="audit-card fade-up" data-delay="3">
         <div class="audit-step">Step 07</div>
         <span class="audit-emoji">🕸</span>
         <div class="audit-name">Internal Link Review</div>
         <div class="audit-desc">Crawl depth, orphan pages, PageRank flow mapping</div>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Internal link review">
         </div>
       </div>
 
-      <div class="audit-card fade-up" data-delay="4" onclick="openModal(3)" role="button" tabindex="0">
+      <div class="audit-card fade-up" data-delay="4">
         <div class="audit-step">Step 08</div>
         <span class="audit-emoji">📋</span>
         <div class="audit-name">Schema Opportunities</div>
         <div class="audit-desc">Product, review, FAQ, breadcrumb, HowTo schema gaps</div>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Schema opportunities">
         </div>
       </div>
 
@@ -878,25 +882,22 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </section>
 
-<!-- ============================================================
-     STRATEGY
-     ============================================================ -->
+<!-- STRATEGY -->
 <section class="section alt" id="strategy">
   <div class="container">
     <div class="section-head fade-up">
       <div class="section-label">Execution Strategy</div>
       <h2 class="sec-title">6 Pillars of <span class="cyan">SEO Execution</span></h2>
-      <p class="sec-sub">Each pillar targeted a specific weakness from the audit. Click any card to view the actual screenshot evidence.</p>
+      <p class="sec-sub">Each pillar targeted a specific weakness from the audit.</p>
     </div>
     <div class="strategy-grid">
 
-      <div class="strat-card fade-up" data-delay="1" onclick="openModal(2)" role="button" tabindex="0">
-        <div class="view-ss">📸 View Screenshot</div>
+      <div class="strat-card fade-up" data-delay="1">
         <div class="strat-head">
           <div class="strat-icon">⚡</div>
           <h3>Technical SEO Overhaul</h3>
         </div>
-        <div class="strat-problem">Problem: Site crawlability & speed blocking rankings</div>
+        <div class="strat-problem">Problem: Site crawlability &amp; speed blocking rankings</div>
         <ul class="strat-list">
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Fixed robots.txt to unblock 180 key product pages from crawling</span></li>
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Implemented lazy loading, WebP image conversion, CDN setup</span></li>
@@ -906,12 +907,11 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         </ul>
         <div class="impact-bar">📈 Impact: PageSpeed 28 → 92 · LCP 8.2s → 1.8s</div>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Technical SEO results">
         </div>
       </div>
 
-      <div class="strat-card fade-up" data-delay="2" onclick="openModal(2)" role="button" tabindex="0">
-        <div class="view-ss">📸 View Screenshot</div>
+      <div class="strat-card fade-up" data-delay="2">
         <div class="strat-head">
           <div class="strat-icon">📝</div>
           <h3>On-Page Optimisation</h3>
@@ -926,12 +926,11 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         </ul>
         <div class="impact-bar">📈 Impact: CTR 2.1% → 8.4% · 22 Featured Snippet wins</div>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="On-page optimisation results">
         </div>
       </div>
 
-      <div class="strat-card fade-up" data-delay="3" onclick="openModal(2)" role="button" tabindex="0">
-        <div class="view-ss">📸 View Screenshot</div>
+      <div class="strat-card fade-up" data-delay="3">
         <div class="strat-head">
           <div class="strat-icon">✍️</div>
           <h3>Content Optimisation</h3>
@@ -946,12 +945,11 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         </ul>
         <div class="impact-bar">📈 Impact: Avg time on page +68% · Pages/session +42%</div>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Content strategy results">
         </div>
       </div>
 
-      <div class="strat-card fade-up" data-delay="4" onclick="openModal(2)" role="button" tabindex="0">
-        <div class="view-ss">📸 View Screenshot</div>
+      <div class="strat-card fade-up" data-delay="4">
         <div class="strat-head">
           <div class="strat-icon">🕸</div>
           <h3>Internal Linking Strategy</h3>
@@ -966,19 +964,18 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         </ul>
         <div class="impact-bar">📈 Impact: Crawl depth reduced · 38% more pages indexed</div>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Internal linking results">
         </div>
       </div>
 
-      <div class="strat-card fade-up" data-delay="1" onclick="openModal(2)" role="button" tabindex="0">
-        <div class="view-ss">📸 View Screenshot</div>
+      <div class="strat-card fade-up" data-delay="1">
         <div class="strat-head">
           <div class="strat-icon">🔗</div>
           <h3>Link Building Campaign</h3>
         </div>
         <div class="strat-problem">Problem: DA 14, only 23 referring domains</div>
         <ul class="strat-list">
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>HARO (Help a Reporter Out) outreach securing 8 high-DA editorial mentions</span></li>
+          <li class="strat-item"><span class="arrow-cyan">→</span><span>HARO outreach securing 8 high-DA editorial mentions</span></li>
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Guest posting on 12 health/wellness blogs with DR 40+ authority</span></li>
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Resource page link building via broken link strategy</span></li>
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Disavowed 34 spammy backlinks detected in GSC manual actions report</span></li>
@@ -986,15 +983,14 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         </ul>
         <div class="impact-bar">📈 Impact: DA 14 → 31 · Ref. Domains 23 → 78</div>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Link building results">
         </div>
       </div>
 
-      <div class="strat-card fade-up" data-delay="2" onclick="openModal(2)" role="button" tabindex="0">
-        <div class="view-ss">📸 View Screenshot</div>
+      <div class="strat-card fade-up" data-delay="2">
         <div class="strat-head">
           <div class="strat-icon">🗺</div>
-          <h3>Indexing & Sitemap Fix</h3>
+          <h3>Indexing &amp; Sitemap Fix</h3>
         </div>
         <div class="strat-problem">Problem: 40% of pages not indexed by Google</div>
         <ul class="strat-list">
@@ -1006,7 +1002,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         </ul>
         <div class="impact-bar">📈 Impact: Indexed pages 280 → 440 · +57% indexation rate</div>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Indexing fix results">
         </div>
       </div>
 
@@ -1014,9 +1010,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </section>
 
-<!-- ============================================================
-     TIMELINE
-     ============================================================ -->
+<!-- TIMELINE -->
 <section class="section" id="timeline">
   <div class="container">
     <div class="section-head fade-up">
@@ -1026,98 +1020,56 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
     </div>
     <div class="timeline fade-up">
       <div class="tl-item">
-        <div class="tl-node">
-          <div class="tl-circle">🔬</div>
-          <div class="tl-week">Jan</div>
-        </div>
+        <div class="tl-node"><div class="tl-circle">🔬</div><div class="tl-week">Jan</div></div>
         <div class="tl-content">
-          <h3>Phase 1 — Full SEO Audit & Strategy</h3>
+          <h3>Phase 1 — Full SEO Audit &amp; Strategy</h3>
           <div class="task-tags">
-            <span class="task-tag">Screaming Frog crawl</span>
-            <span class="task-tag">GSC setup & audit</span>
-            <span class="task-tag">Keyword research</span>
-            <span class="task-tag">Competitor gap analysis</span>
-            <span class="task-tag">Priority roadmap</span>
+            <span class="task-tag">Screaming Frog crawl</span><span class="task-tag">GSC setup &amp; audit</span><span class="task-tag">Keyword research</span><span class="task-tag">Competitor gap analysis</span><span class="task-tag">Priority roadmap</span>
           </div>
         </div>
       </div>
       <div class="tl-item">
-        <div class="tl-node">
-          <div class="tl-circle">⚡</div>
-          <div class="tl-week">Feb</div>
-        </div>
+        <div class="tl-node"><div class="tl-circle">⚡</div><div class="tl-week">Feb</div></div>
         <div class="tl-content">
           <h3>Phase 2 — Technical SEO Fixes</h3>
           <div class="task-tags">
-            <span class="task-tag">robots.txt fix</span>
-            <span class="task-tag">Core Web Vitals</span>
-            <span class="task-tag">Redirect cleanup</span>
-            <span class="task-tag">Schema markup</span>
-            <span class="task-tag">Sitemap rebuild</span>
+            <span class="task-tag">robots.txt fix</span><span class="task-tag">Core Web Vitals</span><span class="task-tag">Redirect cleanup</span><span class="task-tag">Schema markup</span><span class="task-tag">Sitemap rebuild</span>
           </div>
         </div>
       </div>
       <div class="tl-item">
-        <div class="tl-node">
-          <div class="tl-circle">📝</div>
-          <div class="tl-week">Mar</div>
-        </div>
+        <div class="tl-node"><div class="tl-circle">📝</div><div class="tl-week">Mar</div></div>
         <div class="tl-content">
-          <h3>Phase 3 — On-Page & Content Optimisation</h3>
+          <h3>Phase 3 — On-Page &amp; Content Optimisation</h3>
           <div class="task-tags">
-            <span class="task-tag">120 title rewrites</span>
-            <span class="task-tag">Meta descriptions</span>
-            <span class="task-tag">Product content expansion</span>
-            <span class="task-tag">Blog publishing (12 posts)</span>
-            <span class="task-tag">E-E-A-T improvements</span>
+            <span class="task-tag">120 title rewrites</span><span class="task-tag">Meta descriptions</span><span class="task-tag">Product content expansion</span><span class="task-tag">Blog publishing (12 posts)</span><span class="task-tag">E-E-A-T improvements</span>
           </div>
         </div>
       </div>
       <div class="tl-item">
-        <div class="tl-node">
-          <div class="tl-circle">🕸</div>
-          <div class="tl-week">Apr</div>
-        </div>
+        <div class="tl-node"><div class="tl-circle">🕸</div><div class="tl-week">Apr</div></div>
         <div class="tl-content">
-          <h3>Phase 4 — Internal Linking & Architecture</h3>
+          <h3>Phase 4 — Internal Linking &amp; Architecture</h3>
           <div class="task-tags">
-            <span class="task-tag">Topic cluster build</span>
-            <span class="task-tag">Orphan page fix</span>
-            <span class="task-tag">Internal link audit</span>
-            <span class="task-tag">Breadcrumb navigation</span>
-            <span class="task-tag">Crawl depth optimisation</span>
+            <span class="task-tag">Topic cluster build</span><span class="task-tag">Orphan page fix</span><span class="task-tag">Internal link audit</span><span class="task-tag">Breadcrumb navigation</span><span class="task-tag">Crawl depth optimisation</span>
           </div>
         </div>
       </div>
       <div class="tl-item">
-        <div class="tl-node">
-          <div class="tl-circle">🔗</div>
-          <div class="tl-week">May</div>
-        </div>
+        <div class="tl-node"><div class="tl-circle">🔗</div><div class="tl-week">May</div></div>
         <div class="tl-content">
           <h3>Phase 5 — Link Building Campaign</h3>
           <div class="task-tags">
-            <span class="task-tag">HARO outreach</span>
-            <span class="task-tag">Guest posting</span>
-            <span class="task-tag">Broken link strategy</span>
-            <span class="task-tag">Toxic link disavow</span>
-            <span class="task-tag">12 more blog posts</span>
+            <span class="task-tag">HARO outreach</span><span class="task-tag">Guest posting</span><span class="task-tag">Broken link strategy</span><span class="task-tag">Toxic link disavow</span><span class="task-tag">12 more blog posts</span>
           </div>
         </div>
       </div>
       <div class="tl-item">
-        <div class="tl-node">
-          <div class="tl-circle">📊</div>
-          <div class="tl-week">Jun</div>
-        </div>
+        <div class="tl-node"><div class="tl-circle">📊</div><div class="tl-week">Jun</div></div>
         <div class="tl-content">
-          <h3>Phase 6 — Reporting, Refinement & Handover</h3>
+          <h3>Phase 6 — Reporting, Refinement &amp; Handover</h3>
           <div class="task-tags">
-            <span class="task-tag">GSC performance report</span>
-            <span class="task-tag">Rankings tracking</span>
-            <span class="task-tag">Ahrefs analysis</span>
-            <span class="task-tag">Final audit</span>
-            <span class="task-tag">Documentation & handover</span>
+            <span class="task-tag">GSC performance report</span><span class="task-tag">Rankings tracking</span><span class="task-tag">Ahrefs analysis</span><span class="task-tag">Final audit</span><span class="task-tag">Documentation &amp; handover</span>
           </div>
         </div>
       </div>
@@ -1125,135 +1077,121 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </section>
 
-<!-- ============================================================
-     RESULTS — KPI CARDS
-     ============================================================ -->
+<!-- RESULTS -->
 <section class="section alt" id="results">
   <div class="container">
     <div class="section-head fade-up">
       <div class="section-label">Final Results</div>
       <h2 class="sec-title">Every <span class="cyan">KPI Exceeded</span></h2>
-      <p class="sec-sub">Click any metric card to see the GSC/Ahrefs screenshot evidence. All data is real — captured in June 2024.</p>
+      <p class="sec-sub">All data is real — captured in June 2024.</p>
     </div>
     <div class="kpi-grid" id="kpiGrid">
 
-      <div class="kpi-result-card fade-up" data-delay="1" onclick="openModal(1)" role="button" tabindex="0">
+      <div class="kpi-result-card fade-up" data-delay="1">
         <div class="kpi-mname">Organic Traffic</div>
         <div class="kpi-was">was 5,000 / mo</div>
         <div class="kpi-val">30K</div>
         <span class="kpi-badge up">↑ +500%</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Organic traffic result">
         </div>
-        <div class="kpi-click-hint"></div>
       </div>
 
-      <div class="kpi-result-card fade-up" data-delay="2" onclick="openModal(1)" role="button" tabindex="0">
+      <div class="kpi-result-card fade-up" data-delay="2">
         <div class="kpi-mname">Impressions</div>
         <div class="kpi-was">was 120K / mo</div>
         <div class="kpi-val">480K</div>
         <span class="kpi-badge up">↑ +300%</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Impressions result">
         </div>
-        <div class="kpi-click-hint"></div>
       </div>
 
-      <div class="kpi-result-card fade-up" data-delay="3" onclick="openModal(1)" role="button" tabindex="0">
+      <div class="kpi-result-card fade-up" data-delay="3">
         <div class="kpi-mname">Top 10 Keywords</div>
         <div class="kpi-was">was 12 keywords</div>
         <div class="kpi-val">87</div>
         <span class="kpi-badge up">↑ +625%</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Keywords result">
         </div>
-        <div class="kpi-click-hint"></div>
       </div>
 
-      <div class="kpi-result-card fade-up" data-delay="4" onclick="openModal(1)" role="button" tabindex="0">
+      <div class="kpi-result-card fade-up" data-delay="4">
         <div class="kpi-mname">PageSpeed Score</div>
         <div class="kpi-was">was 28 / 100</div>
         <div class="kpi-val">92</div>
         <span class="kpi-badge up">↑ +228%</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="PageSpeed result">
         </div>
-        <div class="kpi-click-hint"></div>
       </div>
 
-      <div class="kpi-result-card fade-up" data-delay="1" onclick="openModal(0)" role="button" tabindex="0">
+      <div class="kpi-result-card fade-up" data-delay="1">
         <div class="kpi-mname">Average CTR</div>
         <div class="kpi-was">was 2.1%</div>
         <div class="kpi-val">8.4%</div>
         <span class="kpi-badge up">↑ +300%</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="CTR result">
         </div>
-        <div class="kpi-click-hint"></div>
       </div>
 
-      <div class="kpi-result-card fade-up" data-delay="2" onclick="openModal(1)" role="button" tabindex="0">
+      <div class="kpi-result-card fade-up" data-delay="2">
         <div class="kpi-mname">Domain Authority</div>
         <div class="kpi-was">was DA 14</div>
         <div class="kpi-val">DA 31</div>
         <span class="kpi-badge up">↑ +121%</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Domain authority result">
         </div>
-        <div class="kpi-click-hint"></div>
       </div>
 
-      <div class="kpi-result-card fade-up" data-delay="3" onclick="openModal(1)" role="button" tabindex="0">
+      <div class="kpi-result-card fade-up" data-delay="3">
         <div class="kpi-mname">Indexed Pages</div>
         <div class="kpi-was">was 280 pages</div>
         <div class="kpi-val">440</div>
         <span class="kpi-badge up">↑ +57%</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Indexed pages result">
         </div>
-        <div class="kpi-click-hint"></div>
       </div>
 
-      <div class="kpi-result-card fade-up" data-delay="4" onclick="openModal(1)" role="button" tabindex="0">
+      <div class="kpi-result-card fade-up" data-delay="4">
         <div class="kpi-mname">Bounce Rate</div>
         <div class="kpi-was">was 74%</div>
         <div class="kpi-val">48%</div>
         <span class="kpi-badge down">↓ -35%</span>
         <div class="cmt_single_image-wrapper_2">
-          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="services" height="100%" width="100%">
+          <img class="img-fluid" src="images/blog/cmt-blogsidebar.png" alt="Bounce rate result">
         </div>
-        <div class="kpi-click-hint"></div>
       </div>
 
     </div>
 
     <!-- KPI Table -->
     <div style="margin-top:48px" class="fade-up">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+      <div style="margin-bottom:16px">
         <span style="font-family:var(--font-head);font-size:1rem;font-weight:700">📊 Before vs After — Full KPI Comparison</span>
-        <span style="font-family:var(--font-mono);font-size:10px;color:var(--cyan)">· Click any row to view screenshot</span>
       </div>
       <div class="kpi-table-wrap">
         <table class="kpi-table">
           <thead>
             <tr>
-              <th>Metric</th>
-              <th>Before (Jan 2024)</th>
-              <th>After (Jun 2024)</th>
-              <th>Change</th>
+              <th>Metric</th><th>Before (Jan 2024)</th><th>After (Jun 2024)</th><th>Change</th>
             </tr>
           </thead>
           <tbody>
-            <tr onclick="openModal(0)"><td class="td-name">Monthly Organic Traffic</td><td class="td-before">5,000</td><td class="td-after">30,000</td><td class="td-change pos">+500%</td></tr>
-            <tr onclick="openModal(0)"><td class="td-name">Monthly Impressions</td><td class="td-before">120,000</td><td class="td-after">480,000</td><td class="td-change pos">+300%</td></tr>
-            <tr onclick="openModal(0)"><td class="td-name">Average CTR</td><td class="td-before">2.1%</td><td class="td-after">8.4%</td><td class="td-change pos">+300%</td></tr>
-            <tr onclick="openModal(0)"><td class="td-name">Top 10 Keywords</td><td class="td-before">12</td><td class="td-after">87</td><td class="td-change pos">+625%</td></tr>
-            <tr onclick="openModal(0)"><td class="td-name">Domain Authority</td><td class="td-before">DA 14</td><td class="td-after">DA 31</td><td class="td-change pos">+121%</td></tr>
-            <tr onclick="openModal(0)"><td class="td-name">PageSpeed Score</td><td class="td-before">28/100</td><td class="td-after">92/100</td><td class="td-change pos">+228%</td></tr>
-            <tr onclick="openModal(0)"><td class="td-name">LCP (Largest Contentful Paint)</td><td class="td-before">8.2s</td><td class="td-after">1.8s</td><td class="td-change neg">-78%</td></tr>
-            <tr onclick="openModal(0)"><td class="td-name">Indexed Pages</td><td class="td-before">280</td><td class="td-after">440</td><td class="td-change pos">+57%</td></tr>
-            <tr onclick="openModal(0)"><td class="td-name">Referring Domains</td><td class="td-before">23</td><td class="td-after">78</td><td class="td-change pos">+239%</td></tr>
-            <tr onclick="openModal(0)"><td class="td-name">Bounce Rate</td><td class="td-before">74%</td><td class="td-after">48%</td><td class="td-change neg">-35%</td></tr>
+            <tr><td class="td-name">Monthly Organic Traffic</td><td class="td-before">5,000</td><td class="td-after">30,000</td><td class="td-change pos">+500%</td></tr>
+            <tr><td class="td-name">Monthly Impressions</td><td class="td-before">120,000</td><td class="td-after">480,000</td><td class="td-change pos">+300%</td></tr>
+            <tr><td class="td-name">Average CTR</td><td class="td-before">2.1%</td><td class="td-after">8.4%</td><td class="td-change pos">+300%</td></tr>
+            <tr><td class="td-name">Top 10 Keywords</td><td class="td-before">12</td><td class="td-after">87</td><td class="td-change pos">+625%</td></tr>
+            <tr><td class="td-name">Domain Authority</td><td class="td-before">DA 14</td><td class="td-after">DA 31</td><td class="td-change pos">+121%</td></tr>
+            <tr><td class="td-name">PageSpeed Score</td><td class="td-before">28/100</td><td class="td-after">92/100</td><td class="td-change pos">+228%</td></tr>
+            <tr><td class="td-name">LCP (Largest Contentful Paint)</td><td class="td-before">8.2s</td><td class="td-after">1.8s</td><td class="td-change neg">-78%</td></tr>
+            <tr><td class="td-name">Indexed Pages</td><td class="td-before">280</td><td class="td-after">440</td><td class="td-change pos">+57%</td></tr>
+            <tr><td class="td-name">Referring Domains</td><td class="td-before">23</td><td class="td-after">78</td><td class="td-change pos">+239%</td></tr>
+            <tr><td class="td-name">Bounce Rate</td><td class="td-before">74%</td><td class="td-after">48%</td><td class="td-change neg">-35%</td></tr>
           </tbody>
         </table>
       </div>
@@ -1261,9 +1199,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </section>
 
-<!-- ============================================================
-     TOOLS
-     ============================================================ -->
+<!-- TOOLS -->
 <section class="section" id="tools">
   <div class="container">
     <div class="section-head fade-up">
@@ -1287,9 +1223,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </section>
 
-<!-- ============================================================
-     CTA
-     ============================================================ -->
+<!-- CTA -->
 <section class="cta-section" id="contact">
   <div class="container">
     <div class="fade-up">
@@ -1305,12 +1239,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </section>
 
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
 <footer>
   <div class="footer-inner">
-    <p class="footer-copy">© 2024 Subash Ravi · SEO Specialist & Digital Marketer</p>
+    <p class="footer-copy">© 2024 Subash Ravi · SEO Specialist &amp; Digital Marketer</p>
     <div class="footer-links">
       <a href="#">LinkedIn ↗</a>
       <a href="#">Email</a>
@@ -1320,125 +1251,13 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </footer>
 
-<!-- ============================================================
-     JAVASCRIPT
-     ============================================================ -->
 <script>
 /* ============================================================
-   SCREENSHOT DATA
-   Replace src paths with your actual screenshot files.
-   ============================================================ */
-const screenshots = [
-  {
-    id: 0,
-    icon: '📊',
-    title: 'Before vs After — SEO KPI Comparison',
-    subtitle: 'Google Search Console · Jan 2024 vs Jun 2024',
-    src: 'express GSC-1.png',
-    tags: ['GSC', 'KPI Table', 'Traffic', 'CTR'],
-  },
-  {
-    id: 1,
-    icon: '📈',
-    title: 'KPI Stat Cards — Results Dashboard',
-    subtitle: 'Organic traffic, impressions, keywords, PageSpeed',
-    src: 'express GSC-1.png',
-    tags: ['Traffic', 'Keywords', 'PageSpeed', 'CTR'],
-  },
-  {
-    id: 2,
-    icon: '⚡',
-    title: 'Strategy Execution — 6 Pillars',
-    subtitle: 'Technical SEO, On-Page, Content, Links, Indexing',
-    src: 'Screenshot_2026-05-14_at_11_44_53_AM.png',
-    tags: ['Technical', 'On-Page', 'Link Building', 'Content'],
-  },
-  {
-    id: 3,
-    icon: '🔬',
-    title: '8-Step SEO Audit Framework',
-    subtitle: 'Technical Audit → Keyword Research → Competitor Analysis',
-    src: 'Screenshot_2026-05-14_at_11_44_40_AM.png',
-    tags: ['Audit', 'Framework', 'Process'],
-  },
-  {
-    id: 4,
-    icon: '🚨',
-    title: '9 Critical SEO Issues Found',
-    subtitle: 'Core Web Vitals, Crawl Issues, Duplicate Content, More',
-    src: 'Screenshot_2026-05-14_at_11_44_34_AM.png',
-    tags: ['Audit', 'Core Web Vitals', 'Crawl', 'Indexing'],
-  },
-];
-
-let currentIndex = 0;
-
-function openModal(index) {
-  currentIndex = index;
-  renderModal();
-  document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function renderModal() {
-  const ss = screenshots[currentIndex];
-  document.getElementById('modalIcon').textContent = ss.icon;
-  document.getElementById('modalTitle').textContent = ss.title;
-  document.getElementById('modalSubtitle').textContent = ss.subtitle;
-  document.getElementById('modalTags').innerHTML = ss.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
-  document.getElementById('modalCounter').textContent = `${currentIndex + 1} / ${screenshots.length}`;
-  document.getElementById('modalPrev').disabled = currentIndex === 0;
-  document.getElementById('modalNext').disabled = currentIndex === screenshots.length - 1;
-
-  const body = document.getElementById('modalBody');
-  const img = new Image();
-  img.onload = () => {
-    body.innerHTML = `<div class="modal-img-wrap"><img class="modal-img" src="${ss.src}" alt="${ss.title}" /></div>`;
-  };
-  img.onerror = () => {
-    body.innerHTML = `
-      <div class="modal-placeholder">
-        <div class="ph-icon">${ss.icon}</div>
-        <h3>${ss.title}</h3>
-        <p>Screenshot not found at the path below. Replace the <code>src</code> in the <code>screenshots</code> array with your actual file path.</p>
-        <code>src: "${ss.src}"</code>
-      </div>`;
-  };
-  img.src = ss.src;
-}
-
-document.getElementById('modalPrev').addEventListener('click', () => {
-  if (currentIndex > 0) { currentIndex--; renderModal(); }
-});
-document.getElementById('modalNext').addEventListener('click', () => {
-  if (currentIndex < screenshots.length - 1) { currentIndex++; renderModal(); }
-});
-document.getElementById('modalClose').addEventListener('click', closeModal);
-document.getElementById('modalOverlay').addEventListener('click', (e) => {
-  if (e.target === e.currentTarget) closeModal();
-});
-
-/* ============================================================
-   KEYBOARD NAV
-   ============================================================ */
-document.addEventListener('keydown', (e) => {
-  const open = document.getElementById('modalOverlay').classList.contains('open');
-  if (!open) return;
-  if (e.key === 'Escape') closeModal();
-  if (e.key === 'ArrowLeft' && currentIndex > 0) { currentIndex--; renderModal(); }
-  if (e.key === 'ArrowRight' && currentIndex < screenshots.length - 1) { currentIndex++; renderModal(); }
-});
-
-/* ============================================================
-   NAVIGATION
+   NAV — hamburger toggle + scroll shrink
    ============================================================ */
 const hamburger = document.getElementById('navHamburger');
-const navLinks = document.getElementById('navLinks');
+const navLinks  = document.getElementById('navLinks');
+
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('open');
   navLinks.classList.toggle('open');
@@ -1449,14 +1268,12 @@ navLinks.querySelectorAll('a').forEach(a => {
     hamburger.classList.remove('open');
   });
 });
-
-const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 50);
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
 
 /* ============================================================
-   SCROLL ANIMATION — INTERSECTION OBSERVER
+   SCROLL ANIMATIONS — fade-up / fade-left
    ============================================================ */
 const fadeObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -1466,30 +1283,22 @@ const fadeObserver = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
 document.querySelectorAll('.fade-up, .fade-left').forEach(el => fadeObserver.observe(el));
 
-/* Keyboard access for all role="button" elements */
-document.querySelectorAll('[role="button"]').forEach(el => {
-  el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') el.click(); });
-});
-
 /* ============================================================
-   COUNTER ANIMATION
+   COUNTER ANIMATION — stats strip
    ============================================================ */
 function animCount(el, target, suffix) {
-  const dur = 2000;
-  let start = null;
+  const dur = 2000; let start = null;
   const step = (ts) => {
     if (!start) start = ts;
-    const p = Math.min((ts - start) / dur, 1);
+    const p    = Math.min((ts - start) / dur, 1);
     const ease = 1 - Math.pow(1 - p, 4);
     el.textContent = Math.round(ease * target) + suffix;
     if (p < 1) requestAnimationFrame(step);
   };
   requestAnimationFrame(step);
 }
-
 const counterObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -1499,20 +1308,96 @@ const counterObserver = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.5 });
-
 document.querySelectorAll('[data-target]').forEach(el => {
   el.textContent = '0' + (el.dataset.suffix || '');
   counterObserver.observe(el);
 });
 
 /* ============================================================
-   SMOOTH SCROLL
+   SMOOTH SCROLL — anchor links
    ============================================================ */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
     if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
+});
+
+/* ============================================================
+   IMAGE LIGHTBOX / MODAL
+   ============================================================
+   How it works:
+   1. We query every img inside .cmt_single_image-wrapper_2
+   2. Each image gets a click listener that:
+        • copies its src and alt into the modal <img>
+        • sets the caption from the alt text
+        • shows the modal (#imgModal.is-open)
+        • locks body scroll so the page doesn't shift behind
+   3. Close paths:
+        a. × button click
+        b. Click directly on the dark overlay (outside .modal-box)
+        c. Keyboard Esc key
+   ============================================================ */
+
+const modal       = document.getElementById('imgModal');
+const modalImg    = document.getElementById('modalImg');
+const modalCaption= document.getElementById('modalCaption');
+const modalClose  = document.getElementById('modalClose');
+const modalBox    = document.getElementById('modalBox');
+
+/**
+ * openModal — populate and show the modal
+ * @param {HTMLImageElement} imgEl  the thumbnail that was clicked
+ */
+function openModal(imgEl) {
+  modalImg.src         = imgEl.src;
+  modalImg.alt         = imgEl.alt;
+  modalCaption.textContent = imgEl.alt || '';
+
+  /* Show modal */
+  modal.classList.add('is-open');
+
+  /* Prevent body scroll while modal is open */
+  document.body.style.overflow = 'hidden';
+
+  /* Move focus to close button for accessibility */
+  modalClose.focus();
+}
+
+/**
+ * closeModal — hide the modal and restore scroll
+ */
+function closeModal() {
+  modal.classList.remove('is-open');
+  /* Small delay matches the CSS fade-out so src isn't wiped mid-animation */
+  setTimeout(() => {
+    modalImg.src = '';
+    document.body.style.overflow = '';
+  }, 280);
+}
+
+/* ---- Attach click listeners to every image in the wrappers ---- */
+document.querySelectorAll('.cmt_single_image-wrapper_2 img').forEach(img => {
+  img.addEventListener('click', () => openModal(img));
+  /* Also allow keyboard activation (Enter / Space) for accessibility */
+  img.setAttribute('tabindex', '0');
+  img.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(img); }
+  });
+});
+
+/* ---- Close button ---- */
+modalClose.addEventListener('click', closeModal);
+
+/* ---- Click on the dark overlay (outside the modal-box) closes it ---- */
+modal.addEventListener('click', (e) => {
+  /* Only close if the click target is the backdrop itself, not the image or box */
+  if (!modalBox.contains(e.target)) closeModal();
+});
+
+/* ---- Esc key closes the modal ---- */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
 });
 </script>
 </body>
