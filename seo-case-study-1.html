@@ -185,34 +185,29 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .ch-badge{display:inline-block;background:rgba(255,82,82,0.1);border:1px solid rgba(255,82,82,0.25);border-radius:6px;padding:4px 12px;font-family:var(--font-mono);font-size:10px;color:var(--red);font-weight:500}
 
 /* ============================================================
-   CLICKABLE IMAGE WRAPPER — works for BOTH class names:
-   .cmt_single_image-wrapper_2  AND  .popup-img-wrap
-   The JS targets both, so it doesn't matter which you use.
+   UNIVERSAL POPUP IMAGE WRAPPER
+   Works for: .popup-img-wrap (used everywhere in this file)
    ============================================================ */
-.cmt_single_image-wrapper_2,
 .popup-img-wrap {
   margin-top: 14px;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid var(--border);
-  /* zoom cursor tells users the image is clickable */
   cursor: zoom-in;
   position: relative;
   transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  display: block;
 }
-.cmt_single_image-wrapper_2:hover,
 .popup-img-wrap:hover {
   border-color: var(--cyan-border);
   box-shadow: 0 0 20px rgba(0,229,255,0.18);
 }
-/* "🔍 Click to view" hint fades in on hover */
-.cmt_single_image-wrapper_2::after,
 .popup-img-wrap::after {
-  content: '🔍  Click to view full size';
+  content: '🔍  Click to enlarge';
   position: absolute;
   bottom: 0; left: 0; right: 0;
   padding: 10px 14px;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.08em;
@@ -221,18 +216,37 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
   transition: opacity 0.25s var(--ease);
   pointer-events: none;
 }
-.cmt_single_image-wrapper_2:hover::after,
 .popup-img-wrap:hover::after { opacity: 1; }
-
-.cmt_single_image-wrapper_2 img,
 .popup-img-wrap img {
   width: 100%;
   height: auto;
   display: block;
   transition: transform 0.35s var(--ease);
 }
-.cmt_single_image-wrapper_2:hover img,
 .popup-img-wrap:hover img { transform: scale(1.04); }
+
+/* Placeholder image block shown when src is missing/broken */
+.img-placeholder {
+  width: 100%;
+  min-height: 110px;
+  background: var(--bg3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 8px;
+  color: var(--t3);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.35s var(--ease);
+}
+.popup-img-wrap:hover .img-placeholder { transform: scale(1.02); }
+.img-placeholder .ph-icon { font-size: 1.6rem; opacity: 0.5; }
+.img-placeholder .ph-text { opacity: 0.6; }
 
 /* AUDIT */
 .audit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -330,41 +344,28 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 [data-delay="1"]{transition-delay:0.1s}[data-delay="2"]{transition-delay:0.2s}[data-delay="3"]{transition-delay:0.3s}[data-delay="4"]{transition-delay:0.4s}[data-delay="5"]{transition-delay:0.5s}[data-delay="6"]{transition-delay:0.6s}
 
 /* ============================================================
-   POPUP / LIGHTBOX — THE MODAL THAT SHOWS THE BIG IMAGE
-   ============================================================
-   #imgPopup    = the dark full-screen overlay
-   .popup-inner = the white box that holds the image
-   #popupClose  = the × button
-   #popupImg    = the big version of the image
-   #popupCap    = caption text (from alt attribute)
+   POPUP / LIGHTBOX
    ============================================================ */
-
-/* --- Overlay --- */
 #imgPopup {
-  /* HIDDEN until JS adds .active */
   display: none;
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 99999;                          /* on top of everything */
-  background: rgba(0, 0, 0, 0.92);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  /* flex centres the inner box */
+  z-index: 99999;
+  background: rgba(0,0,0,0.92);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
   align-items: center;
   justify-content: center;
   padding: 20px;
 }
-/* JS adds this class to show the popup */
 #imgPopup.active {
   display: flex;
-  animation: overlayIn 0.25s ease forwards;
+  animation: overlayIn 0.22s ease forwards;
 }
 @keyframes overlayIn {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
-
-/* --- Inner box --- */
 .popup-inner {
   position: relative;
   display: flex;
@@ -376,15 +377,13 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   animation: boxIn 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards;
 }
 @keyframes boxIn {
-  from { opacity: 0; transform: scale(0.80) translateY(30px); }
+  from { opacity: 0; transform: scale(0.82) translateY(28px); }
   to   { opacity: 1; transform: scale(1)    translateY(0);    }
 }
-
-/* --- The big image --- */
 #popupImg {
   display: block;
   max-width: 100%;
-  max-height: calc(90vh - 70px);
+  max-height: calc(90vh - 80px);
   width: auto;
   height: auto;
   object-fit: contain;
@@ -395,8 +394,6 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
     0 40px 100px rgba(0,0,0,0.9),
     0 0 80px rgba(0,229,255,0.10);
 }
-
-/* --- Caption --- */
 #popupCap {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
@@ -406,8 +403,6 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   max-width: 680px;
   line-height: 1.6;
 }
-
-/* --- ESC hint --- */
 .popup-esc {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10px;
@@ -415,8 +410,6 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   text-transform: uppercase;
   color: rgba(255,255,255,0.20);
 }
-
-/* --- × Close button --- */
 #popupClose {
   position: absolute;
   top: -18px;
@@ -445,17 +438,61 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   transform: rotate(90deg) scale(1.15);
 }
 
-/* --- Mobile tweaks --- */
+/* Placeholder popup panel (shown when image file is missing) */
+#popupPlaceholder {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 560px;
+  max-width: 90vw;
+  min-height: 300px;
+  background: var(--card2);
+  border-radius: 16px;
+  border: 1px solid var(--cyan-border);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 60px rgba(0,229,255,0.08);
+  padding: 48px 32px;
+  text-align: center;
+}
+#popupPlaceholder.show { display: flex; }
+#popupPlaceholder .ph-big-icon { font-size: 3rem; opacity: 0.6; }
+#popupPlaceholder .ph-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+#popupPlaceholder .ph-title {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--t1);
+}
+#popupPlaceholder .ph-sub {
+  font-size: 0.82rem;
+  color: var(--t3);
+  line-height: 1.7;
+  max-width: 340px;
+}
+#popupCap2 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--t2);
+  text-align: center;
+  margin-top: 4px;
+  max-width: 480px;
+}
+
 @media (max-width: 600px) {
   #imgPopup { padding: 12px; }
   #popupClose { top: -14px; right: -14px; width: 36px; height: 36px; font-size: 1.1rem; }
-  #popupCap { font-size: 10px; }
+  #popupCap, #popupCap2 { font-size: 10px; }
   .popup-esc { display: none; }
 }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
+/* RESPONSIVE */
 @media(max-width:1100px){
   .context-grid{grid-template-columns:1fr 1fr}
   .kpi-box{grid-column:span 2}
@@ -504,21 +541,29 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 
 <!-- ============================================================
      IMAGE POPUP MODAL
-     This is always in the DOM — hidden until a user clicks an image.
-     JS fills in #popupImg src/alt and #popupCap, then adds .active.
      ============================================================ -->
 <div id="imgPopup" role="dialog" aria-modal="true" aria-label="Image lightbox">
   <div class="popup-inner" id="popupInner">
     <button id="popupClose" aria-label="Close">&#x2715;</button>
-    <img id="popupImg" src="" alt="">
+
+    <!-- Real image (shown when file exists) -->
+    <img id="popupImg" src="" alt="" style="display:none">
     <div id="popupCap"></div>
-    <div class="popup-esc">Press ESC to close</div>
+
+    <!-- Placeholder panel (shown when file is missing) -->
+    <div id="popupPlaceholder">
+      <div class="ph-big-icon">📊</div>
+      <div class="ph-label">Screenshot Preview</div>
+      <div class="ph-title" id="popupPlaceholderTitle">SEO Data Screenshot</div>
+      <div class="ph-sub">Add your screenshot file to the same folder as this HTML file and update the <code>src</code> attribute to see the real image here.</div>
+    </div>
+    <div id="popupCap2"></div>
+
+    <div class="popup-esc">Press ESC or click outside to close</div>
   </div>
 </div>
 
-<!-- ============================================================
-     NAVIGATION
-     ============================================================ -->
+<!-- NAVIGATION -->
 <nav class="nav" id="mainNav">
   <div class="nav-inner">
     <a class="nav-logo" href="#">
@@ -539,9 +584,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </nav>
 
-<!-- ============================================================
-     HERO
-     ============================================================ -->
+<!-- HERO -->
 <section>
   <div class="hero">
     <div class="fade-left">
@@ -661,9 +704,7 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 </section>
 
 <!-- ============================================================
-     CHALLENGES
-     Images use class="cmt_single_image-wrapper_2" — the popup
-     JS targets this class (and .popup-img-wrap) automatically.
+     CHALLENGES — 9 cards, all with popup-img-wrap
      ============================================================ -->
 <section class="section alt" id="challenges">
   <div class="container">
@@ -680,8 +721,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Poor Core Web Vitals</div>
         <div class="ch-desc">LCP of 8.2s (target ≤2.5s). CLS of 0.38 (target ≤0.1). All three Core Web Vitals failing on mobile and desktop.</div>
         <span class="ch-badge">PageSpeed: 28/100</span>
-        <div class="cmt_single_image-wrapper_2">
-          <img src="express GSC-1.png" alt="Core Web Vitals — PageSpeed 28/100 screenshot">
+        <div class="popup-img-wrap" data-caption="Core Web Vitals — PageSpeed 28/100 · Before state">
+          <img src="express GSC-1.png" alt="Core Web Vitals — PageSpeed 28/100 screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">⚡</div><div class="ph-text">PageSpeed 28/100<br>Core Web Vitals screenshot</div></div>
         </div>
       </div>
 
@@ -691,8 +733,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Crawl &amp; Indexing Issues</div>
         <div class="ch-desc">180+ pages blocked in robots.txt accidentally. Google not indexing 40% of product pages due to canonical errors and crawl budget waste.</div>
         <span class="ch-badge">140 Pages Not Indexed</span>
-        <div class="cmt_single_image-wrapper_2">
-          <img src="your-crawl-screenshot.png" alt="Crawl &amp; Indexing issues screenshot">
+        <div class="popup-img-wrap" data-caption="Crawl & Indexing issues — 140 pages not indexed">
+          <img src="your-crawl-screenshot.png" alt="Crawl & Indexing issues screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🔍</div><div class="ph-text">GSC Coverage Report<br>140 pages not indexed</div></div>
         </div>
       </div>
 
@@ -702,8 +745,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Duplicate Content Issues</div>
         <div class="ch-desc">Product variations creating duplicate URLs. Tag pages, pagination, and filter parameters causing cannibalisation across 60+ pages.</div>
         <span class="ch-badge">60+ Duplicate Pages</span>
-        <div class="cmt_single_image-wrapper_2">
-          <img src="your-duplicate-screenshot.png" alt="Duplicate content screenshot">
+        <div class="popup-img-wrap" data-caption="Duplicate content — 60+ cannibalised pages">
+          <img src="your-duplicate-screenshot.png" alt="Duplicate content screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">📄</div><div class="ph-text">Duplicate Content Audit<br>60+ cannibalised URLs</div></div>
         </div>
       </div>
 
@@ -713,8 +757,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Weak Internal Linking</div>
         <div class="ch-desc">High-value pages receiving zero internal links. PageRank not flowing to priority product pages and collections.</div>
         <span class="ch-badge">Orphan Pages: 48</span>
-        <div class="cmt_single_image-wrapper_2">
-          <img src="your-internal-link-screenshot.png" alt="Internal linking screenshot">
+        <div class="popup-img-wrap" data-caption="Internal linking audit — 48 orphan pages found">
+          <img src="your-internal-link-screenshot.png" alt="Internal linking screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🔗</div><div class="ph-text">Internal Link Audit<br>48 orphan pages</div></div>
         </div>
       </div>
 
@@ -724,8 +769,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">300+ Technical SEO Errors</div>
         <div class="ch-desc">Broken links, missing alt tags, missing meta descriptions, schema errors, and redirect chains found in full Screaming Frog audit.</div>
         <span class="ch-badge">Screaming Frog Crawl</span>
-        <div class="cmt_single_image-wrapper_2">
-          <img src="your-technical-errors-screenshot.png" alt="Technical errors screenshot">
+        <div class="popup-img-wrap" data-caption="Screaming Frog crawl — 300+ technical errors">
+          <img src="your-technical-errors-screenshot.png" alt="Technical errors screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🐛</div><div class="ph-text">Screaming Frog Crawl<br>300+ technical errors</div></div>
         </div>
       </div>
 
@@ -735,8 +781,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Poor Mobile Usability</div>
         <div class="ch-desc">Non-responsive elements, tap targets too small, font size issues causing Google Mobile Usability failures in GSC.</div>
         <span class="ch-badge">12 Mobile Errors</span>
-        <div class="cmt_single_image-wrapper_2">
-          <img src="your-mobile-screenshot.png" alt="Mobile usability screenshot">
+        <div class="popup-img-wrap" data-caption="GSC Mobile Usability — 12 errors flagged">
+          <img src="your-mobile-screenshot.png" alt="Mobile usability screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">📱</div><div class="ph-text">GSC Mobile Usability<br>12 errors flagged</div></div>
         </div>
       </div>
 
@@ -746,8 +793,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Low Keyword Rankings</div>
         <div class="ch-desc">Only 12 keywords in Top 10. No target keywords ranking on Page 1. Weak E-E-A-T signals across the domain.</div>
         <span class="ch-badge">DA: 14 · DR: 11</span>
-        <div class="cmt_single_image-wrapper_2">
-          <img src="your-rankings-screenshot.png" alt="Keyword rankings screenshot">
+        <div class="popup-img-wrap" data-caption="Keyword rankings — only 12 keywords in Top 10, DA 14">
+          <img src="your-rankings-screenshot.png" alt="Keyword rankings screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">📉</div><div class="ph-text">Keyword Rankings Report<br>12 keywords Top 10 · DA 14</div></div>
         </div>
       </div>
 
@@ -757,8 +805,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Low Click-Through Rate</div>
         <div class="ch-desc">Average CTR of 2.1% despite appearing in search results. Titles and meta descriptions not optimised for SERP appeal.</div>
         <span class="ch-badge">CTR: 2.1%</span>
-        <div class="cmt_single_image-wrapper_2">
-          <img src="your-ctr-screenshot.png" alt="CTR screenshot">
+        <div class="popup-img-wrap" data-caption="GSC CTR report — average 2.1% click-through rate">
+          <img src="your-ctr-screenshot.png" alt="CTR screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🖱</div><div class="ph-text">GSC Performance Report<br>CTR: 2.1%</div></div>
         </div>
       </div>
 
@@ -768,8 +817,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="ch-title">Weak Backlink Profile</div>
         <div class="ch-desc">Only 23 referring domains, most low-quality with no anchor text diversity. Domain authority significantly behind competitors.</div>
         <span class="ch-badge">23 Ref. Domains</span>
-        <div class="cmt_single_image-wrapper_2">
-          <img src="your-backlinks-screenshot.png" alt="Backlink profile screenshot">
+        <div class="popup-img-wrap" data-caption="Ahrefs backlink profile — only 23 referring domains, DA 14">
+          <img src="your-backlinks-screenshot.png" alt="Backlink profile screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🔋</div><div class="ph-text">Ahrefs Backlink Profile<br>23 referring domains</div></div>
         </div>
       </div>
 
@@ -777,7 +827,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </section>
 
-<!-- AUDIT PROCESS -->
+<!-- ============================================================
+     AUDIT PROCESS — 8 cards, all with popup-img-wrap
+     ============================================================ -->
 <section class="section" id="audit">
   <div class="container">
     <div class="section-head fade-up">
@@ -786,59 +838,94 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
       <p class="sec-sub">Before executing, I ran a structured 8-step audit to map every opportunity and prioritise actions by impact.</p>
     </div>
     <div class="audit-grid">
+
       <div class="audit-card fade-up" data-delay="1">
         <div class="audit-step">Step 01</div><span class="audit-emoji">🔬</span>
         <div class="audit-name">Technical Audit</div>
         <div class="audit-desc">Crawl errors, redirects, Core Web Vitals, schema, robots.txt</div>
-        <div class="cmt_single_image-wrapper_2"><img src="express GSC-1.png" alt="Technical audit screenshot"></div>
+        <div class="popup-img-wrap" data-caption="Step 01 — Technical Audit: crawl errors, redirects, Core Web Vitals">
+          <img src="your-audit-technical.png" alt="Technical audit screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🔬</div><div class="ph-text">Technical Audit<br>Crawl errors & Core Web Vitals</div></div>
+        </div>
       </div>
+
       <div class="audit-card fade-up" data-delay="2">
         <div class="audit-step">Step 02</div><span class="audit-emoji">🗝️</span>
         <div class="audit-name">Keyword Research</div>
         <div class="audit-desc">Volume, intent mapping, long-tail opportunities, SERP features</div>
-        <div class="cmt_single_image-wrapper_2"><img src="your-audit-keywords.png" alt="Keyword research screenshot"></div>
+        <div class="popup-img-wrap" data-caption="Step 02 — Keyword Research: volume, intent, long-tail opportunities">
+          <img src="your-audit-keywords.png" alt="Keyword research screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🗝️</div><div class="ph-text">Keyword Research<br>Intent mapping & volume</div></div>
+        </div>
       </div>
+
       <div class="audit-card fade-up" data-delay="3">
         <div class="audit-step">Step 03</div><span class="audit-emoji">🏆</span>
         <div class="audit-name">Competitor Analysis</div>
         <div class="audit-desc">Top 5 SERP competitors analysed for content gaps and link gaps</div>
-        <div class="cmt_single_image-wrapper_2"><img src="your-audit-competitors.png" alt="Competitor analysis screenshot"></div>
+        <div class="popup-img-wrap" data-caption="Step 03 — Competitor Analysis: content & link gap analysis">
+          <img src="your-audit-competitors.png" alt="Competitor analysis screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🏆</div><div class="ph-text">Competitor Analysis<br>Top 5 SERP competitors</div></div>
+        </div>
       </div>
+
       <div class="audit-card fade-up" data-delay="4">
         <div class="audit-step">Step 04</div><span class="audit-emoji">📊</span>
         <div class="audit-name">Content Gap Analysis</div>
         <div class="audit-desc">Missing topics, thin content, cannibalisation map</div>
-        <div class="cmt_single_image-wrapper_2"><img src="your-audit-content-gap.png" alt="Content gap analysis screenshot"></div>
+        <div class="popup-img-wrap" data-caption="Step 04 — Content Gap Analysis: missing topics, thin content">
+          <img src="your-audit-content-gap.png" alt="Content gap analysis screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">📊</div><div class="ph-text">Content Gap Analysis<br>Missing topics & thin content</div></div>
+        </div>
       </div>
+
       <div class="audit-card fade-up" data-delay="1">
         <div class="audit-step">Step 05</div><span class="audit-emoji">🔎</span>
         <div class="audit-name">SERP Analysis</div>
         <div class="audit-desc">Search intent, featured snippets, PAA, schema opportunities</div>
-        <div class="cmt_single_image-wrapper_2"><img src="your-audit-serp.png" alt="SERP analysis screenshot"></div>
+        <div class="popup-img-wrap" data-caption="Step 05 — SERP Analysis: intent, snippets, PAA boxes">
+          <img src="your-audit-serp.png" alt="SERP analysis screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🔎</div><div class="ph-text">SERP Analysis<br>Featured snippets & PAA</div></div>
+        </div>
       </div>
+
       <div class="audit-card fade-up" data-delay="2">
         <div class="audit-step">Step 06</div><span class="audit-emoji">🔗</span>
         <div class="audit-name">Backlink Audit</div>
         <div class="audit-desc">Toxic links disavowed, anchor diversity, referring domain analysis</div>
-        <div class="cmt_single_image-wrapper_2"><img src="your-audit-backlinks.png" alt="Backlink audit screenshot"></div>
+        <div class="popup-img-wrap" data-caption="Step 06 — Backlink Audit: toxic links, anchor diversity">
+          <img src="your-audit-backlinks.png" alt="Backlink audit screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🔗</div><div class="ph-text">Backlink Audit<br>Toxic links & anchor diversity</div></div>
+        </div>
       </div>
+
       <div class="audit-card fade-up" data-delay="3">
         <div class="audit-step">Step 07</div><span class="audit-emoji">🕸</span>
         <div class="audit-name">Internal Link Review</div>
         <div class="audit-desc">Crawl depth, orphan pages, PageRank flow mapping</div>
-        <div class="cmt_single_image-wrapper_2"><img src="your-audit-internal-links.png" alt="Internal link review screenshot"></div>
+        <div class="popup-img-wrap" data-caption="Step 07 — Internal Link Review: orphan pages & PageRank flow">
+          <img src="your-audit-internal-links.png" alt="Internal link review screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🕸</div><div class="ph-text">Internal Link Review<br>Orphan pages & crawl depth</div></div>
+        </div>
       </div>
+
       <div class="audit-card fade-up" data-delay="4">
         <div class="audit-step">Step 08</div><span class="audit-emoji">📋</span>
         <div class="audit-name">Schema Opportunities</div>
         <div class="audit-desc">Product, review, FAQ, breadcrumb, HowTo schema gaps</div>
-        <div class="cmt_single_image-wrapper_2"><img src="your-audit-schema.png" alt="Schema opportunities screenshot"></div>
+        <div class="popup-img-wrap" data-caption="Step 08 — Schema Opportunities: product, FAQ, breadcrumb gaps">
+          <img src="your-audit-schema.png" alt="Schema opportunities screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">📋</div><div class="ph-text">Schema Opportunities<br>Product, FAQ, Breadcrumb</div></div>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- STRATEGY -->
+<!-- ============================================================
+     STRATEGY — 6 cards, all with popup-img-wrap
+     ============================================================ -->
 <section class="section alt" id="strategy">
   <div class="container">
     <div class="section-head fade-up">
@@ -859,7 +946,10 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Canonicalised 60+ duplicate product variation URLs</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: PageSpeed 28 → 92 · LCP 8.2s → 1.8s</div>
-        <div class="cmt_single_image-wrapper_2"><img src="your-strategy-technical.png" alt="Technical SEO results screenshot"></div>
+        <div class="popup-img-wrap" data-caption="Technical SEO results — PageSpeed 28 → 92, LCP 8.2s → 1.8s">
+          <img src="your-strategy-technical.png" alt="Technical SEO results screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">⚡</div><div class="ph-text">Technical SEO Results<br>PageSpeed 28 → 92</div></div>
+        </div>
       </div>
 
       <div class="strat-card fade-up" data-delay="2">
@@ -873,7 +963,10 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Added breadcrumb schema improving crawl efficiency by 35%</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: CTR 2.1% → 8.4% · 22 Featured Snippet wins</div>
-        <div class="cmt_single_image-wrapper_2"><img src="your-strategy-onpage.png" alt="On-page optimisation results screenshot"></div>
+        <div class="popup-img-wrap" data-caption="On-page optimisation results — CTR 2.1% → 8.4%, 22 Featured Snippets">
+          <img src="your-strategy-onpage.png" alt="On-page optimisation results screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">📝</div><div class="ph-text">On-Page Optimisation<br>CTR 2.1% → 8.4%</div></div>
+        </div>
       </div>
 
       <div class="strat-card fade-up" data-delay="3">
@@ -887,7 +980,10 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Created content hubs with cluster/pillar architecture for 6 core topics</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: Avg time on page +68% · Pages/session +42%</div>
-        <div class="cmt_single_image-wrapper_2"><img src="your-strategy-content.png" alt="Content strategy results screenshot"></div>
+        <div class="popup-img-wrap" data-caption="Content strategy results — time on page +68%, pages/session +42%">
+          <img src="your-strategy-content.png" alt="Content strategy results screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">✍️</div><div class="ph-text">Content Strategy Results<br>Time on page +68%</div></div>
+        </div>
       </div>
 
       <div class="strat-card fade-up" data-delay="4">
@@ -901,7 +997,10 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Used Ahrefs link opportunities report for high-authority internal link placements</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: Crawl depth reduced · 38% more pages indexed</div>
-        <div class="cmt_single_image-wrapper_2"><img src="your-strategy-internal.png" alt="Internal linking results screenshot"></div>
+        <div class="popup-img-wrap" data-caption="Internal linking results — 38% more pages indexed, 0 orphan pages">
+          <img src="your-strategy-internal.png" alt="Internal linking results screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🕸</div><div class="ph-text">Internal Linking Results<br>38% more pages indexed</div></div>
+        </div>
       </div>
 
       <div class="strat-card fade-up" data-delay="1">
@@ -909,13 +1008,16 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
         <div class="strat-problem">Problem: DA 14, only 23 referring domains</div>
         <ul class="strat-list">
           <li class="strat-item"><span class="arrow-cyan">→</span><span>HARO outreach securing 8 high-DA editorial mentions</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Guest posting on 12 health/wellness blogs with DR 40+ authority</span></li>
+          <li class="strat-item"><span class="arrow-cyan">→</span><span>Guest posting on 12 logistics/shipping blogs with DR 40+ authority</span></li>
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Resource page link building via broken link strategy</span></li>
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Disavowed 34 spammy backlinks detected in GSC manual actions report</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Local citations built across 15 niche health directories</span></li>
+          <li class="strat-item"><span class="arrow-cyan">→</span><span>Local citations built across 15 niche industry directories</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: DA 14 → 31 · Ref. Domains 23 → 78</div>
-        <div class="cmt_single_image-wrapper_2"><img src="your-strategy-links.png" alt="Link building results screenshot"></div>
+        <div class="popup-img-wrap" data-caption="Link building results — DA 14 → 31, referring domains 23 → 78">
+          <img src="your-strategy-links.png" alt="Link building results screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🔗</div><div class="ph-text">Link Building Results<br>DA 14 → 31 · 23 → 78 RDs</div></div>
+        </div>
       </div>
 
       <div class="strat-card fade-up" data-delay="2">
@@ -929,7 +1031,10 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
           <li class="strat-item"><span class="arrow-cyan">→</span><span>Monitored and resolved crawl anomalies weekly via GSC Coverage report</span></li>
         </ul>
         <div class="impact-bar">📈 Impact: Indexed pages 280 → 440 · +57% indexation rate</div>
-        <div class="cmt_single_image-wrapper_2"><img src="your-strategy-indexing.png" alt="Indexing fix results screenshot"></div>
+        <div class="popup-img-wrap" data-caption="Indexing results — pages indexed 280 → 440, +57% indexation rate">
+          <img src="your-strategy-indexing.png" alt="Indexing fix results screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🗺</div><div class="ph-text">Indexing Fix Results<br>280 → 440 pages indexed</div></div>
+        </div>
       </div>
 
     </div>
@@ -955,7 +1060,9 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   </div>
 </section>
 
-<!-- RESULTS -->
+<!-- ============================================================
+     RESULTS — 8 KPI cards, all with popup-img-wrap
+     ============================================================ -->
 <section class="section alt" id="results">
   <div class="container">
     <div class="section-head fade-up">
@@ -964,14 +1071,95 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
       <p class="sec-sub">All data is real — captured in June 2024.</p>
     </div>
     <div class="kpi-grid" id="kpiGrid">
-      <div class="kpi-result-card fade-up" data-delay="1"><div class="kpi-mname">Organic Traffic</div><div class="kpi-was">was 5,000 / mo</div><div class="kpi-val">30K</div><span class="kpi-badge up">↑ +500%</span><div class="cmt_single_image-wrapper_2"><img src="express GSC-1.png" alt="Organic traffic 5K to 30K screenshot"></div></div>
-      <div class="kpi-result-card fade-up" data-delay="2"><div class="kpi-mname">Impressions</div><div class="kpi-was">was 120K / mo</div><div class="kpi-val">480K</div><span class="kpi-badge up">↑ +300%</span><div class="cmt_single_image-wrapper_2"><img src="your-result-impressions.png" alt="Impressions 120K to 480K screenshot"></div></div>
-      <div class="kpi-result-card fade-up" data-delay="3"><div class="kpi-mname">Top 10 Keywords</div><div class="kpi-was">was 12 keywords</div><div class="kpi-val">87</div><span class="kpi-badge up">↑ +625%</span><div class="cmt_single_image-wrapper_2"><img src="your-result-keywords.png" alt="Top 10 keywords 12 to 87 screenshot"></div></div>
-      <div class="kpi-result-card fade-up" data-delay="4"><div class="kpi-mname">PageSpeed Score</div><div class="kpi-was">was 28 / 100</div><div class="kpi-val">92</div><span class="kpi-badge up">↑ +228%</span><div class="cmt_single_image-wrapper_2"><img src="your-result-pagespeed.png" alt="PageSpeed 28 to 92 screenshot"></div></div>
-      <div class="kpi-result-card fade-up" data-delay="1"><div class="kpi-mname">Average CTR</div><div class="kpi-was">was 2.1%</div><div class="kpi-val">8.4%</div><span class="kpi-badge up">↑ +300%</span><div class="cmt_single_image-wrapper_2"><img src="your-result-ctr.png" alt="CTR 2.1% to 8.4% screenshot"></div></div>
-      <div class="kpi-result-card fade-up" data-delay="2"><div class="kpi-mname">Domain Authority</div><div class="kpi-was">was DA 14</div><div class="kpi-val">DA 31</div><span class="kpi-badge up">↑ +121%</span><div class="cmt_single_image-wrapper_2"><img src="your-result-da.png" alt="Domain authority DA14 to DA31 screenshot"></div></div>
-      <div class="kpi-result-card fade-up" data-delay="3"><div class="kpi-mname">Indexed Pages</div><div class="kpi-was">was 280 pages</div><div class="kpi-val">440</div><span class="kpi-badge up">↑ +57%</span><div class="cmt_single_image-wrapper_2"><img src="your-result-indexed.png" alt="Indexed pages 280 to 440 screenshot"></div></div>
-      <div class="kpi-result-card fade-up" data-delay="4"><div class="kpi-mname">Bounce Rate</div><div class="kpi-was">was 74%</div><div class="kpi-val">48%</div><span class="kpi-badge down">↓ -35%</span><div class="cmt_single_image-wrapper_2"><img src="your-result-bounce.png" alt="Bounce rate 74% to 48% screenshot"></div></div>
+
+      <div class="kpi-result-card fade-up" data-delay="1">
+        <div class="kpi-mname">Organic Traffic</div>
+        <div class="kpi-was">was 5,000 / mo</div>
+        <div class="kpi-val">30K</div>
+        <span class="kpi-badge up">↑ +500%</span>
+        <div class="popup-img-wrap" data-caption="Organic Traffic: 5,000 → 30,000 / month · +500% growth">
+          <img src="your-result-traffic.png" alt="Organic traffic 5K to 30K screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">📈</div><div class="ph-text">Organic Traffic<br>5K → 30K / month</div></div>
+        </div>
+      </div>
+
+      <div class="kpi-result-card fade-up" data-delay="2">
+        <div class="kpi-mname">Impressions</div>
+        <div class="kpi-was">was 120K / mo</div>
+        <div class="kpi-val">480K</div>
+        <span class="kpi-badge up">↑ +300%</span>
+        <div class="popup-img-wrap" data-caption="Impressions: 120K → 480K / month · +300% growth">
+          <img src="your-result-impressions.png" alt="Impressions 120K to 480K screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">👁️</div><div class="ph-text">Search Impressions<br>120K → 480K / month</div></div>
+        </div>
+      </div>
+
+      <div class="kpi-result-card fade-up" data-delay="3">
+        <div class="kpi-mname">Top 10 Keywords</div>
+        <div class="kpi-was">was 12 keywords</div>
+        <div class="kpi-val">87</div>
+        <span class="kpi-badge up">↑ +625%</span>
+        <div class="popup-img-wrap" data-caption="Top 10 Keywords: 12 → 87 keywords · +625% increase">
+          <img src="your-result-keywords.png" alt="Top 10 keywords 12 to 87 screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🗝️</div><div class="ph-text">Top 10 Keywords<br>12 → 87 rankings</div></div>
+        </div>
+      </div>
+
+      <div class="kpi-result-card fade-up" data-delay="4">
+        <div class="kpi-mname">PageSpeed Score</div>
+        <div class="kpi-was">was 28 / 100</div>
+        <div class="kpi-val">92</div>
+        <span class="kpi-badge up">↑ +228%</span>
+        <div class="popup-img-wrap" data-caption="PageSpeed Score: 28 → 92 / 100 · +228% improvement">
+          <img src="your-result-pagespeed.png" alt="PageSpeed 28 to 92 screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">⚡</div><div class="ph-text">PageSpeed Score<br>28 → 92 / 100</div></div>
+        </div>
+      </div>
+
+      <div class="kpi-result-card fade-up" data-delay="1">
+        <div class="kpi-mname">Average CTR</div>
+        <div class="kpi-was">was 2.1%</div>
+        <div class="kpi-val">8.4%</div>
+        <span class="kpi-badge up">↑ +300%</span>
+        <div class="popup-img-wrap" data-caption="Average CTR: 2.1% → 8.4% · +300% improvement">
+          <img src="your-result-ctr.png" alt="CTR 2.1% to 8.4% screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🖱</div><div class="ph-text">Click-Through Rate<br>2.1% → 8.4%</div></div>
+        </div>
+      </div>
+
+      <div class="kpi-result-card fade-up" data-delay="2">
+        <div class="kpi-mname">Domain Authority</div>
+        <div class="kpi-was">was DA 14</div>
+        <div class="kpi-val">DA 31</div>
+        <span class="kpi-badge up">↑ +121%</span>
+        <div class="popup-img-wrap" data-caption="Domain Authority: DA 14 → DA 31 · +121% increase">
+          <img src="your-result-da.png" alt="Domain authority DA14 to DA31 screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🔋</div><div class="ph-text">Domain Authority<br>DA 14 → DA 31</div></div>
+        </div>
+      </div>
+
+      <div class="kpi-result-card fade-up" data-delay="3">
+        <div class="kpi-mname">Indexed Pages</div>
+        <div class="kpi-was">was 280 pages</div>
+        <div class="kpi-val">440</div>
+        <span class="kpi-badge up">↑ +57%</span>
+        <div class="popup-img-wrap" data-caption="Indexed Pages: 280 → 440 pages · +57% increase">
+          <img src="your-result-indexed.png" alt="Indexed pages 280 to 440 screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">🗺</div><div class="ph-text">Indexed Pages<br>280 → 440 pages</div></div>
+        </div>
+      </div>
+
+      <div class="kpi-result-card fade-up" data-delay="4">
+        <div class="kpi-mname">Bounce Rate</div>
+        <div class="kpi-was">was 74%</div>
+        <div class="kpi-val">48%</div>
+        <span class="kpi-badge down">↓ -35%</span>
+        <div class="popup-img-wrap" data-caption="Bounce Rate: 74% → 48% · -35% improvement">
+          <img src="your-result-bounce.png" alt="Bounce rate 74% to 48% screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">📉</div><div class="ph-text">Bounce Rate<br>74% → 48%</div></div>
+        </div>
+      </div>
+
     </div>
 
     <div style="margin-top:48px" class="fade-up">
@@ -1116,116 +1304,133 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
 });
 
 /* ================================================================
-   IMAGE POPUP — THE CORE FEATURE
-   ================================================================
-   WHAT IT DOES:
-   Every image that is inside EITHER of these wrappers:
-     • .cmt_single_image-wrapper_2
-     • .popup-img-wrap
-   becomes clickable and opens in a full-screen popup/lightbox.
-
-   WHY IT USES BOTH CLASS NAMES:
-   Different versions of this HTML used different wrapper class
-   names. This code handles both so nothing is missed.
-
-   HOW TO CLOSE THE POPUP:
-     1. Click the  ×  button
-     2. Click anywhere on the dark background (outside the image)
-     3. Press the Escape key on keyboard
-
-   HOW TO ADD MORE CLICKABLE IMAGES IN THE FUTURE:
-   Just wrap your <img> tag in either:
-     <div class="cmt_single_image-wrapper_2"><img src="..." alt="..."></div>
-   or:
-     <div class="popup-img-wrap"><img src="..." alt="..."></div>
-   The popup will work automatically — no extra JavaScript needed.
+   HANDLE BROKEN IMAGES — show placeholder div instead
+   When an img's onerror fires, it adds class 'broken' to the
+   .popup-img-wrap parent. We then hide the img and show the
+   .img-placeholder sibling so the card still looks great.
    ================================================================ */
+document.querySelectorAll('.popup-img-wrap').forEach(function(wrap) {
+  var img = wrap.querySelector('img');
+  var ph  = wrap.querySelector('.img-placeholder');
+  if (!img || !ph) return;
 
+  function showPlaceholder() {
+    img.style.display = 'none';
+    ph.style.display  = 'flex';
+    wrap.classList.add('broken');
+  }
+
+  // Already broken (class added by onerror attribute before this script ran)
+  if (wrap.classList.contains('broken')) {
+    showPlaceholder();
+    return;
+  }
+
+  // Listen for future load errors
+  img.addEventListener('error', showPlaceholder);
+
+  // If naturalWidth === 0 the image already failed silently
+  if (img.complete && img.naturalWidth === 0) {
+    showPlaceholder();
+  }
+});
+
+/* ================================================================
+   IMAGE POPUP / LIGHTBOX
+   Handles ALL .popup-img-wrap elements on the page.
+   Works whether the image loaded or is a placeholder.
+   ================================================================ */
 (function() {
-  /* Get references to every popup element */
-  var overlay    = document.getElementById('imgPopup');
-  var inner      = document.getElementById('popupInner');
-  var bigImg     = document.getElementById('popupImg');
-  var caption    = document.getElementById('popupCap');
-  var closeBtn   = document.getElementById('popupClose');
+  var overlay     = document.getElementById('imgPopup');
+  var inner       = document.getElementById('popupInner');
+  var bigImg      = document.getElementById('popupImg');
+  var capEl       = document.getElementById('popupCap');
+  var phPanel     = document.getElementById('popupPlaceholder');
+  var phTitle     = document.getElementById('popupPlaceholderTitle');
+  var cap2El      = document.getElementById('popupCap2');
+  var closeBtn    = document.getElementById('popupClose');
 
-  /* Safety check — if any element is missing, stop */
-  if (!overlay || !inner || !bigImg || !caption || !closeBtn) {
-    console.warn('Popup: one or more elements not found in DOM');
+  if (!overlay || !inner || !bigImg || !closeBtn) {
+    console.warn('Popup: required elements missing');
     return;
   }
 
   /* -- OPEN -- */
-  function openPopup(img) {
-    /* Copy the image src and alt into the big modal image */
-    bigImg.src         = img.src;
-    bigImg.alt         = img.alt || '';
-    caption.textContent = img.alt || '';
+  function openPopup(wrap) {
+    var img     = wrap.querySelector('img');
+    var ph      = wrap.querySelector('.img-placeholder');
+    var caption = wrap.getAttribute('data-caption') || (img ? img.alt : '') || '';
+    var isBroken = wrap.classList.contains('broken') || (img && img.naturalWidth === 0);
 
-    /* Show the overlay */
+    if (!isBroken && img && img.src) {
+      /* Show real image */
+      bigImg.src          = img.src;
+      bigImg.alt          = img.alt || '';
+      bigImg.style.display = 'block';
+      phPanel.classList.remove('show');
+      capEl.textContent   = caption;
+      cap2El.textContent  = '';
+    } else {
+      /* Show placeholder panel */
+      bigImg.src           = '';
+      bigImg.style.display = 'none';
+      phPanel.classList.add('show');
+
+      /* Use the placeholder's text as the panel title */
+      var phText = ph ? ph.querySelector('.ph-text') : null;
+      phTitle.innerHTML = phText ? phText.innerHTML : caption;
+      capEl.textContent  = '';
+      cap2El.textContent = caption;
+    }
+
     overlay.classList.add('active');
-
-    /* Stop the page scrolling behind the popup */
     document.body.style.overflow = 'hidden';
-
-    /* Move keyboard focus to the close button */
     setTimeout(function() { closeBtn.focus(); }, 50);
   }
 
   /* -- CLOSE -- */
   function closePopup() {
     overlay.classList.remove('active');
-    /* Restore page scrolling */
     document.body.style.overflow = '';
-    /* Clear the image src after transition */
-    setTimeout(function() { bigImg.src = ''; }, 300);
+    setTimeout(function() {
+      bigImg.src = '';
+      phPanel.classList.remove('show');
+    }, 300);
   }
 
-  /* -- Find every image inside the two possible wrapper classes -- */
-  var selector = '.cmt_single_image-wrapper_2 img, .popup-img-wrap img';
-  var images   = document.querySelectorAll(selector);
+  /* -- Wire up every .popup-img-wrap -- */
+  var wraps = document.querySelectorAll('.popup-img-wrap');
+  console.log('Popup: wiring ' + wraps.length + ' image cards');
 
-  console.log('Popup: found ' + images.length + ' clickable images');
+  wraps.forEach(function(wrap) {
+    wrap.setAttribute('tabindex', '0');
+    wrap.style.cursor = 'zoom-in';
 
-  images.forEach(function(img) {
-    /* Make keyboard-focusable */
-    img.setAttribute('tabindex', '0');
-    img.style.cursor = 'zoom-in';
-
-    /* CLICK — opens popup */
-    img.addEventListener('click', function(e) {
+    wrap.addEventListener('click', function(e) {
       e.stopPropagation();
-      openPopup(img);
+      openPopup(wrap);
     });
 
-    /* ENTER or SPACE key — opens popup (accessibility) */
-    img.addEventListener('keydown', function(e) {
+    wrap.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        openPopup(img);
+        openPopup(wrap);
       }
     });
   });
 
-  /* -- Close button click -- */
+  /* -- Controls -- */
   closeBtn.addEventListener('click', closePopup);
 
-  /* -- Click on the dark overlay OUTSIDE the image box -- */
   overlay.addEventListener('click', function(e) {
-    /* inner.contains(e.target) is true when clicking the image/caption/etc */
-    if (!inner.contains(e.target)) {
-      closePopup();
-    }
+    if (!inner.contains(e.target)) closePopup();
   });
 
-  /* -- Escape key closes popup -- */
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && overlay.classList.contains('active')) {
-      closePopup();
-    }
+    if (e.key === 'Escape' && overlay.classList.contains('active')) closePopup();
   });
 
-})(); /* end self-executing function */
+})();
 </script>
 </body>
 </html>
