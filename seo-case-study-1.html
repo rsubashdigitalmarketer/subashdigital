@@ -1336,98 +1336,108 @@ document.querySelectorAll('.popup-img-wrap').forEach(function(wrap) {
 });
 
 /* ================================================================
-   IMAGE POPUP / LIGHTBOX
-   Handles ALL .popup-img-wrap elements on the page.
-   Works whether the image loaded or is a placeholder.
+   UNIVERSAL IMAGE POPUP — fires on EVERY <img> on the page
    ================================================================ */
-(function() {
-  var overlay     = document.getElementById('imgPopup');
-  var inner       = document.getElementById('popupInner');
-  var bigImg      = document.getElementById('popupImg');
-  var capEl       = document.getElementById('popupCap');
-  var phPanel     = document.getElementById('popupPlaceholder');
-  var phTitle     = document.getElementById('popupPlaceholderTitle');
-  var cap2El      = document.getElementById('popupCap2');
-  var closeBtn    = document.getElementById('popupClose');
+(function () {
+  var overlay  = document.getElementById('imgPopup');
+  var inner    = document.getElementById('popupInner');
+  var bigImg   = document.getElementById('popupImg');
+  var capEl    = document.getElementById('popupCap');
+  var phPanel  = document.getElementById('popupPlaceholder');
+  var phTitle  = document.getElementById('popupPlaceholderTitle');
+  var cap2El   = document.getElementById('popupCap2');
+  var closeBtn = document.getElementById('popupClose');
+  if (!overlay || !bigImg || !closeBtn) return;
 
-  if (!overlay || !inner || !bigImg || !closeBtn) {
-    console.warn('Popup: required elements missing');
-    return;
-  }
+  /* ---------- OPEN ---------- */
+  function openPopup(img) {
+    var wrap    = img.closest('.popup-img-wrap') || img.parentElement;
+    var caption = (wrap && wrap.getAttribute('data-caption')) || img.alt || img.title || '';
+    var loaded  = img.complete && img.naturalWidth > 0;
 
-  /* -- OPEN -- */
-  function openPopup(wrap) {
-    var img     = wrap.querySelector('img');
-    var ph      = wrap.querySelector('.img-placeholder');
-    var caption = wrap.getAttribute('data-caption') || (img ? img.alt : '') || '';
-    var isBroken = wrap.classList.contains('broken') || (img && img.naturalWidth === 0);
-
-    if (!isBroken && img && img.src) {
-      /* Show real image */
-      bigImg.src          = img.src;
-      bigImg.alt          = img.alt || '';
+    if (loaded) {
+      bigImg.src           = img.src;
+      bigImg.alt           = img.alt || '';
       bigImg.style.display = 'block';
       phPanel.classList.remove('show');
-      capEl.textContent   = caption;
-      cap2El.textContent  = '';
+      capEl.textContent    = caption;
+      cap2El.textContent   = '';
     } else {
-      /* Show placeholder panel */
+      /* File missing — show elegant placeholder */
       bigImg.src           = '';
       bigImg.style.display = 'none';
       phPanel.classList.add('show');
-
-      /* Use the placeholder's text as the panel title */
-      var phText = ph ? ph.querySelector('.ph-text') : null;
-      phTitle.innerHTML = phText ? phText.innerHTML : caption;
-      capEl.textContent  = '';
-      cap2El.textContent = caption;
+      var phText = wrap ? wrap.querySelector('.ph-text') : null;
+      phTitle.innerHTML    = phText ? phText.innerHTML : (caption || 'Screenshot');
+      capEl.textContent    = '';
+      cap2El.textContent   = caption;
     }
 
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-    setTimeout(function() { closeBtn.focus(); }, 50);
+    setTimeout(function () { closeBtn.focus(); }, 50);
   }
 
-  /* -- CLOSE -- */
+  /* ---------- CLOSE ---------- */
   function closePopup() {
     overlay.classList.remove('active');
     document.body.style.overflow = '';
-    setTimeout(function() {
-      bigImg.src = '';
-      phPanel.classList.remove('show');
-    }, 300);
+    setTimeout(function () { bigImg.src = ''; phPanel.classList.remove('show'); }, 300);
   }
 
-  /* -- Wire up every .popup-img-wrap -- */
-  var wraps = document.querySelectorAll('.popup-img-wrap');
-  console.log('Popup: wiring ' + wraps.length + ' image cards');
+  /* ---------- WIRE EVERY <img> ON THE PAGE ---------- */
+  /* Skip the popup's own big image and any UI/icon images */
+  var skipIds = ['popupImg'];
 
-  wraps.forEach(function(wrap) {
-    wrap.setAttribute('tabindex', '0');
+  document.querySelectorAll('img').forEach(function (img) {
+    if (skipIds.indexOf(img.id) !== -1) return;   // skip popup image itself
+    if (img.closest('#imgPopup')) return;           // skip anything inside the modal
+
+    /* Style the wrapper for the hover hint */
+    var wrap = img.closest('.popup-img-wrap');
+    if (!wrap) {
+      /* Wrap bare images on-the-fly */
+      var div = document.createElement('div');
+      div.className = 'popup-img-wrap';
+      div.setAttribute('data-caption', img.alt || img.title || '');
+      img.parentNode.insertBefore(div, img);
+      div.appendChild(img);
+      wrap = div;
+    }
+
     wrap.style.cursor = 'zoom-in';
+    wrap.setAttribute('tabindex', '0');
 
-    wrap.addEventListener('click', function(e) {
+    wrap.addEventListener('click', function (e) {
       e.stopPropagation();
-      openPopup(wrap);
+      openPopup(img);
     });
-
-    wrap.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openPopup(wrap);
-      }
+    wrap.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPopup(img); }
     });
   });
 
-  /* -- Controls -- */
+  /* ---------- CLOSE TRIGGERS ---------- */
   closeBtn.addEventListener('click', closePopup);
-
-  overlay.addEventListener('click', function(e) {
+  overlay.addEventListener('click', function (e) {
     if (!inner.contains(e.target)) closePopup();
   });
-
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && overlay.classList.contains('active')) closePopup();
+  });
+
+  /* ---------- BROKEN IMAGE HANDLER ---------- */
+  /* Show .img-placeholder sibling when image file is missing */
+  document.querySelectorAll('.popup-img-wrap img').forEach(function (img) {
+    if (img.id === 'popupImg') return;
+    var ph = img.parentElement.querySelector('.img-placeholder');
+    function showPh() {
+      img.style.display = 'none';
+      if (ph) ph.style.display = 'flex';
+      img.parentElement.classList.add('broken');
+    }
+    if (img.complete && img.naturalWidth === 0) { showPh(); return; }
+    img.addEventListener('error', showPh);
   });
 
 })();
