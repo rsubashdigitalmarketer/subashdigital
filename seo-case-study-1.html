@@ -529,6 +529,123 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
   .tl-node{width:64px}
 }
 </style>
+  <!-- ============================================================
+     POPUP FEATURE — ADD ONLY THIS CODE
+     Place this BEFORE the closing </body> tag
+     ============================================================ -->
+
+<style>
+/* =========================
+   IMAGE POPUP
+========================= */
+
+.img-popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.88);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  opacity:0;
+  visibility:hidden;
+  transition:0.3s ease;
+  padding:30px;
+}
+
+.img-popup.active{
+  opacity:1;
+  visibility:visible;
+}
+
+.img-popup-content{
+  max-width:1000px;
+  width:100%;
+  position:relative;
+  text-align:center;
+}
+
+.img-popup img{
+  width:100%;
+  max-height:85vh;
+  object-fit:contain;
+  border-radius:18px;
+}
+
+.img-popup-caption{
+  margin-top:18px;
+  color:#e2e8f0;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.img-popup-close{
+  position:absolute;
+  top:-14px;
+  right:-14px;
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:50%;
+  background:#22d3ee;
+  color:#000;
+  font-size:22px;
+  cursor:pointer;
+  font-weight:700;
+}
+</style>
+
+<!-- =========================
+     POPUP HTML
+========================= -->
+
+<div class="img-popup" id="imgPopup">
+  <div class="img-popup-content">
+    <button class="img-popup-close" id="popupClose">×</button>
+
+    <img src="" alt="" id="popupImg">
+
+    <div class="img-popup-caption" id="popupCaption"></div>
+  </div>
+</div>
+
+<script>
+/* =========================
+   IMAGE POPUP SCRIPT
+========================= */
+
+const popup = document.getElementById("imgPopup");
+const popupImg = document.getElementById("popupImg");
+const popupCaption = document.getElementById("popupCaption");
+const popupClose = document.getElementById("popupClose");
+
+document.querySelectorAll(".popup-img-wrap img").forEach(img => {
+
+  img.style.cursor = "pointer";
+
+  img.addEventListener("click", function(){
+
+    popup.classList.add("active");
+
+    popupImg.src = this.src;
+    popupImg.alt = this.alt;
+
+    popupCaption.innerHTML =
+      this.parentElement.getAttribute("data-caption") || "";
+  });
+
+});
+
+popupClose.addEventListener("click", () => {
+  popup.classList.remove("active");
+});
+
+popup.addEventListener("click", (e) => {
+  if(e.target === popup){
+    popup.classList.remove("active");
+  }
+});
+</script>
 </head>
 <body>
 
