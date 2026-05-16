@@ -11,35 +11,35 @@
 
 <style>
 :root {
-  --bg: #08090d;
-  --bg2: #0e1118;
-  --bg3: #131720;
-  --card: #141a24;
-  --card2: #192030;
-  --cyan: #00e5ff;
-  --cyan2: #00b8d9;
-  --cyan-glow: rgba(0,229,255,0.12);
-  --cyan-border: rgba(0,229,255,0.22);
-  --green: #00e676;
-  --green-dim: rgba(0,230,118,0.1);
-  --red: #ff5252;
-  --red-dim: rgba(255,82,82,0.1);
-  --amber: #ffab40;
-  --white: #ffffff;
-  --t1: rgba(255,255,255,0.88);
-  --t2: rgba(255,255,255,0.5);
-  --t3: rgba(255,255,255,0.25);
-  --border: rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.12);
-  --font-head: 'Barlow', sans-serif;
-  --font-body: 'Manrope', sans-serif;
-  --font-mono: 'IBM Plex Mono', monospace;
-  --font-num: 'Barlow Condensed', sans-serif;
-  --r: 14px;
-  --r2: 20px;
-  --ease: cubic-bezier(0.4,0,0.2,1);
-  --ease-out: cubic-bezier(0,0,0.2,1);
-  --ease-spring: cubic-bezier(0.34,1.56,0.64,1);
+--bg: #08090d;
+--bg2: #0e1118;
+--bg3: #131720;
+--card: #141a24;
+--card2: #192030;
+--cyan: #00e5ff;
+--cyan2: #00b8d9;
+--cyan-glow: rgba(0,229,255,0.12);
+--cyan-border: rgba(0,229,255,0.22);
+--green: #00e676;
+--green-dim: rgba(0,230,118,0.1);
+--red: #ff5252;
+--red-dim: rgba(255,82,82,0.1);
+--amber: #ffab40;
+--white: #ffffff;
+--t1: rgba(255,255,255,0.88);
+--t2: rgba(255,255,255,0.5);
+--t3: rgba(255,255,255,0.25);
+--border: rgba(255,255,255,0.07);
+--border2: rgba(255,255,255,0.12);
+--font-head: 'Barlow', sans-serif;
+--font-body: 'Manrope', sans-serif;
+--font-mono: 'IBM Plex Mono', monospace;
+--font-num: 'Barlow Condensed', sans-serif;
+--r: 14px;
+--r2: 20px;
+--ease: cubic-bezier(0.4,0,0.2,1);
+--ease-out: cubic-bezier(0,0,0.2,1);
+--ease-spring: cubic-bezier(0.34,1.56,0.64,1);
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -185,64 +185,64 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .ch-badge{display:inline-block;background:rgba(255,82,82,0.1);border:1px solid rgba(255,82,82,0.25);border-radius:6px;padding:4px 12px;font-family:var(--font-mono);font-size:10px;color:var(--red);font-weight:500}
 
 /* ============================================================
-   UNIVERSAL POPUP IMAGE WRAPPER
-   Works for: .popup-img-wrap (used everywhere in this file)
-   ============================================================ */
+  UNIVERSAL POPUP IMAGE WRAPPER
+  Works for: .popup-img-wrap (used everywhere in this file)
+  ============================================================ */
 .popup-img-wrap {
-  margin-top: 14px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  cursor: zoom-in;
-  position: relative;
-  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
-  display: block;
+margin-top: 14px;
+border-radius: 10px;
+overflow: hidden;
+border: 1px solid var(--border);
+cursor: zoom-in;
+position: relative;
+transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+display: block;
 }
 .popup-img-wrap:hover {
-  border-color: var(--cyan-border);
-  box-shadow: 0 0 20px rgba(0,229,255,0.18);
+border-color: var(--cyan-border);
+box-shadow: 0 0 20px rgba(0,229,255,0.18);
 }
 .popup-img-wrap::after {
-  content: '🔍  Click to enlarge';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 10px 14px;
-  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: var(--cyan);
-  opacity: 0;
-  transition: opacity 0.25s var(--ease);
-  pointer-events: none;
+content: '🔍  Click to enlarge';
+position: absolute;
+bottom: 0; left: 0; right: 0;
+padding: 10px 14px;
+background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+font-family: var(--font-mono);
+font-size: 10px;
+letter-spacing: 0.08em;
+color: var(--cyan);
+opacity: 0;
+transition: opacity 0.25s var(--ease);
+pointer-events: none;
 }
 .popup-img-wrap:hover::after { opacity: 1; }
 .popup-img-wrap img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.35s var(--ease);
+width: 100%;
+height: auto;
+display: block;
+transition: transform 0.35s var(--ease);
 }
 .popup-img-wrap:hover img { transform: scale(1.04); }
 
 /* Placeholder image block shown when src is missing/broken */
 .img-placeholder {
-  width: 100%;
-  min-height: 110px;
-  background: var(--bg3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border-radius: 8px;
-  color: var(--t3);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.35s var(--ease);
+width: 100%;
+min-height: 110px;
+background: var(--bg3);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 8px;
+border-radius: 8px;
+color: var(--t3);
+font-family: var(--font-mono);
+font-size: 10px;
+letter-spacing: 0.08em;
+padding: 20px;
+text-align: center;
+transition: transform 0.35s var(--ease);
 }
 .popup-img-wrap:hover .img-placeholder { transform: scale(1.02); }
 .img-placeholder .ph-icon { font-size: 1.6rem; opacity: 0.5; }
@@ -344,189 +344,189 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 [data-delay="1"]{transition-delay:0.1s}[data-delay="2"]{transition-delay:0.2s}[data-delay="3"]{transition-delay:0.3s}[data-delay="4"]{transition-delay:0.4s}[data-delay="5"]{transition-delay:0.5s}[data-delay="6"]{transition-delay:0.6s}
 
 /* ============================================================
-   POPUP / LIGHTBOX
-   ============================================================ */
+  POPUP / LIGHTBOX
+  ============================================================ */
 #imgPopup {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 99999;
-  background: rgba(0,0,0,0.92);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+display: none;
+position: fixed;
+top: 0; left: 0; right: 0; bottom: 0;
+z-index: 99999;
+background: rgba(0,0,0,0.92);
+-webkit-backdrop-filter: blur(14px);
+backdrop-filter: blur(14px);
+align-items: center;
+justify-content: center;
+padding: 20px;
 }
 #imgPopup.active {
-  display: flex;
-  animation: overlayIn 0.22s ease forwards;
+display: flex;
+animation: overlayIn 0.22s ease forwards;
 }
 @keyframes overlayIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+from { opacity: 0; }
+to   { opacity: 1; }
 }
 .popup-inner {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  max-width: min(95vw, 1060px);
-  max-height: 95vh;
-  animation: boxIn 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards;
+position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 14px;
+max-width: min(95vw, 1060px);
+max-height: 95vh;
+animation: boxIn 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards;
 }
 @keyframes boxIn {
-  from { opacity: 0; transform: scale(0.82) translateY(28px); }
-  to   { opacity: 1; transform: scale(1)    translateY(0);    }
+from { opacity: 0; transform: scale(0.82) translateY(28px); }
+to   { opacity: 1; transform: scale(1)    translateY(0);    }
 }
 #popupImg {
-  display: block;
-  max-width: 100%;
-  max-height: calc(90vh - 80px);
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  border-radius: 12px;
-  border: 1px solid rgba(0,229,255,0.30);
-  box-shadow:
-    0 0 0 1px rgba(0,229,255,0.08),
-    0 40px 100px rgba(0,0,0,0.9),
-    0 0 80px rgba(0,229,255,0.10);
+display: block;
+max-width: 100%;
+max-height: calc(90vh - 80px);
+width: auto;
+height: auto;
+object-fit: contain;
+border-radius: 12px;
+border: 1px solid rgba(0,229,255,0.30);
+box-shadow:
+0 0 0 1px rgba(0,229,255,0.08),
+0 40px 100px rgba(0,0,0,0.9),
+0 0 80px rgba(0,229,255,0.10);
 }
 #popupCap {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.05em;
-  color: rgba(255,255,255,0.50);
-  text-align: center;
-  max-width: 680px;
-  line-height: 1.6;
+font-family: 'IBM Plex Mono', monospace;
+font-size: 11px;
+letter-spacing: 0.05em;
+color: rgba(255,255,255,0.50);
+text-align: center;
+max-width: 680px;
+line-height: 1.6;
 }
 .popup-esc {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.20);
+font-family: 'IBM Plex Mono', monospace;
+font-size: 10px;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: rgba(255,255,255,0.20);
 }
 #popupClose {
-  position: absolute;
-  top: -18px;
-  right: -18px;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: #192030;
-  border: 1px solid rgba(0,229,255,0.30);
-  color: rgba(255,255,255,0.85);
-  font-size: 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 2;
-  transition: background 0.2s, color 0.2s, transform 0.25s;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-  line-height: 1;
-  padding: 0;
+position: absolute;
+top: -18px;
+right: -18px;
+width: 42px;
+height: 42px;
+border-radius: 50%;
+background: #192030;
+border: 1px solid rgba(0,229,255,0.30);
+color: rgba(255,255,255,0.85);
+font-size: 1.25rem;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+z-index: 2;
+transition: background 0.2s, color 0.2s, transform 0.25s;
+box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+line-height: 1;
+padding: 0;
 }
 #popupClose:hover {
-  background: #00e5ff;
-  color: #08090d;
-  border-color: #00e5ff;
-  transform: rotate(90deg) scale(1.15);
+background: #00e5ff;
+color: #08090d;
+border-color: #00e5ff;
+transform: rotate(90deg) scale(1.15);
 }
 
 /* Placeholder popup panel (shown when image file is missing) */
 #popupPlaceholder {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  width: 560px;
-  max-width: 90vw;
-  min-height: 300px;
-  background: var(--card2);
-  border-radius: 16px;
-  border: 1px solid var(--cyan-border);
-  box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 60px rgba(0,229,255,0.08);
-  padding: 48px 32px;
-  text-align: center;
+display: none;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 16px;
+width: 560px;
+max-width: 90vw;
+min-height: 300px;
+background: var(--card2);
+border-radius: 16px;
+border: 1px solid var(--cyan-border);
+box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 60px rgba(0,229,255,0.08);
+padding: 48px 32px;
+text-align: center;
 }
 #popupPlaceholder.show { display: flex; }
 #popupPlaceholder .ph-big-icon { font-size: 3rem; opacity: 0.6; }
 #popupPlaceholder .ph-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--cyan);
+font-family: var(--font-mono);
+font-size: 10px;
+letter-spacing: 0.16em;
+text-transform: uppercase;
+color: var(--cyan);
 }
 #popupPlaceholder .ph-title {
-  font-family: var(--font-head);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--t1);
+font-family: var(--font-head);
+font-size: 1.1rem;
+font-weight: 700;
+color: var(--t1);
 }
 #popupPlaceholder .ph-sub {
-  font-size: 0.82rem;
-  color: var(--t3);
-  line-height: 1.7;
-  max-width: 340px;
+font-size: 0.82rem;
+color: var(--t3);
+line-height: 1.7;
+max-width: 340px;
 }
 #popupCap2 {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--t2);
-  text-align: center;
-  margin-top: 4px;
-  max-width: 480px;
+font-family: var(--font-mono);
+font-size: 11px;
+color: var(--t2);
+text-align: center;
+margin-top: 4px;
+max-width: 480px;
 }
 
 @media (max-width: 600px) {
-  #imgPopup { padding: 12px; }
-  #popupClose { top: -14px; right: -14px; width: 36px; height: 36px; font-size: 1.1rem; }
-  #popupCap, #popupCap2 { font-size: 10px; }
-  .popup-esc { display: none; }
+#imgPopup { padding: 12px; }
+#popupClose { top: -14px; right: -14px; width: 36px; height: 36px; font-size: 1.1rem; }
+#popupCap, #popupCap2 { font-size: 10px; }
+.popup-esc { display: none; }
 }
 
 /* RESPONSIVE */
 @media(max-width:1100px){
-  .context-grid{grid-template-columns:1fr 1fr}
-  .kpi-box{grid-column:span 2}
-  .challenges-grid{grid-template-columns:1fr 1fr}
-  .audit-grid{grid-template-columns:repeat(2,1fr)}
-  .kpi-grid{grid-template-columns:repeat(2,1fr)}
-  .stats-inner{grid-template-columns:repeat(2,1fr)}
-  .stat-block:nth-child(2){border-right:none}
-  .stat-block:nth-child(3){border-top:1px solid var(--border)}
+.context-grid{grid-template-columns:1fr 1fr}
+.kpi-box{grid-column:span 2}
+.challenges-grid{grid-template-columns:1fr 1fr}
+.audit-grid{grid-template-columns:repeat(2,1fr)}
+.kpi-grid{grid-template-columns:repeat(2,1fr)}
+.stats-inner{grid-template-columns:repeat(2,1fr)}
+.stat-block:nth-child(2){border-right:none}
+.stat-block:nth-child(3){border-top:1px solid var(--border)}
 }
 @media(max-width:900px){
-  .hero{grid-template-columns:1fr;min-height:auto;gap:48px;padding:60px 24px}
-  .hero-visual{max-width:580px;margin:0 auto}
-  .strategy-grid{grid-template-columns:1fr}
+.hero{grid-template-columns:1fr;min-height:auto;gap:48px;padding:60px 24px}
+.hero-visual{max-width:580px;margin:0 auto}
+.strategy-grid{grid-template-columns:1fr}
 }
 @media(max-width:700px){
-  .nav-links{display:none;flex-direction:column;position:fixed;top:68px;left:0;right:0;bottom:0;background:var(--bg);padding:32px 24px;gap:28px;z-index:89;border-top:1px solid var(--border)}
-  .nav-links.open{display:flex}
-  .nav-links.open a{font-size:1.1rem}
-  .nav-hamburger{display:flex}
-  .challenges-grid{grid-template-columns:1fr}
-  .audit-grid{grid-template-columns:1fr 1fr}
-  .kpi-grid{grid-template-columns:1fr 1fr}
-  .context-grid{grid-template-columns:1fr}
-  .kpi-box{grid-column:auto}
-  .hero-badge-float{display:none}
+.nav-links{display:none;flex-direction:column;position:fixed;top:68px;left:0;right:0;bottom:0;background:var(--bg);padding:32px 24px;gap:28px;z-index:89;border-top:1px solid var(--border)}
+.nav-links.open{display:flex}
+.nav-links.open a{font-size:1.1rem}
+.nav-hamburger{display:flex}
+.challenges-grid{grid-template-columns:1fr}
+.audit-grid{grid-template-columns:1fr 1fr}
+.kpi-grid{grid-template-columns:1fr 1fr}
+.context-grid{grid-template-columns:1fr}
+.kpi-box{grid-column:auto}
+.hero-badge-float{display:none}
 }
 @media(max-width:480px){
-  .audit-grid{grid-template-columns:1fr}
-  .kpi-grid{grid-template-columns:1fr}
-  .stats-inner{grid-template-columns:1fr}
-  .stat-block{border-right:none;border-bottom:1px solid var(--border)}
-  .timeline::before{left:40px}
-  .tl-node{width:64px}
+.audit-grid{grid-template-columns:1fr}
+.kpi-grid{grid-template-columns:1fr}
+.stats-inner{grid-template-columns:1fr}
+.stat-block{border-right:none;border-bottom:1px solid var(--border)}
+.timeline::before{left:40px}
+.tl-node{width:64px}
 }
 </style>
 </head>
@@ -534,501 +534,515 @@ footer{border-top:1px solid var(--border);padding:28px;position:relative;z-index
 
 <!-- Mesh background -->
 <div class="mesh" aria-hidden="true">
-  <div class="mesh-orb"></div>
-  <div class="mesh-orb"></div>
-  <div class="mesh-orb"></div>
+<div class="mesh-orb"></div>
+<div class="mesh-orb"></div>
+<div class="mesh-orb"></div>
 </div>
 
 <!-- ============================================================
-     IMAGE POPUP MODAL
-     ============================================================ -->
+    IMAGE POPUP MODAL
+    ============================================================ -->
 <div id="imgPopup" role="dialog" aria-modal="true" aria-label="Image lightbox">
-  <div class="popup-inner" id="popupInner">
-    <button id="popupClose" aria-label="Close">&#x2715;</button>
+<div class="popup-inner" id="popupInner">
+<button id="popupClose" aria-label="Close">&#x2715;</button>
 
-    <!-- Real image (shown when file exists) -->
-    <img id="popupImg" src="" alt="" style="display:none">
-    <div id="popupCap"></div>
+<!-- Real image (shown when file exists) -->
+<img id="popupImg" src="" alt="" style="display:none">
+<div id="popupCap"></div>
 
-    <!-- Placeholder panel (shown when file is missing) -->
-    <div id="popupPlaceholder">
-      <div class="ph-big-icon">📊</div>
-      <div class="ph-label">Screenshot Preview</div>
-      <div class="ph-title" id="popupPlaceholderTitle">SEO Data Screenshot</div>
-      <div class="ph-sub">Add your screenshot file to the same folder as this HTML file and update the <code>src</code> attribute to see the real image here.</div>
-    </div>
-    <div id="popupCap2"></div>
+<!-- Placeholder panel (shown when file is missing) -->
+<div id="popupPlaceholder">
+<div class="ph-big-icon">📊</div>
+<div class="ph-label">Screenshot Preview</div>
+<div class="ph-title" id="popupPlaceholderTitle">SEO Data Screenshot</div>
+<div class="ph-sub">Add your screenshot file to the same folder as this HTML file and update the <code>src</code> attribute to see the real image here.</div>
+</div>
+<div id="popupCap2"></div>
 
-    <div class="popup-esc">Press ESC or click outside to close</div>
-  </div>
+<div class="popup-esc">Press ESC or click outside to close</div>
+</div>
 </div>
 
 <!-- NAVIGATION -->
 <nav class="nav" id="mainNav">
-  <div class="nav-inner">
-    <a class="nav-logo" href="#">
-      <div class="logo-mark">SR</div>
-      Subash Ravi
-    </a>
-    <div class="nav-links" id="navLinks">
-      <a href="#challenges">Challenges</a>
-      <a href="#strategy">Strategy</a>
-      <a href="#results">Results</a>
-      <a href="#timeline">Timeline</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <a href="#contact" class="btn-hire">Hire Me ↗</a>
-    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+<div class="nav-inner">
+<a class="nav-logo" href="#">
+<div class="logo-mark">SR</div>
+Subash Ravi
+</a>
+<div class="nav-links" id="navLinks">
+<a href="#challenges">Challenges</a>
+<a href="#strategy">Strategy</a>
+<a href="#results">Results</a>
+<a href="#timeline">Timeline</a>
+<a href="#contact">Contact</a>
+</div>
+<a href="#contact" class="btn-hire">Hire Me ↗</a>
+<button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+<span></span><span></span><span></span>
+</button>
+</div>
 </nav>
 
 <!-- HERO -->
 <section>
-  <div class="hero">
-    <div class="fade-left">
-      <div class="hero-badge"><span class="dot"></span> Live SEO Case Study · 2024</div>
-      <h1 class="hero-title">
-        Grew Organic Traffic<br>
-        <span class="highlight">50% in 3 Months</span><br>
-        via Full-Stack SEO/GEO/AEO
-      </h1>
-      <div class="hero-meta">
-        <span class="chip">International Courier</span>
-        <span class="chip">HTML Website</span>
-        <span class="chip">Feb → may 2026</span>
-      </div>
-      <p class="hero-desc">
+<div class="hero">
+<div class="fade-left">
+<div class="hero-badge"><span class="dot"></span> Live SEO Case Study · 2024</div>
+<h1 class="hero-title">
+Grew Organic Traffic<br>
+<span class="highlight">50% in 3 Months</span><br>
+via Full-Stack SEO/GEO/AEO
+</h1>
+<div class="hero-meta">
+<span class="chip">International Courier</span>
+<span class="chip">HTML Website</span>
+<span class="chip">Feb → may 2026</span>
+</div>
+<p class="hero-desc">
 End-to-end SEO, AEO, and GEO strategy for a global logistics brand — focused on technical optimization, search experience enhancement, authority building, and international organic growth.      </p>
-      <div class="hero-btns">
-        <a href="#results" class="btn-primary">↓ See Results</a>
-        <a href="#strategy" class="btn-outline">View Strategy</a>
-      </div>
-    </div>
+<div class="hero-btns">
+<a href="#results" class="btn-primary">↓ See Results</a>
+<a href="#strategy" class="btn-outline">View Strategy</a>
+</div>
+</div>
 
-    <div class="hero-dashboard fade-up fade-up-d2" style="overflow:hidden;border-radius:20px;box-shadow:0 32px 80px rgba(0,0,0,0.5);">
-      <div class="dash-header">
-        <div class="dash-dot" style="background:#ff5f57;"></div>
-        <div class="dash-dot" style="background:#ffbd2e;"></div>
-        <div class="dash-dot" style="background:#28c840;"></div>
-        <span class="dash-title">Google Search Console · Performance Dashboard</span>
-      </div>
-      <div style="line-height:0;">
-        <img
-          src="express Dashboard Screen shoot.png"
-          alt="Real Google Search Console Performance Dashboard showing 30K organic traffic, 4.2 avg position, and 8.4% CTR after 6 months of Technical SEO"
-          style="width:100%;height:auto;display:block;border-radius:0 0 20px 20px;"
-        />
-      </div>
-    </div>
-  </div>
+<div class="hero-dashboard fade-up fade-up-d2" style="overflow:hidden;border-radius:20px;box-shadow:0 32px 80px rgba(0,0,0,0.5);">
+<div class="dash-header">
+<div class="dash-dot" style="background:#ff5f57;"></div>
+<div class="dash-dot" style="background:#ffbd2e;"></div>
+<div class="dash-dot" style="background:#28c840;"></div>
+<span class="dash-title">Google Search Console · Performance Dashboard</span>
+</div>
+<div style="line-height:0;">
+<img
+src="express Dashboard Screen shoot.png"
+alt="Real Google Search Console Performance Dashboard showing 30K organic traffic, 4.2 avg position, and 8.4% CTR after 6 months of Technical SEO"
+style="width:100%;height:auto;display:block;border-radius:0 0 20px 20px;"
+/>
+</div>
+</div>
+</div>
 
 <!-- STATS STRIP -->
 <div class="stats-strip">
-  <div class="stats-inner">
-    <div class="stat-block fade-up">
-      <div class="stat-num" data-target="50" data-suffix="%">0%</div>
-      <div class="stat-lbl">Organic Traffic Growth</div>
-    </div>
-    <div class="stat-block fade-up" data-delay="1">
-      <div class="stat-num" data-target="59" data-suffix="">0</div>
-      <div class="stat-lbl">Top 10 Keywords</div>
-    </div>
-    <div class="stat-block fade-up" data-delay="2">
-      <div class="stat-num" data-target="56" data-suffix="">0</div>
-      <div class="stat-lbl">PageSpeed Score</div>
-    </div>
-    <div class="stat-block fade-up" data-delay="3">
-      <div class="stat-num" data-target="3" data-suffix=" mo">0 mo</div>
-      <div class="stat-lbl">Time to Achieve</div>
-    </div>
-  </div>
+<div class="stats-inner">
+<div class="stat-block fade-up">
+<div class="stat-num" data-target="50" data-suffix="%">0%</div>
+<div class="stat-lbl">Organic Traffic Growth</div>
+</div>
+<div class="stat-block fade-up" data-delay="1">
+<div class="stat-num" data-target="59" data-suffix="">0</div>
+<div class="stat-lbl">Top 10 Keywords</div>
+</div>
+<div class="stat-block fade-up" data-delay="2">
+<div class="stat-num" data-target="56" data-suffix="">0</div>
+<div class="stat-lbl">PageSpeed Score</div>
+</div>
+<div class="stat-block fade-up" data-delay="3">
+<div class="stat-num" data-target="3" data-suffix=" mo">0 mo</div>
+<div class="stat-lbl">Time to Achieve</div>
+</div>
+</div>
 </div>
 
 <!-- PROJECT CONTEXT -->
 <section class="section" id="overview">
-  <div class="container">
-    <div class="section-head fade-up">
-      <div class="section-label">Project Overview</div>
-      <h2 class="sec-title">Business &amp; <span class="cyan">SEO Context</span></h2>
-      <p class="sec-sub">Understanding the client, industry, and exactly what success needed to look like before a single tag was touched.</p>
-    </div>
-    <div class="context-grid fade-up">
-      <div class="ctx-col">
-        <div class="ctx-card"><div class="ctx-icon">🏢</div><div class="ctx-lbl">Business Type</div><div class="ctx-val">International Courier &amp; Logistics</div><div class="ctx-sub">Courier, Cargo &amp; Global Shipping Services</div></div>
-        <div class="ctx-card"><div class="ctx-icon">🌐</div><div class="ctx-lbl">Platform</div><div class="ctx-val">HTML/CSS Website</div><div class="ctx-sub">Bangalore-focused SEO strategy with localized content optimization</div></div>
-        <div class="ctx-card"><div class="ctx-icon">📍</div><div class="ctx-lbl">Target Markets</div><div class="ctx-val">Bangalore,India</div><div class="ctx-sub">Localized SEO, AEO & GEO strategy</div></div>
-      </div>
-      <div class="ctx-col">
-        <div class="ctx-card"><div class="ctx-icon">🎯</div><div class="ctx-lbl">Primary Goal</div><div class="ctx-val">Organic Lead Generation</div><div class="ctx-sub">Ranking high-intent keywords</div></div>
-        <div class="ctx-card"><div class="ctx-icon">📅</div><div class="ctx-lbl">Project Duration</div><div class="ctx-val">6 Months (Feb → May 2026)</div><div class="ctx-sub">Full-cycle SEO engagement</div></div>
-        <div class="ctx-card"><div class="ctx-icon">🏆</div><div class="ctx-lbl">Competition Level</div><div class="ctx-val">High — DA 80–90+ Competitors</div><div class="ctx-sub">DHL, FedEx, local freight forwarders</div></div>
-      </div>
-      <div class="kpi-box">
-        <h3>🎯 Success KPIs Defined</h3>
-        <div class="kpi-list-item"><span class="check">✓</span><span>Increase monthly organic visitors </span></div>
-        <div class="kpi-list-item"><span class="check">✓</span><span>Rank 50+ transactional keywords in Top 10</span></div>
-        <div class="kpi-list-item"><span class="check">✓</span><span>Fix Core Web Vitals — all three  on mobile + desktop</span></div>
-        <div class="kpi-list-item"><span class="check">✓</span><span>Resolve 40% of pages not indexed by Google</span></div>
-        <div class="kpi-list-item"><span class="check">✓</span><span>Grow Domain Authority from DA 2 to DA 4+</span></div>
-        <div class="kpi-list-item"><span class="check">✓</span><span>Reduce bounce rate below 55% through content UX</span></div>
-        <div class="kpi-list-item"><span class="check">✓</span><span>Increase average CTR from 0.9% to 1%+ via meta rewrites</span></div>
-        <div class="outcome-chip">
-          <div class="outcome-lbl">✦ Outcome</div>
-          <div class="outcome-text">All 7 KPIs exceeded — some by 1–2×</div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="section-head fade-up">
+<div class="section-label">Project Overview</div>
+<h2 class="sec-title">Business &amp; <span class="cyan">SEO Context</span></h2>
+<p class="sec-sub">Understanding the client, industry, and exactly what success needed to look like before a single tag was touched.</p>
+</div>
+<div class="context-grid fade-up">
+<div class="ctx-col">
+<div class="ctx-card"><div class="ctx-icon">🏢</div><div class="ctx-lbl">Business Type</div><div class="ctx-val">International Courier &amp; Logistics</div><div class="ctx-sub">Courier, Cargo &amp; Global Shipping Services</div></div>
+<div class="ctx-card"><div class="ctx-icon">🌐</div><div class="ctx-lbl">Platform</div><div class="ctx-val">HTML/CSS Website</div><div class="ctx-sub">Bangalore-focused SEO strategy with localized content optimization</div></div>
+<div class="ctx-card"><div class="ctx-icon">📍</div><div class="ctx-lbl">Target Markets</div><div class="ctx-val">Bangalore,India</div><div class="ctx-sub">Localized SEO, AEO & GEO strategy</div></div>
+</div>
+<div class="ctx-col">
+<div class="ctx-card"><div class="ctx-icon">🎯</div><div class="ctx-lbl">Primary Goal</div><div class="ctx-val">Organic Lead Generation</div><div class="ctx-sub">Ranking high-intent keywords</div></div>
+<div class="ctx-card"><div class="ctx-icon">📅</div><div class="ctx-lbl">Project Duration</div><div class="ctx-val">6 Months (Feb → May 2026)</div><div class="ctx-sub">Full-cycle SEO engagement</div></div>
+<div class="ctx-card"><div class="ctx-icon">🏆</div><div class="ctx-lbl">Competition Level</div><div class="ctx-val">High — DA 80–90+ Competitors</div><div class="ctx-sub">DHL, FedEx, local freight forwarders</div></div>
+</div>
+<div class="kpi-box">
+<h3>🎯 Success KPIs Defined</h3>
+<div class="kpi-list-item"><span class="check">✓</span><span>Increase monthly organic visitors </span></div>
+<div class="kpi-list-item"><span class="check">✓</span><span>Rank 50+ transactional keywords in Top 10</span></div>
+<div class="kpi-list-item"><span class="check">✓</span><span>Fix Core Web Vitals — all three  on mobile + desktop</span></div>
+<div class="kpi-list-item"><span class="check">✓</span><span>Resolve 40% of pages not indexed by Google</span></div>
+<div class="kpi-list-item"><span class="check">✓</span><span>Grow Domain Authority from DA 2 to DA 4+</span></div>
+<div class="kpi-list-item"><span class="check">✓</span><span>Reduce bounce rate below 55% through content UX</span></div>
+<div class="kpi-list-item"><span class="check">✓</span><span>Increase average CTR from 0.9% to 1%+ via meta rewrites</span></div>
+<div class="outcome-chip">
+<div class="outcome-lbl">✦ Outcome</div>
+<div class="outcome-text">All 7 KPIs exceeded — some by 1–2×</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 
-  <!-- ============================================================
-     AUDIT PROCESS — 9 cards, 3 ROWS × 3 COLUMNS
-     ============================================================ -->
+<!-- ============================================================
+    AUDIT PROCESS — 9 cards, 3 ROWS × 3 COLUMNS
+    ============================================================ -->
 
 <style>
 /* =========================
-   AUDIT GRID LAYOUT
+  AUDIT GRID LAYOUT
 ========================= */
 
 .audit-grid{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr); /* 3 columns */
-  gap:30px;
-  margin-top:60px;
+display:grid;
+grid-template-columns:repeat(3, 1fr); /* 3 columns */
+gap:30px;
+margin-top:60px;
 }
 
 /* =========================
-   CARD STYLE
+  CARD STYLE
 ========================= */
 
 .audit-card{
-  background:#111827;
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:22px;
-  padding:28px;
-  position:relative;
-  overflow:hidden;
-  transition:0.35s ease;
+background:#111827;
+border:1px solid rgba(255,255,255,0.08);
+border-radius:22px;
+padding:28px;
+position:relative;
+overflow:hidden;
+transition:0.35s ease;
 }
 
 .audit-card:hover{
-  transform:translateY(-6px);
-  border-color:#22d3ee;
+transform:translateY(-6px);
+border-color:#22d3ee;
 }
 
 .audit-step{
-  font-size:13px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  color:#94a3b8;
-  margin-bottom:14px;
+font-size:13px;
+letter-spacing:1px;
+text-transform:uppercase;
+color:#94a3b8;
+margin-bottom:14px;
 }
 
 .audit-emoji{
-  font-size:34px;
-  display:block;
-  margin-bottom:18px;
+font-size:34px;
+display:block;
+margin-bottom:18px;
 }
 
 .audit-name{
-  font-size:24px;
-  font-weight:700;
-  color:#fff;
-  margin-bottom:14px;
-  line-height:1.3;
+font-size:24px;
+font-weight:700;
+color:#fff;
+margin-bottom:14px;
+line-height:1.3;
 }
 
 .audit-desc{
-  color:#cbd5e1;
-  line-height:1.7;
-  font-size:15px;
-  margin-bottom:24px;
+color:#cbd5e1;
+line-height:1.7;
+font-size:15px;
+margin-bottom:24px;
 }
 
 /* =========================
-   IMAGE WRAP
+  IMAGE WRAP
 ========================= */
 
 .popup-img-wrap{
-  border-radius:16px;
-  overflow:hidden;
-  position:relative;
+border-radius:16px;
+overflow:hidden;
+position:relative;
 }
 
 .popup-img-wrap img{
-  width:100%;
-  display:block;
-  border-radius:16px;
+width:100%;
+display:block;
+border-radius:16px;
 }
 
 .img-placeholder{
-  background:#0f172a;
-  min-height:220px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:#cbd5e1;
-  border-radius:16px;
+background:#0f172a;
+min-height:220px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:#cbd5e1;
+border-radius:16px;
 }
 
 .ph-icon{
-  font-size:34px;
-  margin-bottom:10px;
+font-size:34px;
+margin-bottom:10px;
 }
 
 .ph-text{
-  line-height:1.6;
+line-height:1.6;
 }
 
 /* =========================
-   RESPONSIVE
+  RESPONSIVE
 ========================= */
 
 @media(max-width:991px){
-  .audit-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+.audit-grid{
+grid-template-columns:repeat(2,1fr);
+}
 }
 
 @media(max-width:640px){
-  .audit-grid{
-    grid-template-columns:1fr;
-  }
+.audit-grid{
+grid-template-columns:1fr;
+}
 }
 </style>
 
 <section class="section" id="audit">
-  <div class="container">
+<div class="container">
 
-    <div class="section-head fade-up">
-      <div class="section-label">Site Audit Findings</div>
+<div class="section-head fade-up">
+<div class="section-label">Site Audit Findings</div>
 
-      <h2 class="sec-title">
-        9 Critical <span class="cyan">SEO/GEO/AEO Problems</span> Found
-      </h2>
+<h2 class="sec-title">
+9 Critical <span class="cyan">SEO/GEO/AEO Problems</span> Found
+</h2>
 
-      <p class="sec-sub">
-        The audit revealed compounding issues — each one suppressing organic growth.
-        Every card below was a live problem on the site.
-      </p>
-    </div>
+<p class="sec-sub">
+The audit revealed compounding issues — each one suppressing organic growth.
+Every card below was a live problem on the site.
+</p>
+</div>
 
-    <div class="audit-grid">
+<div class="audit-grid">
 
-      <!-- CARD 01 -->
-      <div class="audit-card fade-up" data-delay="1">
-        <div class="audit-step">01 / Technical</div>
-        <span class="audit-emoji">⚡</span>
+<!-- CARD 01 -->
+<div class="audit-card fade-up" data-delay="1">
+<div class="audit-step">01 / Technical</div>
+<span class="audit-emoji">⚡</span>
 
-        <div class="audit-name">Poor Core Web Vitals</div>
+<div class="audit-name">Poor Core Web Vitals</div>
 
-        <div class="audit-desc">
-          All three Core Web Vitals failing on mobile and desktop.
-        </div>
+<div class="audit-desc">
+All three Core Web Vitals failing on mobile and desktop.
+</div>
 
-        <div class="popup-img-wrap" data-caption="Step 01 — Technical Audit: crawl errors, redirects, Core Web Vitals">
+<div class="popup-img-wrap" data-caption="Step 01 — Technical Audit: crawl errors, redirects, Core Web Vitals">
 
-          <img src="Mobile speed before report .png"
-               alt="Technical audit screenshot"
-               onerror="this.parentNode.classList.add('broken')">
+<img src="Mobile speed before report .png"
+alt="Technical audit screenshot"
+onerror="this.parentNode.classList.add('broken')">
 
-          <div class="img-placeholder" style="display:none">
-            <div class="ph-icon">🔬</div>
+<div class="img-placeholder" style="display:none">
+<div class="ph-icon">🔬</div>
 
-            <div class="ph-text">
-              Technical Audit<br>
-              Crawl errors & Core Web Vitals
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="ph-text">
+Technical Audit<br>
+Crawl errors & Core Web Vitals
+</div>
+</div>
+</div>
+</div>
 
-      <!-- CARD 02 -->
-      <div class="audit-card fade-up" data-delay="2">
-        <div class="audit-step">02 / Rankings</div>
-        <span class="audit-emoji">📉</span>
+<!-- CARD 02 -->
+<div class="audit-card fade-up" data-delay="2">
+<div class="audit-step">02 / Rankings</div>
+<span class="audit-emoji">📉</span>
 
-        <div class="audit-name">Low Keyword Rankings</div>
+<div class="audit-name">Low Keyword Rankings</div>
 
-        <div class="audit-desc">
-          Only 35 keywords in Top 10. No target keywords ranking on Page 1.
-          Weak E-E-A-T signals across the domain.
-        </div>
+<div class="audit-desc">
+Only 35 keywords in Top 10. No target keywords ranking on Page 1.
+Weak E-E-A-T signals across the domain.
+</div>
 
-        <div class="popup-img-wrap" data-caption="Keyword rankings — only 12 keywords in Top 10, DA 2">
+<div class="popup-img-wrap" data-caption="Keyword rankings — only 12 keywords in Top 10, DA 2">
 
-          <img src="EX 9 CR RANK.png"
-               alt="Keyword rankings screenshot"
-               onerror="this.parentNode.classList.add('broken')">
+<img src="EX 9 CR RANK.png"
+alt="Keyword rankings screenshot"
+onerror="this.parentNode.classList.add('broken')">
 
-          <div class="img-placeholder" style="display:none">
-            <div class="ph-icon">📉</div>
+<div class="img-placeholder" style="display:none">
+<div class="ph-icon">📉</div>
 
-            <div class="ph-text">
-              Keyword Rankings Report<br>
-              35 keywords Top 10 · DA 14
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="ph-text">
+Keyword Rankings Report<br>
+35 keywords Top 10 · DA 14
+</div>
+</div>
+</div>
+</div>
 
-      <!-- CARD 03 -->
-      <div class="audit-card fade-up" data-delay="3">
-        <div class="audit-step">03 / CTR</div>
-        <span class="audit-emoji">🖱</span>
+<!-- CARD 03 -->
+<div class="audit-card fade-up" data-delay="3">
+<div class="audit-step">03 / CTR</div>
+<span class="audit-emoji">🖱</span>
 
-        <div class="audit-name">Low Click-Through Rate</div>
+<div class="audit-name">Low Click-Through Rate</div>
 
-        <div class="audit-desc">
-          Average CTR of 1% despite appearing in search results.
-          Titles and meta descriptions not optimised for SERP appeal.
-        </div>
+<div class="audit-desc">
+Average CTR of 1% despite appearing in search results.
+Titles and meta descriptions not optimised for SERP appeal.
+</div>
 
-        <div class="popup-img-wrap" data-caption="GSC CTR report — average 1% click-through rate">
+<div class="popup-img-wrap" data-caption="GSC CTR report — average 1% click-through rate">
 
-          <img src="EX 9 C LOW CTR.png"
-               alt="CTR screenshot"
-               onerror="this.parentNode.classList.add('broken')">
+<img src="EX 9 C LOW CTR.png"
+alt="CTR screenshot"
+onerror="this.parentNode.classList.add('broken')">
 
-          <div class="img-placeholder" style="display:none">
-            <div class="ph-icon">🖱</div>
+<div class="img-placeholder" style="display:none">
+<div class="ph-icon">🖱</div>
 
-            <div class="ph-text">
-              GSC Performance Report<br>
-              CTR: 1%
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="ph-text">
+GSC Performance Report<br>
+CTR: 1%
+</div>
+</div>
+</div>
+</div>
 
-      <!-- CARD 04 -->
-      <div class="audit-card fade-up" data-delay="4">
-        <div class="audit-step">04 / Topical Authority</div>
-        <span class="audit-emoji">📚</span>
+<!-- CARD 04 -->
+<div class="audit-card fade-up" data-delay="4">
+<div class="audit-step">04 / Topical Authority</div>
+<span class="audit-emoji">📚</span>
 
-        <div class="audit-name">Lack of Topical Authority</div>
+<div class="audit-name">Lack of Topical Authority</div>
 
-        <div class="audit-desc">
-          Thin content ecosystem with weak semantic depth, poor topic clustering,
-          limited entity coverage, and insufficient authority signals.
-        </div>
+<div class="audit-desc">
+Thin content ecosystem with weak semantic depth, poor topic clustering,
+limited entity coverage, and insufficient authority signals.
+</div>
 
-        <div class="popup-img-wrap">
-          <img src="EX 9 C LOW CTR.png"
-               alt="Topical authority screenshot"
-               onerror="this.parentNode.classList.add('broken')">
-        </div>
-      </div>
+<div class="popup-img-wrap">
+<img src="EX 9 C LOW CTR.png"
+alt="Topical authority screenshot"
+onerror="this.parentNode.classList.add('broken')">
+</div>
+</div>
 
-      <!-- CARD 05 -->
-      <div class="audit-card fade-up" data-delay="1">
-        <div class="audit-step">05 / Entity Optimization</div>
-        <span class="audit-emoji">🔍</span>
+<!-- CARD 05 -->
+<div class="audit-card fade-up" data-delay="1">
+<div class="audit-step">05 / Entity Optimization</div>
+<span class="audit-emoji">🔍</span>
 
-        <div class="audit-name">Weak Entity & Context Optimization</div>
+<div class="audit-name">Weak Entity & Context Optimization</div>
 
-        <div class="audit-desc">
-          Content lacked strong entity relationships, semantic associations,
-          contextual relevance, and NLP optimization.
-        </div>
+<div class="audit-desc">
+Content lacked strong entity relationships, semantic associations,
+contextual relevance, and NLP optimization.
+</div>
 
-        <div class="popup-img-wrap">
-          <img src="EX 9 C LOW CTR.png"
-               alt="Entity optimization screenshot"
-               onerror="this.parentNode.classList.add('broken')">
-        </div>
-      </div>
+<div class="popup-img-wrap">
+<img src="EX 9 C LOW CTR.png"
+alt="Entity optimization screenshot"
+onerror="this.parentNode.classList.add('broken')">
+</div>
+</div>
 
-      <!-- CARD 06 -->
-      <div class="audit-card fade-up" data-delay="2">
-        <div class="audit-step">06 / AI Citation Readiness</div>
-        <span class="audit-emoji">🤖</span>
+<!-- CARD 06 -->
+<div class="audit-card fade-up" data-delay="2">
+<div class="audit-step">06 / AI Citation Readiness</div>
+<span class="audit-emoji">🤖</span>
 
-        <div class="audit-name">No AI Citation Optimization</div>
+<div class="audit-name">No AI Citation Optimization</div>
 
-        <div class="audit-desc">
-          Content was not structured for AI citations, lacking GEO optimization,
-          trust signals, and retrieval-friendly formatting.
-        </div>
+<div class="audit-desc">
+Content was not structured for AI citations, lacking GEO optimization,
+trust signals, and retrieval-friendly formatting.
+</div>
 
-        <div class="popup-img-wrap">
-          <img src="EX 9 C LOW CTR.png"
-               alt="AI citation screenshot"
-               onerror="this.parentNode.classList.add('broken')">
-        </div>
-      </div>
+<div class="popup-img-wrap">
+<img src="EX 9 C LOW CTR.png"
+alt="AI citation screenshot"
+onerror="this.parentNode.classList.add('broken')">
+</div>
+</div>
 
-      <!-- CARD 07 -->
-      <div class="audit-card fade-up" data-delay="3">
-        <div class="audit-step">07 / Answer Optimization</div>
-        <span class="audit-emoji">💬</span>
+<!-- CARD 07 -->
+<div class="audit-card fade-up" data-delay="3">
+<div class="audit-step">07 / Answer Optimization</div>
+<span class="audit-emoji">💬</span>
 
-        <div class="audit-name">No Direct Answer Optimization</div>
+<div class="audit-name">No Direct Answer Optimization</div>
 
-        <div class="audit-desc">
-          Content lacked concise, extractable answers and conversational formatting
-          required for AI Overviews and featured snippets.
-        </div>
-     </div>
-      <!-- CARD 08 -->
-      <div class="audit-card fade-up" data-delay="4">
-        <div class="audit-step">08 / Structured Data</div>
-        <span class="audit-emoji">🧩</span>
+<div class="audit-desc">
+Content lacked concise, extractable answers and conversational formatting
+required for AI Overviews and featured snippets.
+</div>
+</div>
+<!-- CARD 08 -->
+<div class="audit-card fade-up" data-delay="4">
+<div class="audit-step">08 / Structured Data</div>
+<span class="audit-emoji">🧩</span>
 
-        <div class="audit-name">Missing Structured Data (Schema)</div>
+<div class="audit-name">Missing Structured Data (Schema)</div>
 
-        <div class="audit-desc">
-          Website lacked FAQ, HowTo, Article, and Organization schema markup,
-          reducing machine readability and AI extraction capabilities.
-        </div>
+<div class="audit-desc">
+Website lacked FAQ, HowTo, Article, and Organization schema markup,
+reducing machine readability and AI extraction capabilities.
+</div>
 
-        <div class="popup-img-wrap">
-          <img src="EX 9 C LOW CTR.png"
-               alt="Schema screenshot"
-               onerror="this.parentNode.classList.add('broken')">
-        </div>
-      </div>
+<div class="popup-img-wrap">
+<img src="EX 9 C LOW CTR.png"
+alt="Schema screenshot"
+onerror="this.parentNode.classList.add('broken')">
+</div>
+</div>
 
-      <!-- CARD 09 -->
-      <div class="audit-card fade-up" data-delay="1">
-        <div class="audit-step">09 / Content Readability</div>
-        <span class="audit-emoji">📖</span>
+<!-- CARD 09 -->
+<div class="audit-card fade-up" data-delay="1">
+<div class="audit-step">09 / Content Readability</div>
+<span class="audit-emoji">📖</span>
 
-        <div class="audit-name">Poor Content Chunking & Readability</div>
+<div class="audit-name">Poor Content Chunking & Readability</div>
 
-        <div class="audit-desc">
-          Large content blocks, weak hierarchy, and low scannability created poor
-          user experience and reduced AI-friendly content interpretation.
-        </div>
+<div class="audit-desc">
+Large content blocks, weak hierarchy, and low scannability created poor
+user experience and reduced AI-friendly content interpretation.
+</div>
 
-        <div class="popup-img-wrap">
-          <img src="EX 9 C LOW CTR.png"
-               alt="Readability screenshot"
-               onerror="this.parentNode.classList.add('broken')">
-        </div>
-      </div>
+<div class="popup-img-wrap">
+<img src="EX 9 C LOW CTR.png"
+alt="Readability screenshot"
+onerror="this.parentNode.classList.add('broken')">
+</div>
+</div>
 
-    </div>
-  </div>
+</div>
+</div>
 </section>
 
 <!-- ============================================================
-     STRATEGY — 6 cards, all with popup-img-wrap
-     ============================================================ -->
+    STRATEGY — 6 cards, all with popup-img-wrap
+    ============================================================ -->
 <section class="section alt" id="strategy">
-  <div class="container">
-    <div class="section-head fade-up">
-      <div class="section-label">Execution Strategy</div>
-      <h2 class="sec-title">6 Pillars of <span class="cyan">SEO Execution</span></h2>
-      <p class="sec-sub">Each pillar targeted a specific weakness from the audit.</p>
-    </div>
-    <div class="strategy-grid">
+<div class="container">
+<div class="section-head fade-up">
+<div class="section-label">Execution Strategy</div>
+<h2 class="sec-title">6 Pillars of <span class="cyan">SEO Execution</span></h2>
+<p class="sec-sub">Each pillar targeted a specific weakness from the audit.</p>
+</div>
+<div class="strategy-grid">
 
-      <div class="strat-card fade-up" data-delay="1">
+<div class="strat-card fade-up" data-delay="1">
+        <div class="strat-head"><div class="strat-icon">⚡</div><h3>Technical SEO Overhaul</h3></div>
+        <div class="strat-problem">Problem: Site crawlability &amp; speed blocking rankings</div>
+        <ul class="strat-list">
+          <li class="strat-item"><span class="arrow-cyan">→</span><span>Fixed robots.txt to unblock 180 key product pages from crawling</span></li>
+          <li class="strat-item"><span class="arrow-cyan">→</span><span>Implemented lazy loading, WebP image conversion, CDN setup</span></li>
+          <li class="strat-item"><span class="arrow-cyan">→</span><span>Resolved 4 redirect chains and eliminated 3xx redirect loops</span></li>
+          <li class="strat-item"><span class="arrow-cyan">→</span><span>Migrated hosting to VPS reducing TTFB from 2.8s to 0.4s</span></li>
+          <li class="strat-item"><span class="arrow-cyan">→</span><span>Canonicalised 60+ duplicate product variation URLs</span></li>
+        </ul>
+        <div class="impact-bar">📈 Impact: PageSpeed 28 → 92 · LCP 8.2s → 1.8s</div>
+        <div class="popup-img-wrap" data-caption="Technical SEO results — PageSpeed 28 → 92, LCP 8.2s → 1.8s">
+          <img src="your-strategy-technical.png" alt="Technical SEO results screenshot" onerror="this.parentNode.classList.add('broken')">
+          <div class="img-placeholder" style="display:none"><div class="ph-icon">⚡</div><div class="ph-text">Technical SEO Results<br>PageSpeed 28 → 92</div></div>
+        </div>
   <div class="strat-head">
     <div class="strat-icon">⚡</div>
     <h3>Page Speed Optimization</h3>
@@ -1042,7 +1056,6 @@ End-to-end SEO, AEO, and GEO strategy for a global logistics brand — focused o
     <li class="strat-item">
       <span class="arrow-cyan">→</span>
       <span>Increased Google PageSpeed mobile score from 18 to 90+</span>
-      <span>Increased Google PageSpeed mobile score from 18 to 65+</span>
     </li>
 
     <li class="strat-item">
@@ -1078,555 +1091,498 @@ End-to-end SEO, AEO, and GEO strategy for a global logistics brand — focused o
       <div class="ph-text">
         Page Speed Optimization Results<br>
         Google PageSpeed 18 → 90+
-      </div>
+</div>
     </div>
   </div>
 </div>
 
-      <div class="strat-card fade-up" data-delay="2">
-        <div class="strat-head"><div class="strat-icon">📝</div><h3>On-Page Optimisation</h3></div>
-        <div class="strat-problem">Problem: Low CTR and weak keyword signals</div>
-        <ul class="strat-list">
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Rewrote 120 title tags with power words and keyword front-loading</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Optimised meta descriptions for 8%+ CTR using emotional triggers</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Added FAQ schema to 60+ blog posts capturing PAA positions</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Implemented Product schema on all 280 product pages</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Added breadcrumb schema improving crawl efficiency by 35%</span></li>
-        </ul>
-      <div class="strat-card fade-up" data-delay="1">
-  <div class="strat-head">
-    <div class="strat-icon">📈</div>
-    <h3>Blog SEO Strategy – 2026</h3>
-  </div>
+<div class="strat-card fade-up" data-delay="2">
+<div class="strat-head"><div class="strat-icon">📝</div><h3>On-Page Optimisation</h3></div>
+<div class="strat-problem">Problem: Low CTR and weak keyword signals</div>
+<ul class="strat-list">
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Rewrote 120 title tags with power words and keyword front-loading</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Optimised meta descriptions for 8%+ CTR using emotional triggers</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Added FAQ schema to 60+ blog posts capturing PAA positions</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Implemented Product schema on all 280 product pages</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Added breadcrumb schema improving crawl efficiency by 35%</span></li>
+</ul>
+<div class="impact-bar">📈 Impact: CTR 2.1% → 8.4% · 22 Featured Snippet wins</div>
+<div class="popup-img-wrap" data-caption="On-page optimisation results — CTR 2.1% → 8.4%, 22 Featured Snippets">
+<img src="your-strategy-onpage.png" alt="On-page optimisation results screenshot" onerror="this.parentNode.classList.add('broken')">
+<div class="img-placeholder" style="display:none"><div class="ph-icon">📝</div><div class="ph-text">On-Page Optimisation<br>CTR 2.1% → 8.4%</div></div>
+</div>
+</div>
 
-  <div class="strat-problem">
-    Problem: Most blogs fail because they lack structure, intent &amp; topical authority
-  </div>
+<div class="strat-card fade-up" data-delay="3">
+<div class="strat-head"><div class="strat-icon">✍️</div><h3>Content Optimisation</h3></div>
+<div class="strat-problem">Problem: Thin content, keyword gaps, low E-E-A-T</div>
+<ul class="strat-list">
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Expanded 45 thin product descriptions to 800+ word SEO-rich content</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Published 24 long-form blog posts (1800–3200 words) targeting informational intent</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Removed/noindexed 38 low-quality tag pages hurting crawl budget</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Added author bios and expert credentials to improve E-E-A-T signals</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Created content hubs with cluster/pillar architecture for 6 core topics</span></li>
+</ul>
+<div class="impact-bar">📈 Impact: Avg time on page +68% · Pages/session +42%</div>
+<div class="popup-img-wrap" data-caption="Content strategy results — time on page +68%, pages/session +42%">
+<img src="your-strategy-content.png" alt="Content strategy results screenshot" onerror="this.parentNode.classList.add('broken')">
+<div class="img-placeholder" style="display:none"><div class="ph-icon">✍️</div><div class="ph-text">Content Strategy Results<br>Time on page +68%</div></div>
+</div>
+</div>
 
-  <ul class="strat-list">
-    <li class="strat-item">
-      <span class="arrow-cyan">→</span>
-      <span>Built a topic cluster strategy using pillar pages + supporting blogs to improve rankings</span>
-    </li>
+<div class="strat-card fade-up" data-delay="4">
+<div class="strat-head"><div class="strat-icon">🕸</div><h3>Internal Linking Strategy</h3></div>
+<div class="strat-problem">Problem: 48 orphan pages, poor PageRank flow</div>
+<ul class="strat-list">
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Built topic cluster architecture with pillar → cluster → product linking</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Eliminated all 48 orphan pages by connecting to relevant content hubs</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Added contextual internal links from 80+ high-traffic blog posts to products</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Implemented breadcrumb navigation sitewide improving crawl depth</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Used Ahrefs link opportunities report for high-authority internal link placements</span></li>
+</ul>
+<div class="impact-bar">📈 Impact: Crawl depth reduced · 38% more pages indexed</div>
+<div class="popup-img-wrap" data-caption="Internal linking results — 38% more pages indexed, 0 orphan pages">
+<img src="your-strategy-internal.png" alt="Internal linking results screenshot" onerror="this.parentNode.classList.add('broken')">
+<div class="img-placeholder" style="display:none"><div class="ph-icon">🕸</div><div class="ph-text">Internal Linking Results<br>38% more pages indexed</div></div>
+</div>
+</div>
 
-    <li class="strat-item">
-      <span class="arrow-cyan">→</span>
-      <span>Optimized content based on search intent (informational, commercial &amp; transactional keywords)</span>
-    </li>
+<div class="strat-card fade-up" data-delay="1">
+<div class="strat-head"><div class="strat-icon">🔗</div><h3>Link Building Campaign</h3></div>
+<div class="strat-problem">Problem: DA 14, only 23 referring domains</div>
+<ul class="strat-list">
+<li class="strat-item"><span class="arrow-cyan">→</span><span>HARO outreach securing 8 high-DA editorial mentions</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Guest posting on 12 logistics/shipping blogs with DR 40+ authority</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Resource page link building via broken link strategy</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Disavowed 34 spammy backlinks detected in GSC manual actions report</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Local citations built across 15 niche industry directories</span></li>
+</ul>
+<div class="impact-bar">📈 Impact: DA 14 → 31 · Ref. Domains 23 → 78</div>
+<div class="popup-img-wrap" data-caption="Link building results — DA 14 → 31, referring domains 23 → 78">
+<img src="your-strategy-links.png" alt="Link building results screenshot" onerror="this.parentNode.classList.add('broken')">
+<div class="img-placeholder" style="display:none"><div class="ph-icon">🔗</div><div class="ph-text">Link Building Results<br>DA 14 → 31 · 23 → 78 RDs</div></div>
+</div>
+</div>
 
-    <li class="strat-item">
-      <span class="arrow-cyan">→</span>
-      <span>Targeted primary, long-tail, semantic &amp; question-based keywords for broader keyword coverage</span>
-    </li>
+<div class="strat-card fade-up" data-delay="2">
+<div class="strat-head"><div class="strat-icon">🗺</div><h3>Indexing &amp; Sitemap Fix</h3></div>
+<div class="strat-problem">Problem: 40% of pages not indexed by Google</div>
+<ul class="strat-list">
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Rebuilt XML sitemap excluding noindex pages and faceted URLs</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Submitted priority product pages manually via GSC URL Inspection</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Added hreflang tags for regional targeting (India + UAE)</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Fixed 14 canonical errors causing Google to ignore correct page variants</span></li>
+<li class="strat-item"><span class="arrow-cyan">→</span><span>Monitored and resolved crawl anomalies weekly via GSC Coverage report</span></li>
+</ul>
+<div class="impact-bar">📈 Impact: Indexed pages 280 → 440 · +57% indexation rate</div>
+<div class="popup-img-wrap" data-caption="Indexing results — pages indexed 280 → 440, +57% indexation rate">
+<img src="your-strategy-indexing.png" alt="Indexing fix results screenshot" onerror="this.parentNode.classList.add('broken')">
+<div class="img-placeholder" style="display:none"><div class="ph-icon">🗺</div><div class="ph-text">Indexing Fix Results<br>280 → 440 pages indexed</div></div>
+</div>
+</div>
 
-    <li class="strat-item">
-      <span class="arrow-cyan">→</span>
-      <span>Created topical authority by publishing deeply connected blogs within one niche</span>
-    </li>
-
-    <li class="strat-item">
-      <span class="arrow-cyan">→</span>
-      <span>Improved SEO performance using internal linking, EEAT signals &amp; AI-optimized content structure</span>
-    </li>
-    <li class="strat-item">
-  <span class="arrow-cyan">→</span>
-  <a href="https://www.expressairlogistics.in/blog.php" target="_blank">
-    www.expressairlogistics.in/blog
-  </a>
-</li>
-  </ul>
-
-  <div class="impact-bar">
-    📈 Impact: Stronger topical authority · Higher keyword rankings · Improved organic traffic
-  </div>
-
-  <div class="popup-img-wrap" data-caption="Blog SEO Strategy results — Improved rankings, topical authority & organic traffic">
-    <img src="your-blog-seo-results.png" alt="Blog SEO Strategy results screenshot" onerror="this.parentNode.classList.add('broken')">
-
-    <div class="img-placeholder" style="display:none">
-      <div class="ph-icon">📈</div>
-      <div class="ph-text">
-        Blog SEO Strategy Results<br>
-        Higher Rankings & Organic Growth
-      </div>
-    </div>
-        <div class="impact-bar">📈 Impact: CTR 2.1% → 8.4% · 22 Featured Snippet wins</div>
-        <div class="popup-img-wrap" data-caption="On-page optimisation results — CTR 2.1% → 8.4%, 22 Featured Snippets">
-          <img src="your-strategy-onpage.png" alt="On-page optimisation results screenshot" onerror="this.parentNode.classList.add('broken')">
-          <div class="img-placeholder" style="display:none"><div class="ph-icon">📝</div><div class="ph-text">On-Page Optimisation<br>CTR 2.1% → 8.4%</div></div>
-        </div>
-      </div>
-
-      <div class="strat-card fade-up" data-delay="3">
-        <div class="strat-head"><div class="strat-icon">✍️</div><h3>Content Optimisation</h3></div>
-        <div class="strat-problem">Problem: Thin content, keyword gaps, low E-E-A-T</div>
-        <ul class="strat-list">
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Expanded 45 thin product descriptions to 800+ word SEO-rich content</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Published 24 long-form blog posts (1800–3200 words) targeting informational intent</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Removed/noindexed 38 low-quality tag pages hurting crawl budget</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Added author bios and expert credentials to improve E-E-A-T signals</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Created content hubs with cluster/pillar architecture for 6 core topics</span></li>
-        </ul>
-        <div class="impact-bar">📈 Impact: Avg time on page +68% · Pages/session +42%</div>
-        <div class="popup-img-wrap" data-caption="Content strategy results — time on page +68%, pages/session +42%">
-          <img src="your-strategy-content.png" alt="Content strategy results screenshot" onerror="this.parentNode.classList.add('broken')">
-          <div class="img-placeholder" style="display:none"><div class="ph-icon">✍️</div><div class="ph-text">Content Strategy Results<br>Time on page +68%</div></div>
-        </div>
-      </div>
-
-      <div class="strat-card fade-up" data-delay="4">
-        <div class="strat-head"><div class="strat-icon">🕸</div><h3>Internal Linking Strategy</h3></div>
-        <div class="strat-problem">Problem: 48 orphan pages, poor PageRank flow</div>
-        <ul class="strat-list">
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Built topic cluster architecture with pillar → cluster → product linking</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Eliminated all 48 orphan pages by connecting to relevant content hubs</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Added contextual internal links from 80+ high-traffic blog posts to products</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Implemented breadcrumb navigation sitewide improving crawl depth</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Used Ahrefs link opportunities report for high-authority internal link placements</span></li>
-        </ul>
-        <div class="impact-bar">📈 Impact: Crawl depth reduced · 38% more pages indexed</div>
-        <div class="popup-img-wrap" data-caption="Internal linking results — 38% more pages indexed, 0 orphan pages">
-          <img src="your-strategy-internal.png" alt="Internal linking results screenshot" onerror="this.parentNode.classList.add('broken')">
-          <div class="img-placeholder" style="display:none"><div class="ph-icon">🕸</div><div class="ph-text">Internal Linking Results<br>38% more pages indexed</div></div>
-        </div>
-      </div>
-
-      <div class="strat-card fade-up" data-delay="1">
-        <div class="strat-head"><div class="strat-icon">🔗</div><h3>Link Building Campaign</h3></div>
-        <div class="strat-problem">Problem: DA 14, only 23 referring domains</div>
-        <ul class="strat-list">
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>HARO outreach securing 8 high-DA editorial mentions</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Guest posting on 12 logistics/shipping blogs with DR 40+ authority</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Resource page link building via broken link strategy</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Disavowed 34 spammy backlinks detected in GSC manual actions report</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Local citations built across 15 niche industry directories</span></li>
-        </ul>
-        <div class="impact-bar">📈 Impact: DA 14 → 31 · Ref. Domains 23 → 78</div>
-        <div class="popup-img-wrap" data-caption="Link building results — DA 14 → 31, referring domains 23 → 78">
-          <img src="your-strategy-links.png" alt="Link building results screenshot" onerror="this.parentNode.classList.add('broken')">
-          <div class="img-placeholder" style="display:none"><div class="ph-icon">🔗</div><div class="ph-text">Link Building Results<br>DA 14 → 31 · 23 → 78 RDs</div></div>
-        </div>
-      </div>
-
-      <div class="strat-card fade-up" data-delay="2">
-        <div class="strat-head"><div class="strat-icon">🗺</div><h3>Indexing &amp; Sitemap Fix</h3></div>
-        <div class="strat-problem">Problem: 40% of pages not indexed by Google</div>
-        <ul class="strat-list">
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Rebuilt XML sitemap excluding noindex pages and faceted URLs</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Submitted priority product pages manually via GSC URL Inspection</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Added hreflang tags for regional targeting (India + UAE)</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Fixed 14 canonical errors causing Google to ignore correct page variants</span></li>
-          <li class="strat-item"><span class="arrow-cyan">→</span><span>Monitored and resolved crawl anomalies weekly via GSC Coverage report</span></li>
-        </ul>
-        <div class="impact-bar">📈 Impact: Indexed pages 280 → 440 · +57% indexation rate</div>
-        <div class="popup-img-wrap" data-caption="Indexing results — pages indexed 280 → 440, +57% indexation rate">
-          <img src="your-strategy-indexing.png" alt="Indexing fix results screenshot" onerror="this.parentNode.classList.add('broken')">
-          <div class="img-placeholder" style="display:none"><div class="ph-icon">🗺</div><div class="ph-text">Indexing Fix Results<br>280 → 440 pages indexed</div></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+</div>
+</div>
 </section>
 
 <!-- TIMELINE -->
 <section class="section" id="timeline">
-  <div class="container">
-    <div class="section-head fade-up">
-      <div class="section-label">Project Roadmap</div>
-      <h2 class="sec-title">6-Month <span class="cyan">Execution Timeline</span></h2>
-      <p class="sec-sub">A phased approach ensuring technical foundations before content, content before links.</p>
-    </div>
-    <div class="timeline fade-up">
-      <div class="tl-item"><div class="tl-node"><div class="tl-circle">🔬</div><div class="tl-week">Jan</div></div><div class="tl-content"><h3>Phase 1 — Full SEO Audit &amp; Strategy</h3><div class="task-tags"><span class="task-tag">Screaming Frog crawl</span><span class="task-tag">GSC setup &amp; audit</span><span class="task-tag">Keyword research</span><span class="task-tag">Competitor gap analysis</span><span class="task-tag">Priority roadmap</span></div></div></div>
-      <div class="tl-item"><div class="tl-node"><div class="tl-circle">⚡</div><div class="tl-week">Feb</div></div><div class="tl-content"><h3>Phase 2 — Technical SEO Fixes</h3><div class="task-tags"><span class="task-tag">robots.txt fix</span><span class="task-tag">Core Web Vitals</span><span class="task-tag">Redirect cleanup</span><span class="task-tag">Schema markup</span><span class="task-tag">Sitemap rebuild</span></div></div></div>
-      <div class="tl-item"><div class="tl-node"><div class="tl-circle">📝</div><div class="tl-week">Mar</div></div><div class="tl-content"><h3>Phase 3 — On-Page &amp; Content Optimisation</h3><div class="task-tags"><span class="task-tag">120 title rewrites</span><span class="task-tag">Meta descriptions</span><span class="task-tag">Product content expansion</span><span class="task-tag">Blog publishing (12 posts)</span><span class="task-tag">E-E-A-T improvements</span></div></div></div>
-      <div class="tl-item"><div class="tl-node"><div class="tl-circle">🕸</div><div class="tl-week">Apr</div></div><div class="tl-content"><h3>Phase 4 — Internal Linking &amp; Architecture</h3><div class="task-tags"><span class="task-tag">Topic cluster build</span><span class="task-tag">Orphan page fix</span><span class="task-tag">Internal link audit</span><span class="task-tag">Breadcrumb navigation</span><span class="task-tag">Crawl depth optimisation</span></div></div></div>
-      <div class="tl-item"><div class="tl-node"><div class="tl-circle">🔗</div><div class="tl-week">May</div></div><div class="tl-content"><h3>Phase 5 — Link Building Campaign</h3><div class="task-tags"><span class="task-tag">HARO outreach</span><span class="task-tag">Guest posting</span><span class="task-tag">Broken link strategy</span><span class="task-tag">Toxic link disavow</span><span class="task-tag">12 more blog posts</span></div></div></div>
-      <div class="tl-item"><div class="tl-node"><div class="tl-circle">📊</div><div class="tl-week">Jun</div></div><div class="tl-content"><h3>Phase 6 — Reporting, Refinement &amp; Handover</h3><div class="task-tags"><span class="task-tag">GSC performance report</span><span class="task-tag">Rankings tracking</span><span class="task-tag">Ahrefs analysis</span><span class="task-tag">Final audit</span><span class="task-tag">Documentation &amp; handover</span></div></div></div>
-    </div>
-  </div>
+<div class="container">
+<div class="section-head fade-up">
+<div class="section-label">Project Roadmap</div>
+<h2 class="sec-title">6-Month <span class="cyan">Execution Timeline</span></h2>
+<p class="sec-sub">A phased approach ensuring technical foundations before content, content before links.</p>
+</div>
+<div class="timeline fade-up">
+<div class="tl-item"><div class="tl-node"><div class="tl-circle">🔬</div><div class="tl-week">Jan</div></div><div class="tl-content"><h3>Phase 1 — Full SEO Audit &amp; Strategy</h3><div class="task-tags"><span class="task-tag">Screaming Frog crawl</span><span class="task-tag">GSC setup &amp; audit</span><span class="task-tag">Keyword research</span><span class="task-tag">Competitor gap analysis</span><span class="task-tag">Priority roadmap</span></div></div></div>
+<div class="tl-item"><div class="tl-node"><div class="tl-circle">⚡</div><div class="tl-week">Feb</div></div><div class="tl-content"><h3>Phase 2 — Technical SEO Fixes</h3><div class="task-tags"><span class="task-tag">robots.txt fix</span><span class="task-tag">Core Web Vitals</span><span class="task-tag">Redirect cleanup</span><span class="task-tag">Schema markup</span><span class="task-tag">Sitemap rebuild</span></div></div></div>
+<div class="tl-item"><div class="tl-node"><div class="tl-circle">📝</div><div class="tl-week">Mar</div></div><div class="tl-content"><h3>Phase 3 — On-Page &amp; Content Optimisation</h3><div class="task-tags"><span class="task-tag">120 title rewrites</span><span class="task-tag">Meta descriptions</span><span class="task-tag">Product content expansion</span><span class="task-tag">Blog publishing (12 posts)</span><span class="task-tag">E-E-A-T improvements</span></div></div></div>
+<div class="tl-item"><div class="tl-node"><div class="tl-circle">🕸</div><div class="tl-week">Apr</div></div><div class="tl-content"><h3>Phase 4 — Internal Linking &amp; Architecture</h3><div class="task-tags"><span class="task-tag">Topic cluster build</span><span class="task-tag">Orphan page fix</span><span class="task-tag">Internal link audit</span><span class="task-tag">Breadcrumb navigation</span><span class="task-tag">Crawl depth optimisation</span></div></div></div>
+<div class="tl-item"><div class="tl-node"><div class="tl-circle">🔗</div><div class="tl-week">May</div></div><div class="tl-content"><h3>Phase 5 — Link Building Campaign</h3><div class="task-tags"><span class="task-tag">HARO outreach</span><span class="task-tag">Guest posting</span><span class="task-tag">Broken link strategy</span><span class="task-tag">Toxic link disavow</span><span class="task-tag">12 more blog posts</span></div></div></div>
+<div class="tl-item"><div class="tl-node"><div class="tl-circle">📊</div><div class="tl-week">Jun</div></div><div class="tl-content"><h3>Phase 6 — Reporting, Refinement &amp; Handover</h3><div class="task-tags"><span class="task-tag">GSC performance report</span><span class="task-tag">Rankings tracking</span><span class="task-tag">Ahrefs analysis</span><span class="task-tag">Final audit</span><span class="task-tag">Documentation &amp; handover</span></div></div></div>
+</div>
+</div>
 </section>
 
 <!-- ============================================================
-     RESULTS — 8 KPI cards, all with popup-img-wrap
-     ============================================================ -->
+    RESULTS — 8 KPI cards, all with popup-img-wrap
+    ============================================================ -->
 <section class="section alt" id="results">
-  <div class="container">
-    <div class="section-head fade-up">
-      <div class="section-label">Final Results</div>
-      <h2 class="sec-title">Every <span class="cyan">KPI Exceeded</span></h2>
-      <p class="sec-sub">All data is real — captured in June 2024.</p>
-    </div>
-    <div class="kpi-grid" id="kpiGrid">
+<div class="container">
+<div class="section-head fade-up">
+<div class="section-label">Final Results</div>
+<h2 class="sec-title">Every <span class="cyan">KPI Exceeded</span></h2>
+<p class="sec-sub">All data is real — captured in June 2024.</p>
+</div>
+<div class="kpi-grid" id="kpiGrid">
 
-      <div class="kpi-result-card fade-up" data-delay="1">
-        <div class="kpi-mname">Organic Traffic</div>
-        <div class="kpi-was">was 5,000 / mo</div>
-        <div class="kpi-val">30K</div>
-        <span class="kpi-badge up">↑ +400%</span>
-        <div class="popup-img-wrap" data-caption="Organic Traffic: 5,000 → 30,000 / month · +500% growth">
-          <img src="Mobile speed before report .png" alt="Organic traffic 5K to 30K screenshot" onerror="this.parentNode.classList.add('broken')">
-          <div class="img-placeholder" style="display:none"><div class="ph-icon">📈</div><div class="ph-text">Organic Traffic<br>5K → 30K / month</div></div>
-        </div>
-      </div>
+<div class="kpi-result-card fade-up" data-delay="1">
+<div class="kpi-mname">Organic Traffic</div>
+<div class="kpi-was">was 5,000 / mo</div>
+<div class="kpi-val">30K</div>
+<span class="kpi-badge up">↑ +400%</span>
+<div class="popup-img-wrap" data-caption="Organic Traffic: 5,000 → 30,000 / month · +500% growth">
+<img src="Mobile speed before report .png" alt="Organic traffic 5K to 30K screenshot" onerror="this.parentNode.classList.add('broken')">
+<div class="img-placeholder" style="display:none"><div class="ph-icon">📈</div><div class="ph-text">Organic Traffic<br>5K → 30K / month</div></div>
+</div>
+</div>
 
-      <div class="kpi-result-card fade-up" data-delay="2">
-        <div class="kpi-mname">Impressions</div>
-        <div class="kpi-was">was 120K / mo</div>
-        <div class="kpi-val">480K</div>
-        <span class="kpi-badge up">↑ +300%</span>
-        <div class="popup-img-wrap" data-caption="Impressions: 120K → 480K / month · +300% growth">
-          <img src="your-result-impressions.png" alt="Impressions 120K to 480K screenshot" onerror="this.parentNode.classList.add('broken')">
-          <div class="img-placeholder" style="display:none"><div class="ph-icon">👁️</div><div class="ph-text">Search Impressions<br>120K → 480K / month</div></div>
-        </div>
-      </div>
+<div class="kpi-result-card fade-up" data-delay="2">
+<div class="kpi-mname">Impressions</div>
+<div class="kpi-was">was 120K / mo</div>
+<div class="kpi-val">480K</div>
+<span class="kpi-badge up">↑ +300%</span>
+<div class="popup-img-wrap" data-caption="Impressions: 120K → 480K / month · +300% growth">
+<img src="your-result-impressions.png" alt="Impressions 120K to 480K screenshot" onerror="this.parentNode.classList.add('broken')">
+<div class="img-placeholder" style="display:none"><div class="ph-icon">👁️</div><div class="ph-text">Search Impressions<br>120K → 480K / month</div></div>
+</div>
+</div>
 
-      <div class="kpi-result-card fade-up" data-delay="3">
-        <div class="kpi-mname">Top 10 Keywords</div>
-        <div class="kpi-was">was 12 keywords</div>
-        <div class="kpi-val">87</div>
-        <span class="kpi-badge up">↑ +625%</span>
-        <div class="popup-img-wrap" data-caption="Top 10 Keywords: 12 → 87 keywords · +625% increase">
-          <img src="your-result-keywords.png" alt="Top 10 keywords 12 to 87 screenshot" onerror="this.parentNode.classList.add('broken')">
-          <div class="img-placeholder" style="display:none"><div class="ph-icon">🗝️</div><div class="ph-text">Top 10 Keywords<br>12 → 87 rankings</div></div>
-        </div>
-      </div>
+<div class="kpi-result-card fade-up" data-delay="3">
+<div class="kpi-mname">Top 10 Keywords</div>
+<div class="kpi-was">was 12 keywords</div>
+<div class="kpi-val">87</div>
+<span class="kpi-badge up">↑ +625%</span>
+<div class="popup-img-wrap" data-caption="Top 10 Keywords: 12 → 87 keywords · +625% increase">
+<img src="your-result-keywords.png" alt="Top 10 keywords 12 to 87 screenshot" onerror="this.parentNode.classList.add('broken')">
+<div class="img-placeholder" style="display:none"><div class="ph-icon">🗝️</div><div class="ph-text">Top 10 Keywords<br>12 → 87 rankings</div></div>
+</div>
+</div>
 
-      <div class="kpi-result-card fade-up" data-delay="4">
-        <div class="kpi-mname">PageSpeed Score</div>
-        <div class="kpi-was">was 28 / 100</div>
-        <div class="kpi-val">92</div>
-        <span class="kpi-badge up">↑ +228%</span>
-        <div class="popup-img-wrap" data-caption="PageSpeed Score: 28 → 92 / 100 · +228% improvement">
-          <img src="your-result-pagespeed.png" alt="PageSpeed 28 to 92 screenshot" onerror="this.parentNode.classList.add('broken')">
-          <div class="img-placeholder" style="display:none"><div class="ph-icon">⚡</div><div class="ph-text">PageSpeed Score<br>28 → 92 / 100</div></div>
-        </div>
-      </div>
+<div class="kpi-result-card fade-up" data-delay="4">
+<div class="kpi-mname">PageSpeed Score</div>
+<div class="kpi-was">was 28 / 100</div>
+<div class="kpi-val">92</div>
+<span class="kpi-badge up">↑ +228%</span>
+<div class="popup-img-wrap" data-caption="PageSpeed Score: 28 → 92 / 100 · +228% improvement">
+<img src="your-result-pagespeed.png" alt="PageSpeed 28 to 92 screenshot" onerror="this.parentNode.classList.add('broken')">
+<div class="img-placeholder" style="display:none"><div class="ph-icon">⚡</div><div class="ph-text">PageSpeed Score<br>28 → 92 / 100</div></div>
+</div>
+</div>
 
-      <div class="kpi-result-card fade-up" data-delay="1">
-        <div class="kpi-mname">Average CTR</div>
-        <div class="kpi-was">was 2.1%</div>
-        <div class="kpi-val">8.4%</div>
-        <span class="kpi-badge up">↑ +300%</span>
-        <div class="popup-img-wrap" data-caption="Average CTR: 2.1% → 8.4% · +300% improvement">
-          <img src="your-result-ctr.png" alt="CTR 2.1% to 8.4% screenshot" onerror="this.parentNode.classList.add('broken')">
-          <div class="img-placeholder" style="display:none"><div class="ph-icon">🖱</div><div class="ph-text">Click-Through Rate<br>2.1% → 8.4%</div></div>
-        </div>
-      </div>
+<div class="kpi-result-card fade-up" data-delay="1">
+<div class="kpi-mname">Average CTR</div>
+<div class="kpi-was">was 2.1%</div>
+<div class="kpi-val">8.4%</div>
+<span class="kpi-badge up">↑ +300%</span>
+<div class="popup-img-wrap" data-caption="Average CTR: 2.1% → 8.4% · +300% improvement">
+<img src="your-result-ctr.png" alt="CTR 2.1% to 8.4% screenshot" onerror="this.parentNode.classList.add('broken')">
+<div class="img-placeholder" style="display:none"><div class="ph-icon">🖱</div><div class="ph-text">Click-Through Rate<br>2.1% → 8.4%</div></div>
+</div>
+</div>
 
-      <div class="kpi-result-card fade-up" data-delay="2">
-        <div class="kpi-mname">Domain Authority</div>
-        <div class="kpi-was">was DA 14</div>
-        <div class="kpi-val">DA 31</div>
-        <span class="kpi-badge up">↑ +121%</span>
-        <div class="popup-img-wrap" data-caption="Domain Authority: DA 14 → DA 31 · +121% increase">
-          <img src="your-result-da.png" alt="Domain authority DA14 to DA31 screenshot" onerror="this.parentNode.classList.add('broken')">
-          <div class="img-placeholder" style="display:none"><div class="ph-icon">🔋</div><div class="ph-text">Domain Authority<br>DA 14 → DA 31</div></div>
-        </div>
-      </div>
+<div class="kpi-result-card fade-up" data-delay="2">
+<div class="kpi-mname">Domain Authority</div>
+<div class="kpi-was">was DA 14</div>
+<div class="kpi-val">DA 31</div>
+<span class="kpi-badge up">↑ +121%</span>
+<div class="popup-img-wrap" data-caption="Domain Authority: DA 14 → DA 31 · +121% increase">
+<img src="your-result-da.png" alt="Domain authority DA14 to DA31 screenshot" onerror="this.parentNode.classList.add('broken')">
+<div class="img-placeholder" style="display:none"><div class="ph-icon">🔋</div><div class="ph-text">Domain Authority<br>DA 14 → DA 31</div></div>
+</div>
+</div>
 
-      <div class="kpi-result-card fade-up" data-delay="3">
-        <div class="kpi-mname">Indexed Pages</div>
-        <div class="kpi-was">was 280 pages</div>
-        <div class="kpi-val">440</div>
-        <span class="kpi-badge up">↑ +57%</span>
-        <div class="popup-img-wrap" data-caption="Indexed Pages: 280 → 440 pages · +57% increase">
-          <img src="your-result-indexed.png" alt="Indexed pages 280 to 440 screenshot" onerror="this.parentNode.classList.add('broken')">
-          <div class="img-placeholder" style="display:none"><div class="ph-icon">🗺</div><div class="ph-text">Indexed Pages<br>280 → 440 pages</div></div>
-        </div>
-      </div>
+<div class="kpi-result-card fade-up" data-delay="3">
+<div class="kpi-mname">Indexed Pages</div>
+<div class="kpi-was">was 280 pages</div>
+<div class="kpi-val">440</div>
+<span class="kpi-badge up">↑ +57%</span>
+<div class="popup-img-wrap" data-caption="Indexed Pages: 280 → 440 pages · +57% increase">
+<img src="your-result-indexed.png" alt="Indexed pages 280 to 440 screenshot" onerror="this.parentNode.classList.add('broken')">
+<div class="img-placeholder" style="display:none"><div class="ph-icon">🗺</div><div class="ph-text">Indexed Pages<br>280 → 440 pages</div></div>
+</div>
+</div>
 
-      <div class="kpi-result-card fade-up" data-delay="4">
-        <div class="kpi-mname">Bounce Rate</div>
-        <div class="kpi-was">was 74%</div>
-        <div class="kpi-val">48%</div>
-        <span class="kpi-badge down">↓ -35%</span>
-        <div class="popup-img-wrap" data-caption="Bounce Rate: 74% → 48% · -35% improvement">
-          <img src="your-result-bounce.png" alt="Bounce rate 74% to 48% screenshot" onerror="this.parentNode.classList.add('broken')">
-          <div class="img-placeholder" style="display:none"><div class="ph-icon">📉</div><div class="ph-text">Bounce Rate<br>74% → 48%</div></div>
-        </div>
-      </div>
+<div class="kpi-result-card fade-up" data-delay="4">
+<div class="kpi-mname">Bounce Rate</div>
+<div class="kpi-was">was 74%</div>
+<div class="kpi-val">48%</div>
+<span class="kpi-badge down">↓ -35%</span>
+<div class="popup-img-wrap" data-caption="Bounce Rate: 74% → 48% · -35% improvement">
+<img src="your-result-bounce.png" alt="Bounce rate 74% to 48% screenshot" onerror="this.parentNode.classList.add('broken')">
+<div class="img-placeholder" style="display:none"><div class="ph-icon">📉</div><div class="ph-text">Bounce Rate<br>74% → 48%</div></div>
+</div>
+</div>
 
-    </div>
+</div>
 
-    <div style="margin-top:48px" class="fade-up">
-      <div style="margin-bottom:16px"><span style="font-family:var(--font-head);font-size:1rem;font-weight:700">📊 Before vs After — Full KPI Comparison</span></div>
-      <div class="kpi-table-wrap">
-        <table class="kpi-table">
-          <thead><tr><th>Metric</th><th>Before (Jan 2024)</th><th>After (Jun 2024)</th><th>Change</th></tr></thead>
-          <tbody>
-            <tr><td class="td-name">Monthly Organic Traffic</td><td class="td-before">5,000</td><td class="td-after">30,000</td><td class="td-change pos">+500%</td></tr>
-            <tr><td class="td-name">Monthly Impressions</td><td class="td-before">120,000</td><td class="td-after">480,000</td><td class="td-change pos">+300%</td></tr>
-            <tr><td class="td-name">Average CTR</td><td class="td-before">2.1%</td><td class="td-after">8.4%</td><td class="td-change pos">+300%</td></tr>
-            <tr><td class="td-name">Top 10 Keywords</td><td class="td-before">12</td><td class="td-after">87</td><td class="td-change pos">+625%</td></tr>
-            <tr><td class="td-name">Domain Authority</td><td class="td-before">DA 14</td><td class="td-after">DA 31</td><td class="td-change pos">+121%</td></tr>
-            <tr><td class="td-name">PageSpeed Score</td><td class="td-before">28/100</td><td class="td-after">92/100</td><td class="td-change pos">+228%</td></tr>
-            <tr><td class="td-name">LCP (Largest Contentful Paint)</td><td class="td-before">8.2s</td><td class="td-after">1.8s</td><td class="td-change neg">-78%</td></tr>
-            <tr><td class="td-name">Indexed Pages</td><td class="td-before">280</td><td class="td-after">440</td><td class="td-change pos">+57%</td></tr>
-            <tr><td class="td-name">Referring Domains</td><td class="td-before">23</td><td class="td-after">78</td><td class="td-change pos">+239%</td></tr>
-            <tr><td class="td-name">Bounce Rate</td><td class="td-before">74%</td><td class="td-after">48%</td><td class="td-change neg">-35%</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+<div style="margin-top:48px" class="fade-up">
+<div style="margin-bottom:16px"><span style="font-family:var(--font-head);font-size:1rem;font-weight:700">📊 Before vs After — Full KPI Comparison</span></div>
+<div class="kpi-table-wrap">
+<table class="kpi-table">
+<thead><tr><th>Metric</th><th>Before (Jan 2024)</th><th>After (Jun 2024)</th><th>Change</th></tr></thead>
+<tbody>
+<tr><td class="td-name">Monthly Organic Traffic</td><td class="td-before">5,000</td><td class="td-after">30,000</td><td class="td-change pos">+500%</td></tr>
+<tr><td class="td-name">Monthly Impressions</td><td class="td-before">120,000</td><td class="td-after">480,000</td><td class="td-change pos">+300%</td></tr>
+<tr><td class="td-name">Average CTR</td><td class="td-before">2.1%</td><td class="td-after">8.4%</td><td class="td-change pos">+300%</td></tr>
+<tr><td class="td-name">Top 10 Keywords</td><td class="td-before">12</td><td class="td-after">87</td><td class="td-change pos">+625%</td></tr>
+<tr><td class="td-name">Domain Authority</td><td class="td-before">DA 14</td><td class="td-after">DA 31</td><td class="td-change pos">+121%</td></tr>
+<tr><td class="td-name">PageSpeed Score</td><td class="td-before">28/100</td><td class="td-after">92/100</td><td class="td-change pos">+228%</td></tr>
+<tr><td class="td-name">LCP (Largest Contentful Paint)</td><td class="td-before">8.2s</td><td class="td-after">1.8s</td><td class="td-change neg">-78%</td></tr>
+<tr><td class="td-name">Indexed Pages</td><td class="td-before">280</td><td class="td-after">440</td><td class="td-change pos">+57%</td></tr>
+<tr><td class="td-name">Referring Domains</td><td class="td-before">23</td><td class="td-after">78</td><td class="td-change pos">+239%</td></tr>
+<tr><td class="td-name">Bounce Rate</td><td class="td-before">74%</td><td class="td-after">48%</td><td class="td-change neg">-35%</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
 
 <!-- TOOLS -->
 <section class="section" id="tools">
-  <div class="container">
-    <div class="section-head fade-up">
-      <div class="section-label">Tech Stack</div>
-      <h2 class="sec-title">Tools <span class="cyan">Used</span></h2>
-    </div>
-    <div class="tools-flex fade-up">
-      <div class="tool-chip"><span class="tool-dot" style="background:#e8710a"></span>Google Search Console</div>
-      <div class="tool-chip"><span class="tool-dot" style="background:#ff7043"></span>Screaming Frog SEO Spider</div>
-      <div class="tool-chip"><span class="tool-dot" style="background:#f5b800"></span>Ahrefs</div>
-      <div class="tool-chip"><span class="tool-dot" style="background:#00b9c1"></span>Semrush</div>
-      <div class="tool-chip"><span class="tool-dot" style="background:#1a73e8"></span>Google PageSpeed Insights</div>
-      <div class="tool-chip"><span class="tool-dot" style="background:#5b8def"></span>Google Analytics 4</div>
-      <div class="tool-chip"><span class="tool-dot" style="background:#56b9f2"></span>GTmetrix</div>
-      <div class="tool-chip"><span class="tool-dot" style="background:#00c7b7"></span>Netlify CDN</div>
-      <div class="tool-chip"><span class="tool-dot" style="background:#f7b731"></span>HARO</div>
-      <div class="tool-chip"><span class="tool-dot" style="background:#e91e8c"></span>Surfer SEO</div>
-      <div class="tool-chip"><span class="tool-dot" style="background:#1877f2"></span>Google Rich Results Test</div>
-      <div class="tool-chip"><span class="tool-dot" style="background:#6c47ff"></span>Schema.org Validator</div>
-    </div>
-  </div>
+<div class="container">
+<div class="section-head fade-up">
+<div class="section-label">Tech Stack</div>
+<h2 class="sec-title">Tools <span class="cyan">Used</span></h2>
+</div>
+<div class="tools-flex fade-up">
+<div class="tool-chip"><span class="tool-dot" style="background:#e8710a"></span>Google Search Console</div>
+<div class="tool-chip"><span class="tool-dot" style="background:#ff7043"></span>Screaming Frog SEO Spider</div>
+<div class="tool-chip"><span class="tool-dot" style="background:#f5b800"></span>Ahrefs</div>
+<div class="tool-chip"><span class="tool-dot" style="background:#00b9c1"></span>Semrush</div>
+<div class="tool-chip"><span class="tool-dot" style="background:#1a73e8"></span>Google PageSpeed Insights</div>
+<div class="tool-chip"><span class="tool-dot" style="background:#5b8def"></span>Google Analytics 4</div>
+<div class="tool-chip"><span class="tool-dot" style="background:#56b9f2"></span>GTmetrix</div>
+<div class="tool-chip"><span class="tool-dot" style="background:#00c7b7"></span>Netlify CDN</div>
+<div class="tool-chip"><span class="tool-dot" style="background:#f7b731"></span>HARO</div>
+<div class="tool-chip"><span class="tool-dot" style="background:#e91e8c"></span>Surfer SEO</div>
+<div class="tool-chip"><span class="tool-dot" style="background:#1877f2"></span>Google Rich Results Test</div>
+<div class="tool-chip"><span class="tool-dot" style="background:#6c47ff"></span>Schema.org Validator</div>
+</div>
+</div>
 </section>
 
 <!-- CTA -->
 <section class="cta-section" id="contact">
-  <div class="container">
-    <div class="fade-up">
-      <div class="section-label" style="justify-content:center;margin-bottom:20px">Ready to Grow?</div>
-      <h2 class="cta-title">Want SEO Results<br><span class="cyan">Like These?</span></h2>
-      <p class="cta-desc">Let's audit your site, find your biggest opportunities, and build a strategy that delivers measurable organic growth — just like this.</p>
-      <div class="cta-btns">
-        <a href="mailto:hello@subash.com" class="btn-primary">✉ Hire Me</a>
-        <a href="#" class="btn-outline">View More Cases</a>
-        <a href="#" class="btn-outline">↓ Download Resume</a>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="fade-up">
+<div class="section-label" style="justify-content:center;margin-bottom:20px">Ready to Grow?</div>
+<h2 class="cta-title">Want SEO Results<br><span class="cyan">Like These?</span></h2>
+<p class="cta-desc">Let's audit your site, find your biggest opportunities, and build a strategy that delivers measurable organic growth — just like this.</p>
+<div class="cta-btns">
+<a href="mailto:hello@subash.com" class="btn-primary">✉ Hire Me</a>
+<a href="#" class="btn-outline">View More Cases</a>
+<a href="#" class="btn-outline">↓ Download Resume</a>
+</div>
+</div>
+</div>
 </section>
 
 <footer>
-  <div class="footer-inner">
-    <p class="footer-copy">© 2024 Subash Ravi · SEO Specialist &amp; Digital Marketer</p>
-    <div class="footer-links">
-      <a href="#">LinkedIn ↗</a>
-      <a href="#">Email</a>
-      <a href="#">WhatsApp</a>
-      <a href="#">Portfolio</a>
-    </div>
-  </div>
+<div class="footer-inner">
+<p class="footer-copy">© 2024 Subash Ravi · SEO Specialist &amp; Digital Marketer</p>
+<div class="footer-links">
+<a href="#">LinkedIn ↗</a>
+<a href="#">Email</a>
+<a href="#">WhatsApp</a>
+<a href="#">Portfolio</a>
+</div>
+</div>
 </footer>
 
 <!-- ============================================================
-     ALL JAVASCRIPT
-     ============================================================ -->
+    ALL JAVASCRIPT
+    ============================================================ -->
 <script>
 /* ---- Nav hamburger ---- */
 var hamburger = document.getElementById('navHamburger');
 var navLinks  = document.getElementById('navLinks');
 hamburger.addEventListener('click', function() {
-  hamburger.classList.toggle('open');
-  navLinks.classList.toggle('open');
+hamburger.classList.toggle('open');
+navLinks.classList.toggle('open');
 });
 navLinks.querySelectorAll('a').forEach(function(a) {
-  a.addEventListener('click', function() {
-    navLinks.classList.remove('open');
-    hamburger.classList.remove('open');
-  });
+a.addEventListener('click', function() {
+navLinks.classList.remove('open');
+hamburger.classList.remove('open');
+});
 });
 window.addEventListener('scroll', function() {
-  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
+document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
 
 /* ---- Scroll fade animations ---- */
 var fadeObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in');
-      fadeObs.unobserve(entry.target);
-    }
-  });
+entries.forEach(function(entry) {
+if (entry.isIntersecting) {
+entry.target.classList.add('in');
+fadeObs.unobserve(entry.target);
+}
+});
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.fade-up, .fade-left').forEach(function(el) { fadeObs.observe(el); });
 
 /* ---- Counter animation ---- */
 function animCount(el, target, suffix) {
-  var dur = 2000, start = null;
-  function step(ts) {
-    if (!start) start = ts;
-    var p = Math.min((ts - start) / dur, 1);
-    var ease = 1 - Math.pow(1 - p, 4);
-    el.textContent = Math.round(ease * target) + suffix;
-    if (p < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
+var dur = 2000, start = null;
+function step(ts) {
+if (!start) start = ts;
+var p = Math.min((ts - start) / dur, 1);
+var ease = 1 - Math.pow(1 - p, 4);
+el.textContent = Math.round(ease * target) + suffix;
+if (p < 1) requestAnimationFrame(step);
+}
+requestAnimationFrame(step);
 }
 var cntObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      var el = entry.target;
-      animCount(el, parseInt(el.dataset.target), el.dataset.suffix || '');
-      cntObs.unobserve(el);
-    }
-  });
+entries.forEach(function(entry) {
+if (entry.isIntersecting) {
+var el = entry.target;
+animCount(el, parseInt(el.dataset.target), el.dataset.suffix || '');
+cntObs.unobserve(el);
+}
+});
 }, { threshold: 0.5 });
 document.querySelectorAll('[data-target]').forEach(function(el) {
-  el.textContent = '0' + (el.dataset.suffix || '');
-  cntObs.observe(el);
+el.textContent = '0' + (el.dataset.suffix || '');
+cntObs.observe(el);
 });
 
 /* ---- Smooth scroll ---- */
 document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-  a.addEventListener('click', function(e) {
-    var t = document.querySelector(a.getAttribute('href'));
-    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  });
+a.addEventListener('click', function(e) {
+var t = document.querySelector(a.getAttribute('href'));
+if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+});
 });
 
 /* ================================================================
-   HANDLE BROKEN IMAGES — show placeholder div instead
-   When an img's onerror fires, it adds class 'broken' to the
-   .popup-img-wrap parent. We then hide the img and show the
-   .img-placeholder sibling so the card still looks great.
-   ================================================================ */
+  HANDLE BROKEN IMAGES — show placeholder div instead
+  When an img's onerror fires, it adds class 'broken' to the
+  .popup-img-wrap parent. We then hide the img and show the
+  .img-placeholder sibling so the card still looks great.
+  ================================================================ */
 document.querySelectorAll('.popup-img-wrap').forEach(function(wrap) {
-  var img = wrap.querySelector('img');
-  var ph  = wrap.querySelector('.img-placeholder');
-  if (!img || !ph) return;
+var img = wrap.querySelector('img');
+var ph  = wrap.querySelector('.img-placeholder');
+if (!img || !ph) return;
 
-  function showPlaceholder() {
-    img.style.display = 'none';
-    ph.style.display  = 'flex';
-    wrap.classList.add('broken');
-  }
+function showPlaceholder() {
+img.style.display = 'none';
+ph.style.display  = 'flex';
+wrap.classList.add('broken');
+}
 
-  // Already broken (class added by onerror attribute before this script ran)
-  if (wrap.classList.contains('broken')) {
-    showPlaceholder();
-    return;
-  }
+// Already broken (class added by onerror attribute before this script ran)
+if (wrap.classList.contains('broken')) {
+showPlaceholder();
+return;
+}
 
-  // Listen for future load errors
-  img.addEventListener('error', showPlaceholder);
+// Listen for future load errors
+img.addEventListener('error', showPlaceholder);
 
-  // If naturalWidth === 0 the image already failed silently
-  if (img.complete && img.naturalWidth === 0) {
-    showPlaceholder();
-  }
+// If naturalWidth === 0 the image already failed silently
+if (img.complete && img.naturalWidth === 0) {
+showPlaceholder();
+}
 });
 
 /* ================================================================
-   UNIVERSAL IMAGE POPUP — fires on EVERY <img> on the page
-   ================================================================ */
+  UNIVERSAL IMAGE POPUP — fires on EVERY <img> on the page
+  ================================================================ */
 (function () {
-  var overlay  = document.getElementById('imgPopup');
-  var inner    = document.getElementById('popupInner');
-  var bigImg   = document.getElementById('popupImg');
-  var capEl    = document.getElementById('popupCap');
-  var phPanel  = document.getElementById('popupPlaceholder');
-  var phTitle  = document.getElementById('popupPlaceholderTitle');
-  var cap2El   = document.getElementById('popupCap2');
-  var closeBtn = document.getElementById('popupClose');
-  if (!overlay || !bigImg || !closeBtn) return;
+var overlay  = document.getElementById('imgPopup');
+var inner    = document.getElementById('popupInner');
+var bigImg   = document.getElementById('popupImg');
+var capEl    = document.getElementById('popupCap');
+var phPanel  = document.getElementById('popupPlaceholder');
+var phTitle  = document.getElementById('popupPlaceholderTitle');
+var cap2El   = document.getElementById('popupCap2');
+var closeBtn = document.getElementById('popupClose');
+if (!overlay || !bigImg || !closeBtn) return;
 
-  /* ---------- OPEN ---------- */
-  function openPopup(img) {
-    var wrap    = img.closest('.popup-img-wrap') || img.parentElement;
-    var caption = (wrap && wrap.getAttribute('data-caption')) || img.alt || img.title || '';
-    var loaded  = img.complete && img.naturalWidth > 0;
+/* ---------- OPEN ---------- */
+function openPopup(img) {
+var wrap    = img.closest('.popup-img-wrap') || img.parentElement;
+var caption = (wrap && wrap.getAttribute('data-caption')) || img.alt || img.title || '';
+var loaded  = img.complete && img.naturalWidth > 0;
 
-    if (loaded) {
-      bigImg.src           = img.src;
-      bigImg.alt           = img.alt || '';
-      bigImg.style.display = 'block';
-      phPanel.classList.remove('show');
-      capEl.textContent    = caption;
-      cap2El.textContent   = '';
-    } else {
-      /* File missing — show elegant placeholder */
-      bigImg.src           = '';
-      bigImg.style.display = 'none';
-      phPanel.classList.add('show');
-      var phText = wrap ? wrap.querySelector('.ph-text') : null;
-      phTitle.innerHTML    = phText ? phText.innerHTML : (caption || 'Screenshot');
-      capEl.textContent    = '';
-      cap2El.textContent   = caption;
-    }
+if (loaded) {
+bigImg.src           = img.src;
+bigImg.alt           = img.alt || '';
+bigImg.style.display = 'block';
+phPanel.classList.remove('show');
+capEl.textContent    = caption;
+cap2El.textContent   = '';
+} else {
+/* File missing — show elegant placeholder */
+bigImg.src           = '';
+bigImg.style.display = 'none';
+phPanel.classList.add('show');
+var phText = wrap ? wrap.querySelector('.ph-text') : null;
+phTitle.innerHTML    = phText ? phText.innerHTML : (caption || 'Screenshot');
+capEl.textContent    = '';
+cap2El.textContent   = caption;
+}
 
-    overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    setTimeout(function () { closeBtn.focus(); }, 50);
-  }
+overlay.classList.add('active');
+document.body.style.overflow = 'hidden';
+setTimeout(function () { closeBtn.focus(); }, 50);
+}
 
-  /* ---------- CLOSE ---------- */
-  function closePopup() {
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
-    setTimeout(function () { bigImg.src = ''; phPanel.classList.remove('show'); }, 300);
-  }
+/* ---------- CLOSE ---------- */
+function closePopup() {
+overlay.classList.remove('active');
+document.body.style.overflow = '';
+setTimeout(function () { bigImg.src = ''; phPanel.classList.remove('show'); }, 300);
+}
 
-  /* ---------- WIRE EVERY <img> ON THE PAGE ---------- */
-  /* Skip the popup's own big image and any UI/icon images */
-  var skipIds = ['popupImg'];
+/* ---------- WIRE EVERY <img> ON THE PAGE ---------- */
+/* Skip the popup's own big image and any UI/icon images */
+var skipIds = ['popupImg'];
 
-  document.querySelectorAll('img').forEach(function (img) {
-    if (skipIds.indexOf(img.id) !== -1) return;   // skip popup image itself
-    if (img.closest('#imgPopup')) return;           // skip anything inside the modal
+document.querySelectorAll('img').forEach(function (img) {
+if (skipIds.indexOf(img.id) !== -1) return;   // skip popup image itself
+if (img.closest('#imgPopup')) return;           // skip anything inside the modal
 
-    /* Style the wrapper for the hover hint */
-    var wrap = img.closest('.popup-img-wrap');
-    if (!wrap) {
-      /* Wrap bare images on-the-fly */
-      var div = document.createElement('div');
-      div.className = 'popup-img-wrap';
-      div.setAttribute('data-caption', img.alt || img.title || '');
-      img.parentNode.insertBefore(div, img);
-      div.appendChild(img);
-      wrap = div;
-    }
+/* Style the wrapper for the hover hint */
+var wrap = img.closest('.popup-img-wrap');
+if (!wrap) {
+/* Wrap bare images on-the-fly */
+var div = document.createElement('div');
+div.className = 'popup-img-wrap';
+div.setAttribute('data-caption', img.alt || img.title || '');
+img.parentNode.insertBefore(div, img);
+div.appendChild(img);
+wrap = div;
+}
 
-    wrap.style.cursor = 'zoom-in';
-    wrap.setAttribute('tabindex', '0');
+wrap.style.cursor = 'zoom-in';
+wrap.setAttribute('tabindex', '0');
 
-    wrap.addEventListener('click', function (e) {
-      e.stopPropagation();
-      openPopup(img);
-    });
-    wrap.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPopup(img); }
-    });
-  });
+wrap.addEventListener('click', function (e) {
+e.stopPropagation();
+openPopup(img);
+});
+wrap.addEventListener('keydown', function (e) {
+if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPopup(img); }
+});
+});
 
-  /* ---------- CLOSE TRIGGERS ---------- */
-  closeBtn.addEventListener('click', closePopup);
-  overlay.addEventListener('click', function (e) {
-    if (!inner.contains(e.target)) closePopup();
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && overlay.classList.contains('active')) closePopup();
-  });
+/* ---------- CLOSE TRIGGERS ---------- */
+closeBtn.addEventListener('click', closePopup);
+overlay.addEventListener('click', function (e) {
+if (!inner.contains(e.target)) closePopup();
+});
+document.addEventListener('keydown', function (e) {
+if (e.key === 'Escape' && overlay.classList.contains('active')) closePopup();
+});
 
-  /* ---------- BROKEN IMAGE HANDLER ---------- */
-  /* Show .img-placeholder sibling when image file is missing */
-  document.querySelectorAll('.popup-img-wrap img').forEach(function (img) {
-    if (img.id === 'popupImg') return;
-    var ph = img.parentElement.querySelector('.img-placeholder');
-    function showPh() {
-      img.style.display = 'none';
-      if (ph) ph.style.display = 'flex';
-      img.parentElement.classList.add('broken');
-    }
-    if (img.complete && img.naturalWidth === 0) { showPh(); return; }
-    img.addEventListener('error', showPh);
-  });
+/* ---------- BROKEN IMAGE HANDLER ---------- */
+/* Show .img-placeholder sibling when image file is missing */
+document.querySelectorAll('.popup-img-wrap img').forEach(function (img) {
+if (img.id === 'popupImg') return;
+var ph = img.parentElement.querySelector('.img-placeholder');
+function showPh() {
+img.style.display = 'none';
+if (ph) ph.style.display = 'flex';
+img.parentElement.classList.add('broken');
+}
+if (img.complete && img.naturalWidth === 0) { showPh(); return; }
+img.addEventListener('error', showPh);
+});
 
 })();
 </script>
