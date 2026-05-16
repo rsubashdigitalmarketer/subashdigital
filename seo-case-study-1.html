@@ -1107,6 +1107,346 @@ End-to-end SEO, AEO, and GEO strategy for a global logistics brand — focused o
     </div>
   </div>
 </section>
+
+  <!-- ============================================================
+     AUDIT PROCESS — 9 cards, 3 ROWS × 3 COLUMNS
+     ============================================================ -->
+
+<style>
+/* =========================
+   AUDIT GRID LAYOUT
+========================= */
+
+.audit-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr); /* 3 columns */
+  gap:30px;
+  margin-top:60px;
+}
+
+/* =========================
+   CARD STYLE
+========================= */
+
+.audit-card{
+  background:#111827;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:22px;
+  padding:28px;
+  position:relative;
+  overflow:hidden;
+  transition:0.35s ease;
+}
+
+.audit-card:hover{
+  transform:translateY(-6px);
+  border-color:#22d3ee;
+}
+
+.audit-step{
+  font-size:13px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:#94a3b8;
+  margin-bottom:14px;
+}
+
+.audit-emoji{
+  font-size:34px;
+  display:block;
+  margin-bottom:18px;
+}
+
+.audit-name{
+  font-size:24px;
+  font-weight:700;
+  color:#fff;
+  margin-bottom:14px;
+  line-height:1.3;
+}
+
+.audit-desc{
+  color:#cbd5e1;
+  line-height:1.7;
+  font-size:15px;
+  margin-bottom:24px;
+}
+
+/* =========================
+   IMAGE WRAP
+========================= */
+
+.popup-img-wrap{
+  border-radius:16px;
+  overflow:hidden;
+  position:relative;
+}
+
+.popup-img-wrap img{
+  width:100%;
+  display:block;
+  border-radius:16px;
+}
+
+.img-placeholder{
+  background:#0f172a;
+  min-height:220px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#cbd5e1;
+  border-radius:16px;
+}
+
+.ph-icon{
+  font-size:34px;
+  margin-bottom:10px;
+}
+
+.ph-text{
+  line-height:1.6;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:991px){
+  .audit-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:640px){
+  .audit-grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+
+<section class="section" id="audit">
+  <div class="container">
+
+    <div class="section-head fade-up">
+      <div class="section-label">Site Audit Findings</div>
+
+      <h2 class="sec-title">
+        9 Critical <span class="cyan">SEO/GEO/AEO Problems</span> Found
+      </h2>
+
+      <p class="sec-sub">
+        The audit revealed compounding issues — each one suppressing organic growth.
+        Every card below was a live problem on the site.
+      </p>
+    </div>
+
+    <div class="audit-grid">
+
+      <!-- CARD 01 -->
+      <div class="audit-card fade-up" data-delay="1">
+        <div class="audit-step">01 / Technical</div>
+        <span class="audit-emoji">⚡</span>
+
+        <div class="audit-name">Poor Core Web Vitals</div>
+
+        <div class="audit-desc">
+          All three Core Web Vitals failing on mobile and desktop.
+        </div>
+
+        <div class="popup-img-wrap" data-caption="Step 01 — Technical Audit: crawl errors, redirects, Core Web Vitals">
+
+          <img src="Mobile speed before report .png"
+               alt="Technical audit screenshot"
+               onerror="this.parentNode.classList.add('broken')">
+
+          <div class="img-placeholder" style="display:none">
+            <div class="ph-icon">🔬</div>
+
+            <div class="ph-text">
+              Technical Audit<br>
+              Crawl errors & Core Web Vitals
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 02 -->
+      <div class="audit-card fade-up" data-delay="2">
+        <div class="audit-step">02 / Rankings</div>
+        <span class="audit-emoji">📉</span>
+
+        <div class="audit-name">Low Keyword Rankings</div>
+
+        <div class="audit-desc">
+          Only 35 keywords in Top 10. No target keywords ranking on Page 1.
+          Weak E-E-A-T signals across the domain.
+        </div>
+
+        <div class="popup-img-wrap" data-caption="Keyword rankings — only 12 keywords in Top 10, DA 2">
+
+          <img src="EX 9 CR RANK.png"
+               alt="Keyword rankings screenshot"
+               onerror="this.parentNode.classList.add('broken')">
+
+          <div class="img-placeholder" style="display:none">
+            <div class="ph-icon">📉</div>
+
+            <div class="ph-text">
+              Keyword Rankings Report<br>
+              35 keywords Top 10 · DA 14
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 03 -->
+      <div class="audit-card fade-up" data-delay="3">
+        <div class="audit-step">03 / CTR</div>
+        <span class="audit-emoji">🖱</span>
+
+        <div class="audit-name">Low Click-Through Rate</div>
+
+        <div class="audit-desc">
+          Average CTR of 1% despite appearing in search results.
+          Titles and meta descriptions not optimised for SERP appeal.
+        </div>
+
+        <div class="popup-img-wrap" data-caption="GSC CTR report — average 1% click-through rate">
+
+          <img src="EX 9 C LOW CTR.png"
+               alt="CTR screenshot"
+               onerror="this.parentNode.classList.add('broken')">
+
+          <div class="img-placeholder" style="display:none">
+            <div class="ph-icon">🖱</div>
+
+            <div class="ph-text">
+              GSC Performance Report<br>
+              CTR: 1%
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 04 -->
+      <div class="audit-card fade-up" data-delay="4">
+        <div class="audit-step">04 / Topical Authority</div>
+        <span class="audit-emoji">📚</span>
+
+        <div class="audit-name">Lack of Topical Authority</div>
+
+        <div class="audit-desc">
+          Thin content ecosystem with weak semantic depth, poor topic clustering,
+          limited entity coverage, and insufficient authority signals.
+        </div>
+
+        <div class="popup-img-wrap">
+          <img src="EX 9 C LOW CTR.png"
+               alt="Topical authority screenshot"
+               onerror="this.parentNode.classList.add('broken')">
+        </div>
+      </div>
+
+      <!-- CARD 05 -->
+      <div class="audit-card fade-up" data-delay="1">
+        <div class="audit-step">05 / Entity Optimization</div>
+        <span class="audit-emoji">🔍</span>
+
+        <div class="audit-name">Weak Entity & Context Optimization</div>
+
+        <div class="audit-desc">
+          Content lacked strong entity relationships, semantic associations,
+          contextual relevance, and NLP optimization.
+        </div>
+
+        <div class="popup-img-wrap">
+          <img src="EX 9 C LOW CTR.png"
+               alt="Entity optimization screenshot"
+               onerror="this.parentNode.classList.add('broken')">
+        </div>
+      </div>
+
+      <!-- CARD 06 -->
+      <div class="audit-card fade-up" data-delay="2">
+        <div class="audit-step">06 / AI Citation Readiness</div>
+        <span class="audit-emoji">🤖</span>
+
+        <div class="audit-name">No AI Citation Optimization</div>
+
+        <div class="audit-desc">
+          Content was not structured for AI citations, lacking GEO optimization,
+          trust signals, and retrieval-friendly formatting.
+        </div>
+
+        <div class="popup-img-wrap">
+          <img src="EX 9 C LOW CTR.png"
+               alt="AI citation screenshot"
+               onerror="this.parentNode.classList.add('broken')">
+        </div>
+      </div>
+
+      <!-- CARD 07 -->
+      <div class="audit-card fade-up" data-delay="3">
+        <div class="audit-step">07 / Answer Optimization</div>
+        <span class="audit-emoji">💬</span>
+
+        <div class="audit-name">No Direct Answer Optimization</div>
+
+        <div class="audit-desc">
+          Content lacked concise, extractable answers and conversational formatting
+          required for AI Overviews and featured snippets.
+        </div>
+
+        <div class="popup-img-wrap">
+          <img src="EX 9 C LOW CTR.png"
+               alt="Answer optimization screenshot"
+               onerror="this.parentNode.classList.add('broken')">
+        </div>
+      </div>
+
+      <!-- CARD 08 -->
+      <div class="audit-card fade-up" data-delay="4">
+        <div class="audit-step">08 / Structured Data</div>
+        <span class="audit-emoji">🧩</span>
+
+        <div class="audit-name">Missing Structured Data (Schema)</div>
+
+        <div class="audit-desc">
+          Website lacked FAQ, HowTo, Article, and Organization schema markup,
+          reducing machine readability and AI extraction capabilities.
+        </div>
+
+        <div class="popup-img-wrap">
+          <img src="EX 9 C LOW CTR.png"
+               alt="Schema screenshot"
+               onerror="this.parentNode.classList.add('broken')">
+        </div>
+      </div>
+
+      <!-- CARD 09 -->
+      <div class="audit-card fade-up" data-delay="1">
+        <div class="audit-step">09 / Content Readability</div>
+        <span class="audit-emoji">📖</span>
+
+        <div class="audit-name">Poor Content Chunking & Readability</div>
+
+        <div class="audit-desc">
+          Large content blocks, weak hierarchy, and low scannability created poor
+          user experience and reduced AI-friendly content interpretation.
+        </div>
+
+        <div class="popup-img-wrap">
+          <img src="EX 9 C LOW CTR.png"
+               alt="Readability screenshot"
+               onerror="this.parentNode.classList.add('broken')">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
   
 <!-- ============================================================
      STRATEGY — 6 cards, all with popup-img-wrap
